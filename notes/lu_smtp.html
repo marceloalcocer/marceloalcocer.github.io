@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>LU SMTP &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LU VPN" href="lu_vpn.html" />
+    <link rel="prev" title="LU Eduroam" href="lu_eduroam.html" />
+   <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+   
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lu-smtp">
+<h1>LU SMTP<a class="headerlink" href="#lu-smtp" title="Permalink to this headline">¶</a></h1>
+<p>Trying to use LU SMTP server to send outgoing ChemPhys mail rather than GMail SMTP servers. Marco got it working from Thunderbird using the following:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Server:</th><td class="field-body">smtp.lu.se</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Port:</th><td class="field-body">25</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Username:</th><td class="field-body">&lt;email&gt;&#64;chemphys.lu.se</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Password:</th><td class="field-body">&lt;password&gt;</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Encryption:</th><td class="field-body">STARTTLS</td>
+</tr>
+</tbody>
+</table>
+<p>Reading up a little:</p>
+<dl class="docutils">
+<dt>Transport Layer Security (TLS)</dt>
+<dd>Successor to SSL (although still known as SSL). Provides secure layer for communication. Typically goes through port 587 for STMP. Uses fully encrypted port right from the beginning — no data sent to/from port in plain text</dd>
+<dt>Opportunistic TLS (STARTTLS)</dt>
+<dd>Protocol to which provides a means of upgrading an unencrypted connection to an encrypted one. Allows communications to be initiated in plain text before upgrading to encrypted. AKA STARTTLS from command used to initialise upgrade. More commonly used nowadays as saves on dedicated ports. Initial part of communications in plain text, all encrypted after STARTTLS command.</dd>
+<dt>Simple Mail Transfer Protocol (SMTP) <a class="footnote-reference" href="#id6" id="id1">[1]</a></dt>
+<dd>Outgoing mail protocol. SMTP client wanting to send e-mail contacts its SMTP server, which contacts recipients STMP server to deliver the email. The email is then fetched from the recipients STMP server by the recipient&#8217;s client via IMAP. SMTP servers usually require authentication (e.g. TLS) to avoid spammers from abusing them</dd>
+</dl>
+<p>So need gmail client to use <code class="docutils literal"><span class="pre">smtp.lu.se</span></code> rather than <code class="docutils literal"><span class="pre">smtp.gmail.com</span></code> to send outgoing mail. It provides options for both TLS and SSL authentication, on all three usual ports <a class="footnote-reference" href="#id7" id="id2">[2]</a>. None seem to work with LU SMTP server however.</p>
+<p>Interestingly, trying to send mail manually via <code class="docutils literal"><span class="pre">telnet</span></code> with no authentication seems to be no problem:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>malcocer@malcocer-S551LN:~$ telnet smtp.lu.se 25
+        Trying 130.235.52.18...
+        Connected to mail.lu.se.
+        Escape character is &#39;^]&#39;.
+        220 mail.lu.se Microsoft ESMTP MAIL Service ready at Fri, 21 Oct 2016 17:21:17 +0200
+        &gt;&gt; HELO marcelo.alcocer
+        250 mail.lu.se Hello [130.235.28.41]
+        &gt;&gt; MAIL FROM:&lt;foo@bar.com&gt;
+        250 2.1.0 Sender OK
+        &gt;&gt; RCPT TO:&lt;marcelo.j.p.alcocer@gmail.com&gt;
+        250 2.1.5 Recipient OK
+        &gt;&gt;DATA
+        354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt;
+        &gt;&gt; From: &quot;Foobar&quot; &lt;foo@bar.com&gt;
+        &gt;&gt; To: &quot;Marcelo Alcocer&quot; &lt;marcelo.j.p.alcocer@gmail.com&gt;
+        &gt;&gt; Date: Fri, 21 October 2016 17:19:00 -0200
+        &gt;&gt; Subject: Test
+        &gt;&gt;
+        &gt;&gt; Hi. this mail was sent from telnet from some random dude.
+        &gt;&gt;
+        &gt;&gt;.
+        250 2.6.0 &lt;7c3912d5-5036-4372-8b07-958498de668b@wedge011.net.lu.se&gt; [InternalId=3959959848588, Hostname=wedge011.net.lu.se] 1224 bytes in 39.864, 0,030 KB/sec Queued mail for delivery
+        &gt;&gt; QUIT
+        221 2.0.0 Service closing transmission channel
+        Connection closed by foreign host.
+</pre></div>
+</div>
+<p>Does this mean that the LU SMTP server requires no authentication?! Would be very strange... <a class="footnote-reference" href="#id8" id="id3">[3]</a></p>
+<p>Perhaps only when within LU network? Indeed, does not work from outside LU:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>malcocer@malcocer-S551LN:~$ telnet smtp.lu.se 25
+        Trying 130.235.52.18...
+        Connected to mail.lu.se.
+        Escape character is &#39;^]&#39;.
+        220 wedge012.net.lu.se Microsoft ESMTP MAIL Service ready at Fri, 21 Oct 2016 21:18:21 +0200
+        &gt;&gt; HELO marcelo.alcocer
+        250 wedge012.net.lu.se Hello [46.59.111.153]
+        &gt;&gt; MAIL FROM:&lt;foo@bar.com&gt;
+        250 2.1.0 Sender OK
+        &gt;&gt; RCPT TO:&lt;marcelo.j.p.alcocer@gmail.com&gt;
+        550 5.7.54 SMTP; Unable to relay recipient in non-accepted domain
+</pre></div>
+</div>
+<p>So can we authenticate using STARTTLS? Cannot really do communication via <code class="docutils literal"><span class="pre">telnet</span></code> as will eventually encrypt. Better to use <code class="docutils literal"><span class="pre">openssl</span></code> <a class="footnote-reference" href="#id9" id="id4">[4]</a> <a class="footnote-reference" href="#id10" id="id5">[5]</a>.</p>
+<p>Server does indeed support STARTTLS:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>malcocer@malcocer-S551LN:~$ telnet smtp.lu.se 25
+        Trying 130.235.52.18...
+        Connected to mail.lu.se.
+        Escape character is &#39;^]&#39;.
+        220 wedge012.net.lu.se Microsoft ESMTP MAIL Service ready at Fri, 21 Oct 2016 21:18:21 +0200
+        &gt;&gt; EHLO marcelo.alcocer
+        250-wedge010.net.lu.se Hello [46.59.111.153]
+        250-SIZE 37748736
+        250-PIPELINING
+        250-DSN
+        250-ENHANCEDSTATUSCODES
+        250-STARTTLS
+        250-X-ANONYMOUSTLS
+        250-X-EXPS NTLM
+        250-8BITMIME
+        250-BINARYMIME
+        250-CHUNKING
+        250-XEXCH50
+        250 XSHADOW
+</pre></div>
+</div>
+<p>But no plaintext AUTH:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>malcocer@malcocer-S551LN:~$ openssl s_client -debug -starttls smtp -crlf -connect smtp.lu.se:25
+
+        &lt;...key exchange...&gt;
+
+        250 XSHADOW
+        &gt;&gt; ehlo marcelo.alcocer
+        250-wedge010.net.lu.se Hello [46.59.111.153]
+        250-SIZE 37748736
+        250-PIPELINING
+        250-DSN
+        250-ENHANCEDSTATUSCODES
+        250-X-EXPS NTLM
+        250-8BITMIME
+        250-BINARYMIME
+        250-CHUNKING
+        250-XEXCH50
+        250 XSHADOW
+</pre></div>
+</div>
+<p>Implies connection is not secure? Or that plain text authentication is simply not supported?</p>
+<p>No luck with STARTTLS on ports 465 or 587 (SSL ports) — connection refused. Is it expecting full TLS rather than STARTTLS?</p>
+<p>Indeed, reading a bit further, looks like SMTP server only allows location based authentication:</p>
+<blockquote>
+<div><p>SMTP Server (Outgoing)  mail.lu.se (port 25 , no user name,outside the Lund University you will need to use SMTP of your ISP)</p>
+<p class="attribution">&mdash;<a class="reference external" href="http://itsupport.nateko.lu.se/online-help/e-mail/">LDC</a></p>
+</div></blockquote>
+<p>Balls. Really?! Then Marco should not be able to send e-mails from Rostock...</p>
+<p>Perhaps try LUCAT ID or mail.lu.se?</p>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://support.google.com/mail/answer/1074635?hl=en-GB">https://support.google.com/mail/answer/1074635?hl=en-GB</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://productforums.google.com/forum/#!topic/gmail/rhEAg6hk6Lw">https://productforums.google.com/forum/#!topic/gmail/rhEAg6hk6Lw</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/27030605/smtp-starttls-certificate-negotitiation-via-telnet">http://stackoverflow.com/questions/27030605/smtp-starttls-certificate-negotitiation-via-telnet</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td><a class="reference external" href="https://qmail.jms1.net/test-auth.shtml">https://qmail.jms1.net/test-auth.shtml</a></td></tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">marceloalcocer.github.io</a></h1>
+
+
+
+
+
+
+
+
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app_2_dash.html">Adding Apps to Dash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apt_pkg_held.html">apt: packages held back</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bash_rename.html">bash rename</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bokeh.html">bokeh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cnst_print.html">CNST Print</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctypes.html">ctypes Pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="desktop_switcher.html">Remove Desktop from Switcher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gnome_critical.html">Gnome critical power action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG Encryption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ls_abs_path.html">List Absolute Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lu_eduroam.html">LU Eduroam</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LU SMTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lu_vpn.html">LU VPN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mic_issue.html">Mic problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpl.html">matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpl_svg_inkscape.html">Matplotlib SVG &amp; Inkscape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nouveau_revert.html">Reverting to nouveau driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power_menu.html">Power Off Menu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pydev.html">PyDev configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rdp_users.html">Check logged in users on remote Windows workstation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rec_grep.html">Search text file contents recursively</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scipy_on_win.html">Installing SciPy on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphix.html">Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="term_brightness.html">Terminal brightness control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wacom_scrolling.html">Wacom Tablet Scrolling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="win_cpp_dev.html">Windows C++ Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="win_symlink.html">Symlinks on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="win_usb.html">Windows &lt;10 USB serial drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wireless.html">Wireless Card Problems</a></li>
+</ul>
+</li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Marcelo Alcocer.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

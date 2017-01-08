@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Wireless Card Problems &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Window Functions" href="window_functions.html" />
+   <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+   
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="wireless-card-problems">
+<h1>Wireless Card Problems<a class="headerlink" href="#wireless-card-problems" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="card-and-driver">
+<h2>Card and Driver<a class="headerlink" href="#card-and-driver" title="Permalink to this headline">¶</a></h2>
+<p>Wireless card:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">lspci</span>
+   <span class="o">...</span>
+   <span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span> <span class="n">Network</span> <span class="n">controller</span><span class="p">:</span> <span class="n">MEDIATEK</span> <span class="n">Corp</span><span class="o">.</span> <span class="n">MT7630e</span> <span class="mf">802.11</span><span class="n">bgn</span> <span class="n">Wireless</span> <span class="n">Network</span> <span class="n">Adapter</span>
+   <span class="o">...</span>
+
+<span class="o">&gt;&gt;</span> <span class="n">sudo</span> <span class="n">lshw</span> <span class="o">-</span><span class="n">C</span> <span class="n">network</span><span class="p">;</span>
+   <span class="o">...</span>
+   <span class="o">*-</span><span class="n">network</span> <span class="n">UNCLAIMED</span>
+        <span class="n">description</span><span class="p">:</span> <span class="n">Network</span> <span class="n">controller</span>
+        <span class="n">product</span><span class="p">:</span> <span class="n">MT7630e</span> <span class="mf">802.11</span><span class="n">bgn</span> <span class="n">Wireless</span> <span class="n">Network</span> <span class="n">Adapter</span>
+        <span class="n">vendor</span><span class="p">:</span> <span class="n">MEDIATEK</span> <span class="n">Corp</span><span class="o">.</span>
+        <span class="n">physical</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="n">bus</span> <span class="n">info</span><span class="p">:</span> <span class="n">pci</span><span class="nd">@0000</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span>
+        <span class="n">version</span><span class="p">:</span> <span class="mi">00</span>
+        <span class="n">width</span><span class="p">:</span> <span class="mi">32</span> <span class="n">bits</span>
+        <span class="n">clock</span><span class="p">:</span> <span class="mi">33</span><span class="n">MHz</span>
+        <span class="n">capabilities</span><span class="p">:</span> <span class="n">pm</span> <span class="n">msi</span> <span class="n">pciexpress</span> <span class="n">bus_master</span> <span class="n">cap_list</span>
+        <span class="n">configuration</span><span class="p">:</span> <span class="n">latency</span><span class="o">=</span><span class="mi">0</span>
+        <span class="n">resources</span><span class="p">:</span> <span class="n">memory</span><span class="p">:</span><span class="n">f7800000</span><span class="o">-</span><span class="n">f78fffff</span>
+   <span class="o">...</span>
+</pre></div>
+</div>
+<p>With 14.04 and kernel from summer 2014, card not working with default Ubuntu drivers. Had to build and install drivers myself <a class="footnote-reference" href="#id6" id="id1">[1]</a>. Source still present in <code class="docutils literal"><span class="pre">/usr/src/rt2x00-3.13</span></code>, and kernel module added in <code class="docutils literal"><span class="pre">/etc/modules</span></code>.</p>
+<p>With 16.04 and 4.4.0-34 kernel, wireless card not working with default Ubuntu drivers. Had to build and install drivers myself <a class="footnote-reference" href="#id7" id="id2">[2]</a>. Source still present in <code class="docutils literal"><span class="pre">/usr/local/src/MT7360E-2.0.4</span></code>.</p>
+</div>
+<div class="section" id="secure-boot">
+<h2>Secure Boot<a class="headerlink" href="#secure-boot" title="Permalink to this headline">¶</a></h2>
+<p>Secure Boot is a chain of trust which starts at firmware <a class="footnote-reference" href="#id8" id="id3">[3]</a>; firmware certificate authority validates bootloader which validates kernel, which validates kernel modules, etc.</p>
+<p>In Ubuntu:</p>
+<ol class="arabic simple">
+<li>Ubuntu primary bootloader (<code class="docutils literal"><span class="pre">shim</span></code>) is signed with MS key, and so is validated by firmware CA.</li>
+<li><code class="docutils literal"><span class="pre">shim</span></code> has Canonical key which validates GRUB secondary bootloader</li>
+<li>GRUB validates kernel</li>
+<li>Kernel validates kernel modules</li>
+</ol>
+<p>Previously, had not needed to disable Secure Boot as whole chain worked. After kernel upgrade (&gt;= 3.13.0-92-generic), wireless drivers no longer being used. Probably because using kernel built with kernel module signing enforced? This would result in a problem as own kernel module build cannot be signed with the Canonical key <a class="footnote-reference" href="#id9" id="id4">[4]</a> and so fails validation in Secure Boot chain</p>
+<p>Indeed see that were always failing validation:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">less</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">kern</span><span class="o">.</span><span class="n">log</span>
+   <span class="o">...</span>
+   <span class="n">Jul</span> <span class="mi">14</span> <span class="mi">17</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">04</span> <span class="n">malcocer</span><span class="o">-</span><span class="n">S551LN</span> <span class="n">kernel</span><span class="p">:</span> <span class="p">[</span>   <span class="mf">17.839047</span><span class="p">]</span> <span class="n">rt2x00lib</span><span class="p">:</span> <span class="n">module</span> <span class="n">verification</span> <span class="n">failed</span><span class="p">:</span> <span class="n">signature</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span>  <span class="n">required</span> <span class="n">key</span> <span class="n">missing</span> <span class="o">-</span> <span class="n">tainting</span> <span class="n">kernel</span>
+   <span class="o">...</span>
+   <span class="n">Jul</span> <span class="mi">15</span> <span class="mi">17</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">04</span> <span class="n">malcocer</span><span class="o">-</span><span class="n">S551LN</span> <span class="n">kernel</span><span class="p">:</span> <span class="p">[</span>   <span class="mf">17.839047</span><span class="p">]</span> <span class="n">rt2x00lib</span><span class="p">:</span> <span class="n">module</span> <span class="n">verification</span> <span class="n">failed</span><span class="p">:</span> <span class="n">signature</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span>  <span class="n">required</span> <span class="n">key</span> <span class="n">missing</span> <span class="o">-</span> <span class="n">tainting</span> <span class="n">kernel</span>
+   <span class="o">...</span>
+</pre></div>
+</div>
+<p>Previously, failure does not seem to have been a problem, however new kernel probably requires success? Interestingly, do not see any log entries after kernel update. Probably modules not being loaded at all.</p>
+<p>Verified that Secure Boot enabled in UEFI settings (shift-restart from Windows as primary bootloader).</p>
+</div>
+<div class="section" id="solution-14-04">
+<h2>Solution - 14.04<a class="headerlink" href="#solution-14-04" title="Permalink to this headline">¶</a></h2>
+<p>Should be able to generate key, sign own modules and add to MOK <a class="footnote-reference" href="#id10" id="id5">[5]</a>.</p>
+<p>Checking modules added during driver installation to <code class="docutils literal"><span class="pre">/etc/modules</span></code> using <code class="docutils literal"><span class="pre">modinfo</span></code>, see that only <code class="docutils literal"><span class="pre">rt2*</span></code> modules lack signatures as they were built locally. As such, only signed these.</p>
+<p>Enrolled key in MOK. Checked public key file with <code class="docutils literal"><span class="pre">mokutil</span> <span class="pre">-t</span></code>. Checked signature displayed in <code class="docutils literal"><span class="pre">mokutil</span> <span class="pre">-l</span></code> matches that in <code class="docutils literal"><span class="pre">modinfo</span></code>.</p>
+<p>Still getting error message in <code class="docutils literal"><span class="pre">kern.log</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Request</span> <span class="k">for</span> <span class="n">unknown</span> <span class="n">module</span> <span class="n">key</span> <span class="s1">&#39;Descriptive name: 1abaa67b131e7951eb631b71b72c45e75e36c286&#39;</span> <span class="n">err</span> <span class="o">-</span><span class="mi">11</span>
+</pre></div>
+</div>
+<p>Strange, as signature matches that in MOK.</p>
+<p>Confirmed that disabling validation (<code class="docutils literal"><span class="pre">mokutil</span> <span class="pre">--disable-validation</span></code>) solves problem.</p>
+<p>Why are the modules failing validation?</p>
+<ol class="arabic simple">
+<li>Kernel rebuild/update required?</li>
+<li>Where is module being loaded from? Perhaps from different location to signed ones...?</li>
+</ol>
+<p>Whilst checking module location, saw that kernel already provides rt2x-like drivers for this wireless card. These are already signed by someone at Canonical. Tried removing all own drivers and using these kernel drivers. Now they pass validation (no errors in <code class="docutils literal"><span class="pre">kern.log</span></code>), but the wireless car remains unclaimed.</p>
+<p>In the end, had to disable kernel module validation. Poor solution.</p>
+</div>
+<div class="section" id="solution-16-04">
+<h2>Solution - 16.04<a class="headerlink" href="#solution-16-04" title="Permalink to this headline">¶</a></h2>
+<p>As before, tried signing the module to allow secure booting. As originally generated key still enrolled in MOK (<code class="docutils literal"><span class="pre">mokutil</span> <span class="pre">-l</span></code>), tries signing with this first.</p>
+<p>With new driver from neurobin, can install kernel module with DKMS or manually — advantage of DKMS approach is that do not need to rebuild for every kernel update, however manual building seems to give more control of installation process (look at makefile).</p>
+<p>Build module:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">MT7630E</span>
+<span class="o">&gt;&gt;</span> <span class="n">sudo</span> <span class="o">./</span><span class="n">uninstall</span>
+<span class="o">&gt;&gt;</span> <span class="n">sudo</span> <span class="n">make</span> <span class="n">clean</span>
+<span class="o">&gt;&gt;</span> <span class="n">sudo</span> <span class="o">./</span><span class="n">install</span>
+</pre></div>
+</div>
+<p>Final <code class="docutils literal"><span class="pre">modprobe</span></code> fails as kernel modules not yet signed.</p>
+<p>Sign modules:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&gt;&gt; sudo /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n mt7630e)
+&gt;&gt; sudo /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n mt76xx)
+</pre></div>
+</div>
+<p>Final <code class="docutils literal"><span class="pre">depmod</span></code> to build kernel module dependency tree (no fail now):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">sudo</span> <span class="n">depmod</span>
+</pre></div>
+</div>
+<p>Reboot and working first time now ;-)</p>
+<p>Will have to repeat at each kernel upgrade however. <strong>Don&#8217;t uninstall module yet! Boot into previous kernel version first to decrypt</strong> <code class="docutils literal"><span class="pre">MOK.priv</span></code> .</p>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1220146/comments/125">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1220146/comments/125</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://github.com/neurobin/MT7630E">http://github.com/neurobin/MT7630E</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://wiki.ubuntu.com/SecurityTeam/SecureBoot">https://wiki.ubuntu.com/SecurityTeam/SecureBoot</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td><a class="reference external" href="http://askubuntu.com/questions/755238/why-disabling-secure-boot-is-enforced-policy-when-installing-3rd-party-modules">http://askubuntu.com/questions/755238/why-disabling-secure-boot-is-enforced-policy-when-installing-3rd-party-modules</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td><a class="reference external" href="http://askubuntu.com/questions/760671/could-not-load-vboxdrv-after-upgrade-to-ubuntu-16-04-and-i-want-to-keep-secur">http://askubuntu.com/questions/760671/could-not-load-vboxdrv-after-upgrade-to-ubuntu-16-04-and-i-want-to-keep-secur</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">marceloalcocer.github.io</a></h1>
+
+
+
+
+
+
+
+
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app_2_dash.html">Adding Apps to Dash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apt_pkg_held.html">apt: packages held back</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bash_rename.html">bash rename</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bokeh.html">bokeh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cnst_print.html">CNST Print</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctypes.html">ctypes Pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="desktop_switcher.html">Remove Desktop from Switcher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gnome_critical.html">Gnome critical power action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG Encryption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ls_abs_path.html">List Absolute Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lu_eduroam.html">LU Eduroam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lu_smtp.html">LU SMTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lu_vpn.html">LU VPN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mic_issue.html">Mic problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpl.html">matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpl_svg_inkscape.html">Matplotlib SVG &amp; Inkscape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nouveau_revert.html">Reverting to nouveau driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power_menu.html">Power Off Menu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pydev.html">PyDev configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rdp_users.html">Check logged in users on remote Windows workstation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rec_grep.html">Search text file contents recursively</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scipy_on_win.html">Installing SciPy on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphix.html">Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="term_brightness.html">Terminal brightness control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wacom_scrolling.html">Wacom Tablet Scrolling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="win_cpp_dev.html">Windows C++ Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="win_symlink.html">Symlinks on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="win_usb.html">Windows &lt;10 USB serial drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Wireless Card Problems</a></li>
+</ul>
+</li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Marcelo Alcocer.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>matplotlib &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Matplotlib SVG &amp; Inkscape" href="mpl_svg_inkscape.html" />
+    <link rel="prev" title="Mic problem" href="mic_issue.html" />
+   <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+   
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="matplotlib">
+<h1>matplotlib<a class="headerlink" href="#matplotlib" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="updating">
+<h2>Updating<a class="headerlink" href="#updating" title="Permalink to this headline">¶</a></h2>
+<p>Ubuntu package is old (MPL 1.3.x). Update instead with pip3:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">matplotlib</span>
+</pre></div>
+</div>
+<p>Required a few dependencies however which pip couldn&#8217;t handle, viz. <code class="docutils literal"><span class="pre">libpng</span></code>, <code class="docutils literal"><span class="pre">freetype</span></code>. Install dev packages manually first:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libpng12</span><span class="o">-</span><span class="n">dev</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libfreetype6</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+<p>Now pip works fine</p>
+<p>Finally, when using GTK3 canvas, must also install <code class="docutils literal"><span class="pre">cairocffi</span></code> in order to provide GTK with necessary Cairo wrappers. This in turn had it&#8217;s own dependencies, viz; <code class="docutils literal"><span class="pre">python3.4-dev</span></code>, <code class="docutils literal"><span class="pre">libffi-dev</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span><span class="o">.</span><span class="mi">4</span><span class="o">-</span><span class="n">dev</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libffi</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+<p>and now install <code class="docutils literal"><span class="pre">cairocffi</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">cairocffi</span>
+</pre></div>
+</div>
+<p>N.b. <code class="docutils literal"><span class="pre">cairocffi</span></code> is required for all GTK3 backends (i.e. GTK3Cairo and GTK3Agg). It just doesn&#8217;t work without it!</p>
+<p>More backend installation details: <a class="reference external" href="http://matplotlib.org/users/installing.html">http://matplotlib.org/users/installing.html</a>
+cairocffi installation details: <a class="reference external" href="https://pythonhosted.org/cairocffi/overview.html#installing-cffi">https://pythonhosted.org/cairocffi/overview.html#installing-cffi</a></p>
+</div>
+<div class="section" id="backends">
+<h2>Backends<a class="headerlink" href="#backends" title="Permalink to this headline">¶</a></h2>
+<p>Recall: backend is renderer/canvas combination - renderers are static (produce files); renderers + canvas are interactive (windows).</p>
+<p>Previously using AGG renderer with Tk canvas. AGG write PNG only and is quite old (last repo update in 2006!). Probably better to move to Cairo - more output formats and newer.</p>
+<p>Whilst we&#8217;re at it, let&#8217;s also try out GTK canvas - probably a bit newer (and already installed)</p>
+<p>Change backend in <a class="reference external" href="~/.config/matplotlib/matplotlibrc">~/.config/matplotlib/matplotlibrc</a></p>
+<p>Full details: <a class="reference external" href="http://matplotlib.org/faq/usage_faq.html#what-is-a-backend">http://matplotlib.org/faq/usage_faq.html#what-is-a-backend</a></p>
+</div>
+<div class="section" id="animation-output">
+<h2>Animation Output<a class="headerlink" href="#animation-output" title="Permalink to this headline">¶</a></h2>
+<p>Using:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ani</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">animation</span><span class="o">.</span><span class="n">Animation</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Animated GIF using Imagemagick (usually installed):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ani</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;prova.gif&quot;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="s2">&quot;Imagemagick&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>MP4 (and other video formats) require <code class="docutils literal"><span class="pre">ffmpeg</span></code>. <code class="docutils literal"><span class="pre">ffmpeg</span></code> being merged into main ubuntu multimedia PPA, but only from Wiley onwards. Only require binary however, so downloaded static build of 3.0.2 from <a class="reference external" href="http://johnvansickle.com/ffmpeg/">http://johnvansickle.com/ffmpeg/</a> and placed in <code class="docutils literal"><span class="pre">/usr/bin</span></code>. Now:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ani</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;prova.mp4&quot;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="s2">&quot;ffmpeg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Also provides writing to h264 (HTML5 video) format. This is done by embedding animation in video tag:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;prova.html&quot;</span><span class="p">,</span> <span class="s2">&quot;wt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ani</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">marceloalcocer.github.io</a></h1>
+
+
+
+
+
+
+
+
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app_2_dash.html">Adding Apps to Dash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apt_pkg_held.html">apt: packages held back</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bash_rename.html">bash rename</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bokeh.html">bokeh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cnst_print.html">CNST Print</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctypes.html">ctypes Pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="desktop_switcher.html">Remove Desktop from Switcher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gnome_critical.html">Gnome critical power action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG Encryption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ls_abs_path.html">List Absolute Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lu_eduroam.html">LU Eduroam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lu_smtp.html">LU SMTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lu_vpn.html">LU VPN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mic_issue.html">Mic problem</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpl_svg_inkscape.html">Matplotlib SVG &amp; Inkscape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nouveau_revert.html">Reverting to nouveau driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power_menu.html">Power Off Menu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pydev.html">PyDev configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rdp_users.html">Check logged in users on remote Windows workstation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rec_grep.html">Search text file contents recursively</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scipy_on_win.html">Installing SciPy on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphix.html">Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="term_brightness.html">Terminal brightness control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wacom_scrolling.html">Wacom Tablet Scrolling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="win_cpp_dev.html">Windows C++ Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="win_symlink.html">Symlinks on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="win_usb.html">Windows &lt;10 USB serial drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wireless.html">Wireless Card Problems</a></li>
+</ul>
+</li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Marcelo Alcocer.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
