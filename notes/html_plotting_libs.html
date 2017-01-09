@@ -49,14 +49,40 @@
             
   <div class="section" id="html-plotting-libraries">
 <h1>HTML Plotting Libraries<a class="headerlink" href="#html-plotting-libraries" title="Permalink to this headline">¶</a></h1>
-<dl class="docutils">
-<dt>D3:</dt>
-<dd>Rendering data (i.e. arrays of numbers) using W3 DOM standards (SVG, CSS, HTML). Pure JS.</dd>
-<dt>mpld3:</dt>
-<dd>Backend for MPL allowing MPL objects to be rendered using D3. Output in SVG only (no interactive HTML5 canvas)</dd>
-<dt>Bokeh:</dt>
-<dd>Python plotting to HTML 5 canvas. Similar to D3 in that sense but more specific (Python only). Specifically targeted at big datasets and their representation.</dd>
-</dl>
+<div class="section" id="d3">
+<h2>D3<a class="headerlink" href="#d3" title="Permalink to this headline">¶</a></h2>
+<p>Renders data (i.e. arrays of numbers) using W3 DOM standards (SVG, CSS, HTML). Pure JS.</p>
+</div>
+<div class="section" id="mpld3">
+<h2>mpld3<a class="headerlink" href="#mpld3" title="Permalink to this headline">¶</a></h2>
+<p>Backend for MPL. Converts MPL objects into numerical arrays which can then be rendered using D3.</p>
+<p>As uses D3, outputs in SVG rather than interactive HTML5 canvas (c.f. Bokeh below). Uses plugins (JS + python) to provide interactivity however (zooming, panning, labels, etc.). Builtin plugins should be sufficient for basic data exploration.</p>
+<p>Not designed for large datasets, so can be slow with many points.</p>
+<p>Uses MPL plotting commands.</p>
+</div>
+<div class="section" id="bokeh">
+<h2>Bokeh<a class="headerlink" href="#bokeh" title="Permalink to this headline">¶</a></h2>
+<p>Python library for plotting to HTML canvas — native HTML interactivity and dynamic-ness <a class="footnote-reference" href="#id3" id="id1">[1]</a> .</p>
+<p>Specifically designed for rendering large datasets (downsampling, etc.)</p>
+<p>Will support MPL eventually <a class="footnote-reference" href="#id4" id="id2">[2]</a>, but has its own plotting commands too:</p>
+<blockquote>
+<div><p>How does Bokeh compare to mpld3?</p>
+<p>For a lightweight, python-only library that exposes most of matplotlib to the browser, mpld3 could be a good choice. Bokeh also intends to fully support the MPL interface (and hence Seaborn, pandas, and ggplot.py), however the main goal of Bokeh is to provide approachable capability for novel interactive visualizations in the browser. If you would like to have the benefits of HTML canvas rendering, dynamic downsampling, abstract rendering, server plot hosting, and the possibility of interacting from languages besides python, please consider Bokeh for your project.</p>
+<p class="attribution">&mdash;<a class="reference external" href="http://bokehplots.com/pages/faqs.html">http://bokehplots.com/pages/faqs.html</a></p>
+</div></blockquote>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://www.w3schools.com/html/html5_canvas.asp">http://www.w3schools.com/html/html5_canvas.asp</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://bokeh.pydata.org/en/latest/docs/user_guide/compat.html#matplotlib-seaborn-ggplot-and-pandas">http://bokeh.pydata.org/en/latest/docs/user_guide/compat.html#matplotlib-seaborn-ggplot-and-pandas</a></td></tr>
+</tbody>
+</table>
+</div>
 </div>
 
 
