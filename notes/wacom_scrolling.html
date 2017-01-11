@@ -51,7 +51,7 @@
 <h1>Wacom Tablet Scrolling<a class="headerlink" href="#wacom-tablet-scrolling" title="Permalink to this headline">¶</a></h1>
 <p>Wacom Bamboo tablet pad ring and buttons not being recognized on Xenial. Can map to commands using <a class="footnote-reference" href="#id3" id="id1">[1]</a>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xsetwacom</span> <span class="nb">set</span> <span class="s2">&quot;Wacom Bamboo Pad pad&quot;</span> <span class="s2">&quot;AbsWheelUp&quot;</span> <span class="s2">&quot;key up&quot;</span>
-<span class="n">xsetwacom</span> <span class="nb">set</span> <span class="s2">&quot;Wacom Bamboo Pad pad&quot;</span> <span class="s2">&quot;AbsWheelDoen&quot;</span> <span class="s2">&quot;key down&quot;</span>
+<span class="n">xsetwacom</span> <span class="nb">set</span> <span class="s2">&quot;Wacom Bamboo Pad pad&quot;</span> <span class="s2">&quot;AbsWheelDown&quot;</span> <span class="s2">&quot;key down&quot;</span>
 </pre></div>
 </div>
 <p>According to man page, these are non-persistent X11 mappings and so will be reset with each X-server restart. As such, to make persistent could:</p>
