@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>GitHub SSH &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    <title>Latex package management on Ubuntu &#8212; marceloalcocer.github.io 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Gnome critical power action" href="gnome_critical.html" />
-    <link rel="prev" title="Git Cheatsheet" href="git_cheatsheet.html" />
+    <link rel="next" title="List Absolute Path" href="ls_abs_path.html" />
+    <link rel="prev" title="Create ISO image from CD" href="iso_from_cd.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    
    
@@ -47,38 +47,16 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="github-ssh">
-<h1>GitHub SSH<a class="headerlink" href="#github-ssh" title="Permalink to this headline">¶</a></h1>
-<p>After upgrading to Xenial, having problems authenticating with GitHub via SSH <a class="footnote-reference" href="#id4" id="id1">[1]</a>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">ssh</span> <span class="o">-</span><span class="n">vT</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span>
-<span class="o">...</span>
-<span class="n">debug1</span><span class="p">:</span> <span class="n">identity</span> <span class="n">file</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">malcocer</span><span class="o">/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span> <span class="nb">type</span> <span class="mi">1</span>
-<span class="o">...</span>
-<span class="n">debug1</span><span class="p">:</span> <span class="n">Offering</span> <span class="n">RSA</span> <span class="n">public</span> <span class="n">key</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">malcocer</span><span class="o">/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span>
-<span class="o">...</span>
-<span class="n">sign_and_send_pubkey</span><span class="p">:</span> <span class="n">signing</span> <span class="n">failed</span><span class="p">:</span> <span class="n">agent</span> <span class="n">refused</span> <span class="n">operation</span>
-<span class="o">...</span>
-</pre></div>
-</div>
-<p>See from output that have correct keys locally and they are found by SSH agent. Also, checked that key fingerprint matches that uploaded to GitHub.</p>
-<p>In the end, looks like it&#8217;s a problem with Unity&#8217;s SSH agent (gnome-keyring). Disabling it on startup seems to solve the problem as OpenSSH agent is then used instead <a class="footnote-reference" href="#id5" id="id2">[2]</a> <a class="footnote-reference" href="#id6" id="id3">[3]</a>.</p>
-<p>Only issue now is that OpenSSH agent requests SSH password each time — not maintained for the session.</p>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
+  <div class="section" id="latex-package-management-on-ubuntu">
+<h1>Latex package management on Ubuntu<a class="headerlink" href="#latex-package-management-on-ubuntu" title="Permalink to this headline">¶</a></h1>
+<p>Different latex distributions handle LaTex packages differently. The texlive distribution has a package manager (<code class="docutils literal"><span class="pre">tlmgr</span></code>) to keep packages up to date with those hosted on CTAN.</p>
+<p>Unfortunately, Ubuntu repackages many Tex packages into it&#8217;s own <code class="docutils literal"><span class="pre">.deb</span></code> packages so as to offer easy installation. As <code class="docutils literal"><span class="pre">apt</span></code> now handles latex packages, <code class="docutils literal"><span class="pre">tlmgr</span></code> is disabled to avoid any conflicts. As such, can not install/update individual packages from CTAN using <code class="docutils literal"><span class="pre">tlmgr</span></code>. Instead, should find the containing Ubuntu package and install it using <code class="docutils literal"><span class="pre">apt</span></code>. All well and good, but often contain tons of other unwanted Latex packages.</p>
+<p>Another solution would be to install texlive manually (i.e. not via <code class="docutils literal"><span class="pre">apt</span></code>) so that <code class="docutils literal"><span class="pre">apt</span></code> is unaware of it. This thien separates the two managers allowing <code class="docutils literal"><span class="pre">tlmgr</span></code> to be used exclusively for packages <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
+<p>Finally, could also try installing individual latex packages directly from CTAN, but not 100% sure how to do this...</p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://help.github.com/articles/testing-your-ssh-connection/">https://help.github.com/articles/testing-your-ssh-connection/</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://chrisjean.com/ubuntu-ssh-fix-for-agent-admitted-failure-to-sign-using-the-key/">https://chrisjean.com/ubuntu-ssh-fix-for-agent-admitted-failure-to-sign-using-the-key/</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/25464930/how-to-remove-a-ssh-key">http://stackoverflow.com/questions/25464930/how-to-remove-a-ssh-key</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://tex.stackexchange.com/questions/28528/best-way-to-install-packages-for-texlive-in-ubuntu">http://tex.stackexchange.com/questions/28528/best-way-to-install-packages-for-texlive-in-ubuntu</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -126,14 +104,14 @@
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gnome_critical.html">Gnome critical power action</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG Encryption</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="latex_on_ubuntu.html">Latex package management on Ubuntu</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Latex package management on Ubuntu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ls_abs_path.html">List Absolute Path</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu_eduroam.html">LU Eduroam</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu_smtp.html">LU SMTP</a></li>

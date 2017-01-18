@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>GitHub SSH &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    <title>ReST &#8212; marceloalcocer.github.io 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Gnome critical power action" href="gnome_critical.html" />
-    <link rel="prev" title="Git Cheatsheet" href="git_cheatsheet.html" />
+    <link rel="next" title="Read The Docs" href="rtd.html" />
+    <link rel="prev" title="Search text file contents recursively" href="rec_grep.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    
    
@@ -47,40 +47,29 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="github-ssh">
-<h1>GitHub SSH<a class="headerlink" href="#github-ssh" title="Permalink to this headline">¶</a></h1>
-<p>After upgrading to Xenial, having problems authenticating with GitHub via SSH <a class="footnote-reference" href="#id4" id="id1">[1]</a>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">ssh</span> <span class="o">-</span><span class="n">vT</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span>
-<span class="o">...</span>
-<span class="n">debug1</span><span class="p">:</span> <span class="n">identity</span> <span class="n">file</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">malcocer</span><span class="o">/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span> <span class="nb">type</span> <span class="mi">1</span>
-<span class="o">...</span>
-<span class="n">debug1</span><span class="p">:</span> <span class="n">Offering</span> <span class="n">RSA</span> <span class="n">public</span> <span class="n">key</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">malcocer</span><span class="o">/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_rsa</span>
-<span class="o">...</span>
-<span class="n">sign_and_send_pubkey</span><span class="p">:</span> <span class="n">signing</span> <span class="n">failed</span><span class="p">:</span> <span class="n">agent</span> <span class="n">refused</span> <span class="n">operation</span>
-<span class="o">...</span>
+  <div class="section" id="rest">
+<h1>ReST<a class="headerlink" href="#rest" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="strikethrough">
+<h2>Strikethrough<a class="headerlink" href="#strikethrough" title="Permalink to this headline">¶</a></h2>
+<p>No native strikethrough in ReST. Implant ourselves with a custom role and CSS <a class="footnote-reference" href="#id2" id="id1">[1]</a>:</p>
+<p>Define in the ReST document:</p>
+<p>Use in the ReST document:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>:strike:`struck!`
 </pre></div>
 </div>
-<p>See from output that have correct keys locally and they are found by SSH agent. Also, checked that key fingerprint matches that uploaded to GitHub.</p>
-<p>In the end, looks like it&#8217;s a problem with Unity&#8217;s SSH agent (gnome-keyring). Disabling it on startup seems to solve the problem as OpenSSH agent is then used instead <a class="footnote-reference" href="#id5" id="id2">[2]</a> <a class="footnote-reference" href="#id6" id="id3">[3]</a>.</p>
-<p>Only issue now is that OpenSSH agent requests SSH password each time — not maintained for the session.</p>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
+<p>In CSS:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">strike</span><span class="p">{</span>
+        <span class="n">text</span><span class="o">-</span><span class="n">decoration</span><span class="p">:</span> <span class="n">line</span><span class="o">-</span><span class="n">through</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://help.github.com/articles/testing-your-ssh-connection/">https://help.github.com/articles/testing-your-ssh-connection/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/6518788/rest-strikethrough">http://stackoverflow.com/questions/6518788/rest-strikethrough</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://chrisjean.com/ubuntu-ssh-fix-for-agent-admitted-failure-to-sign-using-the-key/">https://chrisjean.com/ubuntu-ssh-fix-for-agent-admitted-failure-to-sign-using-the-key/</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/25464930/how-to-remove-a-ssh-key">http://stackoverflow.com/questions/25464930/how-to-remove-a-ssh-key</a></td></tr>
-</tbody>
-</table>
+</div>
 </div>
 
 
@@ -126,7 +115,7 @@
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gnome_critical.html">Gnome critical power action</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG Encryption</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
@@ -147,7 +136,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pydev.html">PyDev configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rdp_users.html">Check logged in users on remote Windows workstation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rec_grep.html">Search text file contents recursively</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ReST</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scipy_on_win.html">Installing SciPy on Windows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphix.html">Sphinx</a></li>
