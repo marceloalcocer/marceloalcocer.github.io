@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>ReST &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    <title>Server-side Scripting &#8212; marceloalcocer.github.io 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Read The Docs" href="rtd.html" />
-    <link rel="prev" title="Search text file contents recursively" href="rec_grep.html" />
+    <link rel="next" title="Sphinx" href="sphix.html" />
+    <link rel="prev" title="Installing SciPy on Windows" href="scipy_on_win.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    
    
@@ -47,30 +47,38 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="rest">
-<h1>ReST<a class="headerlink" href="#rest" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="strikethrough">
-<h2>Strikethrough<a class="headerlink" href="#strikethrough" title="Permalink to this headline">¶</a></h2>
-<p>No native strikethrough in ReST. Implant ourselves with a custom role and CSS <a class="footnote-reference" href="#id2" id="id1">[1]</a>:</p>
-<p>Define in the ReST document:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">role</span><span class="p">::</span> <span class="n">strike</span>
-   <span class="p">:</span><span class="n">class</span><span class="p">:</span> <span class="n">strike</span>
-</pre></div>
+  <div class="section" id="server-side-scripting">
+<h1>Server-side Scripting<a class="headerlink" href="#server-side-scripting" title="Permalink to this headline">¶</a></h1>
+<p>Server-side scripting — request server to execute code in a scripting language (e.g. Python, PHP, etc) and return result. Requires server process to be able to execute scripts, ideally in any arbitrary scripting language.</p>
+<p>As such, interface protocols developed to allow communication between server processes and scripting languages <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
+<div class="section" id="legacy-interfaces">
+<h2>Legacy Interfaces<a class="headerlink" href="#legacy-interfaces" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="common-gateway-interface-cgi">
+<h3>Common Gateway Interface (CGI)<a class="headerlink" href="#common-gateway-interface-cgi" title="Permalink to this headline">¶</a></h3>
+<p>Oldest interface. Supported by almost all web servers.</p>
+<p>Slow as each new request starts up separate scripting environment (e.g. python shell).</p>
 </div>
-<p>Use in the ReST document:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>:strike:`struck!`
-</pre></div>
+<div class="section" id="fastcgi-and-scgi">
+<h3>FastCGI and SCGI<a class="headerlink" href="#fastcgi-and-scgi" title="Permalink to this headline">¶</a></h3>
+<p>Upgrade to CGI.</p>
+<p>One scripting process started and kept alive in background which handles all requests.</p>
 </div>
-<p>In CSS:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">strike</span><span class="p">{</span>
-        <span class="n">text</span><span class="o">-</span><span class="n">decoration</span><span class="p">:</span> <span class="n">line</span><span class="o">-</span><span class="n">through</span>
-<span class="p">}</span>
-</pre></div>
 </div>
+<div class="section" id="web-server-gateway-interface-wsgi">
+<h2>Web Server Gateway Interface (WSGI)<a class="headerlink" href="#web-server-gateway-interface-wsgi" title="Permalink to this headline">¶</a></h2>
+<p>Problem with all these legacy interfaces is that server-side (and web server) code must be tailored for the specific interface. As such, in order to develop server-side code which will work with all interfaces and all servers, would have to develop multiple versions of the server-side code. For example, python code for a wiki engine would need to be written so as to support CGI, FastCGI, SCGI, etc. in order to guarantee that it could be deployed on any web server.</p>
+<p>To solve this duplication, the WSGI protocol was developed to act as an intermediate between all existing interfaces and all server-side scripting languages. In this way, when developing server-side code, only need to make it compatible with WSGI to ensure universal operability.</p>
+<p>WSGI is defined as a client-server architecture:</p>
+<dl class="docutils">
+<dt>WSGI Server</dt>
+<dd>Connects to low-level gateway intefaces (i.e. CGI, FastCGI, etc)</dd>
+<dt>WSGI Client</dt>
+<dd>Connects to server-side code (e.g. Python, PHP, etc)</dd>
+</dl>
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/6518788/rest-strikethrough">http://stackoverflow.com/questions/6518788/rest-strikethrough</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://docs.python.org/3.5/howto/webservers.html">https://docs.python.org/3.5/howto/webservers.html</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -140,9 +148,10 @@
 <li class="toctree-l2"><a class="reference internal" href="pydev.html">PyDev configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rdp_users.html">Check logged in users on remote Windows workstation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rec_grep.html">Search text file contents recursively</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ReST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scipy_on_win.html">Installing SciPy on Windows</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Server-side Scripting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphix.html">Sphinx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
