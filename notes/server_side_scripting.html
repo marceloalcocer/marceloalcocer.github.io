@@ -28,7 +28,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Sphinx" href="sphix.html" />
-    <link rel="prev" title="Installing SciPy on Windows" href="scipy_on_win.html" />
+    <link rel="prev" title="SciPy" href="scipy.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    
    
@@ -50,7 +50,7 @@
   <div class="section" id="server-side-scripting">
 <h1>Server-side Scripting<a class="headerlink" href="#server-side-scripting" title="Permalink to this headline">¶</a></h1>
 <p>Server-side scripting — request server to execute code in a scripting language (e.g. Python, PHP, etc) and return result. Requires server process to be able to execute scripts, ideally in any arbitrary scripting language.</p>
-<p>As such, interface protocols developed to allow communication between server processes and scripting languages <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
+<p>As such, interface protocols developed to allow communication between server processes and scripting languages <a class="footnote-reference" href="#id4" id="id1">[1]</a>.</p>
 <div class="section" id="legacy-interfaces">
 <h2>Legacy Interfaces<a class="headerlink" href="#legacy-interfaces" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="common-gateway-interface-cgi">
@@ -75,13 +75,30 @@
 <dt>WSGI Client</dt>
 <dd>Connects to server-side code (e.g. Python, PHP, etc)</dd>
 </dl>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
+</div>
+</div>
+<div class="section" id="practicalities">
+<h1>Practicalities<a class="headerlink" href="#practicalities" title="Permalink to this headline">¶</a></h1>
+<p>Cannot get WSGI working on XAMMP. Tried with <code class="docutils literal"><span class="pre">hgweb.wsgi</span></code> and just refuses to work. Apache does not have wsgi module and so cannot interpret <code class="docutils literal"><span class="pre">WSGIScriptAlias</span></code> option.</p>
+<p>Tried downloading wsgi module binary <a class="footnote-reference" href="#id5" id="id2">[2]</a>, but does not seem to work either. Looks like there may be fundamental compatibility issues <a class="footnote-reference" href="#id6" id="id3">[3]</a>...</p>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://docs.python.org/3.5/howto/webservers.html">https://docs.python.org/3.5/howto/webservers.html</a></td></tr>
 </tbody>
 </table>
-</div>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://www.devbattles.com/en/sand/post-304-using+Apache+and+Python+WSGI+on+Windows">https://www.devbattles.com/en/sand/post-304-using+Apache+and+Python+WSGI+on+Windows</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://github.com/GrahamDumpleton/mod_wsgi/blob/develop/win32/README.rst">https://github.com/GrahamDumpleton/mod_wsgi/blob/develop/win32/README.rst</a></td></tr>
+</tbody>
+</table>
 </div>
 
 
@@ -150,8 +167,9 @@
 <li class="toctree-l2"><a class="reference internal" href="rec_grep.html">Search text file contents recursively</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scipy_on_win.html">Installing SciPy on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scipy.html">SciPy</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Server-side Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#practicalities">Practicalities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphix.html">Sphinx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>

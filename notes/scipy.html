@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Installing SciPy on Windows &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    <title>SciPy &#8212; marceloalcocer.github.io 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,7 +27,7 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Sphinx" href="sphix.html" />
+    <link rel="next" title="Server-side Scripting" href="server_side_scripting.html" />
     <link rel="prev" title="Read The Docs" href="rtd.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    
@@ -47,8 +47,17 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="installing-scipy-on-windows">
-<h1>Installing SciPy on Windows<a class="headerlink" href="#installing-scipy-on-windows" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="scipy">
+<h1>SciPy<a class="headerlink" href="#scipy" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="upgrading-scipy-components-on-linux">
+<h2>Upgrading SciPy components on Linux<a class="headerlink" href="#upgrading-scipy-components-on-linux" title="Permalink to this headline">¶</a></h2>
+<p>Do from pip:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">&lt;</span><span class="n">PACKAGE</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">upgrade</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-scipy-on-windows">
+<h2>Installing SciPy on Windows<a class="headerlink" href="#installing-scipy-on-windows" title="Permalink to this headline">¶</a></h2>
 <p>Whilst can install numpy using pip and PyPI packages, same does not work for rest of SciPy stack:</p>
 <blockquote>
 <div><p>pip does not work well for Windows because the standard pip package index site, PyPI, does not yet have Windows wheels for some packages, such as SciPy.</p>
@@ -83,6 +92,7 @@
 <tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://pip.pypa.io/en/latest/user_guide/#installing-from-wheels">https://pip.pypa.io/en/latest/user_guide/#installing-from-wheels</a></td></tr>
 </tbody>
 </table>
+</div>
 </div>
 
 
@@ -151,7 +161,9 @@
 <li class="toctree-l2"><a class="reference internal" href="rec_grep.html">Search text file contents recursively</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Installing SciPy on Windows</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SciPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-side Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html#practicalities">Practicalities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphix.html">Sphinx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
