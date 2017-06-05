@@ -49,28 +49,38 @@
             
   <div class="section" id="package-commands">
 <h1>Package Commands<a class="headerlink" href="#package-commands" title="Permalink to this headline">¶</a></h1>
-<p>List installed packages <a class="footnote-reference" href="#id3" id="id1">[1]</a>:</p>
+<p>List installed packages <a class="footnote-reference" href="#id4" id="id1">[1]</a>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">apt</span> <span class="nb">list</span> <span class="o">--</span><span class="n">installed</span>
 </pre></div>
 </div>
-<p>Information on installed package <a class="footnote-reference" href="#id4" id="id2">[2]</a>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">dpkg</span> <span class="o">-</span><span class="n">s</span> <span class="n">PACKAGE</span>
+<p>Information on installed package <a class="footnote-reference" href="#id5" id="id2">[2]</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">dpkg</span> <span class="o">-</span><span class="n">s</span> <span class="o">&lt;</span><span class="n">PACKAGE</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>Information on non-installed package:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">dpkg</span> <span class="o">--</span><span class="nb">print</span><span class="o">-</span><span class="n">avail</span> <span class="n">PACKAGE</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">dpkg</span> <span class="o">--</span><span class="nb">print</span><span class="o">-</span><span class="n">avail</span> <span class="o">&lt;</span><span class="n">PACKAGE</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
+<p>Find package which provides file <a class="footnote-reference" href="#id6" id="id3">[3]</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">file</span> <span class="n">search</span> <span class="o">&lt;</span><span class="n">FILE</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://askubuntu.com/questions/17823/how-to-list-all-installed-packages">http://askubuntu.com/questions/17823/how-to-list-all-installed-packages</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
+<table class="docutils footnote" frame="void" id="id5" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://askubuntu.com/questions/341178/how-do-i-get-details-about-a-package-which-isnt-installed">http://askubuntu.com/questions/341178/how-do-i-get-details-about-a-package-which-isnt-installed</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://wiki.debian.org/apt-file">https://wiki.debian.org/apt-file</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -118,6 +128,7 @@
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gnome_critical.html">Gnome critical power action</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG Encryption</a></li>
@@ -141,7 +152,9 @@
 <li class="toctree-l2"><a class="reference internal" href="rec_grep.html">Search text file contents recursively</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scipy_on_win.html">Installing SciPy on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scipy.html">SciPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-side Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html#practicalities">Practicalities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphix.html">Sphinx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>

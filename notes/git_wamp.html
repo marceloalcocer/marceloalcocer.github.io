@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>SciPy &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    <title>Git hosted on WAMP &#8212; marceloalcocer.github.io 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Server-side Scripting" href="server_side_scripting.html" />
-    <link rel="prev" title="Read The Docs" href="rtd.html" />
+    <link rel="next" title="GitHub SSH" href="github_ssh.html" />
+    <link rel="prev" title="Git Cheatsheet" href="git_cheatsheet.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    
    
@@ -47,54 +47,65 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="scipy">
-<h1>SciPy<a class="headerlink" href="#scipy" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="upgrading-scipy-components-on-linux">
-<h2>Upgrading SciPy components on Linux<a class="headerlink" href="#upgrading-scipy-components-on-linux" title="Permalink to this headline">¶</a></h2>
-<p>Do from pip. For user:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">&lt;</span><span class="n">PACKAGE</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">upgrade</span>
-</pre></div>
-</div>
-<p>or systemwide (naughty):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip3</span> <span class="n">install</span> <span class="o">&lt;</span><span class="n">PACKAGE</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">upgrade</span>
-</pre></div>
-</div>
-<p>In both cases, if using PyDev must remove and readd interpreter for changes to take effect.</p>
-</div>
-<div class="section" id="installing-scipy-on-windows">
-<h2>Installing SciPy on Windows<a class="headerlink" href="#installing-scipy-on-windows" title="Permalink to this headline">¶</a></h2>
-<p>Whilst can install numpy using pip and PyPI packages, same does not work for rest of SciPy stack:</p>
-<blockquote>
-<div><p>pip does not work well for Windows because the standard pip package index site, PyPI, does not yet have Windows wheels for some packages, such as SciPy.</p>
-<p class="attribution">&mdash;Installing SciPy Stack, <a class="reference external" href="https://www.scipy.org/install.html">scipy.org</a></p>
-</div></blockquote>
-<p>Instead, should use excellent pre-built installers provided by Christoph Gohlke <a class="footnote-reference" href="#id4" id="id1">[1]</a>.</p>
-<p>Check wheel versions supported by pip <a class="footnote-reference" href="#id5" id="id2">[2]</a>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pip</span><span class="p">;</span> <span class="nb">print</span><span class="p">(</span><span class="n">pip</span><span class="o">.</span><span class="n">pep425tags</span><span class="o">.</span><span class="n">get_supported</span><span class="p">())</span>
-</pre></div>
-</div>
-<p>Download correct wheels for numpy and scipy, then install using pip <a class="footnote-reference" href="#id6" id="id3">[3]</a>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span><span class="o">-&lt;</span><span class="n">version</span><span class="o">&gt;.</span><span class="n">whl</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">scipy</span><span class="o">-&lt;</span><span class="n">version</span><span class="o">&gt;.</span><span class="n">whl</span>
-</pre></div>
-</div>
-<p>N.b. should use a numpy wheel linked to the Interl Math Kernel library — standard library for mathematical computations</p>
+  <div class="section" id="git-hosted-on-wamp">
+<h1>Git hosted on WAMP<a class="headerlink" href="#git-hosted-on-wamp" title="Permalink to this headline">¶</a></h1>
+<p>Aim: Host Git repository on Apache on Windows (XAMPP WAMP stack)</p>
+<p>Initially tried to handle user authentication via <a class="reference internal" href="#ftp">FTP</a> access. Could happily push using git ftp, but had no luck pulling as no git server scripts were present on server.</p>
+<p>As have to install Git on server, might as well try more standard setup of Git over (smart) HTTP.</p>
+<div class="section" id="http">
+<h2>HTTP<a class="headerlink" href="#http" title="Permalink to this headline">¶</a></h2>
+<p>Download Git for Windows official installation <a class="footnote-reference" href="#id4" id="id1">[1]</a>. This comes bundled with MinGW installation which provide basic GNU/Linux tools required for running Git.</p>
+<p>Follow steps in Git book on setting up Git over Smart HTTP <a class="footnote-reference" href="#id5" id="id2">[2]</a>. N.b. Location of main Git http script (<code class="docutils literal"><span class="pre">git-http-backend</span></code>) will probably not be correct but rather <code class="docutils literal"><span class="pre">C:\\Program</span> <span class="pre">Files\\Git\\mingw64\\libexec\\git-core\\git-http-backend.exe</span></code> <a class="footnote-reference" href="#id6" id="id3">[3]</a>.</p>
 <table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">http://www.lfd.uci.edu/~gohlke/pythonlibs/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id5" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/28107123/cannot-install-numpy-from-wheel-format">http://stackoverflow.com/questions/28107123/cannot-install-numpy-from-wheel-format</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP">https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://pip.pypa.io/en/latest/user_guide/#installing-from-wheels">https://pip.pypa.io/en/latest/user_guide/#installing-from-wheels</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/33829145/git-smarthttp-where-is-git-http-backend-exe/33829578">https://stackoverflow.com/questions/33829145/git-smarthttp-where-is-git-http-backend-exe/33829578</a></td></tr>
+</tbody>
+</table>
+<p>Useful:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://stackoverflow.com/questions/3817478/setting-up-git-server-on-windows-with-git-http-backend-exe">https://stackoverflow.com/questions/3817478/setting-up-git-server-on-windows-with-git-http-backend-exe</a></li>
+<li><a class="reference external" href="http://www.jeremyskinner.co.uk/2010/07/31/hosting-a-git-server-under-apache-on-windows/">http://www.jeremyskinner.co.uk/2010/07/31/hosting-a-git-server-under-apache-on-windows/</a></li>
+</ul>
+</div>
+<div class="section" id="ftp">
+<h2>FTP<a class="headerlink" href="#ftp" title="Permalink to this headline">¶</a></h2>
+<p>Git natively supports some operations over FTP protocol, viz. <code class="docutils literal"><span class="pre">clone</span></code> and <code class="docutils literal"><span class="pre">fetch</span></code> <a class="footnote-reference" href="#id9" id="id7">[4]</a>. For further operations (e.g. <code class="docutils literal"><span class="pre">push</span></code>) can use <code class="docutils literal"><span class="pre">git-ftp</span></code> <a class="footnote-reference" href="#id10" id="id8">[5]</a>.</p>
+<p>Download <code class="docutils literal"><span class="pre">git-ftp</span></code> and install:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">install</span><span class="o">-</span><span class="nb">all</span>
+</pre></div>
+</div>
+<p>Setup global/user/local git config with server, username, etc. N.b. Server path will be root directory of project, so best to define per repository in local git config file.</p>
+<p>Upload repo:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">ftp</span> <span class="n">init</span> <span class="o">-</span><span class="n">u</span> <span class="o">&lt;</span><span class="n">USERNAME</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">P</span>
+</pre></div>
+</div>
+<p>Install <code class="docutils literal"><span class="pre">lftp</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">lftp</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/4664251/does-git-support-push-to-an-ftp-server">https://stackoverflow.com/questions/4664251/does-git-support-push-to-an-ftp-server</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[5]</a></td><td><a class="reference external" href="https://github.com/git-ftp/git-ftp">https://github.com/git-ftp/git-ftp</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -143,7 +154,7 @@
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Git hosted on WAMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gnome_critical.html">Gnome critical power action</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG Encryption</a></li>
@@ -167,7 +178,7 @@
 <li class="toctree-l2"><a class="reference internal" href="rec_grep.html">Search text file contents recursively</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">SciPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scipy.html">SciPy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-side Scripting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html#practicalities">Practicalities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphix.html">Sphinx</a></li>
