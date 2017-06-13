@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Python &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ReST" href="rest.html" />
+    <link rel="prev" title="Packages" href="packages.html" />
+   <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+   
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="python">
+<h1>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="bokeh-plotting-library">
+<h2>Bokeh Plotting Library<a class="headerlink" href="#bokeh-plotting-library" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="architecture">
+<h3>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>&#8220;The architecture of Bokeh is such that high-level “model objects” (representing things like plots, ranges, axes, glyphs, etc.) are created in Python, and then converted to a JSON format that is consumed by the client library, BokehJS&#8221;</p>
+<p class="attribution">&mdash;<a class="reference external" href="http://bokeh.pydata.org/en/latest/docs/user_guide/server.html">Bokeh Website</a></p>
+</div></blockquote>
+<p>As the data, etc is passed once to BokehJS, it can be explored but is otherwise static. The Bokeh server can help here:</p>
+<blockquote>
+<div><p>&#8220;However, if it were possible to keep the “model objects” in python and in the browser in sync with one another, then more additional and powerful possibilities immediately open up:</p>
+<ul class="simple">
+<li>respond to UI and tool events generated in a browser with computations or queries using the full power of python</li>
+<li>automatically push updates the UI (i.e. widgets or plots), in a browser</li>
+<li>use periodic, timeout, and asynchronous callbacks drive streaming updates</li>
+</ul>
+<p>This capability to synchronize between python and the browser is the main purpose of the Bokeh Server.&#8221;</p>
+<p class="attribution">&mdash;<a class="reference external" href="http://bokeh.pydata.org/en/latest/docs/user_guide/server.html">Bokeh Website</a></p>
+</div></blockquote>
+</div>
+<div class="section" id="current-status">
+<h3>Current Status<a class="headerlink" href="#current-status" title="Permalink to this headline">¶</a></h3>
+<p>Bokeh is a nice way of generating explorable plots for embedding into log files, etc. Would provide mush richer experience than current MPL to SVG approach.</p>
+<p>Furthermore, looks like a great way of building GUI for data analysis/exploration — leverage Python for data processing/analysis and leave display/UI to HTML/JS. Seems more forward-looking and interoperable than relying on native canvases such as GTK.</p>
+<p>Unfortunately, would say that Bokeh needs to mature slightly before it can replace MPL as default plotting library. Simple 2D plots (lines, bars, etc) look great, but more complex 2D plots (e.g. heatmaps, contours, etc) are still in early stages. These are the ones we will need the most for plotting 2DES datasets. Heatmap is probably closest contender, but does not interpolate. Also, 3D plots are currently completely missing and can currently only be handled by <a class="reference external" href="https://demo.bokehplots.com/apps/surface3d">interfacing 3rd party libs with Bokeh servers</a>.</p>
+</div>
+</div>
+<div class="section" id="ctypes-pointers">
+<h2>ctypes Pointers<a class="headerlink" href="#ctypes-pointers" title="Permalink to this headline">¶</a></h2>
+<p>Pointer summary:</p>
+<dl class="docutils">
+<dt>ctypes.POINTER():</dt>
+<dd>Factory method. Returns callable which creates pointer of a particular ctypes type</dd>
+<dt>ctypes.pointer():</dt>
+<dd>Returns pointer object. Equivalent to (POINTER(&lt;type&gt;))(). N.b. this is a fully fledged Python object instance, not just a memory address as expected in C</dd>
+<dt>ctypes.byref():</dt>
+<dd>Returns a lightweight pointer object to the requested ctypes type. This is also a fully fledged Python object instance, albeit one which only really contains the address of the requested type.</dd>
+<dt>ctypes.addressof():</dt>
+<dd>Returns the memory addresss of the object as an integer. As low as you can go</dd>
+</dl>
+<p>Full details: <a class="reference external" href="http://stackoverflow.com/questions/9126031/python-ctypes-sending-pointer-to-structure-as-parameter-to-native-library">http://stackoverflow.com/questions/9126031/python-ctypes-sending-pointer-to-structure-as-parameter-to-native-library</a></p>
+</div>
+<div class="section" id="matplotlib">
+<h2>matplotlib<a class="headerlink" href="#matplotlib" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="updating">
+<h3>Updating<a class="headerlink" href="#updating" title="Permalink to this headline">¶</a></h3>
+<p>Ubuntu package is old (MPL 1.3.x). Update instead with pip3:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">matplotlib</span>
+</pre></div>
+</div>
+<p>Required a few dependencies however which pip couldn&#8217;t handle, viz. <code class="docutils literal"><span class="pre">libpng</span></code>, <code class="docutils literal"><span class="pre">freetype</span></code>. Install dev packages manually first:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libpng12</span><span class="o">-</span><span class="n">dev</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libfreetype6</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+<p>Now pip works fine</p>
+<p>Finally, when using GTK3 canvas, must also install <code class="docutils literal"><span class="pre">cairocffi</span></code> in order to provide GTK with necessary Cairo wrappers. This in turn had it&#8217;s own dependencies, viz; <code class="docutils literal"><span class="pre">python3.4-dev</span></code>, <code class="docutils literal"><span class="pre">libffi-dev</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span><span class="o">.</span><span class="mi">4</span><span class="o">-</span><span class="n">dev</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libffi</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+<p>and now install <code class="docutils literal"><span class="pre">cairocffi</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">cairocffi</span>
+</pre></div>
+</div>
+<p>N.b. <code class="docutils literal"><span class="pre">cairocffi</span></code> is required for all GTK3 backends (i.e. GTK3Cairo and GTK3Agg). It just doesn&#8217;t work without it!</p>
+<p>More backend installation details: <a class="reference external" href="http://matplotlib.org/users/installing.html">http://matplotlib.org/users/installing.html</a>
+cairocffi installation details: <a class="reference external" href="https://pythonhosted.org/cairocffi/overview.html#installing-cffi">https://pythonhosted.org/cairocffi/overview.html#installing-cffi</a></p>
+</div>
+<div class="section" id="backends">
+<h3>Backends<a class="headerlink" href="#backends" title="Permalink to this headline">¶</a></h3>
+<p>Recall: backend is renderer/canvas combination - renderers are static (produce files); renderers + canvas are interactive (windows).</p>
+<p>Previously using AGG renderer with Tk canvas. AGG write PNG only and is quite old (last repo update in 2006!). Probably better to move to Cairo - more output formats and newer.</p>
+<p>Whilst we&#8217;re at it, let&#8217;s also try out GTK canvas - probably a bit newer (and already installed)</p>
+<p>Change backend in <a class="reference external" href="~/.config/matplotlib/matplotlibrc">~/.config/matplotlib/matplotlibrc</a></p>
+<p>Full details: <a class="reference external" href="http://matplotlib.org/faq/usage_faq.html#what-is-a-backend">http://matplotlib.org/faq/usage_faq.html#what-is-a-backend</a></p>
+</div>
+<div class="section" id="animation-output">
+<h3>Animation Output<a class="headerlink" href="#animation-output" title="Permalink to this headline">¶</a></h3>
+<p>Using:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ani</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">animation</span><span class="o">.</span><span class="n">Animation</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Animated GIF using Imagemagick (usually installed):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ani</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;prova.gif&quot;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="s2">&quot;Imagemagick&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>MP4 (and other video formats) require <code class="docutils literal"><span class="pre">ffmpeg</span></code>. <code class="docutils literal"><span class="pre">ffmpeg</span></code> being merged into main ubuntu multimedia PPA, but only from Wiley onwards. Only require binary however, so downloaded static build of 3.0.2 from <a class="reference external" href="http://johnvansickle.com/ffmpeg/">http://johnvansickle.com/ffmpeg/</a> and placed in <code class="docutils literal"><span class="pre">/usr/bin</span></code>. Now:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ani</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;prova.mp4&quot;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="s2">&quot;ffmpeg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Also provides writing to h264 (HTML5 video) format. This is done by embedding animation in video tag:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;prova.html&quot;</span><span class="p">,</span> <span class="s2">&quot;wt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ani</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="svg-output">
+<h3>SVG Output<a class="headerlink" href="#svg-output" title="Permalink to this headline">¶</a></h3>
+<p>When generating SVGs from MPL, miter limit SVG property is set to a stupidly high value, causing Inkscape to crash hard <a class="footnote-reference" href="#id4" id="id2">[1]</a> <a class="footnote-reference" href="#id5" id="id3">[2]</a>.</p>
+<p>Solution is to manually edit generated SVG and change miter limit down to something more manageable (e.g. 4)</p>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/inkscape/+bug/1533058">https://bugs.launchpad.net/inkscape/+bug/1533058</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/inkscape/+bug/1534376">https://bugs.launchpad.net/inkscape/+bug/1534376</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="scipy">
+<h2>SciPy<a class="headerlink" href="#scipy" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="upgrading-scipy-components-on-linux">
+<h3>Upgrading SciPy Components on Linux<a class="headerlink" href="#upgrading-scipy-components-on-linux" title="Permalink to this headline">¶</a></h3>
+<p>Do from pip. For user:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">&lt;</span><span class="n">PACKAGE</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">upgrade</span>
+</pre></div>
+</div>
+<p>or systemwide (naughty):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip3</span> <span class="n">install</span> <span class="o">&lt;</span><span class="n">PACKAGE</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">upgrade</span>
+</pre></div>
+</div>
+<p>In both cases, if using PyDev must remove and readd interpreter for changes to take effect.</p>
+</div>
+<div class="section" id="installing-scipy-on-windows">
+<h3>Installing SciPy on Windows<a class="headerlink" href="#installing-scipy-on-windows" title="Permalink to this headline">¶</a></h3>
+<p>Whilst can install numpy using pip and PyPI packages, same does not work for rest of SciPy stack:</p>
+<blockquote>
+<div><p>pip does not work well for Windows because the standard pip package index site, PyPI, does not yet have Windows wheels for some packages, such as SciPy.</p>
+<p class="attribution">&mdash;Installing SciPy Stack, <a class="reference external" href="https://www.scipy.org/install.html">scipy.org</a></p>
+</div></blockquote>
+<p>Instead, should use excellent pre-built installers provided by Christoph Gohlke <a class="footnote-reference" href="#id9" id="id6">[3]</a>.</p>
+<p>Check wheel versions supported by pip <a class="footnote-reference" href="#id10" id="id7">[4]</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pip</span><span class="p">;</span> <span class="nb">print</span><span class="p">(</span><span class="n">pip</span><span class="o">.</span><span class="n">pep425tags</span><span class="o">.</span><span class="n">get_supported</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Download correct wheels for numpy and scipy, then install using pip <a class="footnote-reference" href="#id11" id="id8">[5]</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span><span class="o">-&lt;</span><span class="n">version</span><span class="o">&gt;.</span><span class="n">whl</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">scipy</span><span class="o">-&lt;</span><span class="n">version</span><span class="o">&gt;.</span><span class="n">whl</span>
+</pre></div>
+</div>
+<p>N.b. should use a numpy wheel linked to the Interl Math Kernel library — standard library for mathematical computations</p>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[3]</a></td><td><a class="reference external" href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">http://www.lfd.uci.edu/~gohlke/pythonlibs/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/28107123/cannot-install-numpy-from-wheel-format">http://stackoverflow.com/questions/28107123/cannot-install-numpy-from-wheel-format</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[5]</a></td><td><a class="reference external" href="https://pip.pypa.io/en/latest/user_guide/#installing-from-wheels">https://pip.pypa.io/en/latest/user_guide/#installing-from-wheels</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="pydev-configuration">
+<h2>PyDev Configuration<a class="headerlink" href="#pydev-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="general">
+<h3>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h3>
+<p>Switching workspaces causes PyDev settings to be lost for some reason. Clearing workspace and re-importing Eclipse project does nothing - have to reconfigure. PyDev settings probably stored in workspace settings though (<code class="docutils literal"><span class="pre">.metadata</span></code>).</p>
+<ul class="simple">
+<li><a class="reference external" href="https://sourceforge.net/p/pydev/feature-requests/72/">PyDev settings export</a></li>
+<li><a class="reference external" href="http://pep8.readthedocs.org/en/latest/intro.html#error-codes">pep8.py errors and warnings</a></li>
+<li><a class="reference external" href="http://stackoverflow.com/questions/3627463/what-is-remotesystemstempfiles-in-eclipse">Remove RemoteSystemsTempFiles</a> (startup-shutdown -&gt; RSE UI and delete from project explorer)</li>
+</ul>
+</div>
+<div class="section" id="project">
+<h3>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h3>
+<p>PyDev requires source files to be in a source folder. Presumably this is so that build tools (lint, etc) know where to look.</p>
+<p>Source folders are typically added to the PYTHONPATH so as to allow contained modules to be found.</p>
+<p>Furthermore, for packages to be recognised by PyDev they must be contained in a source folder. As such, you typically end up with a very nested structure:</p>
+<ul class="simple">
+<li>ProjectDir<ul>
+<li>SourceDir<ul>
+<li>PackageDir<ul>
+<li>__init__.py</li>
+<li>Module1</li>
+<li>Module2</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Can however define the project folder to be a source directory though, eliminating one nesting. This is done during project creation with the option &#8220;Add project folder to PYTHONPATH&#8221;. Packages can then be located directly within the project folder:</p>
+<ul class="simple">
+<li>ProjectDir<ul>
+<li>PackageDir<ul>
+<li>__init__.py</li>
+<li>Module1</li>
+<li>Module2</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>N.b Setting the project directory as a source directory adds it to the PYTHONPATH. Despite not being explicily added, it seems that sub-directories (e.g. package directories) are also searched. Is this a PyDev thing or a Python thing?</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">marceloalcocer.github.io</a></h1>
+
+
+
+
+
+
+
+
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="latex_on_ubuntu.html">Latex package management on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-side Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html#practicalities">Practicalities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
+</ul>
+</li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Marcelo Alcocer.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>GPG Encryption &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    <title>Misc Terminal Commands &#8212; marceloalcocer.github.io 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="HTML Plotting Libraries" href="html_plotting_libs.html" />
-    <link rel="prev" title="Gnome critical power action" href="gnome_critical.html" />
+    <link rel="next" title="Encrypted DVD Playback" href="dvd_crypto.html" />
+    <link rel="prev" title="2D Server" href="2d_server.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    
    
@@ -47,8 +47,30 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="gpg-encryption">
-<h1>GPG Encryption<a class="headerlink" href="#gpg-encryption" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="misc-terminal-commands">
+<h1>Misc Terminal Commands<a class="headerlink" href="#misc-terminal-commands" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="renaming">
+<h2>Renaming<a class="headerlink" href="#renaming" title="Permalink to this headline">¶</a></h2>
+<p>Uses perl regexp which is same as vim substitution, e.g.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rename</span> <span class="s2">&quot;s/2D_/3D_/&quot;</span> <span class="mi">2</span><span class="n">D_</span><span class="o">*.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>would turn <code class="docutils literal"><span class="pre">2D_Foobar.txt</span></code> into <code class="docutils literal"><span class="pre">3D_Foobar.txt</span></code>.</p>
+</div>
+<div class="section" id="archive-copying">
+<h2>Archive Copying<a class="headerlink" href="#archive-copying" title="Permalink to this headline">¶</a></h2>
+<p>Archive copying:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">-</span><span class="n">a</span> <span class="o">&lt;</span><span class="n">SRC</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">DEST</span><span class="o">&gt;</span>
+
+        <span class="n">No</span> <span class="n">link</span> <span class="n">dereferencing</span>
+        <span class="n">Recursive</span>
+        <span class="n">Preserve</span> <span class="nb">all</span> <span class="n">file</span> <span class="n">attributes</span>
+</pre></div>
+</div>
+<p>For attribute preservation, require <code class="docutils literal"><span class="pre">&lt;DEST&gt;</span></code> to be in ext4 format.</p>
+</div>
+<div class="section" id="gpg-encryption">
+<h2>GPG Encryption<a class="headerlink" href="#gpg-encryption" title="Permalink to this headline">¶</a></h2>
 <p>Encryption <a class="footnote-reference" href="#id2" id="id1">[1]</a>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gpg</span> <span class="o">--</span><span class="n">encrypt</span> <span class="o">--</span><span class="n">recipient</span> <span class="o">&lt;</span><span class="n">public_key_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">input_file</span><span class="o">&gt;</span>
 </pre></div>
@@ -63,6 +85,32 @@
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://www.madboa.com/geek/gpg-quickstart/">https://www.madboa.com/geek/gpg-quickstart/</a></td></tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="list-absolute-path">
+<h2>List Absolute Path<a class="headerlink" href="#list-absolute-path" title="Permalink to this headline">¶</a></h2>
+<p><a class="footnote-reference" href="#id4" id="id3">[2]</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">readlink</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">FILENAME</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/246215/how-can-i-list-files-with-their-absolute-path-in-linux">http://stackoverflow.com/questions/246215/how-can-i-list-files-with-their-absolute-path-in-linux</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="content-regexp-recursive-search">
+<h2>Content RegExp Recursive Search<a class="headerlink" href="#content-regexp-recursive-search" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">grep</span> <span class="o">-</span><span class="n">Iron</span> <span class="o">--</span><span class="n">include</span><span class="o">=*.</span><span class="n">txt</span> <span class="s2">&quot;aRegExp&quot;</span> <span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cnst-print">
+<h2>CNST Print<a class="headerlink" href="#cnst-print" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lp</span> <span class="o">-</span><span class="n">U</span> <span class="n">Alcocer</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -96,53 +144,33 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="app_2_dash.html">Adding Apps to Dash</a></li>
-<li class="toctree-l2"><a class="reference internal" href="apt_pkg_held.html">apt: packages held back</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bash_rename.html">bash rename</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bokeh.html">bokeh</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cnst_print.html">CNST Print</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ctypes.html">ctypes Pointers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="desktop_switcher.html">Remove Desktop from Switcher</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Misc Terminal Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gnome_critical.html">Gnome critical power action</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">GPG Encryption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="latex_on_ubuntu.html">Latex package management on Ubuntu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ls_abs_path.html">List Absolute Path</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lu_eduroam.html">LU Eduroam</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lu_smtp.html">LU SMTP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lu_vpn.html">LU VPN</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mic_issue.html">Mic problem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mpl.html">matplotlib</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mpl_svg_inkscape.html">Matplotlib SVG &amp; Inkscape</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nouveau_revert.html">Reverting to nouveau driver</a></li>
-<li class="toctree-l2"><a class="reference internal" href="package_information.html">Package Commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="power_menu.html">Power Off Menu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pydev.html">PyDev configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rdp_users.html">Check logged in users on remote Windows workstation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rec_grep.html">Search text file contents recursively</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scipy_on_win.html">Installing SciPy on Windows</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sphix.html">Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-side Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html#practicalities">Practicalities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="term_brightness.html">Terminal brightness control</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wacom_scrolling.html">Wacom Tablet Scrolling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="win_cpp_dev.html">Windows C++ Development</a></li>
-<li class="toctree-l2"><a class="reference internal" href="win_symlink.html">Symlinks on Windows</a></li>
-<li class="toctree-l2"><a class="reference internal" href="win_usb.html">Windows &lt;10 USB serial drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wireless.html">Wireless Card Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
 </ul>
 </li>
 </ul>

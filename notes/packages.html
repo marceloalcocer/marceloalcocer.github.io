@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>APT &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    <title>Packages &#8212; marceloalcocer.github.io 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Backup" href="backup.html" />
-    <link rel="prev" title="Adding Apps to Dash" href="app_2_dash.html" />
+    <link rel="next" title="Python" href="python.html" />
+    <link rel="prev" title="Lund University" href="lu.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    
    
@@ -47,8 +47,45 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="apt">
-<h1>APT<a class="headerlink" href="#apt" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="packages">
+<h1>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="misc-package-commands">
+<h2>Misc Package Commands<a class="headerlink" href="#misc-package-commands" title="Permalink to this headline">¶</a></h2>
+<p>List installed packages <a class="footnote-reference" href="#id4" id="id1">[1]</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">apt</span> <span class="nb">list</span> <span class="o">--</span><span class="n">installed</span>
+</pre></div>
+</div>
+<p>Information on installed package <a class="footnote-reference" href="#id5" id="id2">[2]</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">dpkg</span> <span class="o">-</span><span class="n">s</span> <span class="o">&lt;</span><span class="n">PACKAGE</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Information on non-installed package:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">dpkg</span> <span class="o">--</span><span class="nb">print</span><span class="o">-</span><span class="n">avail</span> <span class="o">&lt;</span><span class="n">PACKAGE</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Find package which provides file <a class="footnote-reference" href="#id6" id="id3">[3]</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">file</span> <span class="n">search</span> <span class="o">&lt;</span><span class="n">FILE</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://askubuntu.com/questions/17823/how-to-list-all-installed-packages">http://askubuntu.com/questions/17823/how-to-list-all-installed-packages</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://askubuntu.com/questions/341178/how-do-i-get-details-about-a-package-which-isnt-installed">http://askubuntu.com/questions/341178/how-do-i-get-details-about-a-package-which-isnt-installed</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://wiki.debian.org/apt-file">https://wiki.debian.org/apt-file</a></td></tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="packages-held-back">
 <h2>Packages Held Back<a class="headerlink" href="#packages-held-back" title="Permalink to this headline">¶</a></h2>
 <p>On day of 16.10 (Yakkety) release, doing <code class="docutils literal"><span class="pre">apt-get</span> <span class="pre">upgrade</span></code> seemed to update kernel from 4.4.0-42 to 4.4.0-43. GRUB now defaults to 43, but all hardware support is gone (usb, wifi, ethernet, etc).</p>
@@ -94,18 +131,18 @@ the general settings for individual packages.</dd>
 </pre></div>
 </div>
 <p>Reading around a little, found out that is due to conflicting APT configuration files.</p>
-<p>APT configuration is done via a series of distributed configuration files all held in <code class="docutils literal"><span class="pre">/etc/apt/apt.conf.d</span></code> directory <a class="footnote-reference" href="#id3" id="id1">[1]</a>. When a package updates an APT config file, the <code class="docutils literal"><span class="pre">ucf</span></code> (Update Configuration Files) utility is called to prompt the user whether to keep the old config file or switch to the new one. Regardless of the given answer, the original configuration file (before update) is copied to a <code class="docutils literal"><span class="pre">*.ucf-dist</span></code> suffixed file. The configurations contained within this file is ignored by <code class="docutils literal"><span class="pre">apt-get</span> <span class="pre">update</span></code> due to the added extension, generating the above notification <a class="footnote-reference" href="#id4" id="id2">[2]</a>.</p>
+<p>APT configuration is done via a series of distributed configuration files all held in <code class="docutils literal"><span class="pre">/etc/apt/apt.conf.d</span></code> directory <a class="footnote-reference" href="#id9" id="id7">[4]</a>. When a package updates an APT config file, the <code class="docutils literal"><span class="pre">ucf</span></code> (Update Configuration Files) utility is called to prompt the user whether to keep the old config file or switch to the new one. Regardless of the given answer, the original configuration file (before update) is copied to a <code class="docutils literal"><span class="pre">*.ucf-dist</span></code> suffixed file. The configurations contained within this file is ignored by <code class="docutils literal"><span class="pre">apt-get</span> <span class="pre">update</span></code> due to the added extension, generating the above notification <a class="footnote-reference" href="#id10" id="id8">[5]</a>.</p>
 <p>As such, the retained original config file can be compared to the active config file, and if not needed can be safely deleted.</p>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
+<table class="docutils footnote" frame="void" id="id9" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://askubuntu.com/questions/254137/etc-apt-apt-conf-d-priority-overrule-configuration-file/254617">https://askubuntu.com/questions/254137/etc-apt-apt-conf-d-priority-overrule-configuration-file/254617</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="https://askubuntu.com/questions/254137/etc-apt-apt-conf-d-priority-overrule-configuration-file/254617">https://askubuntu.com/questions/254137/etc-apt-apt-conf-d-priority-overrule-configuration-file/254617</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
+<table class="docutils footnote" frame="void" id="id10" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://askubuntu.com/questions/572976/what-to-do-now-update-just-after-install/573091#573091">https://askubuntu.com/questions/572976/what-to-do-now-update-just-after-install/573091#573091</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id8">[5]</a></td><td><a class="reference external" href="https://askubuntu.com/questions/572976/what-to-do-now-update-just-after-install/573091#573091">https://askubuntu.com/questions/572976/what-to-do-now-update-just-after-install/573091#573091</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -142,56 +179,33 @@ the general settings for individual packages.</dd>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="app_2_dash.html">Adding Apps to Dash</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">APT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bash_rename.html">bash rename</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bokeh.html">bokeh</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cnst_print.html">CNST Print</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ctypes.html">ctypes Pointers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="desktop_switcher.html">Remove Desktop from Switcher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gnome_critical.html">Gnome critical power action</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG Encryption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="latex_on_ubuntu.html">Latex package management on Ubuntu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ls_abs_path.html">List Absolute Path</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lu_eduroam.html">LU Eduroam</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lu_smtp.html">LU SMTP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lu_vpn.html">LU VPN</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mic_issue.html">Mic problem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mpl.html">matplotlib</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mpl_svg_inkscape.html">Matplotlib SVG &amp; Inkscape</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nouveau_revert.html">Reverting to nouveau driver</a></li>
-<li class="toctree-l2"><a class="reference internal" href="package_information.html">Package Commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="power_menu.html">Power Off Menu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pydev.html">PyDev configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rdp_users.html">Check logged in users on remote Windows workstation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rec_grep.html">Search text file contents recursively</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scipy.html">SciPy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-side Scripting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html#practicalities">Practicalities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sphix.html">Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="term_brightness.html">Terminal brightness control</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wacom_scrolling.html">Wacom Tablet Scrolling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="win_cpp_dev.html">Windows C++ Development</a></li>
-<li class="toctree-l2"><a class="reference internal" href="win_symlink.html">Symlinks on Windows</a></li>
-<li class="toctree-l2"><a class="reference internal" href="win_usb.html">Windows &lt;10 USB serial drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wireless.html">Wireless Card Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
 </ul>
 </li>
 </ul>

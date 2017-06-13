@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Windows C++ Development &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    <title>Windows &#8212; marceloalcocer.github.io 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,8 +27,7 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Symlinks on Windows" href="win_symlink.html" />
-    <link rel="prev" title="Wacom Tablet Scrolling" href="wacom_scrolling.html" />
+    <link rel="prev" title="Window Functions" href="window_functions.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    
    
@@ -47,28 +46,45 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="windows-c-development">
-<h1>Windows C++ Development<a class="headerlink" href="#windows-c-development" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="windows">
+<h1>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="symlinks">
+<h2>Symlinks<a class="headerlink" href="#symlinks" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mklink</span> <span class="o">&lt;</span><span class="n">NAME</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">TARGET</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>N.b. for links to executables, must make sure <code class="docutils literal"><span class="pre">&lt;NAME&gt;</span></code> has .exe suffix.</p>
+</div>
+<div class="section" id="windows-10-usb-serial-drivers">
+<h2>Windows &lt;10 USB Serial Drivers<a class="headerlink" href="#windows-10-usb-serial-drivers" title="Permalink to this headline">¶</a></h2>
+<p>Windows only included dedicated USB-serial drivers in Windows 10 (<code class="docutils literal"><span class="pre">usbser.sys</span></code>).</p>
+<p>Previous versions <a class="reference external" href="https://support.microsoft.com/en-us/kb/837637">should instead use usb modem drivers (mdmcpq.sys)</a> which offers almost identical functionality. To do so, need to <a class="reference external" href="https://social.technet.microsoft.com/Forums/windows/en-US/01e8e7db-0461-48d6-bc3d-aa8ee2620b67/usb-modem-driver-usbsersys-does-not-install-on-windows-7-64bit-enterprise?forum=w7itprohardware">reference modem driver in .inf file</a>. Then Just &#8220;Have Disk&#8221; inf file, and voila - instant USB COM port</p>
+</div>
+<div class="section" id="windows-c-development">
+<h2>Windows C++ Development<a class="headerlink" href="#windows-c-development" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="visual-studio-2015">
-<h2>Visual Studio &lt; 2015<a class="headerlink" href="#visual-studio-2015" title="Permalink to this headline">¶</a></h2>
+<h3>Visual Studio &lt; 2015<a class="headerlink" href="#visual-studio-2015" title="Permalink to this headline">¶</a></h3>
 <p>Microsoft Visual C RunTime (<code class="docutils literal"><span class="pre">MSVCRT.dll</span></code>) is a library which provides typical functions required by C and C++ programs (e.g. string manipulation, malloc, etc). It ships by default with the Windows OS, but is considered part of the OS and therefore can be patched (i.e. modified) at any time. As such, linking against MSVCRT.dll is strongly discouraged as there is no guarantee it will be the same on the target machine.</p>
 <p>To remedy this, each version of VS ships with its own Visual C RunTime library; e.g. VS 2008 ships with <code class="docutils literal"><span class="pre">MSVCRT90.dll</span></code>, VS 2010 shipped with <code class="docutils literal"><span class="pre">MSVCRT100.dll</span></code>, etc. Devs are recommended to link against the DLL shipped with their version of VS. This means however that when depolying the software, either the program must be statically linked (contains the library functions, larger file size), the specific <code class="docutils literal"><span class="pre">MSVCRTxxx.dll</span></code> must be distributed with the program (&#8220;app-local distribution&#8221;), or the target machine must be assumed to have to have it in a known location (&#8220;central distribution&#8221;).</p>
 <p>Full details: <a class="reference external" href="http://stackoverflow.com/questions/1073509/should-i-redistribute-msvcrt-dll-with-my-application">http://stackoverflow.com/questions/1073509/should-i-redistribute-msvcrt-dll-with-my-application</a></p>
 </div>
 <div class="section" id="id1">
-<h2>Visual Studio 2015<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h3>Visual Studio 2015<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>With the advent of Windows 10 and continous rolling updates, MS realised that it could revert back to having once central runtime DLL without any negative consequences - all Win10 machines are forcefully updated and so everyone (devs and end-users) will always have the latest version of the VCRT DLL. This eternal VCRT DLL is known as the Universal CRT and is spread out across two files; <code class="docutils literal"><span class="pre">vcruntime.dll</span></code> and <code class="docutils literal"><span class="pre">ucrtbase.dll</span></code>. As these are integral parts of the OD, Win10 end-users can always be assumed to have them installed. End-users running Win &lt; 10 do not however, and so DLL redistribution must be done as before.</p>
 <p>Visual Studio 2015 should already link against <code class="docutils literal"><span class="pre">ucrtbase.dll</span></code> by default.</p>
 <p>Full details: <a class="reference external" href="https://blogs.msdn.microsoft.com/vcblog/2015/03/03/introducing-the-universal-crt/">https://blogs.msdn.microsoft.com/vcblog/2015/03/03/introducing-the-universal-crt/</a></p>
 </div>
 <div class="section" id="notes">
-<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h3>
 <p>VS is only available as 32-bit application. It can however happily traget 64-bit systems.</p>
-<p>Try:</p>
-<ul class="simple">
-<li>Remove debug symbols</li>
-<li>Static link</li>
-</ul>
+</div>
+</div>
+<div class="section" id="logged-in-users">
+<h2>Logged in Users<a class="headerlink" href="#logged-in-users" title="Permalink to this headline">¶</a></h2>
+<p>Use sysinternals live from command prompt:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>\\<span class="n">live</span><span class="o">.</span><span class="n">sysinternals</span><span class="o">.</span><span class="n">com</span>\<span class="n">Tools</span>\<span class="n">psloggedon</span><span class="o">.</span><span class="n">exe</span> \\<span class="o">&lt;</span><span class="n">workstation_name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -103,53 +119,33 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="app_2_dash.html">Adding Apps to Dash</a></li>
-<li class="toctree-l2"><a class="reference internal" href="apt_pkg_held.html">apt: packages held back</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bash_rename.html">bash rename</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bokeh.html">bokeh</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cnst_print.html">CNST Print</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ctypes.html">ctypes Pointers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="desktop_switcher.html">Remove Desktop from Switcher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gnome_critical.html">Gnome critical power action</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG Encryption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="latex_on_ubuntu.html">Latex package management on Ubuntu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ls_abs_path.html">List Absolute Path</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lu_eduroam.html">LU Eduroam</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lu_smtp.html">LU SMTP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lu_vpn.html">LU VPN</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mic_issue.html">Mic problem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mpl.html">matplotlib</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mpl_svg_inkscape.html">Matplotlib SVG &amp; Inkscape</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nouveau_revert.html">Reverting to nouveau driver</a></li>
-<li class="toctree-l2"><a class="reference internal" href="package_information.html">Package Commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="power_menu.html">Power Off Menu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pydev.html">PyDev configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rdp_users.html">Check logged in users on remote Windows workstation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rec_grep.html">Search text file contents recursively</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scipy_on_win.html">Installing SciPy on Windows</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sphix.html">Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-side Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html#practicalities">Practicalities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="term_brightness.html">Terminal brightness control</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wacom_scrolling.html">Wacom Tablet Scrolling</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Windows C++ Development</a></li>
-<li class="toctree-l2"><a class="reference internal" href="win_symlink.html">Symlinks on Windows</a></li>
-<li class="toctree-l2"><a class="reference internal" href="win_usb.html">Windows &lt;10 USB serial drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wireless.html">Wireless Card Problems</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Windows</a></li>
 </ul>
 </li>
 </ul>
