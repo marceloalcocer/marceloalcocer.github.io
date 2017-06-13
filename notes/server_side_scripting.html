@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Server-side Scripting &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    <title>Server-Side Scripting &#8212; marceloalcocer.github.io 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -48,24 +48,26 @@
           <div class="body" role="main">
             
   <div class="section" id="server-side-scripting">
-<h1>Server-side Scripting<a class="headerlink" href="#server-side-scripting" title="Permalink to this headline">¶</a></h1>
+<h1>Server-Side Scripting<a class="headerlink" href="#server-side-scripting" title="Permalink to this headline">¶</a></h1>
 <p>Server-side scripting — request server to execute code in a scripting language (e.g. Python, PHP, etc) and return result. Requires server process to be able to execute scripts, ideally in any arbitrary scripting language.</p>
 <p>As such, interface protocols developed to allow communication between server processes and scripting languages <a class="footnote-reference" href="#id4" id="id1">[1]</a>.</p>
+<div class="section" id="protocols">
+<h2>Protocols<a class="headerlink" href="#protocols" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="legacy-interfaces">
-<h2>Legacy Interfaces<a class="headerlink" href="#legacy-interfaces" title="Permalink to this headline">¶</a></h2>
+<h3>Legacy Interfaces<a class="headerlink" href="#legacy-interfaces" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="common-gateway-interface-cgi">
-<h3>Common Gateway Interface (CGI)<a class="headerlink" href="#common-gateway-interface-cgi" title="Permalink to this headline">¶</a></h3>
+<h4>Common Gateway Interface (CGI)<a class="headerlink" href="#common-gateway-interface-cgi" title="Permalink to this headline">¶</a></h4>
 <p>Oldest interface. Supported by almost all web servers.</p>
 <p>Slow as each new request starts up separate scripting environment (e.g. python shell).</p>
 </div>
 <div class="section" id="fastcgi-and-scgi">
-<h3>FastCGI and SCGI<a class="headerlink" href="#fastcgi-and-scgi" title="Permalink to this headline">¶</a></h3>
+<h4>FastCGI and SCGI<a class="headerlink" href="#fastcgi-and-scgi" title="Permalink to this headline">¶</a></h4>
 <p>Upgrade to CGI.</p>
 <p>One scripting process started and kept alive in background which handles all requests.</p>
 </div>
 </div>
 <div class="section" id="web-server-gateway-interface-wsgi">
-<h2>Web Server Gateway Interface (WSGI)<a class="headerlink" href="#web-server-gateway-interface-wsgi" title="Permalink to this headline">¶</a></h2>
+<h3>Web Server Gateway Interface (WSGI)<a class="headerlink" href="#web-server-gateway-interface-wsgi" title="Permalink to this headline">¶</a></h3>
 <p>Problem with all these legacy interfaces is that server-side (and web server) code must be tailored for the specific interface. As such, in order to develop server-side code which will work with all interfaces and all servers, would have to develop multiple versions of the server-side code. For example, python code for a wiki engine would need to be written so as to support CGI, FastCGI, SCGI, etc. in order to guarantee that it could be deployed on any web server.</p>
 <p>To solve this duplication, the WSGI protocol was developed to act as an intermediate between all existing interfaces and all server-side scripting languages. In this way, when developing server-side code, only need to make it compatible with WSGI to ensure universal operability.</p>
 <p>WSGI is defined as a client-server architecture:</p>
@@ -78,7 +80,7 @@
 </div>
 </div>
 <div class="section" id="practicalities">
-<h1>Practicalities<a class="headerlink" href="#practicalities" title="Permalink to this headline">¶</a></h1>
+<h2>Practicalities<a class="headerlink" href="#practicalities" title="Permalink to this headline">¶</a></h2>
 <p>Cannot get WSGI working on XAMMP. Tried with <code class="docutils literal"><span class="pre">hgweb.wsgi</span></code> and just refuses to work. Apache does not have wsgi module and so cannot interpret <code class="docutils literal"><span class="pre">WSGIScriptAlias</span></code> option.</p>
 <p>Tried downloading wsgi module binary <a class="footnote-reference" href="#id5" id="id2">[2]</a>, but does not seem to work either. Looks like there may be fundamental compatibility issues <a class="footnote-reference" href="#id6" id="id3">[3]</a>...</p>
 <table class="docutils footnote" frame="void" id="id4" rules="none">
@@ -99,6 +101,7 @@
 <tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://github.com/GrahamDumpleton/mod_wsgi/blob/develop/win32/README.rst">https://github.com/GrahamDumpleton/mod_wsgi/blob/develop/win32/README.rst</a></td></tr>
 </tbody>
 </table>
+</div>
 </div>
 
 
@@ -150,8 +153,7 @@
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Server-side Scripting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#practicalities">Practicalities</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Server-Side Scripting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
