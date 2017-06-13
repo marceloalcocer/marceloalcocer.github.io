@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>apt: packages held back &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    <title>APT &#8212; marceloalcocer.github.io 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -47,8 +47,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="apt-packages-held-back">
-<h1>apt: packages held back<a class="headerlink" href="#apt-packages-held-back" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="apt">
+<h1>APT<a class="headerlink" href="#apt" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="packages-held-back">
+<h2>Packages Held Back<a class="headerlink" href="#packages-held-back" title="Permalink to this headline">¶</a></h2>
 <p>On day of 16.10 (Yakkety) release, doing <code class="docutils literal"><span class="pre">apt-get</span> <span class="pre">upgrade</span></code> seemed to update kernel from 4.4.0-42 to 4.4.0-43. GRUB now defaults to 43, but all hardware support is gone (usb, wifi, ethernet, etc).</p>
 <p>When booting back into 42 and doing <code class="docutils literal"><span class="pre">apt-get</span> <span class="pre">upgrade</span></code>, now seeing:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">following</span> <span class="n">packages</span> <span class="n">have</span> <span class="n">been</span> <span class="n">kept</span> <span class="n">back</span><span class="p">:</span>
@@ -85,6 +87,29 @@ the general settings for individual packages.</dd>
 <p>Would seem that <code class="docutils literal"><span class="pre">apt-get</span> <span class="pre">upgrade</span></code> is trying to upgrade the kernel packages (<code class="docutils literal"><span class="pre">linux-generic</span></code>, <code class="docutils literal"><span class="pre">linux-headers-generic</span></code>, etc) to 43, but has realised that doing so would screw 42 and as such aborts. Not sure why it&#8217;s trying to upgrade to 43, but probably due to Yakkety release. Think those kernel packages are virtual and should contain different things for Yakkety and Xenial. Maybe someone screwed up the release upstream?</p>
 <p>... indeed would seem to be the case. An <code class="docutils literal"><span class="pre">apt-get</span> <span class="pre">upgrade</span></code> at a later date seems to have fixed the problem.</p>
 </div>
+<div class="section" id="ignoring-ucf-dist-file">
+<h2>Ignoring ucf-dist File<a class="headerlink" href="#ignoring-ucf-dist-file" title="Permalink to this headline">¶</a></h2>
+<p>For a while now, have been getting following notification during <code class="docutils literal"><span class="pre">apt-get</span> <span class="pre">update</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">N</span><span class="p">:</span> <span class="n">Ignoring</span> <span class="n">file</span> <span class="s1">&#39;20auto-upgrades.ucf-dist&#39;</span> <span class="ow">in</span> <span class="n">directory</span> <span class="s1">&#39;/etc/apt/apt.conf.d/&#39;</span> <span class="k">as</span> <span class="n">it</span> <span class="n">has</span> <span class="n">an</span> <span class="n">invalid</span> <span class="n">filename</span> <span class="n">extension</span>
+</pre></div>
+</div>
+<p>Reading around a little, found out that is due to conflicting APT configuration files.</p>
+<p>APT configuration is done via a series of distributed configuration files all held in <code class="docutils literal"><span class="pre">/etc/apt/apt.conf.d</span></code> directory <a class="footnote-reference" href="#id3" id="id1">[1]</a>. When a package updates an APT config file, the <code class="docutils literal"><span class="pre">ucf</span></code> (Update Configuration Files) utility is called to prompt the user whether to keep the old config file or switch to the new one. Regardless of the given answer, the original configuration file (before update) is copied to a <code class="docutils literal"><span class="pre">*.ucf-dist</span></code> suffixed file. The configurations contained within this file is ignored by <code class="docutils literal"><span class="pre">apt-get</span> <span class="pre">update</span></code> due to the added extension, generating the above notification <a class="footnote-reference" href="#id4" id="id2">[2]</a>.</p>
+<p>As such, the retained original config file can be compared to the active config file, and if not needed can be safely deleted.</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://askubuntu.com/questions/254137/etc-apt-apt-conf-d-priority-overrule-configuration-file/254617">https://askubuntu.com/questions/254137/etc-apt-apt-conf-d-priority-overrule-configuration-file/254617</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://askubuntu.com/questions/572976/what-to-do-now-update-just-after-install/573091#573091">https://askubuntu.com/questions/572976/what-to-do-now-update-just-after-install/573091#573091</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
 
 
           </div>
@@ -118,7 +143,7 @@ the general settings for individual packages.</dd>
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="app_2_dash.html">Adding Apps to Dash</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">apt: packages held back</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">APT</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash_rename.html">bash rename</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bokeh.html">bokeh</a></li>
@@ -129,6 +154,7 @@ the general settings for individual packages.</dd>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gnome_critical.html">Gnome critical power action</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG Encryption</a></li>
@@ -152,7 +178,9 @@ the general settings for individual packages.</dd>
 <li class="toctree-l2"><a class="reference internal" href="rec_grep.html">Search text file contents recursively</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scipy_on_win.html">Installing SciPy on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scipy.html">SciPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-side Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html#practicalities">Practicalities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphix.html">Sphinx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>

@@ -27,7 +27,7 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="GitHub SSH" href="github_ssh.html" />
+    <link rel="next" title="Git hosted on WAMP" href="git_wamp.html" />
     <link rel="prev" title="evince copy picture" href="evince_copy.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    
@@ -49,6 +49,8 @@
             
   <div class="section" id="git-cheatsheet">
 <h1>Git Cheatsheet<a class="headerlink" href="#git-cheatsheet" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="branching">
+<h2>Branching<a class="headerlink" href="#branching" title="Permalink to this headline">¶</a></h2>
 <p>Merge changes in <code class="docutils literal"><span class="pre">SOURCE</span></code> into <code class="docutils literal"><span class="pre">DEST</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">co</span> <span class="o">&lt;</span><span class="n">DEST</span><span class="o">&gt;</span>
 <span class="n">git</span> <span class="n">merge</span> <span class="o">&lt;</span><span class="n">SOURCE</span><span class="o">&gt;</span>
@@ -58,6 +60,20 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">co</span> <span class="o">&lt;</span><span class="n">SOURCE</span><span class="o">&gt;</span>
 <span class="n">git</span> <span class="n">rebase</span> <span class="o">&lt;</span><span class="n">DEST</span><span class="o">&gt;</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="displaying">
+<h2>Displaying<a class="headerlink" href="#displaying" title="Permalink to this headline">¶</a></h2>
+<p>Show previous file revision <a class="footnote-reference" href="#id2" id="id1">[1]</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">show</span> <span class="o">&lt;</span><span class="n">REVISION</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">PATH</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/338436/is-there-a-quick-git-command-to-see-an-old-version-of-a-file">https://stackoverflow.com/questions/338436/is-there-a-quick-git-command-to-see-an-old-version-of-a-file</a></td></tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -93,7 +109,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="app_2_dash.html">Adding Apps to Dash</a></li>
-<li class="toctree-l2"><a class="reference internal" href="apt_pkg_held.html">apt: packages held back</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apt.html">APT</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash_rename.html">bash rename</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bokeh.html">bokeh</a></li>
@@ -104,6 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Git Cheatsheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gnome_critical.html">Gnome critical power action</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG Encryption</a></li>
@@ -127,7 +144,9 @@
 <li class="toctree-l2"><a class="reference internal" href="rec_grep.html">Search text file contents recursively</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scipy_on_win.html">Installing SciPy on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scipy.html">SciPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-side Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html#practicalities">Practicalities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphix.html">Sphinx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
