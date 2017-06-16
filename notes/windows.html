@@ -48,6 +48,19 @@
             
   <div class="section" id="windows">
 <h1>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hashing">
+<h2>Hashing<a class="headerlink" href="#hashing" title="Permalink to this headline">¶</a></h2>
+<p>Builtin MD5 hashing <a class="footnote-reference" href="#id2" id="id1">[1]</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">CertUtil</span> <span class="o">-</span><span class="n">hashfile</span> <span class="o">&lt;</span><span class="n">FILE</span><span class="o">&gt;</span> <span class="n">MD5</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://superuser.com/questions/245775/is-there-a-built-in-checksum-utility-on-windows-7/898377#898377">https://superuser.com/questions/245775/is-there-a-built-in-checksum-utility-on-windows-7/898377#898377</a></td></tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="symlinks">
 <h2>Symlinks<a class="headerlink" href="#symlinks" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mklink</span> <span class="o">&lt;</span><span class="n">NAME</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">TARGET</span><span class="o">&gt;</span>
@@ -68,8 +81,8 @@
 <p>To remedy this, each version of VS ships with its own Visual C RunTime library; e.g. VS 2008 ships with <code class="docutils literal"><span class="pre">MSVCRT90.dll</span></code>, VS 2010 shipped with <code class="docutils literal"><span class="pre">MSVCRT100.dll</span></code>, etc. Devs are recommended to link against the DLL shipped with their version of VS. This means however that when depolying the software, either the program must be statically linked (contains the library functions, larger file size), the specific <code class="docutils literal"><span class="pre">MSVCRTxxx.dll</span></code> must be distributed with the program (&#8220;app-local distribution&#8221;), or the target machine must be assumed to have to have it in a known location (&#8220;central distribution&#8221;).</p>
 <p>Full details: <a class="reference external" href="http://stackoverflow.com/questions/1073509/should-i-redistribute-msvcrt-dll-with-my-application">http://stackoverflow.com/questions/1073509/should-i-redistribute-msvcrt-dll-with-my-application</a></p>
 </div>
-<div class="section" id="id1">
-<h3>Visual Studio 2015<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>Visual Studio 2015<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>With the advent of Windows 10 and continous rolling updates, MS realised that it could revert back to having once central runtime DLL without any negative consequences - all Win10 machines are forcefully updated and so everyone (devs and end-users) will always have the latest version of the VCRT DLL. This eternal VCRT DLL is known as the Universal CRT and is spread out across two files; <code class="docutils literal"><span class="pre">vcruntime.dll</span></code> and <code class="docutils literal"><span class="pre">ucrtbase.dll</span></code>. As these are integral parts of the OD, Win10 end-users can always be assumed to have them installed. End-users running Win &lt; 10 do not however, and so DLL redistribution must be done as before.</p>
 <p>Visual Studio 2015 should already link against <code class="docutils literal"><span class="pre">ucrtbase.dll</span></code> by default.</p>
 <p>Full details: <a class="reference external" href="https://blogs.msdn.microsoft.com/vcblog/2015/03/03/introducing-the-universal-crt/">https://blogs.msdn.microsoft.com/vcblog/2015/03/03/introducing-the-universal-crt/</a></p>
@@ -137,8 +150,7 @@
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-side Scripting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html#practicalities">Practicalities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-Side Scripting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
