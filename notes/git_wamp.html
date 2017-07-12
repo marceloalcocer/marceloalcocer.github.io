@@ -72,7 +72,7 @@
 </div>
 <p><em>N.b. location of main Git HTTP script</em> (<code class="docutils literal"><span class="pre">git-http-backend</span></code>) <em>on Windows differs from GNU/Linux</em> <a class="footnote-reference" href="#id7" id="id3">[3]</a></p>
 <p>For some reason this doesn&#8217;t seem to work. Instead had to use regexp version <a class="footnote-reference" href="#id8" id="id4">[4]</a>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ScriptAliasMatch</span> <span class="s2">&quot;(?x)^/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [0-9a-f]</span><span class="si">{2}</span><span class="s2">/[0-9a-f]</span><span class="si">{38}</span><span class="s2"> | pack/pack-[0-9a-f]</span><span class="si">{40}</span><span class="s2">\.(pack|idx)) | git-(upload|receive)-pack))$&quot;</span> <span class="s2">&quot;C:/Program Files/Git/mingw64/libexec/git-core/git-http-backend.exe/$1&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ScriptAliasMatch</span> <span class="s2">&quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [0-9a-f]</span><span class="si">{2}</span><span class="s2">/[0-9a-f]</span><span class="si">{38}</span><span class="s2"> | pack/pack-[0-9a-f]</span><span class="si">{40}</span><span class="s2">\.(pack|idx)) | git-(upload|receive)-pack))$&quot;</span> <span class="s2">&quot;C:/Program Files/Git/mingw64/libexec/git-core/git-http-backend.exe/$1&quot;</span>
 </pre></div>
 </div>
 <p><em>N.b. Extra</em> <code class="docutils literal"><span class="pre">$1</span></code> <em>to pass HTTP request to script</em></p>
@@ -84,7 +84,7 @@
 </div>
 <p><em>N.b.</em> <code class="docutils literal"><span class="pre">.exe</span></code> <em>extension is required.</em></p>
 <p>Can now clone (and push) anonymously:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">acq</span><span class="o">.</span><span class="mi">2</span><span class="n">d</span><span class="o">.</span><span class="n">chemphys</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">acq</span><span class="o">.</span><span class="mi">2</span><span class="n">d</span><span class="o">.</span><span class="n">chemphys</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
 <p>Now to enable authentication. Created password file in <code class="docutils literal"><span class="pre">git</span></code> directory using <code class="docutils literal"><span class="pre">htpasswd</span></code> script from xampp shell:</p>
@@ -123,7 +123,7 @@ SetEnv GIT_PROJECT_ROOT &quot;C:/xampp/git&quot;
 SetEnv GIT_HTTP_EXPORT_ALL true
 
 # Alias
-ScriptAliasMatch &quot;(?x)^/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [0-9a-f]{2}/[0-9a-f]{38} | pack/pack-[0-9a-f]{40}.(pack|idx)) | git-(upload|receive)-pack))$&quot; &quot;C:/Program Files/Git/mingw64/libexec/git-core/git-http-backend.exe/$1&quot;
+ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [0-9a-f]{2}/[0-9a-f]{38} | pack/pack-[0-9a-f]{40}.(pack|idx)) | git-(upload|receive)-pack))$&quot; &quot;C:/Program Files/Git/mingw64/libexec/git-core/git-http-backend.exe/$1&quot;
 &lt;Files &quot;git-http-backend.exe&quot;&gt;
     AuthType Basic
     AuthName &quot;Git Access&quot;
@@ -164,9 +164,41 @@ ScriptAliasMatch &quot;(?x)^/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [0-9a
 </tbody>
 </table>
 </div>
+<div class="section" id="web-interface">
+<h2>Web Interface<a class="headerlink" href="#web-interface" title="Permalink to this headline">¶</a></h2>
+<p>Tried a few web interfaces:</p>
+<dl class="docutils">
+<dt>gitweb</dt>
+<dd>Generated CGI script is not compatible with Windows Perl</dd>
+<dt>gitlist</dt>
+<dd>Could not configure properly</dd>
+<dt>gogs</dt>
+<dd>Nice, but includes server</dd>
+</dl>
+<p>Finally got GitPHP <a class="footnote-reference" href="#id9" id="id10">[5]</a> to work nicely. Followed installation instructions with installation in <code class="docutils literal"><span class="pre">htdocs</span></code> and worked first time. Only issue was disabling cache as seemed to stick.</p>
+<p>Would be nice to have following usage though:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">acq</span><span class="o">.</span><span class="mi">2</span><span class="n">d</span><span class="o">.</span><span class="n">chemphys</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">git</span><span class="o">/</span>               <span class="c1"># Web interface</span>
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">acq</span><span class="o">.</span><span class="mi">2</span><span class="n">d</span><span class="o">.</span><span class="n">chemphys</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">project</span><span class="o">.</span><span class="n">git</span>    <span class="c1"># Clone/push over HTTP</span>
+</pre></div>
+</div>
+<p>Relocated GitPHP outside of <code class="docutils literal"><span class="pre">htdocs</span></code>. Set Apache alias to serve:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Alias</span> <span class="o">/</span><span class="n">git</span> <span class="s2">&quot;C:/xampp/gitphp/&quot;</span>
+<span class="o">&lt;</span><span class="n">Directory</span> <span class="s2">&quot;C:/xampp/gitphp&quot;</span><span class="o">&gt;</span>
+        <span class="n">Require</span> <span class="nb">all</span> <span class="n">granted</span>
+<span class="o">&lt;/</span><span class="n">Directory</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Can now browse at <code class="docutils literal"><span class="pre">http://acq.2d.chemphys.lu.se/git/</span></code>. Does not interfere with clone/push URL as git <code class="docutils literal"><span class="pre">ScriptAliasMatch</span></code> regexp filters out git HTTP requests to <code class="docutils literal"><span class="pre">git-http-backen.exe</span></code> and passes rest on.</p>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id12">[6]</a></td><td><a class="reference external" href="https://gitphp.org/">https://gitphp.org/</a></td></tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="ftp">
 <h2>FTP<a class="headerlink" href="#ftp" title="Permalink to this headline">¶</a></h2>
-<p>Git natively supports some operations over FTP protocol, viz. <code class="docutils literal"><span class="pre">clone</span></code> and <code class="docutils literal"><span class="pre">fetch</span></code> <a class="footnote-reference" href="#id9" id="id10">[5]</a>. For further operations (e.g. <code class="docutils literal"><span class="pre">push</span></code>) can use <code class="docutils literal"><span class="pre">git-ftp</span></code> <a class="footnote-reference" href="#id12" id="id11">[6]</a>.</p>
+<p>Git natively supports some operations over FTP protocol, viz. <code class="docutils literal"><span class="pre">clone</span></code> and <code class="docutils literal"><span class="pre">fetch</span></code> <a class="footnote-reference" href="#id11" id="id12">[6]</a>. For further operations (e.g. <code class="docutils literal"><span class="pre">push</span></code>) can use <code class="docutils literal"><span class="pre">git-ftp</span></code> <a class="footnote-reference" href="#id14" id="id13">[7]</a>.</p>
 <p>Download <code class="docutils literal"><span class="pre">git-ftp</span></code> and install:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">install</span><span class="o">-</span><span class="nb">all</span>
 </pre></div>
@@ -180,16 +212,16 @@ ScriptAliasMatch &quot;(?x)^/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [0-9a
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">lftp</span>
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id12" rules="none">
+<table class="docutils footnote" frame="void" id="id14" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id11">[6]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/4664251/does-git-support-push-to-an-ftp-server">https://stackoverflow.com/questions/4664251/does-git-support-push-to-an-ftp-server</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id13">[7]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/4664251/does-git-support-push-to-an-ftp-server">https://stackoverflow.com/questions/4664251/does-git-support-push-to-an-ftp-server</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id13" rules="none">
+<table class="docutils footnote" frame="void" id="id15" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[7]</td><td><a class="reference external" href="https://github.com/git-ftp/git-ftp">https://github.com/git-ftp/git-ftp</a></td></tr>
+<tr><td class="label">[8]</td><td><a class="reference external" href="https://github.com/git-ftp/git-ftp">https://github.com/git-ftp/git-ftp</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -244,8 +276,7 @@ ScriptAliasMatch &quot;(?x)^/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [0-9a
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-side Scripting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html#practicalities">Practicalities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-Side Scripting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
