@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>bandlim.js &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="ultrajs" href="../ultrajs.html" />
+   <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+   
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bandlim-js">
+<h1>bandlim.js<a class="headerlink" href="#bandlim-js" title="Permalink to this headline">¶</a></h1>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js" integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
+		<script src="http://code.highcharts.com/js/highcharts.js"></script>
+		<link rel="stylesheet" href="http://code.highcharts.com/css/highcharts.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" integrity="sha256-yYfngbEKv4RENfGDvNUqJTqGFcKf31NJEe9OTnnMH3Y=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/config/TeX-AMS_CHTML-full.js" integrity="sha256-TDzAVU6mP7n5H2k+h+M1QiXDPpfPL0Oi+nta0KQdAT4=" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="../_static/bandlim.css">
+		<div id="bandlim">
+
+			<h2>Bandwidth Limited Pulse Calculator</h2>
+
+			<p>
+				Computes the bandwidth limited duration of an optical pulse from its spectrum
+				<sup class="info">
+					&#x1F6C8;
+					<span class="info_text" id="info_description">
+						\begin{equation}
+							a(t) = \left | a(t) \right | e^{i \phi(t)} \xrightarrow{\mathfrak{F}}  A(\omega) = \left | A(\omega) \right | e^{i \psi(\omega)}
+						\end{equation}
+						Under bandwidth limited conditions;
+						\begin{align}
+							\psi(\omega) &= 0 \\
+							\Rightarrow a(t) &= \mathfrak{F}^{-1} \left [ \sqrt{\left | A(\omega) \right |^2} \right ]
+						\end{align}
+					</span>
+				</sup>
+			</p>
+			
+			<p>Pure client-side JavaScript</p>
+		
+			<div class="container_fwc">
+				<form id="controls">
+					<fieldset>
+						<legend>Spectrum
+							<sup class="info">
+								&#x1F6C8;
+								<span class="info_text" id="info_file">
+									Supported file formats:
+									<ul>
+										<li>Comma separated values (\( \lambda_1, |A_1|^2 \)\n\( \lambda_2, |A_2|^2 \)\n...) [*.csv]</li>
+										<li>AvaSoft 8 Absolute Irradiance [*.irr8]</li>
+									</ul>
+								</span>
+							</sup>
+						</legend>
+						<input type="file" id="file"/>
+					</fieldset>
+					<fieldset>
+						<legend>Window limits [PHz]</legend>
+						<input type="text" id="limits_0" class="window-input"/>
+						<input type="text" id="limits_1" class="window-input"/>
+					</fieldset>
+					<fieldset>
+						<legend>Fit function</legend>
+						<select name="fit">
+							<option value="gaussian" selected>Gaussian</option>
+						</select>
+					</fieldset>
+				</form>
+				<table id="results">
+					<tr>
+						<td></td>
+						<th class="numerical">Numerical
+							<sup class="info">
+								&#x1F6C8;
+								<span class="info_text" id="info_numerical">Full width at half maximum of the numerical data</span>
+							</sup>
+						</th>
+						<th class="fit">Fit
+							<sup class="info">
+								&#x1F6C8;
+								<span class="info_text" id="info_fit">Full width at half maximum of the fit to the numerical data</span>
+							</sup>
+						</th>
+					</tr>
+					<tr>
+						<th>\( \Delta \nu \) [PHz]</th>
+						<td><output id="fwhm_frequency_numerical"></output></td>
+						<td><output id="fwhm_frequency_fit"></output></td>
+					</tr>
+					<tr>
+						<th>\( \Delta t \) [fs]</th>
+						<td><output id="fwhm_time_numerical"></output></td>
+						<td><output id="fwhm_time_fit"></output></td>
+						<th>Gauss
+							<sup class="info">
+								&#x1F6C8;
+								<span class="info_text">
+									\begin{align}
+										a(t) &= e^{-(t/t_p)^2} \\
+										\left | A(\omega)  \right | ^2 &= e^{-(\omega^2 t^2_p / 2)} \\
+										\Delta t &= 1.177 t_p \\
+										\Delta \nu \Delta t &= 2 \ln{(2)} / \pi \\
+										&= 0.441
+									\end{align}
+								</span>
+							</sup>
+						</th>
+						<th>Sech
+							<sup class="info">
+								&#x1F6C8;
+								<span class="info_text">
+									\begin{align}
+										\newcommand{\sech}{\mathop{\rm sech}\nolimits}
+										a(t) &= \sech \left( \frac{t}{t_p} \right ) \\
+										\left | A(\omega)  \right | ^2 &= \sech^2 \left( \frac{\pi \omega t_p}{2} \right ) \\
+										\Delta t &= 1.763 t_p \\
+										\Delta \nu \Delta t &= 0.315
+									\end{align}
+								</span>
+							</sup>
+						</th>
+					</tr>
+					<tr>
+						<th>\( \Delta \nu \Delta t \) [-]</th>
+						<td><output id="tbwp_numerical"></output></td>
+						<td><output id="tbwp_fit"></output></td>
+						<td>0.441</td>
+						<td>0.315</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="chart" id="chart_frequency"></div>
+			<div class="chart" id="chart_time"></div>
+
+			<script src="../_static/bandlim.min.js"></script>
+
+		</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">marceloalcocer.github.io</a></h1>
+
+
+
+
+
+
+
+
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../notes.html">Notes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ultrajs.html">ultrajs</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">bandlim.js</a></li>
+</ul>
+</li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Marcelo Alcocer.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
