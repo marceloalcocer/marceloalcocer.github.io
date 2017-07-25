@@ -49,13 +49,61 @@
             
   <div class="section" id="python">
 <h1>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subclassing-builtin-types">
-<h2>Subclassing builtin types<a class="headerlink" href="#subclassing-builtin-types" title="Permalink to this headline">¶</a></h2>
-<p>Reasons why you shouldn&#8217;t immediately subclass Python built-in types <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
+<div class="section" id="numpy">
+<h2>NumPy<a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="subclassing-ndarray">
+<h3>Subclassing ndarray<a class="headerlink" href="#subclassing-ndarray" title="Permalink to this headline">¶</a></h3>
+<p>Often desirable to subclass ndarray for numeric-based classes. Doing this correctly is slightly more complicated than regular subclassing as ndarray instances can be created in three different ways <a class="footnote-reference" href="#id3" id="id1">[1]</a>:</p>
+<ol class="arabic simple">
+<li>Explicit constructor call: <code class="docutils literal"><span class="pre">MySubclass(params)</span></code></li>
+<li>View casting: <code class="docutils literal"><span class="pre">np.array([1,2,3]).view(MySubclass)</span></code></li>
+<li>Templating: <code class="docutils literal"><span class="pre">MySubclass([1,2,3])[1:]</span></code></li>
+</ol>
+<p>Each builds instances with slightly different calls to <code class="docutils literal"><span class="pre">__new__</span></code>, <code class="docutils literal"><span class="pre">__init__</span></code> and <code class="docutils literal"><span class="pre">__array_finalize__</span></code>. Briefly:</p>
+<ul class="simple">
+<li>All methods call subclass&#8217;s <code class="docutils literal"><span class="pre">__new__</span></code> method where must have superclass <code class="docutils literal"><span class="pre">np.ndarray.__new__</span></code> call</li>
+<li>This triggers call to subclass&#8217;s <code class="docutils literal"><span class="pre">__array_finalize__</span></code> method</li>
+<li>Arguments to <code class="docutils literal"><span class="pre">__array_finalize__</span></code> are different for each creation route and can be used for identification</li>
+</ul>
+<p>In almost every case, will want to follow template given in documentation <a class="footnote-reference" href="#id4" id="id2">[2]</a>.</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/25328448/should-i-subclass-python-list-or-create-class-with-list-as-attribute#answer-25328940">https://stackoverflow.com/questions/25328448/should-i-subclass-python-list-or-create-class-with-list-as-attribute#answer-25328940</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://docs.scipy.org/doc/numpy-1.12.0/user/basics.subclassing.html">https://docs.scipy.org/doc/numpy-1.12.0/user/basics.subclassing.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://docs.scipy.org/doc/numpy-1.12.0/user/basics.subclassing.html#slightly-more-realistic-example-attribute-added-to-existing-array">https://docs.scipy.org/doc/numpy-1.12.0/user/basics.subclassing.html#slightly-more-realistic-example-attribute-added-to-existing-array</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pickling-ndarray-subclasses">
+<h3>Pickling ndarray subclasses<a class="headerlink" href="#pickling-ndarray-subclasses" title="Permalink to this headline">¶</a></h3>
+<p>When unpickling class instance, pickle protocol does not call <code class="docutils literal"><span class="pre">__init__</span></code> but rather creates uninitialized instance and then populated attributes from <code class="docutils literal"><span class="pre">__dict__</span></code> <a class="footnote-reference" href="#id7" id="id5">[3]</a>. As such, complex creation procedure required for ndarray subclasses fails to store additional class attributes.</p>
+<p>Solution is to override ndarray <code class="docutils literal"><span class="pre">__reduce__</span></code> and <code class="docutils literal"><span class="pre">__setstate__</span></code> methods to explicitly store and retrieve (respectively) the added attributes <a class="footnote-reference" href="#id8" id="id6">[4]</a>. N.b. Use <code class="docutils literal"><span class="pre">__reduce__</span></code> rather than <code class="docutils literal"><span class="pre">__getstate__</span></code> as is what is used by ndarray.</p>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td><a class="reference external" href="https://docs.python.org/3.4/library/pickle.html?highlight=pickle#pickling-class-instances">https://docs.python.org/3.4/library/pickle.html?highlight=pickle#pickling-class-instances</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[4]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/26598109/preserve-custom-attributes-when-pickling-subclass-of-numpy-array">https://stackoverflow.com/questions/26598109/preserve-custom-attributes-when-pickling-subclass-of-numpy-array</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="subclassing-builtin-types">
+<h2>Subclassing builtin types<a class="headerlink" href="#subclassing-builtin-types" title="Permalink to this headline">¶</a></h2>
+<p>Reasons why you shouldn&#8217;t immediately subclass Python built-in types <a class="footnote-reference" href="#id10" id="id9">[5]</a></p>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/25328448/should-i-subclass-python-list-or-create-class-with-list-as-attribute#answer-25328940">https://stackoverflow.com/questions/25328448/should-i-subclass-python-list-or-create-class-with-list-as-attribute#answer-25328940</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -158,18 +206,18 @@ cairocffi installation details: <a class="reference external" href="https://pyth
 </div>
 <div class="section" id="svg-output">
 <h3>SVG Output<a class="headerlink" href="#svg-output" title="Permalink to this headline">¶</a></h3>
-<p>When generating SVGs from MPL, miter limit SVG property is set to a stupidly high value, causing Inkscape to crash hard <a class="footnote-reference" href="#id6" id="id4">[2]</a> <a class="footnote-reference" href="#id7" id="id5">[3]</a>.</p>
+<p>When generating SVGs from MPL, miter limit SVG property is set to a stupidly high value, causing Inkscape to crash hard <a class="footnote-reference" href="#id14" id="id12">[6]</a> <a class="footnote-reference" href="#id15" id="id13">[7]</a>.</p>
 <p>Solution is to manually edit generated SVG and change miter limit down to something more manageable (e.g. 4)</p>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
+<table class="docutils footnote" frame="void" id="id14" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[2]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/inkscape/+bug/1533058">https://bugs.launchpad.net/inkscape/+bug/1533058</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id12">[6]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/inkscape/+bug/1533058">https://bugs.launchpad.net/inkscape/+bug/1533058</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
+<table class="docutils footnote" frame="void" id="id15" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/inkscape/+bug/1534376">https://bugs.launchpad.net/inkscape/+bug/1534376</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id13">[7]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/inkscape/+bug/1534376">https://bugs.launchpad.net/inkscape/+bug/1534376</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -195,33 +243,33 @@ cairocffi installation details: <a class="reference external" href="https://pyth
 <div><p>pip does not work well for Windows because the standard pip package index site, PyPI, does not yet have Windows wheels for some packages, such as SciPy.</p>
 <p class="attribution">&mdash;Installing SciPy Stack, <a class="reference external" href="https://www.scipy.org/install.html">scipy.org</a></p>
 </div></blockquote>
-<p>Instead, should use excellent pre-built installers provided by Christoph Gohlke <a class="footnote-reference" href="#id11" id="id8">[4]</a>.</p>
-<p>Check wheel versions supported by pip <a class="footnote-reference" href="#id12" id="id9">[5]</a>:</p>
+<p>Instead, should use excellent pre-built installers provided by Christoph Gohlke <a class="footnote-reference" href="#id19" id="id16">[8]</a>.</p>
+<p>Check wheel versions supported by pip <a class="footnote-reference" href="#id20" id="id17">[9]</a>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pip</span><span class="p">;</span> <span class="nb">print</span><span class="p">(</span><span class="n">pip</span><span class="o">.</span><span class="n">pep425tags</span><span class="o">.</span><span class="n">get_supported</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>Download correct wheels for numpy and scipy, then install using pip <a class="footnote-reference" href="#id13" id="id10">[6]</a>:</p>
+<p>Download correct wheels for numpy and scipy, then install using pip <a class="footnote-reference" href="#id21" id="id18">[10]</a>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span><span class="o">-&lt;</span><span class="n">version</span><span class="o">&gt;.</span><span class="n">whl</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="n">scipy</span><span class="o">-&lt;</span><span class="n">version</span><span class="o">&gt;.</span><span class="n">whl</span>
 </pre></div>
 </div>
 <p>N.b. should use a numpy wheel linked to the Interl Math Kernel library — standard library for mathematical computations</p>
-<table class="docutils footnote" frame="void" id="id11" rules="none">
+<table class="docutils footnote" frame="void" id="id19" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id8">[4]</a></td><td><a class="reference external" href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">http://www.lfd.uci.edu/~gohlke/pythonlibs/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id16">[8]</a></td><td><a class="reference external" href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">http://www.lfd.uci.edu/~gohlke/pythonlibs/</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id12" rules="none">
+<table class="docutils footnote" frame="void" id="id20" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/28107123/cannot-install-numpy-from-wheel-format">http://stackoverflow.com/questions/28107123/cannot-install-numpy-from-wheel-format</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id17">[9]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/28107123/cannot-install-numpy-from-wheel-format">http://stackoverflow.com/questions/28107123/cannot-install-numpy-from-wheel-format</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id13" rules="none">
+<table class="docutils footnote" frame="void" id="id21" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id10">[6]</a></td><td><a class="reference external" href="https://pip.pypa.io/en/latest/user_guide/#installing-from-wheels">https://pip.pypa.io/en/latest/user_guide/#installing-from-wheels</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id18">[10]</a></td><td><a class="reference external" href="https://pip.pypa.io/en/latest/user_guide/#installing-from-wheels">https://pip.pypa.io/en/latest/user_guide/#installing-from-wheels</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -320,6 +368,11 @@ cairocffi installation details: <a class="reference external" href="https://pyth
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#numpy">NumPy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#subclassing-ndarray">Subclassing ndarray</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pickling-ndarray-subclasses">Pickling ndarray subclasses</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#subclassing-builtin-types">Subclassing builtin types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bokeh-plotting-library">Bokeh Plotting Library</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#architecture">Architecture</a></li>
