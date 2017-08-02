@@ -49,33 +49,74 @@
             
   <div class="section" id="c-c">
 <h1>C/C++<a class="headerlink" href="#c-c" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="building-shared-libaries">
-<h2>Building shared libaries<a class="headerlink" href="#building-shared-libaries" title="Permalink to this headline">¶</a></h2>
-<p>Compile code to object files with <code class="docutils literal"><span class="pre">-fPIC</span></code> option <a class="footnote-reference" href="#id4" id="id1">[1]</a> <a class="footnote-reference" href="#id5" id="id2">[2]</a>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">fPIC</span> <span class="n">file1</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">o</span> <span class="n">file1</span><span class="o">.</span><span class="n">o</span>
-</pre></div>
+<div class="section" id="useful-gcc-flags">
+<h2>Useful GCC flags<a class="headerlink" href="#useful-gcc-flags" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">-L&lt;path&gt;</span></code></dt>
+<dd>Add <code class="docutils literal"><span class="pre">&lt;path&gt;</span></code> to linker search path. Should come before <code class="docutils literal"><span class="pre">-l</span></code>.</dd>
+<dt><code class="docutils literal"><span class="pre">-l&lt;lib&gt;</span></code></dt>
+<dd>Link against library <code class="docutils literal"><span class="pre">&lt;lib&gt;</span></code>. Prepends <code class="docutils literal"><span class="pre">lib</span></code> and <code class="docutils literal"><span class="pre">.so</span></code> or <code class="docutils literal"><span class="pre">.a</span></code> to library name. Must come after object file.</dd>
+<dt><code class="docutils literal"><span class="pre">-fPIC</span></code></dt>
+<dd>Compile to Position Independent Code. Required for building dynamically linked libraries.</dd>
+</dl>
 </div>
-<p><code class="docutils literal"><span class="pre">-fPIC</span></code> option seems to be required for shared-library builds on most architectures. Does not seem to be detrimental to non-library builds however <a class="footnote-reference" href="#id6" id="id3">[3]</a>.</p>
-<p>Link object files into shared library with <code class="docutils literal"><span class="pre">-shared</span></code> option:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">shared</span> <span class="n">file1</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">libfile1</span><span class="o">.</span><span class="n">so</span>
-</pre></div>
-</div>
+<div class="section" id="extern-keyword">
+<h2><code class="docutils literal"><span class="pre">extern</span></code> keyword<a class="headerlink" href="#extern-keyword" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">extern</span></code> keyword is used to explicitly declare rather than define functions and variables over a global scope <a class="footnote-reference" href="#id4" id="id1">[1]</a>.</p>
+<p>In C++, it can be used with <code class="docutils literal"><span class="pre">&quot;C&quot;</span></code> to declare pure-C functions/variables which are however defined in C++. This can be useful for example to expose C++ class methods to C <a class="footnote-reference" href="#id5" id="id2">[2]</a> <a class="footnote-reference" href="#id6" id="id3">[3]</a>.</p>
 <table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://www.adp-gmbh.ch/cpp/gcc/create_lib.html">http://www.adp-gmbh.ch/cpp/gcc/create_lib.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://www.geeksforgeeks.org/understanding-extern-keyword-in-c/">http://www.geeksforgeeks.org/understanding-extern-keyword-in-c/</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id5" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/31541451/create-shared-library-from-cpp-files-and-static-library-with-g">https://stackoverflow.com/questions/31541451/create-shared-library-from-cpp-files-and-static-library-with-g</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://www.auctoris.co.uk/2017/04/29/calling-c-classes-from-python-with-ctypes/">http://www.auctoris.co.uk/2017/04/29/calling-c-classes-from-python-with-ctypes/</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/5311515/gcc-fpic-option">https://stackoverflow.com/questions/5311515/gcc-fpic-option</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/1615813/how-to-use-c-classes-with-ctypes">https://stackoverflow.com/questions/1615813/how-to-use-c-classes-with-ctypes</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="building-dynamically-linked-libaries">
+<h2>Building dynamically linked libaries<a class="headerlink" href="#building-dynamically-linked-libaries" title="Permalink to this headline">¶</a></h2>
+<p>Object files to be linked into shared library must be compiled with <code class="docutils literal"><span class="pre">-fPIC</span></code> option <a class="footnote-reference" href="#id11" id="id7">[4]</a> <a class="footnote-reference" href="#id12" id="id8">[5]</a>, e.g.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">fPIC</span> <span class="n">file1</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">o</span> <span class="n">file1</span><span class="o">.</span><span class="n">o</span>
+</pre></div>
+</div>
+<p>Whilst should only affect some speciifc architecures, in pratice <code class="docutils literal"><span class="pre">-fPIC</span></code> option seems to be required for shared-library builds on most architectures. Does not seem to be detrimental to non-library builds however <a class="footnote-reference" href="#id13" id="id9">[6]</a>.</p>
+<p>Link object files into shared library with <code class="docutils literal"><span class="pre">-shared</span></code> option:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">shared</span> <span class="n">file1</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">libfile1</span><span class="o">.</span><span class="n">so</span>
+</pre></div>
+</div>
+<p>Once the library has been built, the OS must be told where to find it at runtime. This may not be the same place as at link-time — often is desirable to move/copy library to centralised location (e.g. <code class="docutils literal"><span class="pre">/usr/local/lib</span></code>) after build. Simply copying library to <code class="docutils literal"><span class="pre">/usr/local/lib</span></code> after building may not be enough however as some OSes (e.g. Ubuntu) cache dynamic libraries <a class="footnote-reference" href="#id14" id="id10">[7]</a>. On Ubuntu, can update library cache by calling <code class="docutils literal"><span class="pre">ldconfig</span></code>, or explicitly add new library path by exporting <code class="docutils literal"><span class="pre">LD_LIBRARY_PATH</span></code> environment variable.</p>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="http://www.adp-gmbh.ch/cpp/gcc/create_lib.html">http://www.adp-gmbh.ch/cpp/gcc/create_lib.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[5]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/31541451/create-shared-library-from-cpp-files-and-static-library-with-g">https://stackoverflow.com/questions/31541451/create-shared-library-from-cpp-files-and-static-library-with-g</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[6]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/5311515/gcc-fpic-option">https://stackoverflow.com/questions/5311515/gcc-fpic-option</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[7]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/8039562/cannot-open-shared-object-file">https://stackoverflow.com/questions/8039562/cannot-open-shared-object-file</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -114,7 +155,9 @@
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">C/C++</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#building-shared-libaries">Building shared libaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#useful-gcc-flags">Useful GCC flags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extern-keyword"><code class="docutils literal"><span class="pre">extern</span></code> keyword</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-dynamically-linked-libaries">Building dynamically linked libaries</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
