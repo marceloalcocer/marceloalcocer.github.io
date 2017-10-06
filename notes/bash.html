@@ -27,7 +27,7 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Encrypted DVD Playback" href="dvd_crypto.html" />
+    <link rel="next" title="C/C++" href="c.html" />
     <link rel="prev" title="2D Server" href="2d_server.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    
@@ -49,6 +49,23 @@
             
   <div class="section" id="misc-terminal-commands">
 <h1>Misc Terminal Commands<a class="headerlink" href="#misc-terminal-commands" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pdf-manipulation-with-pdfjam">
+<h2>PDF Manipulation with pdfjam<a class="headerlink" href="#pdf-manipulation-with-pdfjam" title="Permalink to this headline">¶</a></h2>
+<p>Joining:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pdfunit</span> <span class="o">&lt;</span><span class="n">FILE1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">FILE2</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;</span><span class="n">OUTFILE</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>or more fully and flexibly:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pdfjam</span> <span class="n">file1</span><span class="o">.</span><span class="n">pdf</span> <span class="s1">&#39;-&#39;</span> <span class="n">file2</span><span class="o">.</span><span class="n">pdf</span> <span class="s1">&#39;1,2&#39;</span> <span class="n">file3</span><span class="o">.</span><span class="n">pdf</span> <span class="s1">&#39;2-&#39;</span> <span class="o">--</span><span class="n">outfile</span> <span class="n">output</span><span class="o">.</span><span class="n">pdf</span>
+</pre></div>
+</div>
+<p>Splitting:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pdfjam</span> <span class="o">&lt;</span><span class="n">INFILE</span><span class="o">&gt;</span> <span class="s1">&#39;1,2&#39;</span> <span class="o">--</span><span class="n">outfile</span> <span class="n">first_two_pages</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">pdfjam</span> <span class="o">&lt;</span><span class="n">INFILE</span><span class="o">&gt;</span> <span class="s1">&#39;3-&#39;</span> <span class="o">--</span><span class="n">outfile</span> <span class="n">third_onwards</span><span class="o">.</span><span class="n">pdf</span>
+</pre></div>
+</div>
+<p>Insertion — split followed by join</p>
+</div>
 <div class="section" id="tabs-per-line">
 <h2>Tabs Per Line<a class="headerlink" href="#tabs-per-line" title="Permalink to this headline">¶</a></h2>
 <p>When dealing with ASCII exported matrices, can easily find number of rows, but tricker to find number of columns. If the data is properly delimited (e.g. TSV, CSV), can use AWK to count the number of delimiters per line, e.g.:</p>
@@ -152,6 +169,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Misc Terminal Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-manipulation-with-pdfjam">PDF Manipulation with pdfjam</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tabs-per-line">Tabs Per Line</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#renaming">Renaming</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#archive-copying">Archive Copying</a></li>
@@ -161,6 +179,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#cnst-print">CNST Print</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
@@ -169,6 +188,7 @@
 <li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
@@ -177,6 +197,7 @@
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reveal_js.html">reveal.js</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-Side Scripting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
