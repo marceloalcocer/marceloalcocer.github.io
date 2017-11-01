@@ -49,6 +49,19 @@
             
   <div class="section" id="misc-terminal-commands">
 <h1>Misc Terminal Commands<a class="headerlink" href="#misc-terminal-commands" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="multiple-background-commands">
+<h2>Multiple background commands<a class="headerlink" href="#multiple-background-commands" title="Permalink to this headline">¶</a></h2>
+<p><a class="footnote-reference" href="#id2" id="id1">[1]</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cmd1</span> <span class="o">&amp;</span> <span class="n">cmd2</span> <span class="o">&amp;</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/14612371/how-do-i-run-multiple-background-commands-in-bash-in-a-single-line">https://stackoverflow.com/questions/14612371/how-do-i-run-multiple-background-commands-in-bash-in-a-single-line</a></td></tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="pdf-manipulation-with-pdfjam">
 <h2>PDF Manipulation with pdfjam<a class="headerlink" href="#pdf-manipulation-with-pdfjam" title="Permalink to this headline">¶</a></h2>
 <p>Joining:</p>
@@ -95,7 +108,7 @@
 </div>
 <div class="section" id="gpg-encryption">
 <h2>GPG Encryption<a class="headerlink" href="#gpg-encryption" title="Permalink to this headline">¶</a></h2>
-<p>Encryption <a class="footnote-reference" href="#id2" id="id1">[1]</a>:</p>
+<p>Encryption <a class="footnote-reference" href="#id4" id="id3">[2]</a>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gpg</span> <span class="o">--</span><span class="n">encrypt</span> <span class="o">--</span><span class="n">recipient</span> <span class="o">&lt;</span><span class="n">public_key_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">input_file</span><span class="o">&gt;</span>
 </pre></div>
 </div>
@@ -103,23 +116,23 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gpg</span> <span class="o">--</span><span class="n">output</span> <span class="o">&lt;</span><span class="n">output_file</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">decrypt</span> <span class="o">&lt;</span><span class="n">input_file</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
+<table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://www.madboa.com/geek/gpg-quickstart/">https://www.madboa.com/geek/gpg-quickstart/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="https://www.madboa.com/geek/gpg-quickstart/">https://www.madboa.com/geek/gpg-quickstart/</a></td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="list-absolute-path">
 <h2>List Absolute Path<a class="headerlink" href="#list-absolute-path" title="Permalink to this headline">¶</a></h2>
-<p><a class="footnote-reference" href="#id4" id="id3">[2]</a>:</p>
+<p><a class="footnote-reference" href="#id6" id="id5">[3]</a>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">readlink</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">FILENAME</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
+<table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/246215/how-can-i-list-files-with-their-absolute-path-in-linux">http://stackoverflow.com/questions/246215/how-can-i-list-files-with-their-absolute-path-in-linux</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/246215/how-can-i-list-files-with-their-absolute-path-in-linux">http://stackoverflow.com/questions/246215/how-can-i-list-files-with-their-absolute-path-in-linux</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -169,6 +182,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Misc Terminal Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-background-commands">Multiple background commands</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pdf-manipulation-with-pdfjam">PDF Manipulation with pdfjam</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tabs-per-line">Tabs Per Line</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#renaming">Renaming</a></li>
@@ -180,6 +194,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
