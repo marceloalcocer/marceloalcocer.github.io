@@ -283,6 +283,11 @@
 <p>Now module installation failing — seems to hang on <code class="docutils literal"><span class="pre">depmod</span></code> just after build completion.</p>
 <p>Tested build + manual insertion using <code class="docutils literal"><span class="pre">test</span></code> script — all working. Implies that module works fine and problem is indeed related to <code class="docutils literal"><span class="pre">depmod</span></code> only.</p>
 <p>Interestingly, installation with DKMS does not hang on <code class="docutils literal"><span class="pre">depmod</span></code>. Given that do not need to sign, can use this as a workaround for the time being.</p>
+<p>DKMS for some reason not building or installing module on kernel upgrades — must do this manually:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dkms</span> <span class="n">build</span> <span class="n">mt7630e</span><span class="o">/</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">sudo</span> <span class="n">dkms</span> <span class="n">install</span> <span class="n">mt7630e</span><span class="o">/</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">0</span>
+</pre></div>
+</div>
 <table class="docutils footnote" frame="void" id="id21" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
@@ -327,6 +332,7 @@
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
@@ -354,6 +360,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
@@ -362,6 +369,7 @@
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reveal_js.html">reveal.js</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-Side Scripting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
