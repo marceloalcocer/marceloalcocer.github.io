@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Latex package management on Ubuntu &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    <title>LaTeX &#8212; marceloalcocer.github.io 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -47,18 +47,34 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="latex-package-management-on-ubuntu">
-<h1>Latex package management on Ubuntu<a class="headerlink" href="#latex-package-management-on-ubuntu" title="Permalink to this headline">¶</a></h1>
-<p>Different latex distributions handle LaTex packages differently. The texlive distribution has a package manager (<code class="docutils literal"><span class="pre">tlmgr</span></code>) to keep packages up to date with those hosted on CTAN.</p>
-<p>Unfortunately, Ubuntu repackages many Tex packages into it&#8217;s own <code class="docutils literal"><span class="pre">.deb</span></code> packages so as to offer easy installation. As <code class="docutils literal"><span class="pre">apt</span></code> now handles latex packages, <code class="docutils literal"><span class="pre">tlmgr</span></code> is disabled to avoid any conflicts. As such, can not install/update individual packages from CTAN using <code class="docutils literal"><span class="pre">tlmgr</span></code>. Instead, should find the containing Ubuntu package and install it using <code class="docutils literal"><span class="pre">apt</span></code>. All well and good, but often contain tons of other unwanted Latex packages.</p>
-<p>Another solution would be to install texlive manually (i.e. not via <code class="docutils literal"><span class="pre">apt</span></code>) so that <code class="docutils literal"><span class="pre">apt</span></code> is unaware of it. This thien separates the two managers allowing <code class="docutils literal"><span class="pre">tlmgr</span></code> to be used exclusively for packages <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
-<p>Finally, could also try installing individual latex packages directly from CTAN, but not 100% sure how to do this...</p>
+  <div class="section" id="latex">
+<h1>LaTeX<a class="headerlink" href="#latex" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="latex-word-count">
+<h2>LaTex word count<a class="headerlink" href="#latex-word-count" title="Permalink to this headline">¶</a></h2>
+<p>From DVI render <a class="footnote-reference" href="#id2" id="id1">[1]</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">dvips</span> <span class="o">-</span><span class="n">o</span> <span class="o">-</span> <span class="o">&lt;</span><span class="n">DVI_FILE</span><span class="o">&gt;</span> <span class="o">|</span> <span class="n">ps2ascii</span> <span class="o">|</span> <span class="n">wc</span> <span class="o">-</span><span class="n">w</span>
+</pre></div>
+</div>
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://tex.stackexchange.com/questions/28528/best-way-to-install-packages-for-texlive-in-ubuntu">http://tex.stackexchange.com/questions/28528/best-way-to-install-packages-for-texlive-in-ubuntu</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://www.maths.ox.ac.uk/members/it/faqs/latex/word-count">https://www.maths.ox.ac.uk/members/it/faqs/latex/word-count</a></td></tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="latex-package-management-on-ubuntu">
+<h2>LaTex package management on Ubuntu<a class="headerlink" href="#latex-package-management-on-ubuntu" title="Permalink to this headline">¶</a></h2>
+<p>Different latex distributions handle LaTex packages differently. The texlive distribution has a package manager (<code class="docutils literal"><span class="pre">tlmgr</span></code>) to keep packages up to date with those hosted on CTAN.</p>
+<p>Unfortunately, Ubuntu repackages many Tex packages into it&#8217;s own <code class="docutils literal"><span class="pre">.deb</span></code> packages so as to offer easy installation. As <code class="docutils literal"><span class="pre">apt</span></code> now handles latex packages, <code class="docutils literal"><span class="pre">tlmgr</span></code> is disabled to avoid any conflicts. As such, can not install/update individual packages from CTAN using <code class="docutils literal"><span class="pre">tlmgr</span></code>. Instead, should find the containing Ubuntu package and install it using <code class="docutils literal"><span class="pre">apt</span></code>. All well and good, but often contain tons of other unwanted Latex packages.</p>
+<p>Another solution would be to install texlive manually (i.e. not via <code class="docutils literal"><span class="pre">apt</span></code>) so that <code class="docutils literal"><span class="pre">apt</span></code> is unaware of it. This thien separates the two managers allowing <code class="docutils literal"><span class="pre">tlmgr</span></code> to be used exclusively for packages <a class="footnote-reference" href="#id4" id="id3">[2]</a>.</p>
+<p>Finally, could also try installing individual latex packages directly from CTAN, but not 100% sure how to do this...</p>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="http://tex.stackexchange.com/questions/28528/best-way-to-install-packages-for-texlive-in-ubuntu">http://tex.stackexchange.com/questions/28528/best-way-to-install-packages-for-texlive-in-ubuntu</a></td></tr>
+</tbody>
+</table>
+</div>
 </div>
 
 
@@ -92,23 +108,33 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Latex package management on Ubuntu</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LaTeX</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#latex-word-count">LaTex word count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#latex-package-management-on-ubuntu">LaTex package management on Ubuntu</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reveal_js.html">reveal.js</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-Side Scripting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
@@ -121,6 +147,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ultrajs.html">ultrajs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sunfleet.html">Sunfleet</a></li>
 </ul>
 
 
