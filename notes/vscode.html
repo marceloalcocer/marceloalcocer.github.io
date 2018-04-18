@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Visual Studio Code &#8212; marceloalcocer.github.io 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Window Functions" href="window_functions.html" />
+    <link rel="prev" title="User Interface" href="ui.html" />
+   <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+   
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="visual-studio-code">
+<h1>Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="licensing">
+<h2>Licensing<a class="headerlink" href="#licensing" title="Permalink to this headline">¶</a></h2>
+<p>Version of VS code available from the <a class="reference external" href="https://code.visualstudio.com/">MS website</a> (&#8216;VS Code&#8217;) is a MS internal build of the <a class="reference external" href="https://github.com/Microsoft/vscode">open source hosted on GitHub</a> (&#8216;Code&#8217;) <a class="footnote-reference" href="#id3" id="id1">[1]</a>. The VS Code-specific additions are <a class="footnote-reference" href="#id4" id="id2">[2]</a>:</p>
+<ul class="simple">
+<li>MS branding</li>
+<li>MS license</li>
+<li>Extension marketplace support</li>
+<li>Crash reporting</li>
+</ul>
+<p>N.b. Whilst Code is distributed under an MIT license, the VS Code is distributed under a MS license. As such, currently the only way to obtain a version under an open source license is build from source.</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://github.com/Microsoft/vscode/issues/60#issuecomment-161792005">https://github.com/Microsoft/vscode/issues/60#issuecomment-161792005</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://github.com/Microsoft/vscode/pull/28736/files">https://github.com/Microsoft/vscode/pull/28736/files</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="building">
+<h2>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="releases">
+<h3>Releases<a class="headerlink" href="#releases" title="Permalink to this headline">¶</a></h3>
+<p>Master branch is latest daily snapshot. To install a release version, must first check out a tagged release.</p>
+<p>New releases come out every month and are labelled by a minor version number <a class="footnote-reference" href="#id7" id="id5">[3]</a>. There is also a patch release number which appears to vary between releases. As such, best to check MS website for latest full version number <a class="footnote-reference" href="#id8" id="id6">[4]</a>.</p>
+<p>Individual release source size is very comparable to entire git repository. As such, more convenient to clone entire repository and just fetch new releases.</p>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td><a class="reference external" href="https://github.com/Microsoft/vscode/releases">https://github.com/Microsoft/vscode/releases</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[4]</a></td><td><a class="reference external" href="https://code.visualstudio.com/updates/v1_22">https://code.visualstudio.com/updates/v1_22</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="build-process">
+<h3>Build process<a class="headerlink" href="#build-process" title="Permalink to this headline">¶</a></h3>
+<p>Following <a class="reference external" href="https://github.com/Microsoft/vscode/wiki/How-to-Contribute#build-and-run-from-source">build instructions</a>.</p>
+<p>Install all build prerequisites.</p>
+<p>Obtain source:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Microsoft</span><span class="o">/</span><span class="n">vscode</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Obtain all node dependencies:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">vscode</span>
+<span class="n">yarn</span>
+</pre></div>
+</div>
+<p>Using <code class="docutils literal"><span class="pre">yarn</span> <span class="pre">run</span> <span class="pre">watch</span></code> to build as suggested triggers incremental build for Code development purposes. If want to build stable release, use gulp packaging task instead:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">run</span> <span class="n">gulp</span> <span class="n">vscode</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">x64</span>
+</pre></div>
+</div>
+<p>This results in build output being created in <code class="docutils literal"><span class="pre">../VSCode-linux-x64</span></code>. Run with app script (<code class="docutils literal"><span class="pre">bin/code-oss</span></code>).</p>
+</div>
+<div class="section" id="node-gyp-error">
+<h3>node-gyp error<a class="headerlink" href="#node-gyp-error" title="Permalink to this headline">¶</a></h3>
+<p>Ran into following error when getting node dependencies with yarn:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cd</span> <span class="n">vscode</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">yarn</span>
+<span class="go">error /usr/local/src/vscode/node_modules/gc-signals: Command failed.</span>
+<span class="go">Exit code: 1</span>
+<span class="go">Command: node-gyp rebuild</span>
+<span class="go">Arguments:</span>
+<span class="go">Directory: /usr/local/src/vscode/node_modules/gc-signals</span>
+<span class="go">Output:</span>
+<span class="go">module.js:549</span>
+<span class="go">    throw err;</span>
+<span class="go">        ^</span>
+
+<span class="go">        Error: Cannot find module &#39;/usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js&#39;</span>
+<span class="go">            at Function.Module._resolveFilename (module.js:547:15)</span>
+<span class="go">                at Function.Module._load (module.js:474:25)</span>
+</pre></div>
+</div>
+<p>Clearly a missing dependency (<code class="docutils literal"><span class="pre">node-gyp</span></code>).</p>
+<p>NPM installs packages in two different ways; locally (viz. in CWD) for use as local project dependency, or globally (viz. Central location) for use at CLI <a class="footnote-reference" href="#id11" id="id9">[5]</a>. List location of globally installed packages <a class="footnote-reference" href="#id12" id="id10">[6]</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">npm</span> <span class="nb">list</span> <span class="o">-</span><span class="n">g</span>
+<span class="go">/usr/lib</span>
+</pre></div>
+</div>
+<p>As such, appears that <code class="docutils literal"><span class="pre">node-gyp</span></code> expected as a locally installed package in (globally installed) <code class="docutils literal"><span class="pre">npm</span></code> package. Installed:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">node_modules</span><span class="o">/</span><span class="n">npm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">npm</span> <span class="n">install</span> <span class="n">node</span><span class="o">-</span><span class="n">gyp</span>
+</pre></div>
+</div>
+<p>Now yarn successfully installs all dependencies.</p>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td><a class="reference external" href="https://docs.npmjs.com/getting-started/installing-npm-packages-globally">https://docs.npmjs.com/getting-started/installing-npm-packages-globally</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[6]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/5926672/where-does-npm-install-packages">https://stackoverflow.com/questions/5926672/where-does-npm-install-packages</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="extensions">
+<h2>Extensions<a class="headerlink" href="#extensions" title="Permalink to this headline">¶</a></h2>
+<p>The extensions marketplace is an MS service and thus is not enabled by default in Code. Must be enabled by modifying <code class="docutils literal"><span class="pre">resources/app/product.json</span></code> <a class="footnote-reference" href="#id14" id="id13">[7]</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;extensionsGallery&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;serviceUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;https://marketplace.visualstudio.com/_apis/public/gallery&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cacheUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;https://vscode.blob.core.windows.net/gallery/index&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;itemUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;https://marketplace.visualstudio.com/items&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id13">[7]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/37143536/no-extensions-found-when-running-visual-studio-code-from-source">https://stackoverflow.com/questions/37143536/no-extensions-found-when-running-visual-studio-code-from-source</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">marceloalcocer.github.io</a></h1>
+
+
+
+
+
+
+
+
+
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reveal_js.html">reveal.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-Side Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Visual Studio Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#licensing">Licensing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building">Building</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#releases">Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-process">Build process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#node-gyp-error">node-gyp error</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#extensions">Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ultrajs.html">ultrajs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sunfleet.html">Sunfleet</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Marcelo Alcocer.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
