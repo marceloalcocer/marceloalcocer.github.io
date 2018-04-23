@@ -58,7 +58,7 @@
 <li>Extension marketplace support</li>
 <li>Crash reporting</li>
 </ul>
-<p>N.b. Whilst Code is distributed under an MIT license, the VS Code is distributed under a MS license. As such, currently the only way to obtain a version under an open source license is build from source.</p>
+<p>N.b. Whilst Code is distributed under an MIT license, the VS Code is distributed under a MS license. As such, currently the only way to obtain a version under an open source license is to build from source.</p>
 <table class="docutils footnote" frame="void" id="id3" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
@@ -95,12 +95,26 @@
 <div class="section" id="build-process">
 <h3>Build process<a class="headerlink" href="#build-process" title="Permalink to this headline">¶</a></h3>
 <p>Following <a class="reference external" href="https://github.com/Microsoft/vscode/wiki/How-to-Contribute#build-and-run-from-source">build instructions</a>.</p>
-<p>Install all build prerequisites.</p>
-<p>Obtain source:</p>
+<p>Obtained all build prerequisites;</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Node:</th><td class="field-body">v8.11.1</td>
+</tr>
+<tr class="field-even field"><th class="field-name">NPM:</th><td class="field-body">v5.8.0</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Yarn:</th><td class="field-body">v1.6.0</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Python:</th><td class="field-body">2.7.12</td>
+</tr>
+</tbody>
+</table>
+<p>Obtained source:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Microsoft</span><span class="o">/</span><span class="n">vscode</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
-<p>Obtain all node dependencies:</p>
+<p>Obtained all node dependencies:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">vscode</span>
 <span class="n">yarn</span>
 </pre></div>
