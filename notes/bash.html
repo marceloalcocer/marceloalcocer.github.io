@@ -1,34 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta charset="utf-8" />
     <title>Misc Terminal Commands &#8212; marceloalcocer.github.io 0.1 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="C/C++" href="c.html" />
-    <link rel="prev" title="2D Server" href="2d_server.html" />
+    <link rel="prev" title="Backup" href="backup.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    
    
@@ -38,8 +25,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
 
-  </head>
-  <body role="document">
+  </head><body>
   
 
     <div class="document">
@@ -51,29 +37,28 @@
 <h1>Misc Terminal Commands<a class="headerlink" href="#misc-terminal-commands" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="multiple-background-commands">
 <h2>Multiple background commands<a class="headerlink" href="#multiple-background-commands" title="Permalink to this headline">¶</a></h2>
-<p><a class="footnote-reference" href="#id2" id="id1">[1]</a>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cmd1</span> <span class="o">&amp;</span> <span class="n">cmd2</span> <span class="o">&amp;</span>
+<p><a class="footnote-reference brackets" href="#id2" id="id1">1</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmd1</span> <span class="o">&amp;</span> <span class="n">cmd2</span> <span class="o">&amp;</span>
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/14612371/how-do-i-run-multiple-background-commands-in-bash-in-a-single-line">https://stackoverflow.com/questions/14612371/how-do-i-run-multiple-background-commands-in-bash-in-a-single-line</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/14612371/how-do-i-run-multiple-background-commands-in-bash-in-a-single-line">https://stackoverflow.com/questions/14612371/how-do-i-run-multiple-background-commands-in-bash-in-a-single-line</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="pdf-manipulation-with-pdfjam">
 <h2>PDF Manipulation with pdfjam<a class="headerlink" href="#pdf-manipulation-with-pdfjam" title="Permalink to this headline">¶</a></h2>
 <p>Joining:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pdfunit</span> <span class="o">&lt;</span><span class="n">FILE1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">FILE2</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;</span><span class="n">OUTFILE</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pdfunit</span> <span class="o">&lt;</span><span class="n">FILE1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">FILE2</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;</span><span class="n">OUTFILE</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>or more fully and flexibly:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pdfjam</span> <span class="n">file1</span><span class="o">.</span><span class="n">pdf</span> <span class="s1">&#39;-&#39;</span> <span class="n">file2</span><span class="o">.</span><span class="n">pdf</span> <span class="s1">&#39;1,2&#39;</span> <span class="n">file3</span><span class="o">.</span><span class="n">pdf</span> <span class="s1">&#39;2-&#39;</span> <span class="o">--</span><span class="n">outfile</span> <span class="n">output</span><span class="o">.</span><span class="n">pdf</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pdfjam</span> <span class="n">file1</span><span class="o">.</span><span class="n">pdf</span> <span class="s1">&#39;-&#39;</span> <span class="n">file2</span><span class="o">.</span><span class="n">pdf</span> <span class="s1">&#39;1,2&#39;</span> <span class="n">file3</span><span class="o">.</span><span class="n">pdf</span> <span class="s1">&#39;2-&#39;</span> <span class="o">--</span><span class="n">outfile</span> <span class="n">output</span><span class="o">.</span><span class="n">pdf</span>
 </pre></div>
 </div>
 <p>Splitting:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pdfjam</span> <span class="o">&lt;</span><span class="n">INFILE</span><span class="o">&gt;</span> <span class="s1">&#39;1,2&#39;</span> <span class="o">--</span><span class="n">outfile</span> <span class="n">first_two_pages</span><span class="o">.</span><span class="n">pdf</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pdfjam</span> <span class="o">&lt;</span><span class="n">INFILE</span><span class="o">&gt;</span> <span class="s1">&#39;1,2&#39;</span> <span class="o">--</span><span class="n">outfile</span> <span class="n">first_two_pages</span><span class="o">.</span><span class="n">pdf</span>
 <span class="n">pdfjam</span> <span class="o">&lt;</span><span class="n">INFILE</span><span class="o">&gt;</span> <span class="s1">&#39;3-&#39;</span> <span class="o">--</span><span class="n">outfile</span> <span class="n">third_onwards</span><span class="o">.</span><span class="n">pdf</span>
 </pre></div>
 </div>
@@ -82,69 +67,67 @@
 <div class="section" id="tabs-per-line">
 <h2>Tabs Per Line<a class="headerlink" href="#tabs-per-line" title="Permalink to this headline">¶</a></h2>
 <p>When dealing with ASCII exported matrices, can easily find number of rows, but tricker to find number of columns. If the data is properly delimited (e.g. TSV, CSV), can use AWK to count the number of delimiters per line, e.g.:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">awk</span> <span class="s1">&#39;{print gsub(/</span><span class="se">\t</span><span class="s1">/,&quot;&quot;)}&#39;</span> <span class="o">&lt;</span><span class="n">INPUTFILE</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">awk</span> <span class="s1">&#39;{print gsub(/</span><span class="se">\t</span><span class="s1">/,&quot;&quot;)}&#39;</span> <span class="o">&lt;</span><span class="n">INPUTFILE</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="renaming">
 <h2>Renaming<a class="headerlink" href="#renaming" title="Permalink to this headline">¶</a></h2>
 <p>Uses perl regexp which is same as vim substitution, e.g.:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rename</span> <span class="s2">&quot;s/2D_/3D_/&quot;</span> <span class="mi">2</span><span class="n">D_</span><span class="o">*.</span><span class="n">txt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rename</span> <span class="s2">&quot;s/2D_/3D_/&quot;</span> <span class="mi">2</span><span class="n">D_</span><span class="o">*.</span><span class="n">txt</span>
 </pre></div>
 </div>
-<p>would turn <code class="docutils literal"><span class="pre">2D_Foobar.txt</span></code> into <code class="docutils literal"><span class="pre">3D_Foobar.txt</span></code>.</p>
+<p>would turn <code class="docutils literal notranslate"><span class="pre">2D_Foobar.txt</span></code> into <code class="docutils literal notranslate"><span class="pre">3D_Foobar.txt</span></code>.</p>
 </div>
 <div class="section" id="archive-copying">
 <h2>Archive Copying<a class="headerlink" href="#archive-copying" title="Permalink to this headline">¶</a></h2>
 <p>Archive copying:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">-</span><span class="n">a</span> <span class="o">&lt;</span><span class="n">SRC</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">DEST</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">-</span><span class="n">a</span> <span class="o">&lt;</span><span class="n">SRC</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">DEST</span><span class="o">&gt;</span>
 
         <span class="n">No</span> <span class="n">link</span> <span class="n">dereferencing</span>
         <span class="n">Recursive</span>
         <span class="n">Preserve</span> <span class="nb">all</span> <span class="n">file</span> <span class="n">attributes</span>
 </pre></div>
 </div>
-<p>For attribute preservation, require <code class="docutils literal"><span class="pre">&lt;DEST&gt;</span></code> to be in ext4 format.</p>
+<p>For attribute preservation, require <code class="docutils literal notranslate"><span class="pre">&lt;DEST&gt;</span></code> to be in ext4 format.</p>
 </div>
 <div class="section" id="gpg-encryption">
 <h2>GPG Encryption<a class="headerlink" href="#gpg-encryption" title="Permalink to this headline">¶</a></h2>
-<p>Encryption <a class="footnote-reference" href="#id4" id="id3">[2]</a>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gpg</span> <span class="o">--</span><span class="n">encrypt</span> <span class="o">--</span><span class="n">recipient</span> <span class="o">&lt;</span><span class="n">public_key_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">input_file</span><span class="o">&gt;</span>
+<p>Encryption <a class="footnote-reference brackets" href="#id4" id="id3">2</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gpg</span> <span class="o">--</span><span class="n">encrypt</span> <span class="o">--</span><span class="n">recipient</span> <span class="o">&lt;</span><span class="n">public_key_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">input_file</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>Decryption:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gpg</span> <span class="o">--</span><span class="n">output</span> <span class="o">&lt;</span><span class="n">output_file</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">decrypt</span> <span class="o">&lt;</span><span class="n">input_file</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gpg</span> <span class="o">--</span><span class="n">output</span> <span class="o">&lt;</span><span class="n">output_file</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">decrypt</span> <span class="o">&lt;</span><span class="n">input_file</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="https://www.madboa.com/geek/gpg-quickstart/">https://www.madboa.com/geek/gpg-quickstart/</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p><a class="reference external" href="https://www.madboa.com/geek/gpg-quickstart/">https://www.madboa.com/geek/gpg-quickstart/</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="list-absolute-path">
 <h2>List Absolute Path<a class="headerlink" href="#list-absolute-path" title="Permalink to this headline">¶</a></h2>
-<p><a class="footnote-reference" href="#id6" id="id5">[3]</a>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">readlink</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">FILENAME</span><span class="o">&gt;</span>
+<p><a class="footnote-reference brackets" href="#id6" id="id5">3</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">readlink</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">FILENAME</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/246215/how-can-i-list-files-with-their-absolute-path-in-linux">http://stackoverflow.com/questions/246215/how-can-i-list-files-with-their-absolute-path-in-linux</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id5">3</a></span></dt>
+<dd><p><a class="reference external" href="http://stackoverflow.com/questions/246215/how-can-i-list-files-with-their-absolute-path-in-linux">http://stackoverflow.com/questions/246215/how-can-i-list-files-with-their-absolute-path-in-linux</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="content-regexp-recursive-search">
 <h2>Content RegExp Recursive Search<a class="headerlink" href="#content-regexp-recursive-search" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">grep</span> <span class="o">-</span><span class="n">Iron</span> <span class="o">--</span><span class="n">include</span><span class="o">=*.</span><span class="n">txt</span> <span class="s2">&quot;aRegExp&quot;</span> <span class="o">.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">grep</span> <span class="o">-</span><span class="n">Iron</span> <span class="o">--</span><span class="n">include</span><span class="o">=*.</span><span class="n">txt</span> <span class="s2">&quot;aRegExp&quot;</span> <span class="o">.</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="cnst-print">
 <h2>CNST Print<a class="headerlink" href="#cnst-print" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lp</span> <span class="o">-</span><span class="n">U</span> <span class="n">Alcocer</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lp</span> <span class="o">-</span><span class="n">U</span> <span class="n">Alcocer</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -170,17 +153,20 @@
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Misc Terminal Commands</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#multiple-background-commands">Multiple background commands</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pdf-manipulation-with-pdfjam">PDF Manipulation with pdfjam</a></li>
@@ -201,14 +187,16 @@
 <li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="latex_on_ubuntu.html">Latex package management on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
@@ -220,11 +208,13 @@
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html">Visual Studio Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ultrajs.html">ultrajs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sunfleet.html">Sunfleet</a></li>
 </ul>
 
 
@@ -236,8 +226,8 @@
       &copy;2017, Marcelo Alcocer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
     </div>
 

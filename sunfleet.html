@@ -1,30 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta charset="utf-8" />
     <title>Sunfleet pro-rata rental &#8212; marceloalcocer.github.io 0.1 documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="bandlim.js" href="ultrajs/bandlim.html" />
@@ -37,8 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
 
-  </head>
-  <body role="document">
+  </head><body>
   
 
     <div class="document">
@@ -49,12 +35,12 @@
   <div class="section" id="sunfleet-pro-rata-rental">
 <h1>Sunfleet pro-rata rental<a class="headerlink" href="#sunfleet-pro-rata-rental" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://www.sunfleet.com">Sunfleet</a> allows cars to be used on pro-rata (i.e. per hour, per km) and flat-rate (i.e. 24 hours, weekend) schemes.</p>
-<p>If rental is only done on a pro-rata scheme and always renting the same class of car at the same time of day, the total monthly expenditure, <span class="math">\(C\)</span>, is given by,</p>
-<div class="math">
+<p>If rental is only done on a pro-rata scheme and always renting the same class of car at the same time of day, the total monthly expenditure, <span class="math notranslate nohighlight">\(C\)</span>, is given by,</p>
+<div class="math notranslate nohighlight">
 \[C = C^{pro-rata}_{plan,car,time}(t,x) + C^{plan}_{plan}\]</div>
-<p>where <cite>t</cite> is the total rental duration (over 1 month), <cite>x</cite> the total distance travelled (over 1 month) and <cite>plan</cite>, <cite>car</cite>, <cite>time</cite> index the membership plan, rented car class, and time of day respectively <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
+<p>where <cite>t</cite> is the total rental duration (over 1 month), <cite>x</cite> the total distance travelled (over 1 month) and <cite>plan</cite>, <cite>car</cite>, <cite>time</cite> index the membership plan, rented car class, and time of day respectively <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
 <p>For any given combination of car class and time of day, the plan yielding the minimum monthly expenditure therefore depends on the total rental duration and distance, and is found by minimising over the <cite>plan</cite> dimension.</p>
-<p>Selected minimisations were performed using a simple Python <a class="reference external" href="https://github.com/marceloalcocer/sunfleet">Sunfleet membership plan class</a>, and are presented below to aid membership plan selection. In each case, the filled contours represent the minimum monthly expenditure at that point in the parameter space, whilst the solid contours denote the corresponding plan. e.g. The minimum monthly cost for renting a <cite>liten</cite> car during the day for 20 hours covering 100 km is ~ 1200 SEK, and is obtained by being on the <cite>small</cite> membership plan. Lines showing selected speed limits on Swedish roads are also shown to highlight regions of the parameter space which are accessible only illegally...</p>
+<p>Selected minimisations were performed using a simple Python <a class="reference external" href="https://github.com/marceloalcocer/sunfleet">Sunfleet membership plan class</a>, and are presented below to aid membership plan selection. In each case, the filled contours represent the minimum monthly expenditure at that point in the parameter space, whilst the solid contours denote the corresponding plan. e.g. The minimum monthly cost for renting a <cite>liten</cite> car during the day for 20 hours covering 100 km is ~ 1200 SEK, and is obtained by being on the <cite>small</cite> membership plan. Lines showing selected speed limits on Swedish roads are also shown to highlight regions of the parameter space which are accessible only illegally…</p>
 <link rel="stylesheet" href="_static/css/sunfleet.css">
 
 <form id="controls">
@@ -83,12 +69,11 @@
 
 <script src="_static/scripts/sunfleet.js"></script>
 
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://www.sunfleet.com/priser/">https://www.sunfleet.com/priser/</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://www.sunfleet.com/priser/">https://www.sunfleet.com/priser/</a></p>
+</dd>
+</dl>
 </div>
 
 
@@ -111,12 +96,14 @@
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
 <ul class="current">
@@ -134,8 +121,8 @@
       &copy;2017, Marcelo Alcocer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
     </div>
 

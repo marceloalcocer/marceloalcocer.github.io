@@ -1,33 +1,20 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta charset="utf-8" />
     <title>2D Server &#8212; marceloalcocer.github.io 0.1 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Misc Terminal Commands" href="bash.html" />
+    <link rel="next" title="Backup" href="backup.html" />
     <link rel="prev" title="Notes" href="../notes.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    
@@ -38,8 +25,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
 
-  </head>
-  <body role="document">
+  </head><body>
   
 
     <div class="document">
@@ -53,141 +39,120 @@
 <h2>WAMP Stack Installation<a class="headerlink" href="#wamp-stack-installation" title="Permalink to this headline">¶</a></h2>
 <p>Setting up MediaWiki on own server requires:</p>
 <ol class="arabic simple">
-<li>Web server</li>
-<li>PHP installation</li>
-<li>Database installation</li>
+<li><p>Web server</p></li>
+<li><p>PHP installation</p></li>
+<li><p>Database installation</p></li>
 </ol>
 <p>Easiest way of getting all these is a WAMP/LAMP/WIMP/LIMP stack (Windows|Linux, Apache|ISS, MySQL, PHP). Nice bundle which facilities installation and configuration.</p>
-<p>Nice WAMP stack for Windows is XAMPP <a class="footnote-reference" href="#id5" id="id1">[1]</a>. Added benisfit that it supports Bitnami installer for MediaWiki — installer to simplify installation and configuration of MediWiki alongside WAMP stack.</p>
+<p>Nice WAMP stack for Windows is XAMPP <a class="footnote-reference brackets" href="#id5" id="id1">1</a>. Added benisfit that it supports Bitnami installer for MediaWiki — installer to simplify installation and configuration of MediWiki alongside WAMP stack.</p>
 <p>As such, downloaded and installed XAMPP 7.0.8. Installed components:</p>
 <ol class="arabic simple">
-<li>Apache (webserver)</li>
-<li>MariaDB (database)</li>
-<li>PHP</li>
-<li>phpMyAdmin (SQL management web interface)</li>
-<li>Webalizer (logging)</li>
+<li><p>Apache (webserver)</p></li>
+<li><p>MariaDB (database)</p></li>
+<li><p>PHP</p></li>
+<li><p>phpMyAdmin (SQL management web interface)</p></li>
+<li><p>Webalizer (logging)</p></li>
 </ol>
 <p>Start Apache and MariaDB. Can now see default XAMPP start page at <a class="reference external" href="http://2d-acq.root.sx">http://2d-acq.root.sx</a>.</p>
 </div>
 <div class="section" id="securing-sql">
 <h2>Securing SQL<a class="headerlink" href="#securing-sql" title="Permalink to this headline">¶</a></h2>
-<p>XAMPP stresses that it is not production ready and has lots of security holes <a class="footnote-reference" href="#id6" id="id2">[2]</a> — fine for dev, but not for public release. Latest version of XAMPP however seem to have patched the most glaring holes <a class="footnote-reference" href="#id7" id="id3">[3]</a>. Only real thing left to secure is MySQL root password.</p>
+<p>XAMPP stresses that it is not production ready and has lots of security holes <a class="footnote-reference brackets" href="#id6" id="id2">2</a> — fine for dev, but not for public release. Latest version of XAMPP however seem to have patched the most glaring holes <a class="footnote-reference brackets" href="#id7" id="id3">3</a>. Only real thing left to secure is MySQL root password.</p>
 <p>Set via XAMPP console using:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mysqladmin</span> <span class="o">--</span><span class="n">user</span><span class="o">=</span><span class="n">root</span> <span class="n">password</span> <span class="o">&lt;</span><span class="n">PASSWORD</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mysqladmin</span> <span class="o">--</span><span class="n">user</span><span class="o">=</span><span class="n">root</span> <span class="n">password</span> <span class="o">&lt;</span><span class="n">PASSWORD</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p><strong>N.b. quote &lt;PASSWORD&gt;!</strong></p>
-<p>Changed <code class="docutils literal"><span class="pre">phpmyadmin.ini</span></code> to authenticate using http rather than config file values. phpMyAdmin now asks for password.</p>
+<p>Changed <code class="docutils literal notranslate"><span class="pre">phpmyadmin.ini</span></code> to authenticate using http rather than config file values. phpMyAdmin now asks for password.</p>
 <p>Testing access from outside of ChemPhys LAN. No access to either web server from outside (home). Good.</p>
 </div>
 <div class="section" id="mediawiki-installation">
 <h2>MediaWiki Installation<a class="headerlink" href="#mediawiki-installation" title="Permalink to this headline">¶</a></h2>
-<p>Now installing MediaWiki using Bitnami installer <a class="footnote-reference" href="#id8" id="id4">[4]</a>.</p>
-<p>N.b. application password is password to be used by SQL user <code class="docutils literal"><span class="pre">bitnami_mediawiki</span></code> for all MediaWiki access to SQL DB. It&#8217;s stored in plaintext in <code class="docutils literal"><span class="pre">LocalSettings.php</span></code> so it should be disposable.</p>
-<p>Added new user <code class="docutils literal"><span class="pre">Malcocer</span></code> with admin privileges during installation.</p>
+<p>Now installing MediaWiki using Bitnami installer <a class="footnote-reference brackets" href="#id8" id="id4">4</a>.</p>
+<p>N.b. application password is password to be used by SQL user <code class="docutils literal notranslate"><span class="pre">bitnami_mediawiki</span></code> for all MediaWiki access to SQL DB. It’s stored in plaintext in <code class="docutils literal notranslate"><span class="pre">LocalSettings.php</span></code> so it should be disposable.</p>
+<p>Added new user <code class="docutils literal notranslate"><span class="pre">Malcocer</span></code> with admin privileges during installation.</p>
 <p>Can now access Wiki</p>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://www.apachefriends.org/download.html">https://www.apachefriends.org/download.html</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://www.apachefriends.org/faq_windows.html">https://www.apachefriends.org/faq_windows.html</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/35391539/is-there-a-new-uri-for-opening-the-xampp-security-console-on-xampp-7-0-2-1">http://stackoverflow.com/questions/35391539/is-there-a-new-uri-for-opening-the-xampp-security-console-on-xampp-7-0-2-1</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td><a class="reference external" href="https://www.apachefriends.org/add-ons.html">https://www.apachefriends.org/add-ons.html</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://www.apachefriends.org/download.html">https://www.apachefriends.org/download.html</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://www.apachefriends.org/faq_windows.html">https://www.apachefriends.org/faq_windows.html</a></p>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p><a class="reference external" href="http://stackoverflow.com/questions/35391539/is-there-a-new-uri-for-opening-the-xampp-security-console-on-xampp-7-0-2-1">http://stackoverflow.com/questions/35391539/is-there-a-new-uri-for-opening-the-xampp-security-console-on-xampp-7-0-2-1</a></p>
+</dd>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p><a class="reference external" href="https://www.apachefriends.org/add-ons.html">https://www.apachefriends.org/add-ons.html</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="mercurial-web-hosting">
 <h2>Mercurial Web Hosting<a class="headerlink" href="#mercurial-web-hosting" title="Permalink to this headline">¶</a></h2>
-<p>Now want to set up web interface to HG repos. Can do in many ways <a class="footnote-reference" href="#id12" id="id9">[5]</a>. Simplest probably hgweb though.</p>
+<p>Now want to set up web interface to HG repos. Can do in many ways <a class="footnote-reference brackets" href="#id12" id="id9">5</a>. Simplest probably hgweb though.</p>
 <p>hgweb requires mercurial python libraries however. As mercurial built on Python 2.x, on Windows these are only supplied for Python 2.x. As such did following:</p>
 <ol class="arabic simple">
-<li>Uninstalled existing Mercurial installation (3.5)</li>
-<li>Installed Python 2.7 alongside existing Python 3.4</li>
-<li>Made python2 and python3 symlinks to executables</li>
-<li>Added Python 2.7 to path (above Python 3.4)</li>
-<li>Reinstalled Mercurial (3.9) with Python 2 modules <a class="footnote-reference" href="#id13" id="id10">[6]</a></li>
+<li><p>Uninstalled existing Mercurial installation (3.5)</p></li>
+<li><p>Installed Python 2.7 alongside existing Python 3.4</p></li>
+<li><p>Made python2 and python3 symlinks to executables</p></li>
+<li><p>Added Python 2.7 to path (above Python 3.4)</p></li>
+<li><p>Reinstalled Mercurial (3.9) with Python 2 modules <a class="footnote-reference brackets" href="#id13" id="id10">6</a></p></li>
 </ol>
 <p>Now default Python interpreter is 2.7 and can import mercurial module in python.</p>
 <p>Proceeding with hgweb installation. Points to note:</p>
 <ol class="arabic simple">
-<li>Download latest version of <code class="docutils literal"><span class="pre">hgweb.cgi</span></code> as not included in mercurial installation(?!)</li>
-<li>Set shebang path correctly in <code class="docutils literal"><span class="pre">hgweb.cgi</span></code></li>
-<li>Place <code class="docutils literal"><span class="pre">hgweb.cgi</span></code> in <code class="docutils literal"><span class="pre">cgi-bin</span></code></li>
-<li>Set apache alias in <code class="docutils literal"><span class="pre">httpd.conf</span></code> (in included conf file actually)</li>
-<li>Denied push access for each repo individually in repo hgrc file</li>
+<li><p>Download latest version of <code class="docutils literal notranslate"><span class="pre">hgweb.cgi</span></code> as not included in mercurial installation(?!)</p></li>
+<li><p>Set shebang path correctly in <code class="docutils literal notranslate"><span class="pre">hgweb.cgi</span></code></p></li>
+<li><p>Place <code class="docutils literal notranslate"><span class="pre">hgweb.cgi</span></code> in <code class="docutils literal notranslate"><span class="pre">cgi-bin</span></code></p></li>
+<li><p>Set apache alias in <code class="docutils literal notranslate"><span class="pre">httpd.conf</span></code> (in included conf file actually)</p></li>
+<li><p>Denied push access for each repo individually in repo hgrc file</p></li>
 </ol>
 <p>Works beautifully now.</p>
-<p>Finally, themed with boundstate theme <a class="footnote-reference" href="#id14" id="id11">[7]</a>. Just had to modify <code class="docutils literal"><span class="pre">Repositories</span></code> link to point to <code class="docutils literal"><span class="pre">/hg</span></code> as per issue #13.</p>
-<table class="docutils footnote" frame="void" id="id12" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td><a class="reference external" href="https://www.mercurial-scm.org/wiki/PublishingRepositories#hgweb">https://www.mercurial-scm.org/wiki/PublishingRepositories#hgweb</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id13" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id10">[6]</a></td><td><a class="reference external" href="https://www.mercurial-scm.org/wiki/Download">https://www.mercurial-scm.org/wiki/Download</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id14" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id11">[7]</a></td><td><a class="reference external" href="https://github.com/boundstate/hgweb-boundstate-theme">https://github.com/boundstate/hgweb-boundstate-theme</a></td></tr>
-</tbody>
-</table>
+<p>Finally, themed with boundstate theme <a class="footnote-reference brackets" href="#id14" id="id11">7</a>. Just had to modify <code class="docutils literal notranslate"><span class="pre">Repositories</span></code> link to point to <code class="docutils literal notranslate"><span class="pre">/hg</span></code> as per issue #13.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id9">5</a></span></dt>
+<dd><p><a class="reference external" href="https://www.mercurial-scm.org/wiki/PublishingRepositories#hgweb">https://www.mercurial-scm.org/wiki/PublishingRepositories#hgweb</a></p>
+</dd>
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id10">6</a></span></dt>
+<dd><p><a class="reference external" href="https://www.mercurial-scm.org/wiki/Download">https://www.mercurial-scm.org/wiki/Download</a></p>
+</dd>
+<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id11">7</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/boundstate/hgweb-boundstate-theme">https://github.com/boundstate/hgweb-boundstate-theme</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="filezilla-ftp-server">
 <h2>Filezilla FTP Server<a class="headerlink" href="#filezilla-ftp-server" title="Permalink to this headline">¶</a></h2>
 <p>Setting up FTP server to allow apache htdocs to be modified without needing RDP to 2d-acq. This should be useful for uploading files which are too large/prohibited by MediaWiki.</p>
-<p>Configuration <a class="footnote-reference" href="#id16" id="id15">[8]</a>:</p>
+<p>Configuration <a class="footnote-reference brackets" href="#id16" id="id15">8</a>:</p>
 <ol class="arabic simple">
-<li>Run FTP server</li>
-<li>Select to allow FTP server through firewall on private networks</li>
-<li>Open admin panel</li>
-<li>Connect as admin (requests new password on first time logon)</li>
-<li>Configure general server settings (all left as default FTM)</li>
-<li>Add new user(group) with associated directory/ies access and password</li>
+<li><p>Run FTP server</p></li>
+<li><p>Select to allow FTP server through firewall on private networks</p></li>
+<li><p>Open admin panel</p></li>
+<li><p>Connect as admin (requests new password on first time logon)</p></li>
+<li><p>Configure general server settings (all left as default FTM)</p></li>
+<li><p>Add new user(group) with associated directory/ies access and password</p></li>
 </ol>
 <p>Can now connect using FTP client (e.g. Filezilla Client, Nautilus, etc).</p>
-<table class="docutils footnote" frame="void" id="id16" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id15">[8]</a></td><td><a class="reference external" href="https://wiki.filezilla-project.org/FileZilla_FTP_Server">https://wiki.filezilla-project.org/FileZilla_FTP_Server</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id17" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id18">[9]</a></td><td><a class="reference external" href="https://wiki.filezilla-project.org/Network_Configuration">https://wiki.filezilla-project.org/Network_Configuration</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id15">8</a></span></dt>
+<dd><p><a class="reference external" href="https://wiki.filezilla-project.org/FileZilla_FTP_Server">https://wiki.filezilla-project.org/FileZilla_FTP_Server</a></p>
+</dd>
+<dt class="label" id="id17"><span class="brackets"><a class="fn-backref" href="#id18">9</a></span></dt>
+<dd><p><a class="reference external" href="https://wiki.filezilla-project.org/Network_Configuration">https://wiki.filezilla-project.org/Network_Configuration</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="server-backup">
 <h2>Server Backup<a class="headerlink" href="#server-backup" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="sql-dump">
 <h3>SQL dump<a class="headerlink" href="#sql-dump" title="Permalink to this headline">¶</a></h3>
-<p>Do from phpMyAdmin <a class="footnote-reference" href="#id17" id="id18">[9]</a>. Copy to <code class="docutils literal"><span class="pre">D:\Wiki</span></code>. Add to HG.</p>
+<p>Do from phpMyAdmin <a class="footnote-reference brackets" href="#id17" id="id18">9</a>. Copy to <code class="docutils literal notranslate"><span class="pre">D:\Wiki</span></code>. Add to HG.</p>
 </div>
 <div class="section" id="xml-dump">
 <h3>XML dump<a class="headerlink" href="#xml-dump" title="Permalink to this headline">¶</a></h3>
 <p>Just for safety:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">php</span> <span class="n">dumpBackup</span><span class="o">.</span><span class="n">php</span> <span class="o">--</span><span class="n">full</span> <span class="o">&gt;</span> <span class="n">bitnami_mediawiki</span><span class="o">.</span><span class="n">xml</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">php</span> <span class="n">dumpBackup</span><span class="o">.</span><span class="n">php</span> <span class="o">--</span><span class="n">full</span> <span class="o">&gt;</span> <span class="n">bitnami_mediawiki</span><span class="o">.</span><span class="n">xml</span>
 </pre></div>
 </div>
 <p>Copy and add to HG</p>
@@ -198,31 +163,30 @@
 </div>
 <div class="section" id="mediawiki-files">
 <h3>MediaWiki files<a class="headerlink" href="#mediawiki-files" title="Permalink to this headline">¶</a></h3>
-<p>Zip whole <code class="docutils literal"><span class="pre">mediawiki</span></code> directory. Move to <code class="docutils literal"><span class="pre">D:\Wiki</span></code>. Do not add to HG (too large and binary)</p>
+<p>Zip whole <code class="docutils literal notranslate"><span class="pre">mediawiki</span></code> directory. Move to <code class="docutils literal notranslate"><span class="pre">D:\Wiki</span></code>. Do not add to HG (too large and binary)</p>
 </div>
 <div class="section" id="lab-files">
 <h3>Lab Files<a class="headerlink" href="#lab-files" title="Permalink to this headline">¶</a></h3>
-<p>Zip <code class="docutils literal"><span class="pre">lab</span></code> directory. Move. Do not add to HG.</p>
+<p>Zip <code class="docutils literal notranslate"><span class="pre">lab</span></code> directory. Move. Do not add to HG.</p>
 </div>
 <div class="section" id="software-repos">
 <h3>Software Repos<a class="headerlink" href="#software-repos" title="Permalink to this headline">¶</a></h3>
-<p>These will almost certainly be mirrored in many other locations, but probably still best to clone out a fresh copy of each as a backup. All repos in <code class="docutils literal"><span class="pre">C:\xampp\git</span></code>.</p>
+<p>These will almost certainly be mirrored in many other locations, but probably still best to clone out a fresh copy of each as a backup. All repos in <code class="docutils literal notranslate"><span class="pre">C:\xampp\git</span></code>.</p>
 </div>
 <div class="section" id="conf-files">
 <h3>Conf Files<a class="headerlink" href="#conf-files" title="Permalink to this headline">¶</a></h3>
-<p>Yuk, loads... Should list these...</p>
+<p>Yuk, loads… Should list these…</p>
 <ul class="simple">
-<li>Apache</li>
-<li>PHP</li>
-<li>MySQL</li>
-<li>HG</li>
+<li><p>Apache</p></li>
+<li><p>PHP</p></li>
+<li><p>MySQL</p></li>
+<li><p>HG</p></li>
 </ul>
-<table class="docutils footnote" frame="void" id="id19" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[10]</td><td><a class="reference external" href="https://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki#phpMyAdmin">https://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki#phpMyAdmin</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id19"><span class="brackets">10</span></dt>
+<dd><p><a class="reference external" href="https://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki#phpMyAdmin">https://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki#phpMyAdmin</a></p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -247,12 +211,14 @@
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
 <ul class="current">
@@ -275,23 +241,30 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="latex_on_ubuntu.html">Latex package management on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reveal_js.html">reveal.js</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-Side Scripting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
@@ -299,11 +272,13 @@
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html">Visual Studio Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ultrajs.html">ultrajs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sunfleet.html">Sunfleet</a></li>
 </ul>
 
 
@@ -315,8 +290,8 @@
       &copy;2017, Marcelo Alcocer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
     </div>
 

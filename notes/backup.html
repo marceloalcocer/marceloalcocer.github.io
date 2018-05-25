@@ -1,30 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta charset="utf-8" />
     <title>Backup &#8212; marceloalcocer.github.io 0.1 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Misc Terminal Commands" href="bash.html" />
@@ -38,8 +25,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
 
-  </head>
-  <body role="document">
+  </head><body>
   
 
     <div class="document">
@@ -51,137 +37,114 @@
 <h1>Backup<a class="headerlink" href="#backup" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="duplicity">
 <h2>Duplicity<a class="headerlink" href="#duplicity" title="Permalink to this headline">¶</a></h2>
-<p>Duplicity compresses, encrypts and signs (optional) a set of files before copying to a backend <a class="footnote-reference" href="#id5" id="id1">[1]</a> <a class="footnote-reference" href="#id6" id="id2">[2]</a>. Multiple backend protocols are supported, e.g. local filesystems, FTP, SSH, Dropbox, etc.</p>
+<p>Duplicity compresses, encrypts and signs (optional) a set of files before copying to a backend <a class="footnote-reference brackets" href="#id5" id="id1">1</a> <a class="footnote-reference brackets" href="#id6" id="id2">2</a>. Multiple backend protocols are supported, e.g. local filesystems, FTP, SSH, Dropbox, etc.</p>
 <p>Compression is done by default using gzip.</p>
-<p>Encryption is also done by default, but is symmetric. Can instead pass <code class="docutils literal"><span class="pre">--encrypt-keys</span></code> option to use GPG public key for asymmetric encryption. In this case, must specify key.</p>
-<p>Finally, encrypted archive files can be optionally signed with GPG  key. In this case, must pass <code class="docutils literal"><span class="pre">--sign-key</span></code> option with public/private key hex ID (e.g. obtained from <code class="docutils literal"><span class="pre">gpg</span> <span class="pre">-k</span></code>). The private key passphrase will be requested and the archive will be signed using the private key. Password input can be deferred to GPG agent by passing <code class="docutils literal"><span class="pre">--use-agent</span></code> option. The convenience option <code class="docutils literal"><span class="pre">--encrypt-sign-key</span></code> can be used to specify the same GPG key for encryption and signing, although it must then be identified by its hex ID.</p>
-<p>Archive signing can be confirmed by decryption using GPG <a class="footnote-reference" href="#id7" id="id3">[3]</a>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gpg</span> <span class="o">--</span><span class="n">output</span> <span class="n">tmpfile</span> <span class="o">--</span><span class="n">decrypt</span> <span class="o">&lt;</span><span class="n">A_DUPLICITY_ARCHIVE_FILE</span><span class="o">&gt;.</span><span class="n">gpg</span>
+<p>Encryption is also done by default, but is symmetric. Can instead pass <code class="docutils literal notranslate"><span class="pre">--encrypt-keys</span></code> option to use GPG public key for asymmetric encryption. In this case, must specify key.</p>
+<p>Finally, encrypted archive files can be optionally signed with GPG  key. In this case, must pass <code class="docutils literal notranslate"><span class="pre">--sign-key</span></code> option with public/private key hex ID (e.g. obtained from <code class="docutils literal notranslate"><span class="pre">gpg</span> <span class="pre">-k</span></code>). The private key passphrase will be requested and the archive will be signed using the private key. Password input can be deferred to GPG agent by passing <code class="docutils literal notranslate"><span class="pre">--use-agent</span></code> option. The convenience option <code class="docutils literal notranslate"><span class="pre">--encrypt-sign-key</span></code> can be used to specify the same GPG key for encryption and signing, although it must then be identified by its hex ID.</p>
+<p>Archive signing can be confirmed by decryption using GPG <a class="footnote-reference brackets" href="#id7" id="id3">3</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gpg</span> <span class="o">--</span><span class="n">output</span> <span class="n">tmpfile</span> <span class="o">--</span><span class="n">decrypt</span> <span class="o">&lt;</span><span class="n">A_DUPLICITY_ARCHIVE_FILE</span><span class="o">&gt;.</span><span class="n">gpg</span>
 </pre></div>
 </div>
 <p>looking out for confirmation of a valid signature:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">gpg</span><span class="p">:</span> <span class="n">encrypted</span> <span class="k">with</span> <span class="mi">2048</span><span class="o">-</span><span class="n">bit</span> <span class="n">RSA</span> <span class="n">key</span><span class="p">,</span> <span class="n">ID</span> <span class="n">XXXXXXXX</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gpg</span><span class="p">:</span> <span class="n">encrypted</span> <span class="k">with</span> <span class="mi">2048</span><span class="o">-</span><span class="n">bit</span> <span class="n">RSA</span> <span class="n">key</span><span class="p">,</span> <span class="n">ID</span> <span class="n">XXXXXXXX</span>
 <span class="n">gpg</span><span class="p">:</span> <span class="n">Signature</span> <span class="n">made</span> <span class="n">using</span> <span class="n">RSA</span> <span class="n">key</span> <span class="n">ID</span> <span class="n">XXXXXXXX</span>
 <span class="n">gpg</span><span class="p">:</span> <span class="n">Good</span> <span class="n">signature</span> <span class="kn">from</span> <span class="s2">&quot;Marcelo Alcocer (local) &lt;marsehole@gmail.com&gt;&quot;</span>
 </pre></div>
 </div>
-<p>Display progress with <code class="docutils literal"><span class="pre">--progress</span></code> option. Can be buggy however so best to rely on <code class="docutils literal"><span class="pre">--verbosity</span> <span class="pre">debug</span></code> instead <a class="footnote-reference" href="#id8" id="id4">[4]</a>.</p>
-<p>Force full backup (rather than incremental) by using <code class="docutils literal"><span class="pre">full</span></code> command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">duplicity</span> <span class="n">full</span> <span class="o">&lt;</span><span class="n">SRC</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">DEST</span><span class="o">&gt;</span>
+<p>Display progress with <code class="docutils literal notranslate"><span class="pre">--progress</span></code> option. Can be buggy however so best to rely on <code class="docutils literal notranslate"><span class="pre">--verbosity</span> <span class="pre">debug</span></code> instead <a class="footnote-reference brackets" href="#id8" id="id4">4</a>.</p>
+<p>Force full backup (rather than incremental) by using <code class="docutils literal notranslate"><span class="pre">full</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">duplicity</span> <span class="n">full</span> <span class="o">&lt;</span><span class="n">SRC</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">DEST</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>Example backup command (to local backend):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">duplicity</span> <span class="o">--</span><span class="n">verbosity</span> <span class="n">debug</span> <span class="o">--</span><span class="n">encrypt</span><span class="o">-</span><span class="n">sign</span><span class="o">-</span><span class="n">key</span> <span class="o">&lt;</span><span class="n">KEY_ID</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">agent</span> <span class="o">&lt;</span><span class="n">SRC</span><span class="o">&gt;</span> <span class="n">file</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">DEST</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">duplicity</span> <span class="o">--</span><span class="n">verbosity</span> <span class="n">debug</span> <span class="o">--</span><span class="n">encrypt</span><span class="o">-</span><span class="n">sign</span><span class="o">-</span><span class="n">key</span> <span class="o">&lt;</span><span class="n">KEY_ID</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">agent</span> <span class="o">&lt;</span><span class="n">SRC</span><span class="o">&gt;</span> <span class="n">file</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">DEST</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://duplicity.nongnu.org/index.html">http://duplicity.nongnu.org/index.html</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://help.ubuntu.com/community/DuplicityBackupHowto">https://help.ubuntu.com/community/DuplicityBackupHowto</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://answers.launchpad.net/duplicity/+question/170395">https://answers.launchpad.net/duplicity/+question/170395</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td><a class="reference external" href="https://superuser.com/questions/814321/how-to-go-through-this-duplicity-stalled-connection">https://superuser.com/questions/814321/how-to-go-through-this-duplicity-stalled-connection</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="http://duplicity.nongnu.org/index.html">http://duplicity.nongnu.org/index.html</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://help.ubuntu.com/community/DuplicityBackupHowto">https://help.ubuntu.com/community/DuplicityBackupHowto</a></p>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p><a class="reference external" href="https://answers.launchpad.net/duplicity/+question/170395">https://answers.launchpad.net/duplicity/+question/170395</a></p>
+</dd>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p><a class="reference external" href="https://superuser.com/questions/814321/how-to-go-through-this-duplicity-stalled-connection">https://superuser.com/questions/814321/how-to-go-through-this-duplicity-stalled-connection</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="windows-shares">
 <h2>Windows Shares<a class="headerlink" href="#windows-shares" title="Permalink to this headline">¶</a></h2>
-<p>Windows shares can be mounted using <a class="reference external" href="https://en.wikipedia.org/wiki/Server_Message_Block">CIFS</a> protocol (now called SMB) — file sharing protocol compatible with Windows shares <a class="footnote-reference" href="#id13" id="id9">[5]</a>. Provided by kernel module and accessed via <code class="docutils literal"><span class="pre">cifs-utils</span></code> package:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">cifs</span><span class="o">-</span><span class="n">utils</span>
+<p>Windows shares can be mounted using <a class="reference external" href="https://en.wikipedia.org/wiki/Server_Message_Block">CIFS</a> protocol (now called SMB) — file sharing protocol compatible with Windows shares <a class="footnote-reference brackets" href="#id13" id="id9">5</a>. Provided by kernel module and accessed via <code class="docutils literal notranslate"><span class="pre">cifs-utils</span></code> package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">cifs</span><span class="o">-</span><span class="n">utils</span>
 </pre></div>
 </div>
-<p>Once installed, allows <code class="docutils literal"><span class="pre">mount</span></code> to use Windows network shares as devices for mounting. Specific options to pass using <code class="docutils literal"><span class="pre">mount</span> <span class="pre">-o</span></code> or in <code class="docutils literal"><span class="pre">fstab</span></code> described in <code class="docutils literal"><span class="pre">man</span> <span class="pre">mount.cifs</span></code>. Can then simply mount as normal:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mount</span> <span class="o">//</span><span class="n">servername</span><span class="o">/</span><span class="n">sharename</span> <span class="o">&lt;</span><span class="n">MOUNT_POINT</span><span class="o">&gt;</span>
+<p>Once installed, allows <code class="docutils literal notranslate"><span class="pre">mount</span></code> to use Windows network shares as devices for mounting. Specific options to pass using <code class="docutils literal notranslate"><span class="pre">mount</span> <span class="pre">-o</span></code> or in <code class="docutils literal notranslate"><span class="pre">fstab</span></code> described in <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">mount.cifs</span></code>. Can then simply mount as normal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mount</span> <span class="o">//</span><span class="n">servername</span><span class="o">/</span><span class="n">sharename</span> <span class="o">&lt;</span><span class="n">MOUNT_POINT</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <div class="section" id="authentication">
 <h3>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h3>
-<p>If server requires authentication, have to pass CIFS specific <code class="docutils literal"><span class="pre">user</span></code> and <code class="docutils literal"><span class="pre">password</span></code> options. Easiest to define these in protected (600) local file and pass <code class="docutils literal"><span class="pre">credentials</span></code> option instead.</p>
+<p>If server requires authentication, have to pass CIFS specific <code class="docutils literal notranslate"><span class="pre">user</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code> options. Easiest to define these in protected (600) local file and pass <code class="docutils literal notranslate"><span class="pre">credentials</span></code> option instead.</p>
 </div>
 <div class="section" id="mount-on-boot">
 <h3>Mount on boot<a class="headerlink" href="#mount-on-boot" title="Permalink to this headline">¶</a></h3>
-<p>Can mount on boot by adding <code class="docutils literal"><span class="pre">fstab</span></code> entry. Ensure that <code class="docutils literal"><span class="pre">_netdev</span></code> standard option present so that only mounts when network present <a class="footnote-reference" href="#id14" id="id10">[6]</a> <a class="footnote-reference" href="#id15" id="id11">[7]</a>.</p>
+<p>Can mount on boot by adding <code class="docutils literal notranslate"><span class="pre">fstab</span></code> entry. Ensure that <code class="docutils literal notranslate"><span class="pre">_netdev</span></code> standard option present so that only mounts when network present <a class="footnote-reference brackets" href="#id14" id="id10">6</a> <a class="footnote-reference brackets" href="#id15" id="id11">7</a>.</p>
 </div>
 <div class="section" id="mount-on-login">
 <h3>Mount on login<a class="headerlink" href="#mount-on-login" title="Permalink to this headline">¶</a></h3>
 <p>If network only present when logged on (e.g. WiFi), better to mount on login instead. Relevant options:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name"><code class="docutils literal"><span class="pre">_netdev</span></code>:</th><td class="field-body">Mount only when network present</td>
-</tr>
-<tr class="field-even field"><th class="field-name"><code class="docutils literal"><span class="pre">noauto</span></code>:</th><td class="field-body">Prevent automatic (i.e. boot time) mounting</td>
-</tr>
-<tr class="field-odd field"><th class="field-name"><code class="docutils literal"><span class="pre">users</span></code>:</th><td class="field-body">Allow normal users to mount/unmount</td>
-</tr>
-</tbody>
-</table>
-<p>Tried using <code class="docutils literal"><span class="pre">user</span></code>, <code class="docutils literal"><span class="pre">owner</span></code> and <code class="docutils literal"><span class="pre">group</span></code> options instead of <code class="docutils literal"><span class="pre">users</span></code> to limit mount access. This allows mounting, but not unmounting on Ubuntu 16.04. This is because on Ubuntu, <code class="docutils literal"><span class="pre">/etc/mtab</span></code> is a symlink to readonly <code class="docutils literal"><span class="pre">/proc/self/mounts</span></code>, and so information on user who mounted cannot be written <a class="footnote-reference" href="#id16" id="id12">[8]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">_netdev</span></code></dt>
+<dd class="field-odd"><p>Mount only when network present</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">noauto</span></code></dt>
+<dd class="field-even"><p>Prevent automatic (i.e. boot time) mounting</p>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">users</span></code></dt>
+<dd class="field-odd"><p>Allow normal users to mount/unmount</p>
+</dd>
+</dl>
+<p>Tried using <code class="docutils literal notranslate"><span class="pre">user</span></code>, <code class="docutils literal notranslate"><span class="pre">owner</span></code> and <code class="docutils literal notranslate"><span class="pre">group</span></code> options instead of <code class="docutils literal notranslate"><span class="pre">users</span></code> to limit mount access. This allows mounting, but not unmounting on Ubuntu 16.04. This is because on Ubuntu, <code class="docutils literal notranslate"><span class="pre">/etc/mtab</span></code> is a symlink to readonly <code class="docutils literal notranslate"><span class="pre">/proc/self/mounts</span></code>, and so information on user who mounted cannot be written <a class="footnote-reference brackets" href="#id16" id="id12">8</a>.</p>
 <p>Instead, allow all users to mount and unmount — credentials for protected network share are protected anyway, and so limit users which can successfully mount.</p>
-<table class="docutils footnote" frame="void" id="id13" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td><a class="reference external" href="https://wiki.ubuntu.com/MountWindowsSharesPermanently">https://wiki.ubuntu.com/MountWindowsSharesPermanently</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id14" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id10">[6]</a></td><td><a class="reference external" href="https://askubuntu.com/questions/157128/proper-fstab-entry-to-mount-a-samba-share-on-boot">https://askubuntu.com/questions/157128/proper-fstab-entry-to-mount-a-samba-share-on-boot</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id15" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id11">[7]</a></td><td><a class="reference external" href="https://askubuntu.com/questions/194727/mounting-samba-share-whenever-its-available-unmounting-when-its-not">https://askubuntu.com/questions/194727/mounting-samba-share-whenever-its-available-unmounting-when-its-not</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id16" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id12">[8]</a></td><td><a class="reference external" href="https://unix.stackexchange.com/questions/76326/option-user-work-for-mount-not-for-umount">https://unix.stackexchange.com/questions/76326/option-user-work-for-mount-not-for-umount</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id9">5</a></span></dt>
+<dd><p><a class="reference external" href="https://wiki.ubuntu.com/MountWindowsSharesPermanently">https://wiki.ubuntu.com/MountWindowsSharesPermanently</a></p>
+</dd>
+<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id10">6</a></span></dt>
+<dd><p><a class="reference external" href="https://askubuntu.com/questions/157128/proper-fstab-entry-to-mount-a-samba-share-on-boot">https://askubuntu.com/questions/157128/proper-fstab-entry-to-mount-a-samba-share-on-boot</a></p>
+</dd>
+<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id11">7</a></span></dt>
+<dd><p><a class="reference external" href="https://askubuntu.com/questions/194727/mounting-samba-share-whenever-its-available-unmounting-when-its-not">https://askubuntu.com/questions/194727/mounting-samba-share-whenever-its-available-unmounting-when-its-not</a></p>
+</dd>
+<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id12">8</a></span></dt>
+<dd><p><a class="reference external" href="https://unix.stackexchange.com/questions/76326/option-user-work-for-mount-not-for-umount">https://unix.stackexchange.com/questions/76326/option-user-work-for-mount-not-for-umount</a></p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="gnome-keyring">
 <h2>Gnome keyring<a class="headerlink" href="#gnome-keyring" title="Permalink to this headline">¶</a></h2>
-<p>Gnome provides password storage service — Gnome Keyring — to desktop applications so as to reduce number of times you have to type passwords into prompt (e.g. GPG password prompt when using GPG agent) <a class="footnote-reference" href="#id18" id="id17">[9]</a>. If <code class="docutils literal"><span class="pre">save</span> <span class="pre">password</span></code> checked during password prompt, password is encrypted with current Linux user logon password, and stored locally.</p>
+<p>Gnome provides password storage service — Gnome Keyring — to desktop applications so as to reduce number of times you have to type passwords into prompt (e.g. GPG password prompt when using GPG agent) <a class="footnote-reference brackets" href="#id18" id="id17">9</a>. If <code class="docutils literal notranslate"><span class="pre">save</span> <span class="pre">password</span></code> checked during password prompt, password is encrypted with current Linux user logon password, and stored locally.</p>
 <p>Chrome delegates password management and storage to local service. On Gnome desktop, this is Gnome Keyring service.</p>
 <p>Interface to Gnome Keyring is provided by Seahorse app.</p>
-<table class="docutils footnote" frame="void" id="id18" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id17">[9]</a></td><td><a class="reference external" href="https://superuser.com/questions/969484/what-is-gnome-keyring-seahorse-and-why-its-storing-my-passwords-in-plaintext">https://superuser.com/questions/969484/what-is-gnome-keyring-seahorse-and-why-its-storing-my-passwords-in-plaintext</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="#id17">9</a></span></dt>
+<dd><p><a class="reference external" href="https://superuser.com/questions/969484/what-is-gnome-keyring-seahorse-and-why-its-storing-my-passwords-in-plaintext">https://superuser.com/questions/969484/what-is-gnome-keyring-seahorse-and-why-its-storing-my-passwords-in-plaintext</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="gpg-agent">
 <h2>GPG agent<a class="headerlink" href="#gpg-agent" title="Permalink to this headline">¶</a></h2>
-<p>Daemon automatically started by GPG to handle (amongst other things) private key decryption <a class="footnote-reference" href="#id20" id="id19">[10]</a>. Enables passphrases to be cached, allowing password-free access to private key for limited time.</p>
-<p>On Gnome desktop, uses <code class="docutils literal"><span class="pre">pinentry</span></code> program for interactive password entry. As such, Gnome keyring service also available to user.</p>
-<table class="docutils footnote" frame="void" id="id20" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id19">[10]</a></td><td><a class="reference external" href="https://www.gnupg.org/faq/whats-new-in-2.1.html#autostart">https://www.gnupg.org/faq/whats-new-in-2.1.html#autostart</a></td></tr>
-</tbody>
-</table>
+<p>Daemon automatically started by GPG to handle (amongst other things) private key decryption <a class="footnote-reference brackets" href="#id20" id="id19">10</a>. Enables passphrases to be cached, allowing password-free access to private key for limited time.</p>
+<p>On Gnome desktop, uses <code class="docutils literal notranslate"><span class="pre">pinentry</span></code> program for interactive password entry. As such, Gnome keyring service also available to user.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id20"><span class="brackets"><a class="fn-backref" href="#id19">10</a></span></dt>
+<dd><p><a class="reference external" href="https://www.gnupg.org/faq/whats-new-in-2.1.html#autostart">https://www.gnupg.org/faq/whats-new-in-2.1.html#autostart</a></p>
+</dd>
+</dl>
 </div>
 </div>
 
@@ -205,12 +168,14 @@
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
 <ul class="current">
@@ -244,8 +209,9 @@
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="latex_on_ubuntu.html">Latex package management on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
@@ -257,11 +223,13 @@
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html">Visual Studio Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ultrajs.html">ultrajs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sunfleet.html">Sunfleet</a></li>
 </ul>
 
 
@@ -273,8 +241,8 @@
       &copy;2017, Marcelo Alcocer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
     </div>
 

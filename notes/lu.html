@@ -1,34 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta charset="utf-8" />
     <title>Lund University &#8212; marceloalcocer.github.io 0.1 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Packages" href="packages.html" />
-    <link rel="prev" title="Latex package management on Ubuntu" href="latex_on_ubuntu.html" />
+    <link rel="next" title="Overleaf" href="overleaf.html" />
+    <link rel="prev" title="LaTeX" href="latex.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    
    
@@ -38,8 +25,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
 
-  </head>
-  <body role="document">
+  </head><body>
   
 
     <div class="document">
@@ -51,52 +37,52 @@
 <h1>Lund University<a class="headerlink" href="#lund-university" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="eduroam">
 <h2>Eduroam<a class="headerlink" href="#eduroam" title="Permalink to this headline">¶</a></h2>
-<p>Having troubles setting up eduroam according to LU guidelines <a class="footnote-reference" href="#id3" id="id1">[1]</a>. Think it&#8217;s a CA related problem, but difficult to diagnose.</p>
-<p>Found configuration tool which seems to solve the problem however <a class="footnote-reference" href="#id4" id="id2">[2]</a>. Tested at ChemPhys and seems to work well.</p>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://luservicedesk.service-now.com/kb_view.do?sysparm_article=KB0010412">https://luservicedesk.service-now.com/kb_view.do?sysparm_article=KB0010412</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://cat.eduroam.org/?idp=433">https://cat.eduroam.org/?idp=433</a></td></tr>
-</tbody>
-</table>
+<p>Having troubles setting up eduroam according to LU guidelines <a class="footnote-reference brackets" href="#id3" id="id1">1</a>. Think it’s a CA related problem, but difficult to diagnose.</p>
+<p>Found configuration tool which seems to solve the problem however <a class="footnote-reference brackets" href="#id4" id="id2">2</a>. Tested at ChemPhys and seems to work well.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://luservicedesk.service-now.com/kb_view.do?sysparm_article=KB0010412">https://luservicedesk.service-now.com/kb_view.do?sysparm_article=KB0010412</a></p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://cat.eduroam.org/?idp=433">https://cat.eduroam.org/?idp=433</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="smtp-server">
 <h2>SMTP Server<a class="headerlink" href="#smtp-server" title="Permalink to this headline">¶</a></h2>
 <p>Trying to use LU SMTP server to send outgoing ChemPhys mail rather than GMail SMTP servers. Marco got it working from Thunderbird using the following:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Server:</th><td class="field-body">smtp.lu.se</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Port:</th><td class="field-body">25</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Username:</th><td class="field-body">&lt;email&gt;&#64;chemphys.lu.se</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Password:</th><td class="field-body">&lt;password&gt;</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Encryption:</th><td class="field-body">STARTTLS</td>
-</tr>
-</tbody>
-</table>
-<p>Reading up a little:</p>
-<dl class="docutils">
-<dt>Transport Layer Security (TLS)</dt>
-<dd>Successor to SSL (although still known as SSL). Provides secure layer for communication. Typically goes through port 587 for STMP. Uses fully encrypted port right from the beginning — no data sent to/from port in plain text</dd>
-<dt>Opportunistic TLS (STARTTLS)</dt>
-<dd>Protocol to which provides a means of upgrading an unencrypted connection to an encrypted one. Allows communications to be initiated in plain text before upgrading to encrypted. AKA STARTTLS from command used to initialise upgrade. More commonly used nowadays as saves on dedicated ports. Initial part of communications in plain text, all encrypted after STARTTLS command.</dd>
-<dt>Simple Mail Transfer Protocol (SMTP) <a class="footnote-reference" href="#id10" id="id5">[3]</a></dt>
-<dd>Outgoing mail protocol. SMTP client wanting to send e-mail contacts its SMTP server, which contacts recipients STMP server to deliver the email. The email is then fetched from the recipients STMP server by the recipient&#8217;s client via IMAP. SMTP servers usually require authentication (e.g. TLS) to avoid spammers from abusing them</dd>
+<dl class="field-list simple">
+<dt class="field-odd">Server</dt>
+<dd class="field-odd"><p>smtp.lu.se</p>
+</dd>
+<dt class="field-even">Port</dt>
+<dd class="field-even"><p>25</p>
+</dd>
+<dt class="field-odd">Username</dt>
+<dd class="field-odd"><p>&lt;email&gt;&#64;chemphys.lu.se</p>
+</dd>
+<dt class="field-even">Password</dt>
+<dd class="field-even"><p>&lt;password&gt;</p>
+</dd>
+<dt class="field-odd">Encryption</dt>
+<dd class="field-odd"><p>STARTTLS</p>
+</dd>
 </dl>
-<p>So need gmail client to use <code class="docutils literal"><span class="pre">smtp.lu.se</span></code> rather than <code class="docutils literal"><span class="pre">smtp.gmail.com</span></code> to send outgoing mail. It provides options for both TLS and SSL authentication, on all three usual ports <a class="footnote-reference" href="#id11" id="id6">[4]</a>. None seem to work with LU SMTP server however.</p>
-<p>Interestingly, trying to send mail manually via <code class="docutils literal"><span class="pre">telnet</span></code> with no authentication seems to be no problem:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>malcocer@malcocer-S551LN:~$ telnet smtp.lu.se 25
+<p>Reading up a little:</p>
+<dl class="simple">
+<dt>Transport Layer Security (TLS)</dt>
+<dd><p>Successor to SSL (although still known as SSL). Provides secure layer for communication. Typically goes through port 587 for STMP. Uses fully encrypted port right from the beginning — no data sent to/from port in plain text</p>
+</dd>
+<dt>Opportunistic TLS (STARTTLS)</dt>
+<dd><p>Protocol to which provides a means of upgrading an unencrypted connection to an encrypted one. Allows communications to be initiated in plain text before upgrading to encrypted. AKA STARTTLS from command used to initialise upgrade. More commonly used nowadays as saves on dedicated ports. Initial part of communications in plain text, all encrypted after STARTTLS command.</p>
+</dd>
+<dt>Simple Mail Transfer Protocol (SMTP) <a class="footnote-reference brackets" href="#id10" id="id5">3</a></dt>
+<dd><p>Outgoing mail protocol. SMTP client wanting to send e-mail contacts its SMTP server, which contacts recipients STMP server to deliver the email. The email is then fetched from the recipients STMP server by the recipient’s client via IMAP. SMTP servers usually require authentication (e.g. TLS) to avoid spammers from abusing them</p>
+</dd>
+</dl>
+<p>So need gmail client to use <code class="docutils literal notranslate"><span class="pre">smtp.lu.se</span></code> rather than <code class="docutils literal notranslate"><span class="pre">smtp.gmail.com</span></code> to send outgoing mail. It provides options for both TLS and SSL authentication, on all three usual ports <a class="footnote-reference brackets" href="#id11" id="id6">4</a>. None seem to work with LU SMTP server however.</p>
+<p>Interestingly, trying to send mail manually via <code class="docutils literal notranslate"><span class="pre">telnet</span></code> with no authentication seems to be no problem:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>malcocer@malcocer-S551LN:~$ telnet smtp.lu.se 25
         Trying 130.235.52.18...
         Connected to mail.lu.se.
         Escape character is &#39;^]&#39;.
@@ -123,9 +109,9 @@
         Connection closed by foreign host.
 </pre></div>
 </div>
-<p>Does this mean that the LU SMTP server requires no authentication?! Would be very strange... <a class="footnote-reference" href="#id12" id="id7">[5]</a></p>
+<p>Does this mean that the LU SMTP server requires no authentication?! Would be very strange… <a class="footnote-reference brackets" href="#id12" id="id7">5</a></p>
 <p>Perhaps only when within LU network? Indeed, does not work from outside LU:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>malcocer@malcocer-S551LN:~$ telnet smtp.lu.se 25
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>malcocer@malcocer-S551LN:~$ telnet smtp.lu.se 25
         Trying 130.235.52.18...
         Connected to mail.lu.se.
         Escape character is &#39;^]&#39;.
@@ -138,9 +124,9 @@
         550 5.7.54 SMTP; Unable to relay recipient in non-accepted domain
 </pre></div>
 </div>
-<p>So can we authenticate using STARTTLS? Cannot really do communication via <code class="docutils literal"><span class="pre">telnet</span></code> as will eventually encrypt. Better to use <code class="docutils literal"><span class="pre">openssl</span></code> <a class="footnote-reference" href="#id13" id="id8">[6]</a> <a class="footnote-reference" href="#id14" id="id9">[7]</a>.</p>
+<p>So can we authenticate using STARTTLS? Cannot really do communication via <code class="docutils literal notranslate"><span class="pre">telnet</span></code> as will eventually encrypt. Better to use <code class="docutils literal notranslate"><span class="pre">openssl</span></code> <a class="footnote-reference brackets" href="#id13" id="id8">6</a> <a class="footnote-reference brackets" href="#id14" id="id9">7</a>.</p>
 <p>Server does indeed support STARTTLS:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>malcocer@malcocer-S551LN:~$ telnet smtp.lu.se 25
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>malcocer@malcocer-S551LN:~$ telnet smtp.lu.se 25
         Trying 130.235.52.18...
         Connected to mail.lu.se.
         Escape character is &#39;^]&#39;.
@@ -162,7 +148,7 @@
 </pre></div>
 </div>
 <p>But no plaintext AUTH:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>malcocer@malcocer-S551LN:~$ openssl s_client -debug -starttls smtp -crlf -connect smtp.lu.se:25
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>malcocer@malcocer-S551LN:~$ openssl s_client -debug -starttls smtp -crlf -connect smtp.lu.se:25
 
         &lt;...key exchange...&gt;
 
@@ -186,56 +172,42 @@
 <p>Indeed, reading a bit further, looks like SMTP server only allows location based authentication:</p>
 <blockquote>
 <div><p>SMTP Server (Outgoing)  mail.lu.se (port 25 , no user name,outside the Lund University you will need to use SMTP of your ISP)</p>
-<p class="attribution">&mdash;<a class="reference external" href="http://itsupport.nateko.lu.se/online-help/e-mail/">LDC</a></p>
+<p class="attribution">—<a class="reference external" href="http://itsupport.nateko.lu.se/online-help/e-mail/">LDC</a></p>
 </div></blockquote>
-<p>Balls. Really?! Then Marco should not be able to send e-mails from Rostock...</p>
+<p>Balls. Really?! Then Marco should not be able to send e-mails from Rostock…</p>
 <p>Perhaps try LUCAT ID or mail.lu.se?</p>
-<table class="docutils footnote" frame="void" id="id10" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id11" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id6">[4]</a></td><td><a class="reference external" href="https://support.google.com/mail/answer/1074635?hl=en-GB">https://support.google.com/mail/answer/1074635?hl=en-GB</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id12" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id7">[5]</a></td><td><a class="reference external" href="https://productforums.google.com/forum/#!topic/gmail/rhEAg6hk6Lw">https://productforums.google.com/forum/#!topic/gmail/rhEAg6hk6Lw</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id13" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id8">[6]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/27030605/smtp-starttls-certificate-negotitiation-via-telnet">http://stackoverflow.com/questions/27030605/smtp-starttls-certificate-negotitiation-via-telnet</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id14" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[7]</a></td><td><a class="reference external" href="https://qmail.jms1.net/test-auth.shtml">https://qmail.jms1.net/test-auth.shtml</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id5">3</a></span></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol</a></p>
+</dd>
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id6">4</a></span></dt>
+<dd><p><a class="reference external" href="https://support.google.com/mail/answer/1074635?hl=en-GB">https://support.google.com/mail/answer/1074635?hl=en-GB</a></p>
+</dd>
+<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id7">5</a></span></dt>
+<dd><p><a class="reference external" href="https://productforums.google.com/forum/#!topic/gmail/rhEAg6hk6Lw">https://productforums.google.com/forum/#!topic/gmail/rhEAg6hk6Lw</a></p>
+</dd>
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id8">6</a></span></dt>
+<dd><p><a class="reference external" href="http://stackoverflow.com/questions/27030605/smtp-starttls-certificate-negotitiation-via-telnet">http://stackoverflow.com/questions/27030605/smtp-starttls-certificate-negotitiation-via-telnet</a></p>
+</dd>
+<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id9">7</a></span></dt>
+<dd><p><a class="reference external" href="https://qmail.jms1.net/test-auth.shtml">https://qmail.jms1.net/test-auth.shtml</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="vpn">
 <h2>VPN<a class="headerlink" href="#vpn" title="Permalink to this headline">¶</a></h2>
 <p>Access provided by fortis - horrible VPN through SSL approach. Cannot therefore use regular VPN client (e.g. openVPN), but instead must use theirs. The Fortis Linux binaries do no seem to work though.</p>
-<p>Clever boy Rene however provides <a class="reference external" href="https://hadler.me/linux/forticlient-sslvpn-deb-packages/">working linux binaries in .deb packages</a>. Buy that man a beer...</p>
+<p>Clever boy Rene however provides <a class="reference external" href="https://hadler.me/linux/forticlient-sslvpn-deb-packages/">working linux binaries in .deb packages</a>. Buy that man a beer…</p>
 <p>Server:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">connect</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">sslvpn</span><span class="o">/</span><span class="n">portal</span><span class="o">.</span><span class="n">html</span><span class="p">:</span><span class="mi">443</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">connect</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">sslvpn</span><span class="o">/</span><span class="n">portal</span><span class="o">.</span><span class="n">html</span><span class="p">:</span><span class="mi">443</span>
 </pre></div>
 </div>
-<p><strong>Update (2017.03):</strong> LDC changed FortiGate config meaning that home network can no longer be readched using above version of FortiClient. Must use ShrewSoft instead with custom config file <a class="footnote-reference" href="#id16" id="id15">[8]</a></p>
-<table class="docutils footnote" frame="void" id="id16" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id15">[8]</a></td><td><a class="reference external" href="http://www.chemphys.lu.se/internal">http://www.chemphys.lu.se/internal</a></td></tr>
-</tbody>
-</table>
+<p><strong>Update (2017.03):</strong> LDC changed FortiGate config meaning that home network can no longer be readched using above version of FortiClient. Must use ShrewSoft instead with custom config file <a class="footnote-reference brackets" href="#id16" id="id15">8</a></p>
+<dl class="footnote brackets">
+<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id15">8</a></span></dt>
+<dd><p><a class="reference external" href="http://www.chemphys.lu.se/internal">http://www.chemphys.lu.se/internal</a></p>
+</dd>
+</dl>
 </div>
 </div>
 
@@ -259,39 +231,48 @@
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="latex_on_ubuntu.html">Latex package management on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Lund University</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#eduroam">Eduroam</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#smtp-server">SMTP Server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#vpn">VPN</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reveal_js.html">reveal.js</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-Side Scripting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
@@ -299,11 +280,13 @@
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html">Visual Studio Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ultrajs.html">ultrajs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sunfleet.html">Sunfleet</a></li>
 </ul>
 
 
@@ -315,8 +298,8 @@
       &copy;2017, Marcelo Alcocer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
     </div>
 

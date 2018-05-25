@@ -1,30 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta charset="utf-8" />
     <title>LaTeX &#8212; marceloalcocer.github.io 0.1 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Lund University" href="lu.html" />
@@ -38,8 +25,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
 
-  </head>
-  <body role="document">
+  </head><body>
   
 
     <div class="document">
@@ -51,29 +37,27 @@
 <h1>LaTeX<a class="headerlink" href="#latex" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="latex-word-count">
 <h2>LaTex word count<a class="headerlink" href="#latex-word-count" title="Permalink to this headline">¶</a></h2>
-<p>From DVI render <a class="footnote-reference" href="#id2" id="id1">[1]</a>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">dvips</span> <span class="o">-</span><span class="n">o</span> <span class="o">-</span> <span class="o">&lt;</span><span class="n">DVI_FILE</span><span class="o">&gt;</span> <span class="o">|</span> <span class="n">ps2ascii</span> <span class="o">|</span> <span class="n">wc</span> <span class="o">-</span><span class="n">w</span>
+<p>From DVI render <a class="footnote-reference brackets" href="#id2" id="id1">1</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dvips</span> <span class="o">-</span><span class="n">o</span> <span class="o">-</span> <span class="o">&lt;</span><span class="n">DVI_FILE</span><span class="o">&gt;</span> <span class="o">|</span> <span class="n">ps2ascii</span> <span class="o">|</span> <span class="n">wc</span> <span class="o">-</span><span class="n">w</span>
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://www.maths.ox.ac.uk/members/it/faqs/latex/word-count">https://www.maths.ox.ac.uk/members/it/faqs/latex/word-count</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://www.maths.ox.ac.uk/members/it/faqs/latex/word-count">https://www.maths.ox.ac.uk/members/it/faqs/latex/word-count</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="latex-package-management-on-ubuntu">
 <h2>LaTex package management on Ubuntu<a class="headerlink" href="#latex-package-management-on-ubuntu" title="Permalink to this headline">¶</a></h2>
-<p>Different latex distributions handle LaTex packages differently. The texlive distribution has a package manager (<code class="docutils literal"><span class="pre">tlmgr</span></code>) to keep packages up to date with those hosted on CTAN.</p>
-<p>Unfortunately, Ubuntu repackages many Tex packages into it&#8217;s own <code class="docutils literal"><span class="pre">.deb</span></code> packages so as to offer easy installation. As <code class="docutils literal"><span class="pre">apt</span></code> now handles latex packages, <code class="docutils literal"><span class="pre">tlmgr</span></code> is disabled to avoid any conflicts. As such, can not install/update individual packages from CTAN using <code class="docutils literal"><span class="pre">tlmgr</span></code>. Instead, should find the containing Ubuntu package and install it using <code class="docutils literal"><span class="pre">apt</span></code>. All well and good, but often contain tons of other unwanted Latex packages.</p>
-<p>Another solution would be to install texlive manually (i.e. not via <code class="docutils literal"><span class="pre">apt</span></code>) so that <code class="docutils literal"><span class="pre">apt</span></code> is unaware of it. This thien separates the two managers allowing <code class="docutils literal"><span class="pre">tlmgr</span></code> to be used exclusively for packages <a class="footnote-reference" href="#id4" id="id3">[2]</a>.</p>
-<p>Finally, could also try installing individual latex packages directly from CTAN, but not 100% sure how to do this...</p>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="http://tex.stackexchange.com/questions/28528/best-way-to-install-packages-for-texlive-in-ubuntu">http://tex.stackexchange.com/questions/28528/best-way-to-install-packages-for-texlive-in-ubuntu</a></td></tr>
-</tbody>
-</table>
+<p>Different latex distributions handle LaTex packages differently. The texlive distribution has a package manager (<code class="docutils literal notranslate"><span class="pre">tlmgr</span></code>) to keep packages up to date with those hosted on CTAN.</p>
+<p>Unfortunately, Ubuntu repackages many Tex packages into it’s own <code class="docutils literal notranslate"><span class="pre">.deb</span></code> packages so as to offer easy installation. As <code class="docutils literal notranslate"><span class="pre">apt</span></code> now handles latex packages, <code class="docutils literal notranslate"><span class="pre">tlmgr</span></code> is disabled to avoid any conflicts. As such, can not install/update individual packages from CTAN using <code class="docutils literal notranslate"><span class="pre">tlmgr</span></code>. Instead, should find the containing Ubuntu package and install it using <code class="docutils literal notranslate"><span class="pre">apt</span></code>. All well and good, but often contain tons of other unwanted Latex packages.</p>
+<p>Another solution would be to install texlive manually (i.e. not via <code class="docutils literal notranslate"><span class="pre">apt</span></code>) so that <code class="docutils literal notranslate"><span class="pre">apt</span></code> is unaware of it. This thien separates the two managers allowing <code class="docutils literal notranslate"><span class="pre">tlmgr</span></code> to be used exclusively for packages <a class="footnote-reference brackets" href="#id4" id="id3">2</a>.</p>
+<p>Finally, could also try installing individual latex packages directly from CTAN, but not 100% sure how to do this…</p>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p><a class="reference external" href="http://tex.stackexchange.com/questions/28528/best-way-to-install-packages-for-texlive-in-ubuntu">http://tex.stackexchange.com/questions/28528/best-way-to-install-packages-for-texlive-in-ubuntu</a></p>
+</dd>
+</dl>
 </div>
 </div>
 
@@ -97,12 +81,14 @@
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
 <ul class="current">
@@ -131,6 +117,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
@@ -142,6 +129,7 @@
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html">Visual Studio Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
 </ul>
@@ -159,8 +147,8 @@
       &copy;2017, Marcelo Alcocer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
     </div>
 

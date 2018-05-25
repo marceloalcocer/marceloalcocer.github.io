@@ -1,30 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta charset="utf-8" />
     <title>Sphinx &#8212; marceloalcocer.github.io 0.1 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="SSH Key Encryption" href="ssh_crypto.html" />
@@ -38,8 +25,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
 
-  </head>
-  <body role="document">
+  </head><body>
   
 
     <div class="document">
@@ -52,38 +38,42 @@
 <div class="section" id="package-documentation-quickstart">
 <h2>Package Documentation Quickstart<a class="headerlink" href="#package-documentation-quickstart" title="Permalink to this headline">¶</a></h2>
 <p>Generate Sphinx conf file (in doc directory) by answering some questions:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">docs</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">docs</span>
 <span class="n">sphinx</span><span class="o">-</span><span class="n">quickstart</span>
 </pre></div>
 </div>
 <p>Edit conf file to add package to PYTHONPATH; e.g. with standard package structure:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">source</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">source</span>
 <span class="n">vim</span> <span class="n">conf</span><span class="o">.</span><span class="n">py</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;../..&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>Call <code class="docutils literal"><span class="pre">sphinx-apidoc</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">..</span>
+<p>Call <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">..</span>
 <span class="n">sphinx</span><span class="o">-</span><span class="n">apidoc</span> <span class="o">-</span><span class="n">f</span> <span class="o">-</span><span class="n">o</span> <span class="n">source</span><span class="o">/</span> <span class="o">../</span><span class="n">package</span>
 </pre></div>
 </div>
 <p>Build:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
 </pre></div>
 </div>
 <p>Enjoy</p>
 </div>
 <div class="section" id="structure">
 <h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">..</span> <span class="pre">py:function::</span></code>, <em>etc</em>. Directives</dt>
-<dd>Basic directives defined by Sphinx to correctly format Python elements (functions, classes, etc). The argument (string) following the directive is subsequently formatted. As such, the string must be written in a valid ResT file.</dd>
-<dt><code class="docutils literal"><span class="pre">..</span> <span class="pre">automodule::</span></code>, <code class="docutils literal"><span class="pre">..</span> <span class="pre">autoclass::</span></code>, <em>etc</em>. Directives</dt>
-<dd>Directives defined by the <code class="docutils literal"><span class="pre">autodoc</span></code> Sphinx extension which must be enabled in the config file. Parses Python modules, classes, functions and generates ResT nodes describing them. Essentially, the element protoype and/or docstring is parsed into a string and formatted with the appropriate directive (e.g. <code class="docutils literal"><span class="pre">..</span> <span class="pre">py:function::</span></code>).  The <code class="docutils literal"><span class="pre">..</span> <span class="pre">autoXXX::</span></code> directives must still be &#8216;called&#8217; in a valid ResT file however.</dd>
-<dt><code class="docutils literal"><span class="pre">sphinx-apidoc</span></code> Command</dt>
-<dd>Parses python package to generate ResT file for all contained modules. The output ResT files will mainly contain things like <code class="docutils literal"><span class="pre">..</span> <span class="pre">automodule::</span></code>, <code class="docutils literal"><span class="pre">..</span> <span class="pre">autoclass::</span></code>, etc.</dd>
-<dt><code class="docutils literal"><span class="pre">sphinx-build</span></code> Command</dt>
-<dd>Generates output from ResT files (in doc directory) using given writer (e.g. HTML). Basically fancy version of docutils with extra directives, roles, etc. defined.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:function::</span></code>, <em>etc</em>. Directives</dt>
+<dd><p>Basic directives defined by Sphinx to correctly format Python elements (functions, classes, etc). The argument (string) following the directive is subsequently formatted. As such, the string must be written in a valid ResT file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">automodule::</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autoclass::</span></code>, <em>etc</em>. Directives</dt>
+<dd><p>Directives defined by the <code class="docutils literal notranslate"><span class="pre">autodoc</span></code> Sphinx extension which must be enabled in the config file. Parses Python modules, classes, functions and generates ResT nodes describing them. Essentially, the element protoype and/or docstring is parsed into a string and formatted with the appropriate directive (e.g. <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:function::</span></code>).  The <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autoXXX::</span></code> directives must still be ‘called’ in a valid ResT file however.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code> Command</dt>
+<dd><p>Parses python package to generate ResT file for all contained modules. The output ResT files will mainly contain things like <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">automodule::</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autoclass::</span></code>, etc.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> Command</dt>
+<dd><p>Generates output from ResT files (in doc directory) using given writer (e.g. HTML). Basically fancy version of docutils with extra directives, roles, etc. defined.</p>
+</dd>
 </dl>
 </div>
 </div>
@@ -108,34 +98,43 @@
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="latex_on_ubuntu.html">Latex package management on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reveal_js.html">reveal.js</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-Side Scripting</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Sphinx</a><ul>
@@ -147,11 +146,13 @@
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html">Visual Studio Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ultrajs.html">ultrajs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sunfleet.html">Sunfleet</a></li>
 </ul>
 
 
@@ -163,8 +164,8 @@
       &copy;2017, Marcelo Alcocer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
     </div>
 

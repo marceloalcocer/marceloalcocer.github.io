@@ -1,30 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta charset="utf-8" />
     <title>reveal.js &#8212; marceloalcocer.github.io 0.1 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Read The Docs" href="rtd.html" />
@@ -38,8 +25,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
 
-  </head>
-  <body role="document">
+  </head><body>
   
 
     <div class="document">
@@ -51,20 +37,16 @@
 <h1>reveal.js<a class="headerlink" href="#reveal-js" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="serving-locally-from-different-directories">
 <h2>Serving locally from different directories<a class="headerlink" href="#serving-locally-from-different-directories" title="Permalink to this headline">¶</a></h2>
-<p>Running <code class="docutils literal"><span class="pre">npm</span> <span class="pre">start</span></code> calls <code class="docutils literal"><span class="pre">start</span></code> script in <code class="docutils literal"><span class="pre">package.json</span></code>. This is <code class="docutils literal"><span class="pre">grunt</span> <span class="pre">serve</span></code> which tells Grunt to run a local HTTP server <a class="footnote-reference" href="#id3" id="id1">[1]</a>. The server configuration is defined in <code class="docutils literal"><span class="pre">Gruntfile.js</span></code> and contains a root and watch directories. The <code class="docutils literal"><span class="pre">root</span></code> directory is just like any server&#8217;s root, whilst the <code class="docutils literal"><span class="pre">watch</span></code> directory is monitored for changes (like htdocs?).</p>
-<p>Cannot modify server root directory as reveal.js requires this to be its base directory. Instead, create symlink in reveal.js base directory pointing to desired directory. This will now be accessible from server root. Then, add subdirectory html files to watch list. Finally, ensure that all ref and src attributes in html pointing to reveal.js assets use absolute paths. These will be interpreted from the server root directory and so will be correctly resolved <a class="footnote-reference" href="#id4" id="id2">[2]</a>.</p>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>This is typically used for running JS tasks for TDD</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://medium.com/&#64;KienanKB/serving-multiple-reveal-js-presentations-b1a5c086e959">https://medium.com/&#64;KienanKB/serving-multiple-reveal-js-presentations-b1a5c086e959</a></td></tr>
-</tbody>
-</table>
+<p>Running <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">start</span></code> calls <code class="docutils literal notranslate"><span class="pre">start</span></code> script in <code class="docutils literal notranslate"><span class="pre">package.json</span></code>. This is <code class="docutils literal notranslate"><span class="pre">grunt</span> <span class="pre">serve</span></code> which tells Grunt to run a local HTTP server <a class="footnote-reference brackets" href="#id3" id="id1">1</a>. The server configuration is defined in <code class="docutils literal notranslate"><span class="pre">Gruntfile.js</span></code> and contains a root and watch directories. The <code class="docutils literal notranslate"><span class="pre">root</span></code> directory is just like any server’s root, whilst the <code class="docutils literal notranslate"><span class="pre">watch</span></code> directory is monitored for changes (like htdocs?).</p>
+<p>Cannot modify server root directory as reveal.js requires this to be its base directory. Instead, create symlink in reveal.js base directory pointing to desired directory. This will now be accessible from server root. Then, add subdirectory html files to watch list. Finally, ensure that all ref and src attributes in html pointing to reveal.js assets use absolute paths. These will be interpreted from the server root directory and so will be correctly resolved <a class="footnote-reference brackets" href="#id4" id="id2">2</a>.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>This is typically used for running JS tasks for TDD</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://medium.com/&#64;KienanKB/serving-multiple-reveal-js-presentations-b1a5c086e959">https://medium.com/&#64;KienanKB/serving-multiple-reveal-js-presentations-b1a5c086e959</a></p>
+</dd>
+</dl>
 </div>
 </div>
 
@@ -88,17 +70,20 @@
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
 <li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
@@ -108,14 +93,16 @@
 <li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="latex_on_ubuntu.html">Latex package management on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
@@ -130,11 +117,13 @@
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html">Visual Studio Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ultrajs.html">ultrajs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sunfleet.html">Sunfleet</a></li>
 </ul>
 
 
@@ -146,8 +135,8 @@
       &copy;2017, Marcelo Alcocer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
     </div>
 

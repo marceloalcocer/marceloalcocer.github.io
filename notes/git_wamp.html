@@ -1,30 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta charset="utf-8" />
     <title>Git hosted on WAMP &#8212; marceloalcocer.github.io 0.1 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="GitHub SSH" href="github_ssh.html" />
@@ -38,8 +25,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
 
-  </head>
-  <body role="document">
+  </head><body>
   
 
     <div class="document">
@@ -54,45 +40,45 @@
 <p>As have to install Git on server, might as well try more standard setup of Git over (smart) HTTP.</p>
 <div class="section" id="http">
 <h2>HTTP<a class="headerlink" href="#http" title="Permalink to this headline">¶</a></h2>
-<p>Downloaded Git for Windows official installation <a class="footnote-reference" href="#id5" id="id1">[1]</a>. This comes bundled with MinGW installation which provide basic GNU/Linux tools required for running Git.</p>
-<p>Followed steps in Git book on setting up Git over Smart HTTP <a class="footnote-reference" href="#id6" id="id2">[2]</a>.</p>
+<p>Downloaded Git for Windows official installation <a class="footnote-reference brackets" href="#id5" id="id1">1</a>. This comes bundled with MinGW installation which provide basic GNU/Linux tools required for running Git.</p>
+<p>Followed steps in Git book on setting up Git over Smart HTTP <a class="footnote-reference brackets" href="#id6" id="id2">2</a>.</p>
 <p>Created bare repository from git bash shell on server:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">C</span><span class="p">:</span>\<span class="n">xampp</span>\<span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">C</span><span class="p">:</span>\<span class="n">xampp</span>\<span class="n">git</span>
 <span class="n">git</span> <span class="n">init</span> <span class="o">--</span><span class="n">bare</span> <span class="n">foo</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
-<p>Configuring apache config file now. Git root directory set to <code class="docutils literal"><span class="pre">C:/xampp/git</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SetEnv</span> <span class="n">GIT_PROJECT_ROOT</span> <span class="s2">&quot;C:/xampp/git&quot;</span>
+<p>Configuring apache config file now. Git root directory set to <code class="docutils literal notranslate"><span class="pre">C:/xampp/git</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SetEnv</span> <span class="n">GIT_PROJECT_ROOT</span> <span class="s2">&quot;C:/xampp/git&quot;</span>
 </pre></div>
 </div>
 <p><em>N.b. Not served by default so repos not accessible via HTTP.</em> Access will be provided by Git HTTP script.</p>
-<p>Routed all all HTTP requests to <code class="docutils literal"><span class="pre">git</span></code> directory through Git HTTP script by setting <code class="docutils literal"><span class="pre">ScriptAlias</span></code> directive:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ScriptAlias</span> <span class="o">/</span><span class="n">git</span><span class="o">/</span> <span class="s2">&quot;C:/Program Files/Git/mingw64/libexec/git-core/git-http-backend.exe&quot;</span>
+<p>Routed all all HTTP requests to <code class="docutils literal notranslate"><span class="pre">git</span></code> directory through Git HTTP script by setting <code class="docutils literal notranslate"><span class="pre">ScriptAlias</span></code> directive:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ScriptAlias</span> <span class="o">/</span><span class="n">git</span><span class="o">/</span> <span class="s2">&quot;C:/Program Files/Git/mingw64/libexec/git-core/git-http-backend.exe&quot;</span>
 </pre></div>
 </div>
-<p><em>N.b. location of main Git HTTP script</em> (<code class="docutils literal"><span class="pre">git-http-backend</span></code>) <em>on Windows differs from GNU/Linux</em> <a class="footnote-reference" href="#id7" id="id3">[3]</a></p>
-<p>For some reason this doesn&#8217;t seem to work. Instead had to use regexp version <a class="footnote-reference" href="#id8" id="id4">[4]</a>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ScriptAliasMatch</span> <span class="s2">&quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [0-9a-f]</span><span class="si">{2}</span><span class="s2">/[0-9a-f]</span><span class="si">{38}</span><span class="s2"> | pack/pack-[0-9a-f]</span><span class="si">{40}</span><span class="s2">\.(pack|idx)) | git-(upload|receive)-pack))$&quot;</span> <span class="s2">&quot;C:/Program Files/Git/mingw64/libexec/git-core/git-http-backend.exe/$1&quot;</span>
+<p><em>N.b. location of main Git HTTP script</em> (<code class="docutils literal notranslate"><span class="pre">git-http-backend</span></code>) <em>on Windows differs from GNU/Linux</em> <a class="footnote-reference brackets" href="#id7" id="id3">3</a></p>
+<p>For some reason this doesn’t seem to work. Instead had to use regexp version <a class="footnote-reference brackets" href="#id8" id="id4">4</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ScriptAliasMatch</span> <span class="s2">&quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [0-9a-f]</span><span class="si">{2}</span><span class="s2">/[0-9a-f]</span><span class="si">{38}</span><span class="s2"> | pack/pack-[0-9a-f]</span><span class="si">{40}</span><span class="s2">\.(pack|idx)) | git-(upload|receive)-pack))$&quot;</span> <span class="s2">&quot;C:/Program Files/Git/mingw64/libexec/git-core/git-http-backend.exe/$1&quot;</span>
 </pre></div>
 </div>
-<p><em>N.b. Extra</em> <code class="docutils literal"><span class="pre">$1</span></code> <em>to pass HTTP request to script</em></p>
-<p>Allow access to HTTP script using <code class="docutils literal"><span class="pre">Files</span></code> section:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Files</span> <span class="s2">&quot;git-http-backend.exe&quot;</span><span class="o">&gt;</span>
+<p><em>N.b. Extra</em> <code class="docutils literal notranslate"><span class="pre">$1</span></code> <em>to pass HTTP request to script</em></p>
+<p>Allow access to HTTP script using <code class="docutils literal notranslate"><span class="pre">Files</span></code> section:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Files</span> <span class="s2">&quot;git-http-backend.exe&quot;</span><span class="o">&gt;</span>
         <span class="n">Require</span> <span class="nb">all</span> <span class="n">granted</span>
 <span class="o">&lt;/</span><span class="n">Files</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p><em>N.b.</em> <code class="docutils literal"><span class="pre">.exe</span></code> <em>extension is required.</em></p>
+<p><em>N.b.</em> <code class="docutils literal notranslate"><span class="pre">.exe</span></code> <em>extension is required.</em></p>
 <p>Can now clone (and push) anonymously:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">acq</span><span class="o">.</span><span class="mi">2</span><span class="n">d</span><span class="o">.</span><span class="n">chemphys</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">acq</span><span class="o">.</span><span class="mi">2</span><span class="n">d</span><span class="o">.</span><span class="n">chemphys</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
-<p>Now to enable authentication. Created password file in <code class="docutils literal"><span class="pre">git</span></code> directory using <code class="docutils literal"><span class="pre">htpasswd</span></code> script from xampp shell:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">htpasswd</span> <span class="o">-</span><span class="n">c</span> <span class="n">C</span><span class="p">:</span>\<span class="n">xampp</span>\<span class="n">git</span>\<span class="o">.</span><span class="n">htpasswd</span> <span class="o">&lt;</span><span class="n">USER</span><span class="o">&gt;</span>
+<p>Now to enable authentication. Created password file in <code class="docutils literal notranslate"><span class="pre">git</span></code> directory using <code class="docutils literal notranslate"><span class="pre">htpasswd</span></code> script from xampp shell:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">htpasswd</span> <span class="o">-</span><span class="n">c</span> <span class="n">C</span><span class="p">:</span>\<span class="n">xampp</span>\<span class="n">git</span>\<span class="o">.</span><span class="n">htpasswd</span> <span class="o">&lt;</span><span class="n">USER</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p><em>N.b. This remains private as</em> <code class="docutils literal"><span class="pre">git</span></code> <em>is not served.</em> Limited access to <code class="docutils literal"><span class="pre">git-http-backend</span></code> script using <code class="docutils literal"><span class="pre">Files</span></code> section requiring valid user:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Files</span> <span class="s2">&quot;git-http-backend.exe&quot;</span><span class="o">&gt;</span>
+<p><em>N.b. This remains private as</em> <code class="docutils literal notranslate"><span class="pre">git</span></code> <em>is not served.</em> Limited access to <code class="docutils literal notranslate"><span class="pre">git-http-backend</span></code> script using <code class="docutils literal notranslate"><span class="pre">Files</span></code> section requiring valid user:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Files</span> <span class="s2">&quot;git-http-backend.exe&quot;</span><span class="o">&gt;</span>
         <span class="n">AuthType</span> <span class="n">Basic</span>
         <span class="n">AuthName</span> <span class="s2">&quot;Git Access&quot;</span>
         <span class="n">AuthUserFile</span> <span class="s2">&quot;C:/xampp/git/.htpasswd&quot;</span>
@@ -101,11 +87,11 @@
 </pre></div>
 </div>
 <p>Now both clone and push require authentication:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">http</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">USER</span><span class="o">&gt;</span><span class="nd">@acq</span><span class="o">.</span><span class="mi">2</span><span class="n">d</span><span class="o">.</span><span class="n">chemphys</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">http</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">USER</span><span class="o">&gt;</span><span class="nd">@acq</span><span class="o">.</span><span class="mi">2</span><span class="n">d</span><span class="o">.</span><span class="n">chemphys</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
-<p>Finally, require authentication only for push by adding regexp to <code class="docutils literal"><span class="pre">Require</span></code> directive (as detailed in Git book):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>&lt;Files &quot;git-http-backend.exe&quot;&gt;
+<p>Finally, require authentication only for push by adding regexp to <code class="docutils literal notranslate"><span class="pre">Require</span></code> directive (as detailed in Git book):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;Files &quot;git-http-backend.exe&quot;&gt;
         AuthType Basic
         AuthName &quot;Git Access&quot;
         AuthUserFile &quot;C:/xampp/git/.htpasswd&quot;
@@ -116,7 +102,7 @@
 </div>
 <p><em>N.b. Cannot push a new repo up to server — must always create bare on server first.</em></p>
 <p>Final Apache config file:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span># Apache configuration for git
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Apache configuration for git
 
 # Environment variables
 SetEnv GIT_PROJECT_ROOT &quot;C:/xampp/git&quot;
@@ -133,97 +119,82 @@ ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [
 &lt;/Files&gt;
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP">https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/33829145/git-smarthttp-where-is-git-http-backend-exe/33829578">https://stackoverflow.com/questions/33829145/git-smarthttp-where-is-git-http-backend-exe/33829578</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/3817478/setting-up-git-server-on-windows-with-git-http-backend-exe">https://stackoverflow.com/questions/3817478/setting-up-git-server-on-windows-with-git-http-backend-exe</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id9" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id10">[5]</a></td><td><a class="reference external" href="http://www.jeremyskinner.co.uk/2010/07/31/hosting-a-git-server-under-apache-on-windows/">http://www.jeremyskinner.co.uk/2010/07/31/hosting-a-git-server-under-apache-on-windows/</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP">https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP</a></p>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/33829145/git-smarthttp-where-is-git-http-backend-exe/33829578">https://stackoverflow.com/questions/33829145/git-smarthttp-where-is-git-http-backend-exe/33829578</a></p>
+</dd>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/3817478/setting-up-git-server-on-windows-with-git-http-backend-exe">https://stackoverflow.com/questions/3817478/setting-up-git-server-on-windows-with-git-http-backend-exe</a></p>
+</dd>
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id10">5</a></span></dt>
+<dd><p><a class="reference external" href="http://www.jeremyskinner.co.uk/2010/07/31/hosting-a-git-server-under-apache-on-windows/">http://www.jeremyskinner.co.uk/2010/07/31/hosting-a-git-server-under-apache-on-windows/</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="web-interface">
 <h2>Web Interface<a class="headerlink" href="#web-interface" title="Permalink to this headline">¶</a></h2>
 <p>Tried a few web interfaces:</p>
-<dl class="docutils">
+<dl class="simple">
 <dt>gitweb</dt>
-<dd>Generated CGI script is not compatible with Windows Perl</dd>
+<dd><p>Generated CGI script is not compatible with Windows Perl</p>
+</dd>
 <dt>gitlist</dt>
-<dd>Could not configure properly</dd>
+<dd><p>Could not configure properly</p>
+</dd>
 <dt>gogs</dt>
-<dd>Nice, but includes server</dd>
+<dd><p>Nice, but includes server</p>
+</dd>
 </dl>
-<p>Finally got GitPHP <a class="footnote-reference" href="#id9" id="id10">[5]</a> to work nicely. Followed installation instructions with installation in <code class="docutils literal"><span class="pre">htdocs</span></code> and worked first time. Only issue was disabling cache as seemed to stick.</p>
+<p>Finally got GitPHP <a class="footnote-reference brackets" href="#id9" id="id10">5</a> to work nicely. Followed installation instructions with installation in <code class="docutils literal notranslate"><span class="pre">htdocs</span></code> and worked first time. Only issue was disabling cache as seemed to stick.</p>
 <p>Would be nice to have following usage though:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">acq</span><span class="o">.</span><span class="mi">2</span><span class="n">d</span><span class="o">.</span><span class="n">chemphys</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">git</span><span class="o">/</span>               <span class="c1"># Web interface</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">acq</span><span class="o">.</span><span class="mi">2</span><span class="n">d</span><span class="o">.</span><span class="n">chemphys</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">git</span><span class="o">/</span>               <span class="c1"># Web interface</span>
 <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">acq</span><span class="o">.</span><span class="mi">2</span><span class="n">d</span><span class="o">.</span><span class="n">chemphys</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">project</span><span class="o">.</span><span class="n">git</span>    <span class="c1"># Clone/push over HTTP</span>
 </pre></div>
 </div>
-<p>Relocated GitPHP outside of <code class="docutils literal"><span class="pre">htdocs</span></code>. Set Apache alias to serve:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Alias</span> <span class="o">/</span><span class="n">git</span> <span class="s2">&quot;C:/xampp/gitphp/&quot;</span>
+<p>Relocated GitPHP outside of <code class="docutils literal notranslate"><span class="pre">htdocs</span></code>. Set Apache alias to serve:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Alias</span> <span class="o">/</span><span class="n">git</span> <span class="s2">&quot;C:/xampp/gitphp/&quot;</span>
 <span class="o">&lt;</span><span class="n">Directory</span> <span class="s2">&quot;C:/xampp/gitphp&quot;</span><span class="o">&gt;</span>
         <span class="n">Require</span> <span class="nb">all</span> <span class="n">granted</span>
 <span class="o">&lt;/</span><span class="n">Directory</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>Can now browse at <code class="docutils literal"><span class="pre">http://acq.2d.chemphys.lu.se/git/</span></code>. Does not interfere with clone/push URL as git <code class="docutils literal"><span class="pre">ScriptAliasMatch</span></code> regexp filters out git HTTP requests to <code class="docutils literal"><span class="pre">git-http-backen.exe</span></code> and passes rest on.</p>
-<table class="docutils footnote" frame="void" id="id11" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id12">[6]</a></td><td><a class="reference external" href="https://gitphp.org/">https://gitphp.org/</a></td></tr>
-</tbody>
-</table>
+<p>Can now browse at <code class="docutils literal notranslate"><span class="pre">http://acq.2d.chemphys.lu.se/git/</span></code>. Does not interfere with clone/push URL as git <code class="docutils literal notranslate"><span class="pre">ScriptAliasMatch</span></code> regexp filters out git HTTP requests to <code class="docutils literal notranslate"><span class="pre">git-http-backen.exe</span></code> and passes rest on.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id12">6</a></span></dt>
+<dd><p><a class="reference external" href="https://gitphp.org/">https://gitphp.org/</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="ftp">
 <h2>FTP<a class="headerlink" href="#ftp" title="Permalink to this headline">¶</a></h2>
-<p>Git natively supports some operations over FTP protocol, viz. <code class="docutils literal"><span class="pre">clone</span></code> and <code class="docutils literal"><span class="pre">fetch</span></code> <a class="footnote-reference" href="#id11" id="id12">[6]</a>. For further operations (e.g. <code class="docutils literal"><span class="pre">push</span></code>) can use <code class="docutils literal"><span class="pre">git-ftp</span></code> <a class="footnote-reference" href="#id14" id="id13">[7]</a>.</p>
-<p>Download <code class="docutils literal"><span class="pre">git-ftp</span></code> and install:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">install</span><span class="o">-</span><span class="nb">all</span>
+<p>Git natively supports some operations over FTP protocol, viz. <code class="docutils literal notranslate"><span class="pre">clone</span></code> and <code class="docutils literal notranslate"><span class="pre">fetch</span></code> <a class="footnote-reference brackets" href="#id11" id="id12">6</a>. For further operations (e.g. <code class="docutils literal notranslate"><span class="pre">push</span></code>) can use <code class="docutils literal notranslate"><span class="pre">git-ftp</span></code> <a class="footnote-reference brackets" href="#id14" id="id13">7</a>.</p>
+<p>Download <code class="docutils literal notranslate"><span class="pre">git-ftp</span></code> and install:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">install</span><span class="o">-</span><span class="nb">all</span>
 </pre></div>
 </div>
 <p>Setup global/user/local git config with server, username, etc. N.b. Server path will be root directory of project, so best to define per repository in local git config file.</p>
 <p>Upload repo:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">ftp</span> <span class="n">init</span> <span class="o">-</span><span class="n">u</span> <span class="o">&lt;</span><span class="n">USERNAME</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">P</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">ftp</span> <span class="n">init</span> <span class="o">-</span><span class="n">u</span> <span class="o">&lt;</span><span class="n">USERNAME</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">P</span>
 </pre></div>
 </div>
-<p>Install <code class="docutils literal"><span class="pre">lftp</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">lftp</span>
+<p>Install <code class="docutils literal notranslate"><span class="pre">lftp</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">lftp</span>
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id14" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id13">[7]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/4664251/does-git-support-push-to-an-ftp-server">https://stackoverflow.com/questions/4664251/does-git-support-push-to-an-ftp-server</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id15" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[8]</td><td><a class="reference external" href="https://github.com/git-ftp/git-ftp">https://github.com/git-ftp/git-ftp</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id13">7</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/4664251/does-git-support-push-to-an-ftp-server">https://stackoverflow.com/questions/4664251/does-git-support-push-to-an-ftp-server</a></p>
+</dd>
+<dt class="label" id="id15"><span class="brackets">8</span></dt>
+<dd><p><a class="reference external" href="https://github.com/git-ftp/git-ftp">https://github.com/git-ftp/git-ftp</a></p>
+</dd>
+</dl>
 </div>
 </div>
 
@@ -247,18 +218,23 @@ ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
@@ -270,16 +246,20 @@ ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="latex_on_ubuntu.html">Latex package management on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reveal_js.html">reveal.js</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-Side Scripting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
@@ -287,11 +267,13 @@ ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html">Visual Studio Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ultrajs.html">ultrajs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sunfleet.html">Sunfleet</a></li>
 </ul>
 
 
@@ -303,8 +285,8 @@ ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [
       &copy;2017, Marcelo Alcocer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
     </div>
 

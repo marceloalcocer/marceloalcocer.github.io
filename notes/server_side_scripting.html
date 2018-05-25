@@ -1,30 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta charset="utf-8" />
     <title>Server-Side Scripting &#8212; marceloalcocer.github.io 0.1 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Sphinx" href="sphinx.html" />
@@ -38,8 +25,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
 
-  </head>
-  <body role="document">
+  </head><body>
   
 
     <div class="document">
@@ -50,7 +36,7 @@
   <div class="section" id="server-side-scripting">
 <h1>Server-Side Scripting<a class="headerlink" href="#server-side-scripting" title="Permalink to this headline">¶</a></h1>
 <p>Server-side scripting — request server to execute code in a scripting language (e.g. Python, PHP, etc) and return result. Requires server process to be able to execute scripts, ideally in any arbitrary scripting language.</p>
-<p>As such, interface protocols developed to allow communication between server processes and scripting languages <a class="footnote-reference" href="#id4" id="id1">[1]</a>.</p>
+<p>As such, interface protocols developed to allow communication between server processes and scripting languages <a class="footnote-reference brackets" href="#id4" id="id1">1</a>.</p>
 <div class="section" id="protocols">
 <h2>Protocols<a class="headerlink" href="#protocols" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="legacy-interfaces">
@@ -71,36 +57,31 @@
 <p>Problem with all these legacy interfaces is that server-side (and web server) code must be tailored for the specific interface. As such, in order to develop server-side code which will work with all interfaces and all servers, would have to develop multiple versions of the server-side code. For example, python code for a wiki engine would need to be written so as to support CGI, FastCGI, SCGI, etc. in order to guarantee that it could be deployed on any web server.</p>
 <p>To solve this duplication, the WSGI protocol was developed to act as an intermediate between all existing interfaces and all server-side scripting languages. In this way, when developing server-side code, only need to make it compatible with WSGI to ensure universal operability.</p>
 <p>WSGI is defined as a client-server architecture:</p>
-<dl class="docutils">
+<dl class="simple">
 <dt>WSGI Server</dt>
-<dd>Connects to low-level gateway intefaces (i.e. CGI, FastCGI, etc)</dd>
+<dd><p>Connects to low-level gateway intefaces (i.e. CGI, FastCGI, etc)</p>
+</dd>
 <dt>WSGI Client</dt>
-<dd>Connects to server-side code (e.g. Python, PHP, etc)</dd>
+<dd><p>Connects to server-side code (e.g. Python, PHP, etc)</p>
+</dd>
 </dl>
 </div>
 </div>
 <div class="section" id="practicalities">
 <h2>Practicalities<a class="headerlink" href="#practicalities" title="Permalink to this headline">¶</a></h2>
-<p>Cannot get WSGI working on XAMMP. Tried with <code class="docutils literal"><span class="pre">hgweb.wsgi</span></code> and just refuses to work. Apache does not have wsgi module and so cannot interpret <code class="docutils literal"><span class="pre">WSGIScriptAlias</span></code> option.</p>
-<p>Tried downloading wsgi module binary <a class="footnote-reference" href="#id5" id="id2">[2]</a>, but does not seem to work either. Looks like there may be fundamental compatibility issues <a class="footnote-reference" href="#id6" id="id3">[3]</a>...</p>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://docs.python.org/3.5/howto/webservers.html">https://docs.python.org/3.5/howto/webservers.html</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://www.devbattles.com/en/sand/post-304-using+Apache+and+Python+WSGI+on+Windows">https://www.devbattles.com/en/sand/post-304-using+Apache+and+Python+WSGI+on+Windows</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://github.com/GrahamDumpleton/mod_wsgi/blob/develop/win32/README.rst">https://github.com/GrahamDumpleton/mod_wsgi/blob/develop/win32/README.rst</a></td></tr>
-</tbody>
-</table>
+<p>Cannot get WSGI working on XAMMP. Tried with <code class="docutils literal notranslate"><span class="pre">hgweb.wsgi</span></code> and just refuses to work. Apache does not have wsgi module and so cannot interpret <code class="docutils literal notranslate"><span class="pre">WSGIScriptAlias</span></code> option.</p>
+<p>Tried downloading wsgi module binary <a class="footnote-reference brackets" href="#id5" id="id2">2</a>, but does not seem to work either. Looks like there may be fundamental compatibility issues <a class="footnote-reference brackets" href="#id6" id="id3">3</a>…</p>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://docs.python.org/3.5/howto/webservers.html">https://docs.python.org/3.5/howto/webservers.html</a></p>
+</dd>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://www.devbattles.com/en/sand/post-304-using+Apache+and+Python+WSGI+on+Windows">https://www.devbattles.com/en/sand/post-304-using+Apache+and+Python+WSGI+on+Windows</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/GrahamDumpleton/mod_wsgi/blob/develop/win32/README.rst">https://github.com/GrahamDumpleton/mod_wsgi/blob/develop/win32/README.rst</a></p>
+</dd>
+</dl>
 </div>
 </div>
 
@@ -124,34 +105,43 @@
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="latex_on_ubuntu.html">Latex package management on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reveal_js.html">reveal.js</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Server-Side Scripting</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#protocols">Protocols</a><ul>
@@ -167,11 +157,13 @@
 <li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html">Visual Studio Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ultrajs.html">ultrajs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sunfleet.html">Sunfleet</a></li>
 </ul>
 
 
@@ -183,8 +175,8 @@
       &copy;2017, Marcelo Alcocer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
     </div>
 
