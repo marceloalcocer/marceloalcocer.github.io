@@ -226,7 +226,7 @@
 </div>
 <div class="section" id="ubuntu-16-04">
 <h3>Ubuntu 16.04<a class="headerlink" href="#ubuntu-16-04" title="Permalink to this headline">¶</a></h3>
-<p>With 16.04 and 4.4.0-34 kernel, wireless card still not working with default Ubuntu drivers. Had to build and install drivers myself <a class="footnote-reference brackets" href="#id23" id="id19">9</a>. Source still present in <code class="docutils literal notranslate"><span class="pre">/usr/local/src/MT7360E-2.0.4</span></code>.</p>
+<p>With 16.04 and 4.4.0-34 kernel, wireless card still not working with default Ubuntu drivers. Had to build and install drivers myself <a class="footnote-reference brackets" href="#id24" id="id19">9</a>. Source still present in <code class="docutils literal notranslate"><span class="pre">/usr/local/src/MT7360E-2.0.4</span></code>.</p>
 <div class="section" id="id20">
 <h4>4.4.0<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
 <p>As before, tried signing the module to allow secure booting. As originally generated key still enrolled in MOK (<code class="docutils literal notranslate"><span class="pre">mokutil</span> <span class="pre">-l</span></code>), tries signing with this first.</p>
@@ -271,8 +271,15 @@
 <span class="n">sudo</span> <span class="n">dkms</span> <span class="n">install</span> <span class="n">mt7630e</span><span class="o">/</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">0</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="id23">
+<h4>4.15.0-29<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
+<p>Up until now, previous DKMS-based install to circumvent <code class="docutils literal notranslate"><span class="pre">depmod</span></code> bug had been working fine. Module could not be signed, but did not seem to be strictly enforced by kernel.</p>
+<p>As of 4.15.0-29, noticed that DKMS shows <code class="docutils literal notranslate"><span class="pre">mt7630e</span></code> module as being installed, but it is not loaded (nothing in <code class="docutils literal notranslate"><span class="pre">kern.log</span></code> or <code class="docutils literal notranslate"><span class="pre">lsmod</span></code> output).</p>
+<p>Uninstalling from DKMS and trying manual install however seems to once again work — <code class="docutils literal notranslate"><span class="pre">depmod</span></code> doesn’t hang. Final <code class="docutils literal notranslate"><span class="pre">modprobe</span></code> call to load module does however fail due to kernel signing, so must sign and reload as before.</p>
+<p>N.b. Calling module uninstall script removes firmware binaries from <code class="docutils literal notranslate"><span class="pre">/lib/firmware</span></code>. These are <strong>not</strong> re-copied by DKMS-based module installation (e.g. for 4.13 kernel), and so the card will not work and a missing firmware message will be logged in <code class="docutils literal notranslate"><span class="pre">kern.log</span></code>. Manually copying the firmware files resolves the issue.</p>
 <dl class="footnote brackets">
-<dt class="label" id="id23"><span class="brackets"><a class="fn-backref" href="#id19">9</a></span></dt>
+<dt class="label" id="id24"><span class="brackets"><a class="fn-backref" href="#id19">9</a></span></dt>
 <dd><p><a class="reference external" href="http://github.com/neurobin/MT7630E">http://github.com/neurobin/MT7630E</a></p>
 </dd>
 </dl>
@@ -317,7 +324,6 @@
 <li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
-<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
@@ -347,13 +353,11 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
