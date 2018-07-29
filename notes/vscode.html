@@ -161,6 +161,36 @@
 </dd>
 </dl>
 </div>
+<div class="section" id="updating">
+<h2>Updating<a class="headerlink" href="#updating" title="Permalink to this headline">¶</a></h2>
+<p>To update, just need to checkout release version of source and follow build instructions.</p>
+<p>An example update script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+#
+# Description
+# ===========
+#
+# Upgrade VS Code (from source) to given release
+#
+# Usage
+# ======
+#
+# vscode_upgrade &lt;RELEASE&gt;
+#
+# RELEASE must be a valid tag in the git repository
+#
+#
+
+git fetch
+git checkout $1
+yarn
+yarn run gulp vscode-linux-x64
+sed -i &quot;$ d&quot;
+echo -e &#39;\t&quot;extensionsGallery&quot;: {\n\t\t&quot;serviceUrl&quot;: &quot;https://marketplace.visualstudio.com/_apis/public/gallery&quot;,\n\t\t&quot;cacheUrl&quot;: &quot;https://vscode.blob.core.windows.net/gallery/index&quot;,\n\t\t&quot;itemUrl&quot;: &quot;https://marketplace.visualstudio.com/items&quot;\n\t}\n}&#39; &gt;&gt; resources/app/product.json
+</pre></div>
+</div>
+<p>All preferences and settings are stored in <code class="docutils literal notranslate"><span class="pre">~/.vscode-oss</span></code> and <code class="docutils literal notranslate"><span class="pre">~/.config/Code</span> <span class="pre">-</span> <span class="pre">OSS</span></code>, and so are not overwritten.</p>
+</div>
 </div>
 
 
@@ -199,7 +229,6 @@
 <li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
-<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
@@ -209,13 +238,11 @@
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
@@ -236,6 +263,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#extensions">Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#updating">Updating</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
