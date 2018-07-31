@@ -35,14 +35,98 @@
             
   <div class="section" id="windows">
 <h1>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="windows-c-development">
+<h2>Windows C++ development<a class="headerlink" href="#windows-c-development" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="msvc-build-tools">
+<h3>MSVC build tools<a class="headerlink" href="#msvc-build-tools" title="Permalink to this headline">¶</a></h3>
+<p>Whilst Microsoft Visual C (MSVC) build tools (compiler, linker, make implementation, etc.) used to be baked into Visual Studio’s C/C++ workload (extension), can now obtain build tools separately, allowing building from the command line <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
+<p>N.b. Must always use tools from correctly set up environment to ensure correct variables are set (e.g. PATH, LIB, LIBPATH, INCLUDE, etc)</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://docs.microsoft.com/en-gb/cpp/build/building-on-the-command-line">https://docs.microsoft.com/en-gb/cpp/build/building-on-the-command-line</a></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="msvc-search-paths">
+<h3>MSVC search paths<a class="headerlink" href="#msvc-search-paths" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="pre-processor">
+<h4>Pre-processor<a class="headerlink" href="#pre-processor" title="Permalink to this headline">¶</a></h4>
+<p>Set <code class="docutils literal notranslate"><span class="pre">INCLUDE</span></code> environment variable, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setx</span> <span class="n">INCLUDE</span> <span class="s2">&quot;path</span><span class="se">\t</span><span class="s2">o\dependency\include\;%INCLUDE%&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="linker">
+<h4>Linker<a class="headerlink" href="#linker" title="Permalink to this headline">¶</a></h4>
+<p>Set <code class="docutils literal notranslate"><span class="pre">LIB</span></code> environment variable <a class="footnote-reference brackets" href="#id5" id="id3">2</a>, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setx</span> <span class="n">LIB</span> <span class="s2">&quot;path</span><span class="se">\t</span><span class="s2">o\dependency\lib\;%LIB%&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="runtime">
+<h4>Runtime<a class="headerlink" href="#runtime" title="Permalink to this headline">¶</a></h4>
+<p>Windows uses different search path rules for link- and run-time. Could set <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable, but better to set application specific path in registry instead <a class="footnote-reference brackets" href="#id6" id="id4">3</a>.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/20483619/what-is-the-difference-between-the-lib-and-libpath-environment-variables-for-ms">https://stackoverflow.com/questions/20483619/what-is-the-difference-between-the-lib-and-libpath-environment-variables-for-ms</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
+<dd><p><a class="reference external" href="https://www.codeguru.com/cpp/w-p/dll/article.php/c99/Application-Specific-Paths-for-DLL-Loading.htm">https://www.codeguru.com/cpp/w-p/dll/article.php/c99/Application-Specific-Paths-for-DLL-Loading.htm</a></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="msvc-runtime">
+<h3>MSVC runtime<a class="headerlink" href="#msvc-runtime" title="Permalink to this headline">¶</a></h3>
+<p>MSVC runtime (<code class="docutils literal notranslate"><span class="pre">MSVCRT.dll</span></code>) is a library which provides typical functions required by C and C++ programs (e.g. string manipulation, malloc, etc). It ships by default with the Windows OS, but is considered part of the OS and therefore can be patched (i.e. modified) at any time. As such, linking against MSVCRT.dll is strongly discouraged as there is no guarantee it will be the same on the target machine.</p>
+<p>To remedy this, each version of VS ships with its own Visual C RunTime library; e.g. VS 2008 ships with <code class="docutils literal notranslate"><span class="pre">MSVCRT90.dll</span></code>, VS 2010 shipped with <code class="docutils literal notranslate"><span class="pre">MSVCRT100.dll</span></code>, etc. Devs are recommended to link against the DLL shipped with their version of VS. This means however that when depolying the software, either the program must be statically linked (contains the library functions, larger file size), the specific <code class="docutils literal notranslate"><span class="pre">MSVCRTxxx.dll</span></code> must be distributed with the program (“app-local distribution”), or the target machine must be assumed to have to have it in a known location (“central distribution”) <a class="footnote-reference brackets" href="#id9" id="id7">4</a>.</p>
+<p>With the advent of Windows 10 and continous rolling updates, MS realised that it could revert back to having once central runtime DLL without any negative consequences - all Win10 machines are forcefully updated and so everyone (devs and end-users) will always have the latest version of the VCRT DLL. This eternal VCRT DLL is known as the Universal CRT and is spread out across two files; <code class="docutils literal notranslate"><span class="pre">vcruntime.dll</span></code> and <code class="docutils literal notranslate"><span class="pre">ucrtbase.dll</span></code>. As these are integral parts of the OS, Win10 end-users can always be assumed to have them installed. End-users running Win &lt; 10 do not however, and so DLL redistribution must be done as before <a class="footnote-reference brackets" href="#id10" id="id8">5</a>.</p>
+<p>Visual Studio ≥ 2015 should already link against <code class="docutils literal notranslate"><span class="pre">ucrtbase.dll</span></code> by default.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id7">4</a></span></dt>
+<dd><p><a class="reference external" href="http://stackoverflow.com/questions/1073509/should-i-redistribute-msvcrt-dll-with-my-application">http://stackoverflow.com/questions/1073509/should-i-redistribute-msvcrt-dll-with-my-application</a></p>
+</dd>
+<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id8">5</a></span></dt>
+<dd><p><a class="reference external" href="https://blogs.msdn.microsoft.com/vcblog/2015/03/03/introducing-the-universal-crt/">https://blogs.msdn.microsoft.com/vcblog/2015/03/03/introducing-the-universal-crt/</a></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="microscoft-visual-studio">
+<h3>Microscoft Visual Studio<a class="headerlink" href="#microscoft-visual-studio" title="Permalink to this headline">¶</a></h3>
+<p>MSVS is only available as 32-bit application. It can however happily target 64-bit systems.</p>
+</div>
+<div class="section" id="declaring-exported-symbols-in-dlls">
+<h3>Declaring exported symbols in DLLs<a class="headerlink" href="#declaring-exported-symbols-in-dlls" title="Permalink to this headline">¶</a></h3>
+<p>Build Windows dynamic link libraries (DLL) by linking with <code class="docutils literal notranslate"><span class="pre">/DLL</span></code> option. Unlike Linux dynamics libraries, DLLs require explicit declaration of which functions/classes are to be exported <a class="footnote-reference brackets" href="#id13" id="id11">6</a>.</p>
+<p>Easiest way to do this is to prepend <code class="docutils literal notranslate"><span class="pre">__declspec(dllexport)</span></code> to function/class declaration, as well as any superclasses <a class="footnote-reference brackets" href="#id14" id="id12">7</a>.</p>
+<p>If writing portable code, probably wise to use preprocessor commands to limit prepending to Windows builds, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#ifndef DLLExport</span>
+<span class="c1">#ifdef _WIN32</span>
+<span class="c1">#define DLLExport __declspec(dllexport)</span>
+<span class="c1">#else</span>
+<span class="c1">#define DLLExport</span>
+<span class="c1">#endif // _WIN32</span>
+<span class="c1">#endif // DLLExport</span>
+</pre></div>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id11">6</a></span></dt>
+<dd><p><a class="reference external" href="https://docs.microsoft.com/en-gb/cpp/build/reference/dll-build-a-dll">https://docs.microsoft.com/en-gb/cpp/build/reference/dll-build-a-dll</a></p>
+</dd>
+<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id12">7</a></span></dt>
+<dd><p><a class="reference external" href="https://docs.microsoft.com/en-gb/cpp/cpp/dllexport-dllimport">https://docs.microsoft.com/en-gb/cpp/cpp/dllexport-dllimport</a></p>
+</dd>
+</dl>
+</div>
+</div>
 <div class="section" id="hashing">
 <h2>Hashing<a class="headerlink" href="#hashing" title="Permalink to this headline">¶</a></h2>
-<p>Builtin MD5 hashing <a class="footnote-reference brackets" href="#id2" id="id1">1</a>:</p>
+<p>Builtin MD5 hashing <a class="footnote-reference brackets" href="#id16" id="id15">8</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CertUtil</span> <span class="o">-</span><span class="n">hashfile</span> <span class="o">&lt;</span><span class="n">FILE</span><span class="o">&gt;</span> <span class="n">MD5</span>
 </pre></div>
 </div>
 <dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id15">8</a></span></dt>
 <dd><p><a class="reference external" href="https://superuser.com/questions/245775/is-there-a-built-in-checksum-utility-on-windows-7/898377#898377">https://superuser.com/questions/245775/is-there-a-built-in-checksum-utility-on-windows-7/898377#898377</a></p>
 </dd>
 </dl>
@@ -55,31 +139,12 @@
 <p>N.b. for links to executables, must make sure <code class="docutils literal notranslate"><span class="pre">&lt;NAME&gt;</span></code> has .exe suffix.</p>
 </div>
 <div class="section" id="windows-10-usb-serial-drivers">
-<h2>Windows &lt;10 USB Serial Drivers<a class="headerlink" href="#windows-10-usb-serial-drivers" title="Permalink to this headline">¶</a></h2>
+<h2>Windows &lt;10 USB serial drivers<a class="headerlink" href="#windows-10-usb-serial-drivers" title="Permalink to this headline">¶</a></h2>
 <p>Windows only included dedicated USB-serial drivers in Windows 10 (<code class="docutils literal notranslate"><span class="pre">usbser.sys</span></code>).</p>
 <p>Previous versions <a class="reference external" href="https://support.microsoft.com/en-us/kb/837637">should instead use usb modem drivers (mdmcpq.sys)</a> which offers almost identical functionality. To do so, need to <a class="reference external" href="https://social.technet.microsoft.com/Forums/windows/en-US/01e8e7db-0461-48d6-bc3d-aa8ee2620b67/usb-modem-driver-usbsersys-does-not-install-on-windows-7-64bit-enterprise?forum=w7itprohardware">reference modem driver in .inf file</a>. Then Just “Have Disk” inf file, and voila - instant USB COM port</p>
 </div>
-<div class="section" id="windows-c-development">
-<h2>Windows C++ Development<a class="headerlink" href="#windows-c-development" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="visual-studio-2015">
-<h3>Visual Studio &lt; 2015<a class="headerlink" href="#visual-studio-2015" title="Permalink to this headline">¶</a></h3>
-<p>Microsoft Visual C RunTime (<code class="docutils literal notranslate"><span class="pre">MSVCRT.dll</span></code>) is a library which provides typical functions required by C and C++ programs (e.g. string manipulation, malloc, etc). It ships by default with the Windows OS, but is considered part of the OS and therefore can be patched (i.e. modified) at any time. As such, linking against MSVCRT.dll is strongly discouraged as there is no guarantee it will be the same on the target machine.</p>
-<p>To remedy this, each version of VS ships with its own Visual C RunTime library; e.g. VS 2008 ships with <code class="docutils literal notranslate"><span class="pre">MSVCRT90.dll</span></code>, VS 2010 shipped with <code class="docutils literal notranslate"><span class="pre">MSVCRT100.dll</span></code>, etc. Devs are recommended to link against the DLL shipped with their version of VS. This means however that when depolying the software, either the program must be statically linked (contains the library functions, larger file size), the specific <code class="docutils literal notranslate"><span class="pre">MSVCRTxxx.dll</span></code> must be distributed with the program (“app-local distribution”), or the target machine must be assumed to have to have it in a known location (“central distribution”).</p>
-<p>Full details: <a class="reference external" href="http://stackoverflow.com/questions/1073509/should-i-redistribute-msvcrt-dll-with-my-application">http://stackoverflow.com/questions/1073509/should-i-redistribute-msvcrt-dll-with-my-application</a></p>
-</div>
-<div class="section" id="id3">
-<h3>Visual Studio 2015<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>With the advent of Windows 10 and continous rolling updates, MS realised that it could revert back to having once central runtime DLL without any negative consequences - all Win10 machines are forcefully updated and so everyone (devs and end-users) will always have the latest version of the VCRT DLL. This eternal VCRT DLL is known as the Universal CRT and is spread out across two files; <code class="docutils literal notranslate"><span class="pre">vcruntime.dll</span></code> and <code class="docutils literal notranslate"><span class="pre">ucrtbase.dll</span></code>. As these are integral parts of the OD, Win10 end-users can always be assumed to have them installed. End-users running Win &lt; 10 do not however, and so DLL redistribution must be done as before.</p>
-<p>Visual Studio 2015 should already link against <code class="docutils literal notranslate"><span class="pre">ucrtbase.dll</span></code> by default.</p>
-<p>Full details: <a class="reference external" href="https://blogs.msdn.microsoft.com/vcblog/2015/03/03/introducing-the-universal-crt/">https://blogs.msdn.microsoft.com/vcblog/2015/03/03/introducing-the-universal-crt/</a></p>
-</div>
-<div class="section" id="notes">
-<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h3>
-<p>VS is only available as 32-bit application. It can however happily traget 64-bit systems.</p>
-</div>
-</div>
 <div class="section" id="logged-in-users">
-<h2>Logged in Users<a class="headerlink" href="#logged-in-users" title="Permalink to this headline">¶</a></h2>
+<h2>Logged in users<a class="headerlink" href="#logged-in-users" title="Permalink to this headline">¶</a></h2>
 <p>Use sysinternals live from command prompt:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\\<span class="n">live</span><span class="o">.</span><span class="n">sysinternals</span><span class="o">.</span><span class="n">com</span>\<span class="n">Tools</span>\<span class="n">psloggedon</span><span class="o">.</span><span class="n">exe</span> \\<span class="o">&lt;</span><span class="n">workstation_name</span><span class="o">&gt;</span>
 </pre></div>
@@ -123,7 +188,6 @@
 <li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
-<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
@@ -133,13 +197,11 @@
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
@@ -154,16 +216,18 @@
 <li class="toctree-l2"><a class="reference internal" href="vscode.html">Visual Studio Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Windows</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#hashing">Hashing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#symlinks">Symlinks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#windows-10-usb-serial-drivers">Windows &lt;10 USB Serial Drivers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#windows-c-development">Windows C++ Development</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#visual-studio-2015">Visual Studio &lt; 2015</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">Visual Studio 2015</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windows-c-development">Windows C++ development</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#msvc-build-tools">MSVC build tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#msvc-search-paths">MSVC search paths</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#msvc-runtime">MSVC runtime</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#microscoft-visual-studio">Microscoft Visual Studio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#declaring-exported-symbols-in-dlls">Declaring exported symbols in DLLs</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#logged-in-users">Logged in Users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hashing">Hashing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#symlinks">Symlinks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windows-10-usb-serial-drivers">Windows &lt;10 USB serial drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logged-in-users">Logged in users</a></li>
 </ul>
 </li>
 </ul>

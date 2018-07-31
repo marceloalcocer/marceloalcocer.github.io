@@ -14,7 +14,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="CSS" href="css.html" />
+    <link rel="next" title="Encrypted DVD Playback" href="dvd_crypto.html" />
     <link rel="prev" title="Misc Terminal Commands" href="bash.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
    
@@ -67,27 +67,31 @@
 </div>
 <div class="section" id="building-dynamically-linked-libaries">
 <h2>Building dynamically linked libaries<a class="headerlink" href="#building-dynamically-linked-libaries" title="Permalink to this headline">¶</a></h2>
-<p>Object files to be linked into shared library must be compiled with <code class="docutils literal notranslate"><span class="pre">-fPIC</span></code> option <a class="footnote-reference brackets" href="#id11" id="id7">4</a> <a class="footnote-reference brackets" href="#id12" id="id8">5</a>, e.g.:</p>
+<p>Object files to be linked into shared library must be compiled with <code class="docutils literal notranslate"><span class="pre">-fPIC</span></code> option <a class="footnote-reference brackets" href="#id12" id="id7">4</a> <a class="footnote-reference brackets" href="#id13" id="id8">5</a>, e.g.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">fPIC</span> <span class="n">file1</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">o</span> <span class="n">file1</span><span class="o">.</span><span class="n">o</span>
 </pre></div>
 </div>
-<p>Whilst should only affect some speciifc architecures, in pratice <code class="docutils literal notranslate"><span class="pre">-fPIC</span></code> option seems to be required for shared-library builds on most architectures. Does not seem to be detrimental to non-library builds however <a class="footnote-reference brackets" href="#id13" id="id9">6</a>.</p>
+<p>Whilst should only affect some speciifc architecures, in pratice <code class="docutils literal notranslate"><span class="pre">-fPIC</span></code> option seems to be required for shared-library builds on most architectures. Does not seem to be detrimental to non-library builds however <a class="footnote-reference brackets" href="#id14" id="id9">6</a>.</p>
 <p>Link object files into shared library with <code class="docutils literal notranslate"><span class="pre">-shared</span></code> option:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">shared</span> <span class="n">file1</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">libfile1</span><span class="o">.</span><span class="n">so</span>
 </pre></div>
 </div>
-<p>Once the library has been built, the OS must be told where to find it at runtime. This may not be the same place as at link-time — often is desirable to move/copy library to centralised location (e.g. <code class="docutils literal notranslate"><span class="pre">/usr/local/lib</span></code>) after build. Simply copying library to <code class="docutils literal notranslate"><span class="pre">/usr/local/lib</span></code> after building may not be enough however as some OSes (e.g. Ubuntu) cache dynamic libraries <a class="footnote-reference brackets" href="#id14" id="id10">7</a>. On Ubuntu, can update library cache by calling <code class="docutils literal notranslate"><span class="pre">ldconfig</span></code>, or explicitly add new library path by exporting <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> environment variable.</p>
+<p>Once the library has been built, the OS must be told where to find it at runtime — this may not be the same place as at link-time. Exact link-/run-time serach rules can vary across Linux distributions, but generally can be set temporarily by setting <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> environment variable, or permanently by copying to a default location (e.g. <code class="docutils literal notranslate"><span class="pre">/usr/local/lib</span></code>) <a class="footnote-reference brackets" href="#id15" id="id10">7</a>.</p>
+<p>N.b. Simply copying library to e.g. <code class="docutils literal notranslate"><span class="pre">/usr/local/lib</span></code> after building may not be enough however as some distributions (e.g. Ubuntu) cache dynamic libraries, which therefore must be updated by calling <code class="docutils literal notranslate"><span class="pre">ldconfig</span></code> <a class="footnote-reference brackets" href="#id16" id="id11">8</a>.</p>
 <dl class="footnote brackets">
-<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id7">4</a></span></dt>
+<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id7">4</a></span></dt>
 <dd><p><a class="reference external" href="http://www.adp-gmbh.ch/cpp/gcc/create_lib.html">http://www.adp-gmbh.ch/cpp/gcc/create_lib.html</a></p>
 </dd>
-<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id8">5</a></span></dt>
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id8">5</a></span></dt>
 <dd><p><a class="reference external" href="https://stackoverflow.com/questions/31541451/create-shared-library-from-cpp-files-and-static-library-with-g">https://stackoverflow.com/questions/31541451/create-shared-library-from-cpp-files-and-static-library-with-g</a></p>
 </dd>
-<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id9">6</a></span></dt>
+<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id9">6</a></span></dt>
 <dd><p><a class="reference external" href="https://stackoverflow.com/questions/5311515/gcc-fpic-option">https://stackoverflow.com/questions/5311515/gcc-fpic-option</a></p>
 </dd>
-<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id10">7</a></span></dt>
+<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id10">7</a></span></dt>
+<dd><p><a class="reference external" href="https://unix.stackexchange.com/questions/22926/where-do-executables-look-for-shared-objects-at-runtime">https://unix.stackexchange.com/questions/22926/where-do-executables-look-for-shared-objects-at-runtime</a></p>
+</dd>
+<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id11">8</a></span></dt>
 <dd><p><a class="reference external" href="https://stackoverflow.com/questions/8039562/cannot-open-shared-object-file">https://stackoverflow.com/questions/8039562/cannot-open-shared-object-file</a></p>
 </dd>
 </dl>
@@ -135,7 +139,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#building-dynamically-linked-libaries">Building dynamically linked libaries</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
@@ -145,13 +148,11 @@
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
