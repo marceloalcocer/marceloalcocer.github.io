@@ -35,37 +35,30 @@
   <div class="section" id="sunfleet-pro-rata-rental">
 <h1>Sunfleet pro-rata rental<a class="headerlink" href="#sunfleet-pro-rata-rental" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://www.sunfleet.com">Sunfleet</a> allows cars to be used on pro-rata (i.e. per hour, per km) and flat-rate (i.e. 24 hours, weekend) schemes.</p>
-<p>If rental is only done on a pro-rata scheme and always renting the same class of car at the same time of day, the total monthly expenditure, <span class="math notranslate nohighlight">\(C\)</span>, is given by,</p>
+<p>If rental is only done on a pro-rata scheme and always renting the same class of car, the total monthly expenditure, <span class="math notranslate nohighlight">\(C\)</span>, is given by,</p>
 <div class="math notranslate nohighlight">
-\[C = C^{pro-rata}_{plan,car,time}(t,x) + C^{plan}_{plan}\]</div>
-<p>where <cite>t</cite> is the total rental duration (over 1 month), <cite>x</cite> the total distance travelled (over 1 month) and <cite>plan</cite>, <cite>car</cite>, <cite>time</cite> index the membership plan, rented car class, and time of day respectively <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
-<p>For any given combination of car class and time of day, the plan yielding the minimum monthly expenditure therefore depends on the total rental duration and distance, and is found by minimising over the <cite>plan</cite> dimension.</p>
-<p>Selected minimisations were performed using a simple Python <a class="reference external" href="https://github.com/marceloalcocer/sunfleet">Sunfleet membership plan class</a>, and are presented below to aid membership plan selection. In each case, the filled contours represent the minimum monthly expenditure at that point in the parameter space, whilst the solid contours denote the corresponding plan. e.g. The minimum monthly cost for renting a <cite>liten</cite> car during the day for 20 hours covering 100 km is ~ 1200 SEK, and is obtained by being on the <cite>small</cite> membership plan. Lines showing selected speed limits on Swedish roads are also shown to highlight regions of the parameter space which are accessible only illegally…</p>
+\[C = C^{pro-rata}_{plan,car}(t,x) + C^{plan}_{plan}\]</div>
+<p>where <cite>t</cite> is the total rental duration (over 1 month), <cite>x</cite> the total distance travelled (over 1 month) and <cite>plan</cite> and <cite>car</cite> index the membership plan and rented car class respectively <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
+<p>For any given car class, the plan yielding the minimum monthly expenditure therefore depends on the total rental duration and distance, and is found by minimising over the <cite>plan</cite> dimension.</p>
+<p>Selected minimisations were performed using a simple Python <a class="reference external" href="https://github.com/marceloalcocer/sunfleet">Sunfleet membership plan class</a>, and are presented below to aid membership plan selection. In each case, the filled contours represent the minimum monthly expenditure at that point in the parameter space, whilst the solid contours denote the corresponding plan. e.g. The minimum monthly cost for renting a <cite>liten</cite> car during the day for 20 hours covering 100 km is ~ 1200 SEK, and is obtained by being on the <cite>small</cite> membership plan. Lines showing selected speed limits on Swedish roads are also shown to highlight regions of the parameter space which may be are accessible only illegally…</p>
 <link rel="stylesheet" href="_static/css/sunfleet.css">
 
 <form id="controls">
 	<fieldset>
 		<legend>Car</legend>
 		<select id="car">
-			<option value="elbil" >Elbil</option>
 			<option value="liten" selected>Liten</option>
 			<option value="mellan" >Mellan</option>
 			<option value="stor" >Stor</option>
 			<option value="premium" >Premium</option>
 			<option value="transport_liten" >Transport (liten)</option>
+			<option value="transport_mellan" >Transport (mellan)</option>
 			<option value="transport_stor" >Transport (stor)</option>
-		</select>
-	</fieldset>
-	<fieldset>
-		<legend>Time</legend>
-		<select id="time">
-			<option value="day" selected>Day</option>
-			<option value="night" >Night</option>
 		</select>
 	</fieldset>
 </form>
 
-<img id="graph" src="_static/img/sunfleet_liten_day.png">
+<img id="graph" src="_static/img/sunfleet_liten.png">
 
 <script src="_static/scripts/sunfleet.js"></script>
 
