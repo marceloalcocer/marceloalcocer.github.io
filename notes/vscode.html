@@ -181,11 +181,14 @@
 #
 #
 
+
 git fetch
-git checkout $1
+git checkout master
+git merge $1
 yarn
 yarn run gulp vscode-linux-x64
-sed -i &quot;$ d&quot;
+cd ../VSCode-linux-x64
+sed -i &quot;$ d&quot; resources/app/product.json
 echo -e &#39;\t&quot;extensionsGallery&quot;: {\n\t\t&quot;serviceUrl&quot;: &quot;https://marketplace.visualstudio.com/_apis/public/gallery&quot;,\n\t\t&quot;cacheUrl&quot;: &quot;https://vscode.blob.core.windows.net/gallery/index&quot;,\n\t\t&quot;itemUrl&quot;: &quot;https://marketplace.visualstudio.com/items&quot;\n\t}\n}&#39; &gt;&gt; resources/app/product.json
 </pre></div>
 </div>
