@@ -146,6 +146,32 @@
 </dd>
 </dl>
 </div>
+<div class="section" id="recovery">
+<h2>Recovery<a class="headerlink" href="#recovery" title="Permalink to this headline">¶</a></h2>
+<p>Create new user:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">adduser</span> <span class="n">foobar</span>
+</pre></div>
+</div>
+<p>New user can mount external filesystems. FSs take permissions however of mount point — most frequently root. As such, cannot read (copy) any files which do not match current user (e.g. cannot copy malcocer files from foobar) — must use SU preveledges.</p>
+<p>Add user to sudo group:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">adduser</span> <span class="n">foobar</span> <span class="n">sudo</span>
+</pre></div>
+</div>
+<p>Now can copy backup keys:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">cp</span> <span class="o">&lt;</span><span class="n">BACKUP</span><span class="o">&gt;/.</span><span class="n">gnupg</span><span class="o">/*.</span><span class="n">gpg</span> <span class="o">./</span><span class="n">gnupg</span>
+</pre></div>
+</div>
+<p>Can now list keys as usual:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gpg2</span> <span class="o">--</span><span class="nb">list</span><span class="o">-</span><span class="n">keys</span>
+</pre></div>
+</div>
+<p>Now check restore with a single file. Again, must use sudo to access backup files if different from current user:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">duplicity</span> <span class="n">restore</span> <span class="o">--</span><span class="n">file</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">restore</span> <span class="o">&lt;</span><span class="n">FILE</span><span class="o">&gt;</span> <span class="n">file</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">BACKUP</span><span class="o">&gt;&lt;</span><span class="n">FILE</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">DEST</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">verbosity</span> <span class="n">debug</span>
+</pre></div>
+</div>
+<p>First time, will download signatures — takes a long time.</p>
+<p>Will of course be prompted for passphrase for symmetric decryption of private key in order to decrypt archive.</p>
+</div>
 </div>
 
 
@@ -191,11 +217,11 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#gnome-keyring">Gnome keyring</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gpg-agent">GPG agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recovery">Recovery</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
-<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
@@ -205,13 +231,11 @@
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
