@@ -1,109 +1,96 @@
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>HTML Plotting Libraries &#8212; marceloalcocer.github.io 0.1 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HTML Plotting Libraries &mdash; marceloalcocer.github.io 0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="HTML Presentation Libraries" href="html_presentation.html" />
+    <link rel="next" title="ImageMagik Thumbnailing" href="im_thumbnail.html" />
     <link rel="prev" title="Hardware Issues" href="hardware.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    
+
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
    
-   
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <div class="wy-grid-for-nav">
 
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-  </head><body>
-  
+          
+            <a href="../index.html" class="icon icon-home"> marceloalcocer.github.io
+          
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+          
+          </a>
+
+          
             
-  <div class="section" id="html-plotting-libraries">
-<h1>HTML Plotting Libraries<a class="headerlink" href="#html-plotting-libraries" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="d3">
-<h2>D3<a class="headerlink" href="#d3" title="Permalink to this headline">¶</a></h2>
-<p>Renders data (i.e. arrays of numbers) using W3 DOM standards (SVG, CSS, HTML). Pure JS.</p>
-</div>
-<div class="section" id="mpld3">
-<h2>mpld3<a class="headerlink" href="#mpld3" title="Permalink to this headline">¶</a></h2>
-<p>Backend for MPL. Converts MPL objects into numerical arrays which can then be rendered using D3.</p>
-<p>As uses D3, outputs in SVG rather than interactive HTML5 canvas (c.f. Bokeh below). Uses plugins (JS + python) to provide interactivity however (zooming, panning, labels, etc.). Builtin plugins should be sufficient for basic data exploration.</p>
-<p>Not designed for large datasets, so can be slow with many points.</p>
-<p>Uses MPL plotting commands.</p>
-</div>
-<div class="section" id="bokeh">
-<h2>Bokeh<a class="headerlink" href="#bokeh" title="Permalink to this headline">¶</a></h2>
-<p>Python library for plotting to HTML canvas — native HTML interactivity and dynamic-ness <a class="footnote-reference brackets" href="#id3" id="id1">1</a> .</p>
-<p>Specifically designed for rendering large datasets (downsampling, etc.)</p>
-<p>Will support MPL eventually <a class="footnote-reference brackets" href="#id4" id="id2">2</a>, but has its own plotting commands too:</p>
-<blockquote>
-<div><p>How does Bokeh compare to mpld3?</p>
-<p>For a lightweight, python-only library that exposes most of matplotlib to the browser, mpld3 could be a good choice. Bokeh also intends to fully support the MPL interface (and hence Seaborn, pandas, and ggplot.py), however the main goal of Bokeh is to provide approachable capability for novel interactive visualizations in the browser. If you would like to have the benefits of HTML canvas rendering, dynamic downsampling, abstract rendering, server plot hosting, and the possibility of interacting from languages besides python, please consider Bokeh for your project.</p>
-<p class="attribution">—<a class="reference external" href="http://bokehplots.com/pages/faqs.html">http://bokehplots.com/pages/faqs.html</a></p>
-</div></blockquote>
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p><a class="reference external" href="http://www.w3schools.com/html/html5_canvas.asp">http://www.w3schools.com/html/html5_canvas.asp</a></p>
-</dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p><a class="reference external" href="http://bokeh.pydata.org/en/latest/docs/user_guide/compat.html#matplotlib-seaborn-ggplot-and-pandas">http://bokeh.pydata.org/en/latest/docs/user_guide/compat.html#matplotlib-seaborn-ggplot-and-pandas</a></p>
-</dd>
-</dl>
-</div>
+            
+              <div class="version">
+                0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
 
-
-          </div>
+          
         </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">marceloalcocer.github.io</a></h1>
 
-
-
-
-
-
-
-
-
-
-
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
-<ul class="current">
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
-<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
@@ -118,13 +105,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#bokeh">Bokeh</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
@@ -145,22 +130,161 @@
 <li class="toctree-l1"><a class="reference internal" href="../sunfleet.html">Sunfleet</a></li>
 </ul>
 
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">marceloalcocer.github.io</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../notes.html">Notes</a> &raquo;</li>
+        
+      <li>HTML Plotting Libraries</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="html-plotting-libraries">
+<h1>HTML Plotting Libraries<a class="headerlink" href="#html-plotting-libraries" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="d3">
+<h2>D3<a class="headerlink" href="#d3" title="Permalink to this headline">¶</a></h2>
+<p>Renders data (i.e. arrays of numbers) using W3 DOM standards (SVG, CSS, HTML). Pure JS.</p>
+</div>
+<div class="section" id="mpld3">
+<h2>mpld3<a class="headerlink" href="#mpld3" title="Permalink to this headline">¶</a></h2>
+<p>Backend for MPL. Converts MPL objects into numerical arrays which can then be rendered using D3.</p>
+<p>As uses D3, outputs in SVG rather than interactive HTML5 canvas (c.f. Bokeh below). Uses plugins (JS + python) to provide interactivity however (zooming, panning, labels, etc.). Builtin plugins should be sufficient for basic data exploration.</p>
+<p>Not designed for large datasets, so can be slow with many points.</p>
+<p>Uses MPL plotting commands.</p>
+</div>
+<div class="section" id="bokeh">
+<h2>Bokeh<a class="headerlink" href="#bokeh" title="Permalink to this headline">¶</a></h2>
+<p>Python library for plotting to HTML canvas — native HTML interactivity and dynamic-ness <a class="footnote-reference" href="#id3" id="id1">[1]</a> .</p>
+<p>Specifically designed for rendering large datasets (downsampling, etc.)</p>
+<p>Will support MPL eventually <a class="footnote-reference" href="#id4" id="id2">[2]</a>, but has its own plotting commands too:</p>
+<blockquote>
+<div><p>How does Bokeh compare to mpld3?</p>
+<p>For a lightweight, python-only library that exposes most of matplotlib to the browser, mpld3 could be a good choice. Bokeh also intends to fully support the MPL interface (and hence Seaborn, pandas, and ggplot.py), however the main goal of Bokeh is to provide approachable capability for novel interactive visualizations in the browser. If you would like to have the benefits of HTML canvas rendering, dynamic downsampling, abstract rendering, server plot hosting, and the possibility of interacting from languages besides python, please consider Bokeh for your project.</p>
+<p class="attribution">&mdash;<a class="reference external" href="http://bokehplots.com/pages/faqs.html">http://bokehplots.com/pages/faqs.html</a></p>
+</div></blockquote>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://www.w3schools.com/html/html5_canvas.asp">http://www.w3schools.com/html/html5_canvas.asp</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://bokeh.pydata.org/en/latest/docs/user_guide/compat.html#matplotlib-seaborn-ggplot-and-pandas">http://bokeh.pydata.org/en/latest/docs/user_guide/compat.html#matplotlib-seaborn-ggplot-and-pandas</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Marcelo Alcocer.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2017, Marcelo Alcocer.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
-      
-    </div>
 
-    
+    </section>
 
-    
-  </body>
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

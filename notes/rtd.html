@@ -1,107 +1,96 @@
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>Read The Docs &#8212; marceloalcocer.github.io 0.1 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Read The Docs &mdash; marceloalcocer.github.io 0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Server-Side Scripting" href="server_side_scripting.html" />
     <link rel="prev" title="reveal.js" href="reveal_js.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    
+
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
    
-   
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <div class="wy-grid-for-nav">
 
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-  </head><body>
-  
+          
+            <a href="../index.html" class="icon icon-home"> marceloalcocer.github.io
+          
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+          
+          </a>
+
+          
             
-  <div class="section" id="read-the-docs">
-<h1>Read The Docs<a class="headerlink" href="#read-the-docs" title="Permalink to this headline">¶</a></h1>
-<p>To generate documentation, must be able to run autodoc on RTD build server. This involves importing the ultrafast module, which obviously fails as it depends on lots of Python packages which are not necessarily installed on the build server (e.g. SciPy). The way RTD gets round this is by allowing you to install your package on their build server using pip <a class="footnote-reference brackets" href="#id3" id="id1">1</a> <a class="footnote-reference brackets" href="#id4" id="id2">2</a>. In doing so, you can specify a pip requirements file which details any dependencies your package may have. These will then be installed first.</p>
-<p>As such, to properly serve autodoc generated documentation on RTD must:</p>
-<ol class="arabic simple">
-<li><p>Make package installable via pip, ensuring pip requirements file contains all dependencies</p></li>
-<li><p>Push package to GitHub</p></li>
-<li><p>Specify location of pip requirements file on RTD project settings</p></li>
-</ol>
-<p>Did all this and finally got RTD working. Issue was that had to push to GitHub to test. As such, all tests went live. Now begin clean up operation:</p>
-<ol class="arabic">
-<li><p>Backup successful install files</p></li>
-<li><p>Delete local <code class="docutils literal notranslate"><span class="pre">feat/install</span></code> branch:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">D</span> <span class="n">feat</span><span class="o">/</span><span class="n">install</span>
-</pre></div>
-</div>
-</li>
-<li><p>Delete remote <code class="docutils literal notranslate"><span class="pre">feat/install</span></code> branch (via GitHub hopefully…)</p></li>
-<li><p>Paste successful install files (into new <code class="docutils literal notranslate"><span class="pre">feat/install</span></code> branch)</p></li>
-<li><p>Merge into dev, push and pretend nothing happened</p></li>
-<li><p>Reconfigure RTD to use dev branch once again</p></li>
-</ol>
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p><a class="reference external" href="https://docs.python.org/3/distutils/setupscript.html">https://docs.python.org/3/distutils/setupscript.html</a></p>
-</dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p><a class="reference external" href="https://pip.pypa.io/en/stable/user_guide/">https://pip.pypa.io/en/stable/user_guide/</a></p>
-</dd>
-</dl>
+            
+              <div class="version">
+                0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
 
-
-          </div>
+          
         </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">marceloalcocer.github.io</a></h1>
 
-
-
-
-
-
-
-
-
-
-
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
-<ul class="current">
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
-<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
@@ -111,13 +100,11 @@
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
@@ -138,22 +125,164 @@
 <li class="toctree-l1"><a class="reference internal" href="../sunfleet.html">Sunfleet</a></li>
 </ul>
 
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">marceloalcocer.github.io</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../notes.html">Notes</a> &raquo;</li>
+        
+      <li>Read The Docs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="read-the-docs">
+<h1>Read The Docs<a class="headerlink" href="#read-the-docs" title="Permalink to this headline">¶</a></h1>
+<p>To generate documentation, must be able to run autodoc on RTD build server. This involves importing the ultrafast module, which obviously fails as it depends on lots of Python packages which are not necessarily installed on the build server (e.g. SciPy). The way RTD gets round this is by allowing you to install your package on their build server using pip <a class="footnote-reference" href="#id3" id="id1">[1]</a> <a class="footnote-reference" href="#id4" id="id2">[2]</a>. In doing so, you can specify a pip requirements file which details any dependencies your package may have. These will then be installed first.</p>
+<p>As such, to properly serve autodoc generated documentation on RTD must:</p>
+<ol class="arabic simple">
+<li>Make package installable via pip, ensuring pip requirements file contains all dependencies</li>
+<li>Push package to GitHub</li>
+<li>Specify location of pip requirements file on RTD project settings</li>
+</ol>
+<p>Did all this and finally got RTD working. Issue was that had to push to GitHub to test. As such, all tests went live. Now begin clean up operation:</p>
+<ol class="arabic">
+<li><p class="first">Backup successful install files</p>
+</li>
+<li><p class="first">Delete local <code class="docutils literal notranslate"><span class="pre">feat/install</span></code> branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">D</span> <span class="n">feat</span><span class="o">/</span><span class="n">install</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Delete remote <code class="docutils literal notranslate"><span class="pre">feat/install</span></code> branch (via GitHub hopefully…)</p>
+</li>
+<li><p class="first">Paste successful install files (into new <code class="docutils literal notranslate"><span class="pre">feat/install</span></code> branch)</p>
+</li>
+<li><p class="first">Merge into dev, push and pretend nothing happened</p>
+</li>
+<li><p class="first">Reconfigure RTD to use dev branch once again</p>
+</li>
+</ol>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://docs.python.org/3/distutils/setupscript.html">https://docs.python.org/3/distutils/setupscript.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://pip.pypa.io/en/stable/user_guide/">https://pip.pypa.io/en/stable/user_guide/</a></td></tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Marcelo Alcocer.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2017, Marcelo Alcocer.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
-      
-    </div>
 
-    
+    </section>
 
-    
-  </body>
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

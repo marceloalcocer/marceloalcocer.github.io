@@ -1,102 +1,96 @@
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>Eclipse Manual Upgrade &#8212; marceloalcocer.github.io 0.1 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Eclipse Manual Upgrade &mdash; marceloalcocer.github.io 0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="evince copy picture" href="evince_copy.html" />
     <link rel="prev" title="Encrypted DVD Playback" href="dvd_crypto.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    
+
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
    
-   
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <div class="wy-grid-for-nav">
 
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-  </head><body>
-  
+          
+            <a href="../index.html" class="icon icon-home"> marceloalcocer.github.io
+          
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+          
+          </a>
+
+          
             
-  <div class="section" id="eclipse-manual-upgrade">
-<h1>Eclipse Manual Upgrade<a class="headerlink" href="#eclipse-manual-upgrade" title="Permalink to this headline">¶</a></h1>
-<p>Cannot upgrade directly from Eclipse Mars (4.5) to Neon (4.6), instead must do manual install <a class="footnote-reference brackets" href="#id3" id="id1">1</a>.</p>
-<p>First, back up workspace and project files <a class="footnote-reference brackets" href="#id4" id="id2">2</a>:</p>
-<ul class="simple">
-<li><p>Preferences (export)</p></li>
-<li><p>Workspace (<code class="docutils literal notranslate"><span class="pre">~/Coding/.metadata</span></code>)</p></li>
-<li><p>Projects (<code class="docutils literal notranslate"><span class="pre">&lt;project&gt;/.project</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;/.pydevproject</span></code>)</p>
-<ul>
-<li><p>Sandbox/Python</p></li>
-<li><p>ultrafast</p></li>
-<li><p>transient</p></li>
-</ul>
-</li>
-</ul>
-<p>Uninstall olde version by removing Eclipse instal directory (<code class="docutils literal notranslate"><span class="pre">/opt/eclipse</span></code>). Then simply unzip new version to install directory.</p>
-<p>Unfortunately however, Neon requires newer version of Java. Open version of this is provided by OpenJDK 8. No openjdk-8 package is currently available for Ubuntu 14.04, only openjdk-7. Could try to find backport, but openjdk-8 is standard JDK version of Ubuntu 16.04. As such, probably easier to wait for full upgrade.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p><a class="reference external" href="https://wiki.eclipse.org/FAQ_How_do_I_upgrade_Eclipse_IDE%3F">https://wiki.eclipse.org/FAQ_How_do_I_upgrade_Eclipse_IDE%3F</a></p>
-</dd>
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p><a class="reference external" href="https://www.eclipse.org/eclipse/development/readme_eclipse_4.6.php#mozTocId324309">https://www.eclipse.org/eclipse/development/readme_eclipse_4.6.php#mozTocId324309</a></p>
-</dd>
-</dl>
+            
+              <div class="version">
+                0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
 
-
-          </div>
+          
         </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">marceloalcocer.github.io</a></h1>
 
-
-
-
-
-
-
-
-
-
-
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
-<ul class="current">
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
-<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Eclipse Manual Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
@@ -106,13 +100,11 @@
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
@@ -133,22 +125,153 @@
 <li class="toctree-l1"><a class="reference internal" href="../sunfleet.html">Sunfleet</a></li>
 </ul>
 
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">marceloalcocer.github.io</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../notes.html">Notes</a> &raquo;</li>
+        
+      <li>Eclipse Manual Upgrade</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="eclipse-manual-upgrade">
+<h1>Eclipse Manual Upgrade<a class="headerlink" href="#eclipse-manual-upgrade" title="Permalink to this headline">¶</a></h1>
+<p>Cannot upgrade directly from Eclipse Mars (4.5) to Neon (4.6), instead must do manual install <a class="footnote-reference" href="#id3" id="id1">[1]</a>.</p>
+<p>First, back up workspace and project files <a class="footnote-reference" href="#id4" id="id2">[2]</a>:</p>
+<ul class="simple">
+<li>Preferences (export)</li>
+<li>Workspace (<code class="docutils literal notranslate"><span class="pre">~/Coding/.metadata</span></code>)</li>
+<li>Projects (<code class="docutils literal notranslate"><span class="pre">&lt;project&gt;/.project</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;/.pydevproject</span></code>)<ul>
+<li>Sandbox/Python</li>
+<li>ultrafast</li>
+<li>transient</li>
+</ul>
+</li>
+</ul>
+<p>Uninstall olde version by removing Eclipse instal directory (<code class="docutils literal notranslate"><span class="pre">/opt/eclipse</span></code>). Then simply unzip new version to install directory.</p>
+<p>Unfortunately however, Neon requires newer version of Java. Open version of this is provided by OpenJDK 8. No openjdk-8 package is currently available for Ubuntu 14.04, only openjdk-7. Could try to find backport, but openjdk-8 is standard JDK version of Ubuntu 16.04. As such, probably easier to wait for full upgrade.</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://wiki.eclipse.org/FAQ_How_do_I_upgrade_Eclipse_IDE%3F">https://wiki.eclipse.org/FAQ_How_do_I_upgrade_Eclipse_IDE%3F</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://www.eclipse.org/eclipse/development/readme_eclipse_4.6.php#mozTocId324309">https://www.eclipse.org/eclipse/development/readme_eclipse_4.6.php#mozTocId324309</a></td></tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Marcelo Alcocer.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2017, Marcelo Alcocer.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
-      
-    </div>
 
-    
+    </section>
 
-    
-  </body>
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

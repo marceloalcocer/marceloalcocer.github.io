@@ -1,37 +1,196 @@
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>Git hosted on WAMP &#8212; marceloalcocer.github.io 0.1 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Git hosted on WAMP &mdash; marceloalcocer.github.io 0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="GitHub SSH" href="github_ssh.html" />
     <link rel="prev" title="Git Cheatsheet" href="git_cheatsheet.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    
+
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
    
-   
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> marceloalcocer.github.io
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Git hosted on WAMP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#http">HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#web-interface">Web Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ftp">FTP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reveal_js.html">reveal.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-Side Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html">Visual Studio Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ultrajs.html">ultrajs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sunfleet.html">Sunfleet</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">marceloalcocer.github.io</a>
+        
+      </nav>
 
 
-  </head><body>
-  
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../notes.html">Notes</a> &raquo;</li>
+        
+      <li>Git hosted on WAMP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="git-hosted-on-wamp">
 <h1>Git hosted on WAMP<a class="headerlink" href="#git-hosted-on-wamp" title="Permalink to this headline">¶</a></h1>
@@ -40,8 +199,8 @@
 <p>As have to install Git on server, might as well try more standard setup of Git over (smart) HTTP.</p>
 <div class="section" id="http">
 <h2>HTTP<a class="headerlink" href="#http" title="Permalink to this headline">¶</a></h2>
-<p>Downloaded Git for Windows official installation <a class="footnote-reference brackets" href="#id5" id="id1">1</a>. This comes bundled with MinGW installation which provide basic GNU/Linux tools required for running Git.</p>
-<p>Followed steps in Git book on setting up Git over Smart HTTP <a class="footnote-reference brackets" href="#id6" id="id2">2</a>.</p>
+<p>Downloaded Git for Windows official installation <a class="footnote-reference" href="#id5" id="id1">[1]</a>. This comes bundled with MinGW installation which provide basic GNU/Linux tools required for running Git.</p>
+<p>Followed steps in Git book on setting up Git over Smart HTTP <a class="footnote-reference" href="#id6" id="id2">[2]</a>.</p>
 <p>Created bare repository from git bash shell on server:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">C</span><span class="p">:</span>\<span class="n">xampp</span>\<span class="n">git</span>
 <span class="n">git</span> <span class="n">init</span> <span class="o">--</span><span class="n">bare</span> <span class="n">foo</span><span class="o">.</span><span class="n">git</span>
@@ -56,8 +215,8 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ScriptAlias</span> <span class="o">/</span><span class="n">git</span><span class="o">/</span> <span class="s2">&quot;C:/Program Files/Git/mingw64/libexec/git-core/git-http-backend.exe&quot;</span>
 </pre></div>
 </div>
-<p><em>N.b. location of main Git HTTP script</em> (<code class="docutils literal notranslate"><span class="pre">git-http-backend</span></code>) <em>on Windows differs from GNU/Linux</em> <a class="footnote-reference brackets" href="#id7" id="id3">3</a></p>
-<p>For some reason this doesn’t seem to work. Instead had to use regexp version <a class="footnote-reference brackets" href="#id8" id="id4">4</a>:</p>
+<p><em>N.b. location of main Git HTTP script</em> (<code class="docutils literal notranslate"><span class="pre">git-http-backend</span></code>) <em>on Windows differs from GNU/Linux</em> <a class="footnote-reference" href="#id7" id="id3">[3]</a></p>
+<p>For some reason this doesn’t seem to work. Instead had to use regexp version <a class="footnote-reference" href="#id8" id="id4">[4]</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ScriptAliasMatch</span> <span class="s2">&quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [0-9a-f]</span><span class="si">{2}</span><span class="s2">/[0-9a-f]</span><span class="si">{38}</span><span class="s2"> | pack/pack-[0-9a-f]</span><span class="si">{40}</span><span class="s2">\.(pack|idx)) | git-(upload|receive)-pack))$&quot;</span> <span class="s2">&quot;C:/Program Files/Git/mingw64/libexec/git-core/git-http-backend.exe/$1&quot;</span>
 </pre></div>
 </div>
@@ -119,39 +278,49 @@ ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [
 &lt;/Files&gt;
 </pre></div>
 </div>
-<dl class="footnote brackets">
-<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p><a class="reference external" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></p>
-</dd>
-<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p><a class="reference external" href="https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP">https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP</a></p>
-</dd>
-<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
-<dd><p><a class="reference external" href="https://stackoverflow.com/questions/33829145/git-smarthttp-where-is-git-http-backend-exe/33829578">https://stackoverflow.com/questions/33829145/git-smarthttp-where-is-git-http-backend-exe/33829578</a></p>
-</dd>
-<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
-<dd><p><a class="reference external" href="https://stackoverflow.com/questions/3817478/setting-up-git-server-on-windows-with-git-http-backend-exe">https://stackoverflow.com/questions/3817478/setting-up-git-server-on-windows-with-git-http-backend-exe</a></p>
-</dd>
-<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id10">5</a></span></dt>
-<dd><p><a class="reference external" href="http://www.jeremyskinner.co.uk/2010/07/31/hosting-a-git-server-under-apache-on-windows/">http://www.jeremyskinner.co.uk/2010/07/31/hosting-a-git-server-under-apache-on-windows/</a></p>
-</dd>
-</dl>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP">https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/33829145/git-smarthttp-where-is-git-http-backend-exe/33829578">https://stackoverflow.com/questions/33829145/git-smarthttp-where-is-git-http-backend-exe/33829578</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/3817478/setting-up-git-server-on-windows-with-git-http-backend-exe">https://stackoverflow.com/questions/3817478/setting-up-git-server-on-windows-with-git-http-backend-exe</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[5]</a></td><td><a class="reference external" href="http://www.jeremyskinner.co.uk/2010/07/31/hosting-a-git-server-under-apache-on-windows/">http://www.jeremyskinner.co.uk/2010/07/31/hosting-a-git-server-under-apache-on-windows/</a></td></tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="web-interface">
 <h2>Web Interface<a class="headerlink" href="#web-interface" title="Permalink to this headline">¶</a></h2>
 <p>Tried a few web interfaces:</p>
-<dl class="simple">
+<dl class="docutils">
 <dt>gitweb</dt>
-<dd><p>Generated CGI script is not compatible with Windows Perl</p>
-</dd>
+<dd>Generated CGI script is not compatible with Windows Perl</dd>
 <dt>gitlist</dt>
-<dd><p>Could not configure properly</p>
-</dd>
+<dd>Could not configure properly</dd>
 <dt>gogs</dt>
-<dd><p>Nice, but includes server</p>
-</dd>
+<dd>Nice, but includes server</dd>
 </dl>
-<p>Finally got GitPHP <a class="footnote-reference brackets" href="#id9" id="id10">5</a> to work nicely. Followed installation instructions with installation in <code class="docutils literal notranslate"><span class="pre">htdocs</span></code> and worked first time. Only issue was disabling cache as seemed to stick.</p>
+<p>Finally got GitPHP <a class="footnote-reference" href="#id9" id="id10">[5]</a> to work nicely. Followed installation instructions with installation in <code class="docutils literal notranslate"><span class="pre">htdocs</span></code> and worked first time. Only issue was disabling cache as seemed to stick.</p>
 <p>Would be nice to have following usage though:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">acq</span><span class="o">.</span><span class="mi">2</span><span class="n">d</span><span class="o">.</span><span class="n">chemphys</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">git</span><span class="o">/</span>               <span class="c1"># Web interface</span>
 <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">acq</span><span class="o">.</span><span class="mi">2</span><span class="n">d</span><span class="o">.</span><span class="n">chemphys</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">project</span><span class="o">.</span><span class="n">git</span>    <span class="c1"># Clone/push over HTTP</span>
@@ -165,15 +334,16 @@ ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [
 </pre></div>
 </div>
 <p>Can now browse at <code class="docutils literal notranslate"><span class="pre">http://acq.2d.chemphys.lu.se/git/</span></code>. Does not interfere with clone/push URL as git <code class="docutils literal notranslate"><span class="pre">ScriptAliasMatch</span></code> regexp filters out git HTTP requests to <code class="docutils literal notranslate"><span class="pre">git-http-backen.exe</span></code> and passes rest on.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id12">6</a></span></dt>
-<dd><p><a class="reference external" href="https://gitphp.org/">https://gitphp.org/</a></p>
-</dd>
-</dl>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id12">[6]</a></td><td><a class="reference external" href="https://gitphp.org/">https://gitphp.org/</a></td></tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="ftp">
 <h2>FTP<a class="headerlink" href="#ftp" title="Permalink to this headline">¶</a></h2>
-<p>Git natively supports some operations over FTP protocol, viz. <code class="docutils literal notranslate"><span class="pre">clone</span></code> and <code class="docutils literal notranslate"><span class="pre">fetch</span></code> <a class="footnote-reference brackets" href="#id11" id="id12">6</a>. For further operations (e.g. <code class="docutils literal notranslate"><span class="pre">push</span></code>) can use <code class="docutils literal notranslate"><span class="pre">git-ftp</span></code> <a class="footnote-reference brackets" href="#id14" id="id13">7</a>.</p>
+<p>Git natively supports some operations over FTP protocol, viz. <code class="docutils literal notranslate"><span class="pre">clone</span></code> and <code class="docutils literal notranslate"><span class="pre">fetch</span></code> <a class="footnote-reference" href="#id11" id="id12">[6]</a>. For further operations (e.g. <code class="docutils literal notranslate"><span class="pre">push</span></code>) can use <code class="docutils literal notranslate"><span class="pre">git-ftp</span></code> <a class="footnote-reference" href="#id14" id="id13">[7]</a>.</p>
 <p>Download <code class="docutils literal notranslate"><span class="pre">git-ftp</span></code> and install:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">install</span><span class="o">-</span><span class="nb">all</span>
 </pre></div>
@@ -187,111 +357,76 @@ ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">lftp</span>
 </pre></div>
 </div>
-<dl class="footnote brackets">
-<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id13">7</a></span></dt>
-<dd><p><a class="reference external" href="https://stackoverflow.com/questions/4664251/does-git-support-push-to-an-ftp-server">https://stackoverflow.com/questions/4664251/does-git-support-push-to-an-ftp-server</a></p>
-</dd>
-<dt class="label" id="id15"><span class="brackets">8</span></dt>
-<dd><p><a class="reference external" href="https://github.com/git-ftp/git-ftp">https://github.com/git-ftp/git-ftp</a></p>
-</dd>
-</dl>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id13">[7]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/4664251/does-git-support-push-to-an-ftp-server">https://stackoverflow.com/questions/4664251/does-git-support-push-to-an-ftp-server</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[8]</td><td><a class="reference external" href="https://github.com/git-ftp/git-ftp">https://github.com/git-ftp/git-ftp</a></td></tr>
+</tbody>
+</table>
 </div>
 </div>
 
 
+           </div>
+           
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">marceloalcocer.github.io</a></h1>
+          <footer>
+  
 
+  <hr/>
 
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Marcelo Alcocer.
 
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-
-
-
-
-
-
-
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
-<li class="toctree-l2"><a class="reference internal" href="css.html">CSS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
-<li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Git hosted on WAMP</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#http">HTTP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#web-interface">Web Interface</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ftp">FTP</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware Issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="html_presentation.html">HTML Presentation Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overleaf.html">Overleaf</a></li>
-<li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reveal_js.html">reveal.js</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-Side Scripting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
-<li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vscode.html">Visual Studio Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../ultrajs.html">ultrajs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sunfleet.html">Sunfleet</a></li>
-</ul>
-
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2017, Marcelo Alcocer.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
-      
-    </div>
 
-    
+    </section>
 
-    
-  </body>
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

@@ -1,324 +1,91 @@
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>Hardware Issues &#8212; marceloalcocer.github.io 0.1 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hardware Issues &mdash; marceloalcocer.github.io 0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="HTML Plotting Libraries" href="html_plotting_libs.html" />
     <link rel="prev" title="GPG" href="gpg.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    
+
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
    
-   
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <div class="wy-grid-for-nav">
 
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-  </head><body>
-  
+          
+            <a href="../index.html" class="icon icon-home"> marceloalcocer.github.io
+          
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+          
+          </a>
+
+          
             
-  <div class="section" id="hardware-issues">
-<h1>Hardware Issues<a class="headerlink" href="#hardware-issues" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="authentication-for-samba-print-server">
-<h2>Authentication for Samba print server<a class="headerlink" href="#authentication-for-samba-print-server" title="Permalink to this headline">¶</a></h2>
-<p>Having problems getting Ubuntu to authenticate with sambsa print server — authenticates successfully during setup if credentials input manually, fails otherwise.</p>
-<p>Turns out to be a Active Directory domain issue. Easily solved by prefixing username with <code class="docutils literal notranslate"><span class="pre">/</span></code> rather than usual <code class="docutils literal notranslate"><span class="pre">DOMAIN\USERNAME</span></code> <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p><a class="reference external" href="https://askubuntu.com/a/154081/326761">https://askubuntu.com/a/154081/326761</a></p>
-</dd>
-</dl>
-</div>
-<div class="section" id="drivers">
-<h2>Drivers<a class="headerlink" href="#drivers" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="concept">
-<h3>Concept<a class="headerlink" href="#concept" title="Permalink to this headline">¶</a></h3>
-<p>Hardware drivers are just kernel modules — C code conforming to kernel module API <a class="footnote-reference brackets" href="#id4" id="id3">2</a>. Most driver modules subsequently interact with HW via firmware code provided by manufacturer.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
-<dd><p><a class="reference external" href="http://www.tldp.org/LDP/lkmpg/2.6/html/">http://www.tldp.org/LDP/lkmpg/2.6/html/</a></p>
-</dd>
-</dl>
-</div>
-<div class="section" id="building-and-installing">
-<h3>Building and installing<a class="headerlink" href="#building-and-installing" title="Permalink to this headline">¶</a></h3>
-<p>Modules typically built using kernel makefile (<code class="docutils literal notranslate"><span class="pre">/lib/modules/${uname-r}/build</span></code>). Resulting kernel object binaries copied to kernel modules directory (e.g. <code class="docutils literal notranslate"><span class="pre">/lib/modules/$(uname-r)/kernel/driver</span></code>). Any firmware is copied to kernel firmware directory (<code class="docutils literal notranslate"><span class="pre">/lib/firmware/</span></code>).</p>
-<p>Modules dependencies are computed and module is placed into module dependency tree (<code class="docutils literal notranslate"><span class="pre">lib/modules/$(uname-r)/modules.dep</span></code>, loading order for new kernel boot) using <code class="docutils literal notranslate"><span class="pre">depmod</span></code>.</p>
-<p>Finally, modules dynamically can inserted/removed into/from currently running kernel using <code class="docutils literal notranslate"><span class="pre">modprobe</span></code>.</p>
-</div>
-<div class="section" id="dkms">
-<h3>DKMS<a class="headerlink" href="#dkms" title="Permalink to this headline">¶</a></h3>
-<p>DKMS is framework which automates module build/installation procedure. This avoids user having to recompile modules manually every time the kernel updates.</p>
-<p>Instead of building and inserting modules manually, install (copy) just firmware and give DKMS source code for module. It will then handle compilation, installation and insertion.</p>
-</div>
-</div>
-<div class="section" id="secure-boot">
-<h2>Secure Boot<a class="headerlink" href="#secure-boot" title="Permalink to this headline">¶</a></h2>
-<p>Secure Boot is a chain of trust which starts at firmware <a class="footnote-reference brackets" href="#id6" id="id5">3</a>; firmware certificate authority validates bootloader which validates kernel, which validates kernel modules, etc.</p>
-<p>In Ubuntu:</p>
-<ol class="arabic simple">
-<li><p>Ubuntu primary bootloader (<code class="docutils literal notranslate"><span class="pre">shim</span></code>) is signed with MS key, and so is validated by firmware CA.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">shim</span></code> has Canonical key which validates GRUB secondary bootloader</p></li>
-<li><p>GRUB validates kernel</p></li>
-<li><p>Kernel validates kernel modules</p></li>
-</ol>
-<dl class="footnote brackets">
-<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id5">3</a></span></dt>
-<dd><p><a class="reference external" href="https://wiki.ubuntu.com/SecurityTeam/SecureBoot">https://wiki.ubuntu.com/SecurityTeam/SecureBoot</a></p>
-</dd>
-</dl>
-</div>
-<div class="section" id="reverting-to-nouveau-graphics-driver">
-<h2>Reverting to Nouveau Graphics Driver<a class="headerlink" href="#reverting-to-nouveau-graphics-driver" title="Permalink to this headline">¶</a></h2>
-<p>Remove all nvidia drivers:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">purge</span> <span class="n">nvidia</span><span class="o">*</span>
-<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">autoremove</span>
-</pre></div>
-</div>
-<p>Resinstall nouveau firmware package:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">--</span><span class="n">reinstall</span> <span class="n">nouveau</span><span class="o">-</span><span class="n">firmware</span>
-</pre></div>
-</div>
-<p>Remove nouveau module blacklisting:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">rm</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">modprobe</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">nvidia</span><span class="o">-</span><span class="n">graphics</span><span class="o">-</span><span class="n">drivers</span><span class="o">.</span><span class="n">conf</span>
-</pre></div>
-</div>
-<p>Remove modified (newly created?) xorg.conf:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">X11</span><span class="o">/</span><span class="n">xorg</span><span class="o">.</span><span class="n">conf</span> <span class="o">/</span><span class="n">etx</span><span class="o">/</span><span class="n">X11</span><span class="o">/</span><span class="n">xorg</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">backup</span>
-</pre></div>
-</div>
-<p>Reconfigure X (not sure if this did anything):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dpkg</span><span class="o">-</span><span class="n">reconfigure</span> <span class="n">xserver</span><span class="o">-</span><span class="n">xorg</span>
-</pre></div>
-</div>
-<p>Change Xauthority permissions:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chown</span> <span class="n">malcocer</span> <span class="o">~/.</span><span class="n">Xauthority</span> <span class="n">sudo</span> <span class="n">chgrp</span> <span class="n">malcocer</span> <span class="o">~/.</span><span class="n">Xauthority</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="low-mic-level">
-<h2>Low Mic Level<a class="headerlink" href="#low-mic-level" title="Permalink to this headline">¶</a></h2>
-<p>alsamixer settings: No mic boost (playback and record), Full capture. Do <strong>NOT</strong> increase mic level from PulseAudio!</p>
-</div>
-<div class="section" id="backlight-brightness">
-<h2>Backlight Brightness<a class="headerlink" href="#backlight-brightness" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">sh</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;echo 70 &gt; /sys/class/backlight/acpi_video0/brightness&#39;</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="wacom-tablet-scrolling">
-<h2>Wacom Tablet Scrolling<a class="headerlink" href="#wacom-tablet-scrolling" title="Permalink to this headline">¶</a></h2>
-<p>Wacom Bamboo tablet pad ring and buttons not being recognized on Xenial. Can map to commands using <a class="footnote-reference brackets" href="#id9" id="id7">4</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xsetwacom</span> <span class="nb">set</span> <span class="s2">&quot;Wacom Bamboo Pad pad&quot;</span> <span class="s2">&quot;AbsWheelUp&quot;</span> <span class="s2">&quot;key up&quot;</span>
-<span class="n">xsetwacom</span> <span class="nb">set</span> <span class="s2">&quot;Wacom Bamboo Pad pad&quot;</span> <span class="s2">&quot;AbsWheelDown&quot;</span> <span class="s2">&quot;key down&quot;</span>
-</pre></div>
-</div>
-<p>According to man page, these are non-persistent X11 mappings and so will be reset with each X-server restart. As such, to make persistent could:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>Use Gnome startup application to run script</p></li>
-<li><p>Add to Xsession startup scripts <a class="footnote-reference brackets" href="#id10" id="id8">5</a></p></li>
-</ol>
-</div></blockquote>
-<p>Latter is lower level — Gnome runs on X11. Probably no need to go so low, so will just set Gnome startup application</p>
-<dl class="footnote brackets">
-<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id7">4</a></span></dt>
-<dd><p><a class="reference external" href="https://ubuntuforums.org/showthread.php?t=1474596">https://ubuntuforums.org/showthread.php?t=1474596</a></p>
-</dd>
-<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id8">5</a></span></dt>
-<dd><p><a class="reference external" href="https://debian-administration.org/article/50/Running_applications_automatically_when_X_starts">https://debian-administration.org/article/50/Running_applications_automatically_when_X_starts</a></p>
-</dd>
-</dl>
-</div>
-<div class="section" id="mediatek-mt7630e-wireless-card">
-<h2>Mediatek MT7630e Wireless Card<a class="headerlink" href="#mediatek-mt7630e-wireless-card" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="model">
-<h3>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h3>
-<p>Wireless card:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">lspci</span>
-   <span class="o">...</span>
-   <span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span> <span class="n">Network</span> <span class="n">controller</span><span class="p">:</span> <span class="n">MEDIATEK</span> <span class="n">Corp</span><span class="o">.</span> <span class="n">MT7630e</span> <span class="mf">802.11</span><span class="n">bgn</span> <span class="n">Wireless</span> <span class="n">Network</span> <span class="n">Adapter</span>
-   <span class="o">...</span>
+            
+              <div class="version">
+                0.0
+              </div>
+            
+          
 
-<span class="o">&gt;&gt;</span> <span class="n">sudo</span> <span class="n">lshw</span> <span class="o">-</span><span class="n">C</span> <span class="n">network</span><span class="p">;</span>
-   <span class="o">...</span>
-   <span class="o">*-</span><span class="n">network</span> <span class="n">UNCLAIMED</span>
-        <span class="n">description</span><span class="p">:</span> <span class="n">Network</span> <span class="n">controller</span>
-        <span class="n">product</span><span class="p">:</span> <span class="n">MT7630e</span> <span class="mf">802.11</span><span class="n">bgn</span> <span class="n">Wireless</span> <span class="n">Network</span> <span class="n">Adapter</span>
-        <span class="n">vendor</span><span class="p">:</span> <span class="n">MEDIATEK</span> <span class="n">Corp</span><span class="o">.</span>
-        <span class="n">physical</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">0</span>
-        <span class="n">bus</span> <span class="n">info</span><span class="p">:</span> <span class="n">pci</span><span class="nd">@0000</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span>
-        <span class="n">version</span><span class="p">:</span> <span class="mi">00</span>
-        <span class="n">width</span><span class="p">:</span> <span class="mi">32</span> <span class="n">bits</span>
-        <span class="n">clock</span><span class="p">:</span> <span class="mi">33</span><span class="n">MHz</span>
-        <span class="n">capabilities</span><span class="p">:</span> <span class="n">pm</span> <span class="n">msi</span> <span class="n">pciexpress</span> <span class="n">bus_master</span> <span class="n">cap_list</span>
-        <span class="n">configuration</span><span class="p">:</span> <span class="n">latency</span><span class="o">=</span><span class="mi">0</span>
-        <span class="n">resources</span><span class="p">:</span> <span class="n">memory</span><span class="p">:</span><span class="n">f7800000</span><span class="o">-</span><span class="n">f78fffff</span>
-   <span class="o">...</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="ubuntu-14-04">
-<h3>Ubuntu 14.04<a class="headerlink" href="#ubuntu-14-04" title="Permalink to this headline">¶</a></h3>
-<p>With 14.04 and kernel from summer 2014, card not working with default Ubuntu drivers. Had to build and install drivers myself <a class="footnote-reference brackets" href="#id16" id="id11">6</a>. Source still present in <code class="docutils literal notranslate"><span class="pre">/usr/src/rt2x00-3.13</span></code>, and kernel module added in <code class="docutils literal notranslate"><span class="pre">/etc/modules</span></code>.</p>
-<div class="section" id="id12">
-<h4>&lt; 3.13.0-92<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
-<p>Worked fine.</p>
-</div>
-<div class="section" id="id13">
-<h4>&gt;= 3.13.0-92<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
-<p>After kernel upgrade (&gt;= 3.13.0-92-generic), wireless drivers no longer being used. Probably because using kernel built with kernel module signing enforced? This would result in a problem as own kernel module build cannot be signed with the Canonical key <a class="footnote-reference brackets" href="#id17" id="id14">7</a> and so fails validation in Secure Boot chain</p>
-<p>Indeed see that were always failing validation:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">less</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">kern</span><span class="o">.</span><span class="n">log</span>
-   <span class="o">...</span>
-   <span class="n">Jul</span> <span class="mi">14</span> <span class="mi">17</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">04</span> <span class="n">malcocer</span><span class="o">-</span><span class="n">S551LN</span> <span class="n">kernel</span><span class="p">:</span> <span class="p">[</span>   <span class="mf">17.839047</span><span class="p">]</span> <span class="n">rt2x00lib</span><span class="p">:</span> <span class="n">module</span> <span class="n">verification</span> <span class="n">failed</span><span class="p">:</span> <span class="n">signature</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span>  <span class="n">required</span> <span class="n">key</span> <span class="n">missing</span> <span class="o">-</span> <span class="n">tainting</span> <span class="n">kernel</span>
-   <span class="o">...</span>
-   <span class="n">Jul</span> <span class="mi">15</span> <span class="mi">17</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">04</span> <span class="n">malcocer</span><span class="o">-</span><span class="n">S551LN</span> <span class="n">kernel</span><span class="p">:</span> <span class="p">[</span>   <span class="mf">17.839047</span><span class="p">]</span> <span class="n">rt2x00lib</span><span class="p">:</span> <span class="n">module</span> <span class="n">verification</span> <span class="n">failed</span><span class="p">:</span> <span class="n">signature</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span>  <span class="n">required</span> <span class="n">key</span> <span class="n">missing</span> <span class="o">-</span> <span class="n">tainting</span> <span class="n">kernel</span>
-   <span class="o">...</span>
-</pre></div>
-</div>
-<p>Previously, failure does not seem to have been a problem, however new kernel probably requires success? Interestingly, do not see any log entries after kernel update. Probably modules not being loaded at all.</p>
-<p>Verified that Secure Boot enabled in UEFI settings (shift-restart from Windows as primary bootloader).</p>
-<p>Should be able to generate key, sign own modules and add to MOK <a class="footnote-reference brackets" href="#id18" id="id15">8</a>.</p>
-<p>Checking modules added during driver installation to <code class="docutils literal notranslate"><span class="pre">/etc/modules</span></code> using <code class="docutils literal notranslate"><span class="pre">modinfo</span></code>, see that only <code class="docutils literal notranslate"><span class="pre">rt2*</span></code> modules lack signatures as they were built locally. As such, only signed these.</p>
-<p>Enrolled key in MOK. Checked public key file with <code class="docutils literal notranslate"><span class="pre">mokutil</span> <span class="pre">-t</span></code>. Checked signature displayed in <code class="docutils literal notranslate"><span class="pre">mokutil</span> <span class="pre">-l</span></code> matches that in <code class="docutils literal notranslate"><span class="pre">modinfo</span></code>.</p>
-<p>Still getting error message in <code class="docutils literal notranslate"><span class="pre">kern.log</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Request</span> <span class="k">for</span> <span class="n">unknown</span> <span class="n">module</span> <span class="n">key</span> <span class="s1">&#39;Descriptive name: 1abaa67b131e7951eb631b71b72c45e75e36c286&#39;</span> <span class="n">err</span> <span class="o">-</span><span class="mi">11</span>
-</pre></div>
-</div>
-<p>Strange, as signature matches that in MOK.</p>
-<p>Confirmed that disabling validation (<code class="docutils literal notranslate"><span class="pre">mokutil</span> <span class="pre">--disable-validation</span></code>) solves problem.</p>
-<p>Why are the modules failing validation?</p>
-<ol class="arabic simple">
-<li><p>Kernel rebuild/update required?</p></li>
-<li><p>Where is module being loaded from? Perhaps from different location to signed ones…?</p></li>
-</ol>
-<p>Whilst checking module location, saw that kernel already provides rt2x-like drivers for this wireless card. These are already signed by someone at Canonical. Tried removing all own drivers and using these kernel drivers. Now they pass validation (no errors in <code class="docutils literal notranslate"><span class="pre">kern.log</span></code>), but the wireless car remains unclaimed.</p>
-<p>In the end, had to disable kernel module validation. Poor solution.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id11">6</a></span></dt>
-<dd><p><a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1220146/comments/125">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1220146/comments/125</a></p>
-</dd>
-<dt class="label" id="id17"><span class="brackets"><a class="fn-backref" href="#id14">7</a></span></dt>
-<dd><p><a class="reference external" href="http://askubuntu.com/questions/755238/why-disabling-secure-boot-is-enforced-policy-when-installing-3rd-party-modules">http://askubuntu.com/questions/755238/why-disabling-secure-boot-is-enforced-policy-when-installing-3rd-party-modules</a></p>
-</dd>
-<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="#id15">8</a></span></dt>
-<dd><p><a class="reference external" href="http://askubuntu.com/questions/760671/could-not-load-vboxdrv-after-upgrade-to-ubuntu-16-04-and-i-want-to-keep-secur">http://askubuntu.com/questions/760671/could-not-load-vboxdrv-after-upgrade-to-ubuntu-16-04-and-i-want-to-keep-secur</a></p>
-</dd>
-</dl>
-</div>
-</div>
-<div class="section" id="ubuntu-16-04">
-<h3>Ubuntu 16.04<a class="headerlink" href="#ubuntu-16-04" title="Permalink to this headline">¶</a></h3>
-<p>With 16.04 and 4.4.0-34 kernel, wireless card still not working with default Ubuntu drivers. Had to build and install drivers myself <a class="footnote-reference brackets" href="#id24" id="id19">9</a>. Source still present in <code class="docutils literal notranslate"><span class="pre">/usr/local/src/MT7360E-2.0.4</span></code>.</p>
-<div class="section" id="id20">
-<h4>4.4.0<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
-<p>As before, tried signing the module to allow secure booting. As originally generated key still enrolled in MOK (<code class="docutils literal notranslate"><span class="pre">mokutil</span> <span class="pre">-l</span></code>), tries signing with this first.</p>
-<p>With new driver from neurobin, can install kernel module with DKMS or manually — advantage of DKMS approach is that do not need to rebuild for every kernel update, however manual building gives more control of installation process and allows us to sign module.</p>
-<p>Build module:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">MT7630E</span>
-<span class="o">&gt;&gt;</span> <span class="n">sudo</span> <span class="o">./</span><span class="n">uninstall</span>
-<span class="o">&gt;&gt;</span> <span class="n">sudo</span> <span class="n">make</span> <span class="n">clean</span>
-<span class="o">&gt;&gt;</span> <span class="n">sudo</span> <span class="o">./</span><span class="n">install</span>
-</pre></div>
-</div>
-<p>Final <code class="docutils literal notranslate"><span class="pre">modprobe</span></code> fails as kernel modules not yet signed.</p>
-<p>Sign modules:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt; sudo /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n mt7630e)
-&gt;&gt; sudo /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n mt76xx)
-</pre></div>
-</div>
-<p>Final <code class="docutils literal notranslate"><span class="pre">depmod</span></code> to build kernel module dependency tree (no fail now):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">sudo</span> <span class="n">depmod</span>
-</pre></div>
-</div>
-<p>Reboot and working first time now ;-)</p>
-<p>Will have to repeat at each kernel upgrade however. <strong>Don’t uninstall module yet! Boot into previous kernel version first to decrypt</strong> <code class="docutils literal notranslate"><span class="pre">MOK.priv</span></code> .</p>
-</div>
-<div class="section" id="id21">
-<h4>4.10.0<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
-<p>Noticing that module is tainting the kernel despite being signed:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">dmesg</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">mt7630e</span>
-<span class="p">[</span>   <span class="mf">18.407252</span><span class="p">]</span> <span class="n">mt7630e</span><span class="p">:</span> <span class="n">loading</span> <span class="n">out</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">tree</span> <span class="n">module</span> <span class="n">taints</span> <span class="n">kernel</span><span class="o">.</span>
-<span class="p">[</span>   <span class="mf">18.407331</span><span class="p">]</span> <span class="n">mt7630e</span><span class="p">:</span> <span class="n">module</span> <span class="n">verification</span> <span class="n">failed</span><span class="p">:</span> <span class="n">signature</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span> <span class="n">required</span> <span class="n">key</span> <span class="n">missing</span> <span class="o">-</span> <span class="n">tainting</span> <span class="n">kernel</span>
-</pre></div>
-</div>
-<p>Everything seems to be working though. Is kernel module signing not enforced for 4.10?</p>
-</div>
-<div class="section" id="id22">
-<h4>4.10.0-30<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
-<p>Now module installation failing — seems to hang on <code class="docutils literal notranslate"><span class="pre">depmod</span></code> just after build completion.</p>
-<p>Tested build + manual insertion using <code class="docutils literal notranslate"><span class="pre">test</span></code> script — all working. Implies that module works fine and problem is indeed related to <code class="docutils literal notranslate"><span class="pre">depmod</span></code> only.</p>
-<p>Interestingly, installation with DKMS does not hang on <code class="docutils literal notranslate"><span class="pre">depmod</span></code>. Given that do not need to sign, can use this as a workaround for the time being.</p>
-<p>DKMS for some reason not building or installing module on kernel upgrades — must do this manually:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dkms</span> <span class="n">build</span> <span class="n">mt7630e</span><span class="o">/</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">0</span>
-<span class="n">sudo</span> <span class="n">dkms</span> <span class="n">install</span> <span class="n">mt7630e</span><span class="o">/</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="id23">
-<h4>4.15.0-29<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
-<p>Up until now, previous DKMS-based install to circumvent <code class="docutils literal notranslate"><span class="pre">depmod</span></code> bug had been working fine. Module could not be signed, but did not seem to be strictly enforced by kernel.</p>
-<p>As of 4.15.0-29, noticed that DKMS shows <code class="docutils literal notranslate"><span class="pre">mt7630e</span></code> module as being installed, but it is not loaded (nothing in <code class="docutils literal notranslate"><span class="pre">kern.log</span></code> or <code class="docutils literal notranslate"><span class="pre">lsmod</span></code> output).</p>
-<p>Uninstalling from DKMS and trying manual install however seems to once again work — <code class="docutils literal notranslate"><span class="pre">depmod</span></code> doesn’t hang. Final <code class="docutils literal notranslate"><span class="pre">modprobe</span></code> call to load module does however fail due to kernel signing, so must sign and reload as before.</p>
-<p>N.b. Calling module uninstall script removes firmware binaries from <code class="docutils literal notranslate"><span class="pre">/lib/firmware</span></code>. These are <strong>not</strong> re-copied by DKMS-based module installation (e.g. for 4.13 kernel), and so the card will not work and a missing firmware message will be logged in <code class="docutils literal notranslate"><span class="pre">kern.log</span></code>. Manually copying the firmware files resolves the issue.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id24"><span class="brackets"><a class="fn-backref" href="#id19">9</a></span></dt>
-<dd><p><a class="reference external" href="http://github.com/neurobin/MT7630E">http://github.com/neurobin/MT7630E</a></p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
 
-
-          </div>
+          
         </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">marceloalcocer.github.io</a></h1>
 
-
-
-
-
-
-
-
-
-
-
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script><h3>Navigation</h3>
-<ul class="current">
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
@@ -378,22 +145,393 @@
 <li class="toctree-l1"><a class="reference internal" href="../sunfleet.html">Sunfleet</a></li>
 </ul>
 
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">marceloalcocer.github.io</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../notes.html">Notes</a> &raquo;</li>
+        
+      <li>Hardware Issues</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hardware-issues">
+<h1>Hardware Issues<a class="headerlink" href="#hardware-issues" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="authentication-for-samba-print-server">
+<h2>Authentication for Samba print server<a class="headerlink" href="#authentication-for-samba-print-server" title="Permalink to this headline">¶</a></h2>
+<p>Having problems getting Ubuntu to authenticate with sambsa print server — authenticates successfully during setup if credentials input manually, fails otherwise.</p>
+<p>Turns out to be a Active Directory domain issue. Easily solved by prefixing username with <code class="docutils literal notranslate"><span class="pre">/</span></code> rather than usual <code class="docutils literal notranslate"><span class="pre">DOMAIN\USERNAME</span></code> <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://askubuntu.com/a/154081/326761">https://askubuntu.com/a/154081/326761</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="drivers">
+<h2>Drivers<a class="headerlink" href="#drivers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="concept">
+<h3>Concept<a class="headerlink" href="#concept" title="Permalink to this headline">¶</a></h3>
+<p>Hardware drivers are just kernel modules — C code conforming to kernel module API <a class="footnote-reference" href="#id4" id="id3">[2]</a>. Most driver modules subsequently interact with HW via firmware code provided by manufacturer.</p>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="http://www.tldp.org/LDP/lkmpg/2.6/html/">http://www.tldp.org/LDP/lkmpg/2.6/html/</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="building-and-installing">
+<h3>Building and installing<a class="headerlink" href="#building-and-installing" title="Permalink to this headline">¶</a></h3>
+<p>Modules typically built using kernel makefile (<code class="docutils literal notranslate"><span class="pre">/lib/modules/${uname-r}/build</span></code>). Resulting kernel object binaries copied to kernel modules directory (e.g. <code class="docutils literal notranslate"><span class="pre">/lib/modules/$(uname-r)/kernel/driver</span></code>). Any firmware is copied to kernel firmware directory (<code class="docutils literal notranslate"><span class="pre">/lib/firmware/</span></code>).</p>
+<p>Modules dependencies are computed and module is placed into module dependency tree (<code class="docutils literal notranslate"><span class="pre">lib/modules/$(uname-r)/modules.dep</span></code>, loading order for new kernel boot) using <code class="docutils literal notranslate"><span class="pre">depmod</span></code>.</p>
+<p>Finally, modules dynamically can inserted/removed into/from currently running kernel using <code class="docutils literal notranslate"><span class="pre">modprobe</span></code>.</p>
+</div>
+<div class="section" id="dkms">
+<h3>DKMS<a class="headerlink" href="#dkms" title="Permalink to this headline">¶</a></h3>
+<p>DKMS is framework which automates module build/installation procedure. This avoids user having to recompile modules manually every time the kernel updates.</p>
+<p>Instead of building and inserting modules manually, install (copy) just firmware and give DKMS source code for module. It will then handle compilation, installation and insertion.</p>
+</div>
+</div>
+<div class="section" id="secure-boot">
+<h2>Secure Boot<a class="headerlink" href="#secure-boot" title="Permalink to this headline">¶</a></h2>
+<p>Secure Boot is a chain of trust which starts at firmware <a class="footnote-reference" href="#id6" id="id5">[3]</a>; firmware certificate authority validates bootloader which validates kernel, which validates kernel modules, etc.</p>
+<p>In Ubuntu:</p>
+<ol class="arabic simple">
+<li>Ubuntu primary bootloader (<code class="docutils literal notranslate"><span class="pre">shim</span></code>) is signed with MS key, and so is validated by firmware CA.</li>
+<li><code class="docutils literal notranslate"><span class="pre">shim</span></code> has Canonical key which validates GRUB secondary bootloader</li>
+<li>GRUB validates kernel</li>
+<li>Kernel validates kernel modules</li>
+</ol>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td><a class="reference external" href="https://wiki.ubuntu.com/SecurityTeam/SecureBoot">https://wiki.ubuntu.com/SecurityTeam/SecureBoot</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="reverting-to-nouveau-graphics-driver">
+<h2>Reverting to Nouveau Graphics Driver<a class="headerlink" href="#reverting-to-nouveau-graphics-driver" title="Permalink to this headline">¶</a></h2>
+<p>Remove all nvidia drivers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">purge</span> <span class="n">nvidia</span><span class="o">*</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">autoremove</span>
+</pre></div>
+</div>
+<p>Resinstall nouveau firmware package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">--</span><span class="n">reinstall</span> <span class="n">nouveau</span><span class="o">-</span><span class="n">firmware</span>
+</pre></div>
+</div>
+<p>Remove nouveau module blacklisting:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">rm</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">modprobe</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">nvidia</span><span class="o">-</span><span class="n">graphics</span><span class="o">-</span><span class="n">drivers</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>Remove modified (newly created?) xorg.conf:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">X11</span><span class="o">/</span><span class="n">xorg</span><span class="o">.</span><span class="n">conf</span> <span class="o">/</span><span class="n">etx</span><span class="o">/</span><span class="n">X11</span><span class="o">/</span><span class="n">xorg</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">backup</span>
+</pre></div>
+</div>
+<p>Reconfigure X (not sure if this did anything):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dpkg</span><span class="o">-</span><span class="n">reconfigure</span> <span class="n">xserver</span><span class="o">-</span><span class="n">xorg</span>
+</pre></div>
+</div>
+<p>Change Xauthority permissions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chown</span> <span class="n">malcocer</span> <span class="o">~/.</span><span class="n">Xauthority</span> <span class="n">sudo</span> <span class="n">chgrp</span> <span class="n">malcocer</span> <span class="o">~/.</span><span class="n">Xauthority</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="low-mic-level">
+<h2>Low Mic Level<a class="headerlink" href="#low-mic-level" title="Permalink to this headline">¶</a></h2>
+<p>alsamixer settings: No mic boost (playback and record), Full capture. Do <strong>NOT</strong> increase mic level from PulseAudio!</p>
+</div>
+<div class="section" id="backlight-brightness">
+<h2>Backlight Brightness<a class="headerlink" href="#backlight-brightness" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">sh</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;echo 70 &gt; /sys/class/backlight/acpi_video0/brightness&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="wacom-tablet-scrolling">
+<h2>Wacom Tablet Scrolling<a class="headerlink" href="#wacom-tablet-scrolling" title="Permalink to this headline">¶</a></h2>
+<p>Wacom Bamboo tablet pad ring and buttons not being recognized on Xenial. Can map to commands using <a class="footnote-reference" href="#id9" id="id7">[4]</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xsetwacom</span> <span class="nb">set</span> <span class="s2">&quot;Wacom Bamboo Pad pad&quot;</span> <span class="s2">&quot;AbsWheelUp&quot;</span> <span class="s2">&quot;key up&quot;</span>
+<span class="n">xsetwacom</span> <span class="nb">set</span> <span class="s2">&quot;Wacom Bamboo Pad pad&quot;</span> <span class="s2">&quot;AbsWheelDown&quot;</span> <span class="s2">&quot;key down&quot;</span>
+</pre></div>
+</div>
+<p>According to man page, these are non-persistent X11 mappings and so will be reset with each X-server restart. As such, to make persistent could:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Use Gnome startup application to run script</li>
+<li>Add to Xsession startup scripts <a class="footnote-reference" href="#id10" id="id8">[5]</a></li>
+</ol>
+</div></blockquote>
+<p>Latter is lower level — Gnome runs on X11. Probably no need to go so low, so will just set Gnome startup application</p>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="https://ubuntuforums.org/showthread.php?t=1474596">https://ubuntuforums.org/showthread.php?t=1474596</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[5]</a></td><td><a class="reference external" href="https://debian-administration.org/article/50/Running_applications_automatically_when_X_starts">https://debian-administration.org/article/50/Running_applications_automatically_when_X_starts</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mediatek-mt7630e-wireless-card">
+<h2>Mediatek MT7630e Wireless Card<a class="headerlink" href="#mediatek-mt7630e-wireless-card" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="model">
+<h3>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h3>
+<p>Wireless card:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">lspci</span>
+   <span class="o">...</span>
+   <span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span> <span class="n">Network</span> <span class="n">controller</span><span class="p">:</span> <span class="n">MEDIATEK</span> <span class="n">Corp</span><span class="o">.</span> <span class="n">MT7630e</span> <span class="mf">802.11</span><span class="n">bgn</span> <span class="n">Wireless</span> <span class="n">Network</span> <span class="n">Adapter</span>
+   <span class="o">...</span>
+
+<span class="o">&gt;&gt;</span> <span class="n">sudo</span> <span class="n">lshw</span> <span class="o">-</span><span class="n">C</span> <span class="n">network</span><span class="p">;</span>
+   <span class="o">...</span>
+   <span class="o">*-</span><span class="n">network</span> <span class="n">UNCLAIMED</span>
+        <span class="n">description</span><span class="p">:</span> <span class="n">Network</span> <span class="n">controller</span>
+        <span class="n">product</span><span class="p">:</span> <span class="n">MT7630e</span> <span class="mf">802.11</span><span class="n">bgn</span> <span class="n">Wireless</span> <span class="n">Network</span> <span class="n">Adapter</span>
+        <span class="n">vendor</span><span class="p">:</span> <span class="n">MEDIATEK</span> <span class="n">Corp</span><span class="o">.</span>
+        <span class="n">physical</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="n">bus</span> <span class="n">info</span><span class="p">:</span> <span class="n">pci</span><span class="nd">@0000</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span>
+        <span class="n">version</span><span class="p">:</span> <span class="mi">00</span>
+        <span class="n">width</span><span class="p">:</span> <span class="mi">32</span> <span class="n">bits</span>
+        <span class="n">clock</span><span class="p">:</span> <span class="mi">33</span><span class="n">MHz</span>
+        <span class="n">capabilities</span><span class="p">:</span> <span class="n">pm</span> <span class="n">msi</span> <span class="n">pciexpress</span> <span class="n">bus_master</span> <span class="n">cap_list</span>
+        <span class="n">configuration</span><span class="p">:</span> <span class="n">latency</span><span class="o">=</span><span class="mi">0</span>
+        <span class="n">resources</span><span class="p">:</span> <span class="n">memory</span><span class="p">:</span><span class="n">f7800000</span><span class="o">-</span><span class="n">f78fffff</span>
+   <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ubuntu-14-04">
+<h3>Ubuntu 14.04<a class="headerlink" href="#ubuntu-14-04" title="Permalink to this headline">¶</a></h3>
+<p>With 14.04 and kernel from summer 2014, card not working with default Ubuntu drivers. Had to build and install drivers myself <a class="footnote-reference" href="#id16" id="id11">[6]</a>. Source still present in <code class="docutils literal notranslate"><span class="pre">/usr/src/rt2x00-3.13</span></code>, and kernel module added in <code class="docutils literal notranslate"><span class="pre">/etc/modules</span></code>.</p>
+<div class="section" id="id12">
+<h4>&lt; 3.13.0-92<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<p>Worked fine.</p>
+</div>
+<div class="section" id="id13">
+<h4>&gt;= 3.13.0-92<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<p>After kernel upgrade (&gt;= 3.13.0-92-generic), wireless drivers no longer being used. Probably because using kernel built with kernel module signing enforced? This would result in a problem as own kernel module build cannot be signed with the Canonical key <a class="footnote-reference" href="#id17" id="id14">[7]</a> and so fails validation in Secure Boot chain</p>
+<p>Indeed see that were always failing validation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">less</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">kern</span><span class="o">.</span><span class="n">log</span>
+   <span class="o">...</span>
+   <span class="n">Jul</span> <span class="mi">14</span> <span class="mi">17</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">04</span> <span class="n">malcocer</span><span class="o">-</span><span class="n">S551LN</span> <span class="n">kernel</span><span class="p">:</span> <span class="p">[</span>   <span class="mf">17.839047</span><span class="p">]</span> <span class="n">rt2x00lib</span><span class="p">:</span> <span class="n">module</span> <span class="n">verification</span> <span class="n">failed</span><span class="p">:</span> <span class="n">signature</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span>  <span class="n">required</span> <span class="n">key</span> <span class="n">missing</span> <span class="o">-</span> <span class="n">tainting</span> <span class="n">kernel</span>
+   <span class="o">...</span>
+   <span class="n">Jul</span> <span class="mi">15</span> <span class="mi">17</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">04</span> <span class="n">malcocer</span><span class="o">-</span><span class="n">S551LN</span> <span class="n">kernel</span><span class="p">:</span> <span class="p">[</span>   <span class="mf">17.839047</span><span class="p">]</span> <span class="n">rt2x00lib</span><span class="p">:</span> <span class="n">module</span> <span class="n">verification</span> <span class="n">failed</span><span class="p">:</span> <span class="n">signature</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span>  <span class="n">required</span> <span class="n">key</span> <span class="n">missing</span> <span class="o">-</span> <span class="n">tainting</span> <span class="n">kernel</span>
+   <span class="o">...</span>
+</pre></div>
+</div>
+<p>Previously, failure does not seem to have been a problem, however new kernel probably requires success? Interestingly, do not see any log entries after kernel update. Probably modules not being loaded at all.</p>
+<p>Verified that Secure Boot enabled in UEFI settings (shift-restart from Windows as primary bootloader).</p>
+<p>Should be able to generate key, sign own modules and add to MOK <a class="footnote-reference" href="#id18" id="id15">[8]</a>.</p>
+<p>Checking modules added during driver installation to <code class="docutils literal notranslate"><span class="pre">/etc/modules</span></code> using <code class="docutils literal notranslate"><span class="pre">modinfo</span></code>, see that only <code class="docutils literal notranslate"><span class="pre">rt2*</span></code> modules lack signatures as they were built locally. As such, only signed these.</p>
+<p>Enrolled key in MOK. Checked public key file with <code class="docutils literal notranslate"><span class="pre">mokutil</span> <span class="pre">-t</span></code>. Checked signature displayed in <code class="docutils literal notranslate"><span class="pre">mokutil</span> <span class="pre">-l</span></code> matches that in <code class="docutils literal notranslate"><span class="pre">modinfo</span></code>.</p>
+<p>Still getting error message in <code class="docutils literal notranslate"><span class="pre">kern.log</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Request</span> <span class="k">for</span> <span class="n">unknown</span> <span class="n">module</span> <span class="n">key</span> <span class="s1">&#39;Descriptive name: 1abaa67b131e7951eb631b71b72c45e75e36c286&#39;</span> <span class="n">err</span> <span class="o">-</span><span class="mi">11</span>
+</pre></div>
+</div>
+<p>Strange, as signature matches that in MOK.</p>
+<p>Confirmed that disabling validation (<code class="docutils literal notranslate"><span class="pre">mokutil</span> <span class="pre">--disable-validation</span></code>) solves problem.</p>
+<p>Why are the modules failing validation?</p>
+<ol class="arabic simple">
+<li>Kernel rebuild/update required?</li>
+<li>Where is module being loaded from? Perhaps from different location to signed ones…?</li>
+</ol>
+<p>Whilst checking module location, saw that kernel already provides rt2x-like drivers for this wireless card. These are already signed by someone at Canonical. Tried removing all own drivers and using these kernel drivers. Now they pass validation (no errors in <code class="docutils literal notranslate"><span class="pre">kern.log</span></code>), but the wireless car remains unclaimed.</p>
+<p>In the end, had to disable kernel module validation. Poor solution.</p>
+<table class="docutils footnote" frame="void" id="id16" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id11">[6]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1220146/comments/125">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1220146/comments/125</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id17" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id14">[7]</a></td><td><a class="reference external" href="http://askubuntu.com/questions/755238/why-disabling-secure-boot-is-enforced-policy-when-installing-3rd-party-modules">http://askubuntu.com/questions/755238/why-disabling-secure-boot-is-enforced-policy-when-installing-3rd-party-modules</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id18" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id15">[8]</a></td><td><a class="reference external" href="http://askubuntu.com/questions/760671/could-not-load-vboxdrv-after-upgrade-to-ubuntu-16-04-and-i-want-to-keep-secur">http://askubuntu.com/questions/760671/could-not-load-vboxdrv-after-upgrade-to-ubuntu-16-04-and-i-want-to-keep-secur</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="ubuntu-16-04">
+<h3>Ubuntu 16.04<a class="headerlink" href="#ubuntu-16-04" title="Permalink to this headline">¶</a></h3>
+<p>With 16.04 and 4.4.0-34 kernel, wireless card still not working with default Ubuntu drivers. Had to build and install drivers myself <a class="footnote-reference" href="#id24" id="id19">[9]</a>. Source still present in <code class="docutils literal notranslate"><span class="pre">/usr/local/src/MT7360E-2.0.4</span></code>.</p>
+<div class="section" id="id20">
+<h4>4.4.0<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+<p>As before, tried signing the module to allow secure booting. As originally generated key still enrolled in MOK (<code class="docutils literal notranslate"><span class="pre">mokutil</span> <span class="pre">-l</span></code>), tries signing with this first.</p>
+<p>With new driver from neurobin, can install kernel module with DKMS or manually — advantage of DKMS approach is that do not need to rebuild for every kernel update, however manual building gives more control of installation process and allows us to sign module.</p>
+<p>Build module:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">MT7630E</span>
+<span class="o">&gt;&gt;</span> <span class="n">sudo</span> <span class="o">./</span><span class="n">uninstall</span>
+<span class="o">&gt;&gt;</span> <span class="n">sudo</span> <span class="n">make</span> <span class="n">clean</span>
+<span class="o">&gt;&gt;</span> <span class="n">sudo</span> <span class="o">./</span><span class="n">install</span>
+</pre></div>
+</div>
+<p>Final <code class="docutils literal notranslate"><span class="pre">modprobe</span></code> fails as kernel modules not yet signed.</p>
+<p>Sign modules:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt; sudo /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n mt7630e)
+&gt;&gt; sudo /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n mt76xx)
+</pre></div>
+</div>
+<p>Final <code class="docutils literal notranslate"><span class="pre">depmod</span></code> to build kernel module dependency tree (no fail now):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">sudo</span> <span class="n">depmod</span>
+</pre></div>
+</div>
+<p>Reboot and working first time now ;-)</p>
+<p>Will have to repeat at each kernel upgrade however. <strong>Don’t uninstall module yet! Boot into previous kernel version first to decrypt</strong> <code class="docutils literal notranslate"><span class="pre">MOK.priv</span></code> .</p>
+</div>
+<div class="section" id="id21">
+<h4>4.10.0<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
+<p>Noticing that module is tainting the kernel despite being signed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">dmesg</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">mt7630e</span>
+<span class="p">[</span>   <span class="mf">18.407252</span><span class="p">]</span> <span class="n">mt7630e</span><span class="p">:</span> <span class="n">loading</span> <span class="n">out</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">tree</span> <span class="n">module</span> <span class="n">taints</span> <span class="n">kernel</span><span class="o">.</span>
+<span class="p">[</span>   <span class="mf">18.407331</span><span class="p">]</span> <span class="n">mt7630e</span><span class="p">:</span> <span class="n">module</span> <span class="n">verification</span> <span class="n">failed</span><span class="p">:</span> <span class="n">signature</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span> <span class="n">required</span> <span class="n">key</span> <span class="n">missing</span> <span class="o">-</span> <span class="n">tainting</span> <span class="n">kernel</span>
+</pre></div>
+</div>
+<p>Everything seems to be working though. Is kernel module signing not enforced for 4.10?</p>
+</div>
+<div class="section" id="id22">
+<h4>4.10.0-30<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
+<p>Now module installation failing — seems to hang on <code class="docutils literal notranslate"><span class="pre">depmod</span></code> just after build completion.</p>
+<p>Tested build + manual insertion using <code class="docutils literal notranslate"><span class="pre">test</span></code> script — all working. Implies that module works fine and problem is indeed related to <code class="docutils literal notranslate"><span class="pre">depmod</span></code> only.</p>
+<p>Interestingly, installation with DKMS does not hang on <code class="docutils literal notranslate"><span class="pre">depmod</span></code>. Given that do not need to sign, can use this as a workaround for the time being.</p>
+<p>DKMS for some reason not building or installing module on kernel upgrades — must do this manually:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dkms</span> <span class="n">build</span> <span class="n">mt7630e</span><span class="o">/</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">sudo</span> <span class="n">dkms</span> <span class="n">install</span> <span class="n">mt7630e</span><span class="o">/</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id23">
+<h4>4.15.0-29<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
+<p>Up until now, previous DKMS-based install to circumvent <code class="docutils literal notranslate"><span class="pre">depmod</span></code> bug had been working fine. Module could not be signed, but did not seem to be strictly enforced by kernel.</p>
+<p>As of 4.15.0-29, noticed that DKMS shows <code class="docutils literal notranslate"><span class="pre">mt7630e</span></code> module as being installed, but it is not loaded (nothing in <code class="docutils literal notranslate"><span class="pre">kern.log</span></code> or <code class="docutils literal notranslate"><span class="pre">lsmod</span></code> output).</p>
+<p>Uninstalling from DKMS and trying manual install however seems to once again work — <code class="docutils literal notranslate"><span class="pre">depmod</span></code> doesn’t hang. Final <code class="docutils literal notranslate"><span class="pre">modprobe</span></code> call to load module does however fail due to kernel signing, so must sign and reload as before.</p>
+<p>N.b. Calling module uninstall script removes firmware binaries from <code class="docutils literal notranslate"><span class="pre">/lib/firmware</span></code>. These are <strong>not</strong> re-copied by DKMS-based module installation (e.g. for 4.13 kernel), and so the card will not work and a missing firmware message will be logged in <code class="docutils literal notranslate"><span class="pre">kern.log</span></code>. Manually copying the firmware files resolves the issue.</p>
+<table class="docutils footnote" frame="void" id="id24" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id19">[9]</a></td><td><a class="reference external" href="http://github.com/neurobin/MT7630E">http://github.com/neurobin/MT7630E</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Marcelo Alcocer.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2017, Marcelo Alcocer.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
-      
-    </div>
 
-    
+    </section>
 
-    
-  </body>
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>
