@@ -139,6 +139,7 @@
 <li class="toctree-l2"><a class="reference internal" href="vscode.html">Visual Studio Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xarray.html">xarray notes</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ultrajs.html">ultrajs</a></li>
@@ -466,6 +467,31 @@
 <p>As of 4.15.0-29, noticed that DKMS shows <code class="docutils literal notranslate"><span class="pre">mt7630e</span></code> module as being installed, but it is not loaded (nothing in <code class="docutils literal notranslate"><span class="pre">kern.log</span></code> or <code class="docutils literal notranslate"><span class="pre">lsmod</span></code> output).</p>
 <p>Uninstalling from DKMS and trying manual install however seems to once again work — <code class="docutils literal notranslate"><span class="pre">depmod</span></code> doesn’t hang. Final <code class="docutils literal notranslate"><span class="pre">modprobe</span></code> call to load module does however fail due to kernel signing, so must sign and reload as before.</p>
 <p>N.b. Calling module uninstall script removes firmware binaries from <code class="docutils literal notranslate"><span class="pre">/lib/firmware</span></code>. These are <strong>not</strong> re-copied by DKMS-based module installation (e.g. for 4.13 kernel), and so the card will not work and a missing firmware message will be logged in <code class="docutils literal notranslate"><span class="pre">kern.log</span></code>. Manually copying the firmware files resolves the issue.</p>
+<p>Example upgrade script (assuming decrypted MOK):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+MOKDIR=&quot;/home/malcocer/.mok/&quot;
+MOKPRIV=$MOKDIR&quot;_MOK.priv&quot;
+MOKDER=$MOKDIR&quot;MOK.der&quot;
+if (( $EUID != 0 )); then
+    printf &quot;\n-----Sorry! Run with root privilege (for example with &#39;sudo ./install&#39;)\n\n&quot;
+    exit 1
+fi
+echo &quot;*** Uninstalling ***&quot;
+./uninstall
+echo &quot;*** Cleaning Up ***&quot;
+make clean
+echo &quot;*** Installing ***&quot;
+./install
+echo &quot;*** Signing ***&quot;
+/usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 $MOKPRIV $MOKDER $(modinfo -n mt7630e)
+/usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 $MOKPRIV $MOKDER $(modinfo -n mt76xx)
+echo &quot;*** Inserting Module ***&quot;
+depmod
+echo &quot;*** Cleaning Up ***&quot;
+make clean
+rm $MOKPRIV
+</pre></div>
+</div>
 <table class="docutils footnote" frame="void" id="id24" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
