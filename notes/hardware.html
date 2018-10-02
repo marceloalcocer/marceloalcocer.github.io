@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Hardware Issues &mdash; marceloalcocer.github.io v0.0 documentation</title>
+  <title>Hardware &mdash; marceloalcocer.github.io v0.0 documentation</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="HTML Plotting Libraries" href="html_plotting_libs.html" />
-    <link rel="prev" title="GPG" href="gpg.html" />
+    <link rel="next" title="Lab Server" href="lab_server.html" />
+    <link rel="prev" title="Graphing" href="graphing.html" />
    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
     
 
@@ -87,18 +87,16 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="2d_server.html">2D Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bash.html">Misc Terminal Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bash.html">Bash</a></li>
 <li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dvd_crypto.html">Encrypted DVD Playback</a></li>
-<li class="toctree-l2"><a class="reference internal" href="eclipse_upgrade.html">Eclipse Manual Upgrade</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evince_copy.html">evince copy picture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="git_cheatsheet.html">Git Cheatsheet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="git_wamp.html">Git hosted on WAMP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="github_ssh.html">GitHub SSH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="desktop.html">Desktop environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eclipse.html">Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eclipse.html#pydev-configuration">PyDev configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git.html">Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Hardware Issues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="graphing.html">Graphing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Hardware</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#authentication-for-samba-print-server">Authentication for Samba print server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#drivers">Drivers</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#concept">Concept</a></li>
@@ -111,6 +109,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#low-mic-level">Low Mic Level</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#backlight-brightness">Backlight Brightness</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#wacom-tablet-scrolling">Wacom Tablet Scrolling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#encrypted-dvd-playback">Encrypted DVD playback</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#set-dvd-region">Set DVD region</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clear-css-cache">Clear CSS cache</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cnst-printing">CNST printing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mediatek-mt7630e-wireless-card">Mediatek MT7630e Wireless Card</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#model">Model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#ubuntu-14-04">Ubuntu 14.04</a></li>
@@ -119,27 +123,21 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="html_plotting_libs.html">HTML Plotting Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="im_thumbnail.html">ImageMagik Thumbnailing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iplayer_noflash.html">iPLayer sans Flash</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iso_from_cd.html">Create ISO image from CD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab_server.html">Lab Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network.html">Network</a></li>
 <li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rest.html">ReST</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reveal_js.html">reveal.js</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="server_side_scripting.html">Server-Side Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="signal.html">Signal processing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ssh_crypto.html">SSH Key Encryption</a></li>
-<li class="toctree-l2"><a class="reference internal" href="startup.html">Cron vs. Gnome startup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="switched_routers.html">Switches vs Routers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ui.html">User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssh.html">SSH</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vscode.html">Visual Studio Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="window_functions.html">Window Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web.html">Web</a></li>
 <li class="toctree-l2"><a class="reference internal" href="windows.html">Windows</a></li>
-<li class="toctree-l2"><a class="reference internal" href="xarray.html">xarray notes</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ultrajs.html">ultrajs</a></li>
@@ -191,7 +189,7 @@
         
           <li><a href="../notes.html">Online margin scribbles…</a> &raquo;</li>
         
-      <li>Hardware Issues</li>
+      <li>Hardware</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -208,8 +206,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="hardware-issues">
-<h1>Hardware Issues<a class="headerlink" href="#hardware-issues" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="hardware">
+<h1>Hardware<a class="headerlink" href="#hardware" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="authentication-for-samba-print-server">
 <h2>Authentication for Samba print server<a class="headerlink" href="#authentication-for-samba-print-server" title="Permalink to this headline">¶</a></h2>
 <p>Having problems getting Ubuntu to authenticate with sambsa print server — authenticates successfully during setup if credentials input manually, fails otherwise.</p>
@@ -328,6 +326,33 @@
 </tbody>
 </table>
 </div>
+<div class="section" id="encrypted-dvd-playback">
+<h2>Encrypted DVD playback<a class="headerlink" href="#encrypted-dvd-playback" title="Permalink to this headline">¶</a></h2>
+<p>Protected DVDs must have protection cracked to allow open-source playback. This is provided by <code class="docutils literal notranslate"><span class="pre">css</span></code> part of <code class="docutils literal notranslate"><span class="pre">libdvdread</span></code>. Cannot be bundled for copyright reasons though — must download using script provided <a class="footnote-reference" href="#id12" id="id11">[6]</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">doc</span><span class="o">/</span><span class="n">libdvdread4</span><span class="o">/</span><span class="n">install</span><span class="o">-</span><span class="n">css</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id11">[6]</a></td><td><a class="reference external" href="https://help.ubuntu.com/community/RestrictedFormats/PlayingDVDs">https://help.ubuntu.com/community/RestrictedFormats/PlayingDVDs</a></td></tr>
+</tbody>
+</table>
+<div class="section" id="set-dvd-region">
+<h3>Set DVD region<a class="headerlink" href="#set-dvd-region" title="Permalink to this headline">¶</a></h3>
+<p>VLC ignores DVD drive region when playing. For CSS though, DVD drive region must be set to something. Set using regionset tool (Europe: 2).</p>
+</div>
+<div class="section" id="clear-css-cache">
+<h3>Clear CSS cache<a class="headerlink" href="#clear-css-cache" title="Permalink to this headline">¶</a></h3>
+<p>Every time CSS cracking occurs, resulting keys are cached in <code class="docutils literal notranslate"><span class="pre">~/.dvdcss</span></code>. May not be totally transferable though from one protected DVD to another. This causes jerky playback. Clear cache to force <code class="docutils literal notranslate"><span class="pre">libdvdread</span></code> to crack again.</p>
+</div>
+</div>
+<div class="section" id="cnst-printing">
+<h2>CNST printing<a class="headerlink" href="#cnst-printing" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lp</span> <span class="o">-</span><span class="n">U</span> <span class="n">Alcocer</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="mediatek-mt7630e-wireless-card">
 <h2>Mediatek MT7630e Wireless Card<a class="headerlink" href="#mediatek-mt7630e-wireless-card" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="model">
@@ -358,14 +383,14 @@
 </div>
 <div class="section" id="ubuntu-14-04">
 <h3>Ubuntu 14.04<a class="headerlink" href="#ubuntu-14-04" title="Permalink to this headline">¶</a></h3>
-<p>With 14.04 and kernel from summer 2014, card not working with default Ubuntu drivers. Had to build and install drivers myself <a class="footnote-reference" href="#id16" id="id11">[6]</a>. Source still present in <code class="docutils literal notranslate"><span class="pre">/usr/src/rt2x00-3.13</span></code>, and kernel module added in <code class="docutils literal notranslate"><span class="pre">/etc/modules</span></code>.</p>
-<div class="section" id="id12">
-<h4>&lt; 3.13.0-92<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<p>With 14.04 and kernel from summer 2014, card not working with default Ubuntu drivers. Had to build and install drivers myself <a class="footnote-reference" href="#id18" id="id13">[7]</a>. Source still present in <code class="docutils literal notranslate"><span class="pre">/usr/src/rt2x00-3.13</span></code>, and kernel module added in <code class="docutils literal notranslate"><span class="pre">/etc/modules</span></code>.</p>
+<div class="section" id="id14">
+<h4>&lt; 3.13.0-92<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
 <p>Worked fine.</p>
 </div>
-<div class="section" id="id13">
-<h4>&gt;= 3.13.0-92<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
-<p>After kernel upgrade (&gt;= 3.13.0-92-generic), wireless drivers no longer being used. Probably because using kernel built with kernel module signing enforced? This would result in a problem as own kernel module build cannot be signed with the Canonical key <a class="footnote-reference" href="#id17" id="id14">[7]</a> and so fails validation in Secure Boot chain</p>
+<div class="section" id="id15">
+<h4>&gt;= 3.13.0-92<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<p>After kernel upgrade (&gt;= 3.13.0-92-generic), wireless drivers no longer being used. Probably because using kernel built with kernel module signing enforced? This would result in a problem as own kernel module build cannot be signed with the Canonical key <a class="footnote-reference" href="#id19" id="id16">[8]</a> and so fails validation in Secure Boot chain</p>
 <p>Indeed see that were always failing validation:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">less</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">kern</span><span class="o">.</span><span class="n">log</span>
    <span class="o">...</span>
@@ -377,7 +402,7 @@
 </div>
 <p>Previously, failure does not seem to have been a problem, however new kernel probably requires success? Interestingly, do not see any log entries after kernel update. Probably modules not being loaded at all.</p>
 <p>Verified that Secure Boot enabled in UEFI settings (shift-restart from Windows as primary bootloader).</p>
-<p>Should be able to generate key, sign own modules and add to MOK <a class="footnote-reference" href="#id18" id="id15">[8]</a>.</p>
+<p>Should be able to generate key, sign own modules and add to MOK <a class="footnote-reference" href="#id20" id="id17">[9]</a>.</p>
 <p>Checking modules added during driver installation to <code class="docutils literal notranslate"><span class="pre">/etc/modules</span></code> using <code class="docutils literal notranslate"><span class="pre">modinfo</span></code>, see that only <code class="docutils literal notranslate"><span class="pre">rt2*</span></code> modules lack signatures as they were built locally. As such, only signed these.</p>
 <p>Enrolled key in MOK. Checked public key file with <code class="docutils literal notranslate"><span class="pre">mokutil</span> <span class="pre">-t</span></code>. Checked signature displayed in <code class="docutils literal notranslate"><span class="pre">mokutil</span> <span class="pre">-l</span></code> matches that in <code class="docutils literal notranslate"><span class="pre">modinfo</span></code>.</p>
 <p>Still getting error message in <code class="docutils literal notranslate"><span class="pre">kern.log</span></code>:</p>
@@ -393,31 +418,31 @@
 </ol>
 <p>Whilst checking module location, saw that kernel already provides rt2x-like drivers for this wireless card. These are already signed by someone at Canonical. Tried removing all own drivers and using these kernel drivers. Now they pass validation (no errors in <code class="docutils literal notranslate"><span class="pre">kern.log</span></code>), but the wireless car remains unclaimed.</p>
 <p>In the end, had to disable kernel module validation. Poor solution.</p>
-<table class="docutils footnote" frame="void" id="id16" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id11">[6]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1220146/comments/125">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1220146/comments/125</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id17" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id14">[7]</a></td><td><a class="reference external" href="http://askubuntu.com/questions/755238/why-disabling-secure-boot-is-enforced-policy-when-installing-3rd-party-modules">http://askubuntu.com/questions/755238/why-disabling-secure-boot-is-enforced-policy-when-installing-3rd-party-modules</a></td></tr>
-</tbody>
-</table>
 <table class="docutils footnote" frame="void" id="id18" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id15">[8]</a></td><td><a class="reference external" href="http://askubuntu.com/questions/760671/could-not-load-vboxdrv-after-upgrade-to-ubuntu-16-04-and-i-want-to-keep-secur">http://askubuntu.com/questions/760671/could-not-load-vboxdrv-after-upgrade-to-ubuntu-16-04-and-i-want-to-keep-secur</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id13">[7]</a></td><td><a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1220146/comments/125">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1220146/comments/125</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id19" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id16">[8]</a></td><td><a class="reference external" href="http://askubuntu.com/questions/755238/why-disabling-secure-boot-is-enforced-policy-when-installing-3rd-party-modules">http://askubuntu.com/questions/755238/why-disabling-secure-boot-is-enforced-policy-when-installing-3rd-party-modules</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id20" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id17">[9]</a></td><td><a class="reference external" href="http://askubuntu.com/questions/760671/could-not-load-vboxdrv-after-upgrade-to-ubuntu-16-04-and-i-want-to-keep-secur">http://askubuntu.com/questions/760671/could-not-load-vboxdrv-after-upgrade-to-ubuntu-16-04-and-i-want-to-keep-secur</a></td></tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="section" id="ubuntu-16-04">
 <h3>Ubuntu 16.04<a class="headerlink" href="#ubuntu-16-04" title="Permalink to this headline">¶</a></h3>
-<p>With 16.04 and 4.4.0-34 kernel, wireless card still not working with default Ubuntu drivers. Had to build and install drivers myself <a class="footnote-reference" href="#id24" id="id19">[9]</a>. Source still present in <code class="docutils literal notranslate"><span class="pre">/usr/local/src/MT7360E-2.0.4</span></code>.</p>
-<div class="section" id="id20">
-<h4>4.4.0<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+<p>With 16.04 and 4.4.0-34 kernel, wireless card still not working with default Ubuntu drivers. Had to build and install drivers myself <a class="footnote-reference" href="#id26" id="id21">[10]</a>. Source still present in <code class="docutils literal notranslate"><span class="pre">/usr/local/src/MT7360E-2.0.4</span></code>.</p>
+<div class="section" id="id22">
+<h4>4.4.0<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
 <p>As before, tried signing the module to allow secure booting. As originally generated key still enrolled in MOK (<code class="docutils literal notranslate"><span class="pre">mokutil</span> <span class="pre">-l</span></code>), tries signing with this first.</p>
 <p>With new driver from neurobin, can install kernel module with DKMS or manually — advantage of DKMS approach is that do not need to rebuild for every kernel update, however manual building gives more control of installation process and allows us to sign module.</p>
 <p>Build module:</p>
@@ -440,8 +465,8 @@
 <p>Reboot and working first time now ;-)</p>
 <p>Will have to repeat at each kernel upgrade however. <strong>Don’t uninstall module yet! Boot into previous kernel version first to decrypt</strong> <code class="docutils literal notranslate"><span class="pre">MOK.priv</span></code> .</p>
 </div>
-<div class="section" id="id21">
-<h4>4.10.0<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id23">
+<h4>4.10.0<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
 <p>Noticing that module is tainting the kernel despite being signed:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">dmesg</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">mt7630e</span>
 <span class="p">[</span>   <span class="mf">18.407252</span><span class="p">]</span> <span class="n">mt7630e</span><span class="p">:</span> <span class="n">loading</span> <span class="n">out</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">tree</span> <span class="n">module</span> <span class="n">taints</span> <span class="n">kernel</span><span class="o">.</span>
@@ -450,8 +475,8 @@
 </div>
 <p>Everything seems to be working though. Is kernel module signing not enforced for 4.10?</p>
 </div>
-<div class="section" id="id22">
-<h4>4.10.0-30<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id24">
+<h4>4.10.0-30<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
 <p>Now module installation failing — seems to hang on <code class="docutils literal notranslate"><span class="pre">depmod</span></code> just after build completion.</p>
 <p>Tested build + manual insertion using <code class="docutils literal notranslate"><span class="pre">test</span></code> script — all working. Implies that module works fine and problem is indeed related to <code class="docutils literal notranslate"><span class="pre">depmod</span></code> only.</p>
 <p>Interestingly, installation with DKMS does not hang on <code class="docutils literal notranslate"><span class="pre">depmod</span></code>. Given that do not need to sign, can use this as a workaround for the time being.</p>
@@ -461,8 +486,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="id23">
-<h4>4.15.0-29<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id25">
+<h4>4.15.0-29<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h4>
 <p>Up until now, previous DKMS-based install to circumvent <code class="docutils literal notranslate"><span class="pre">depmod</span></code> bug had been working fine. Module could not be signed, but did not seem to be strictly enforced by kernel.</p>
 <p>As of 4.15.0-29, noticed that DKMS shows <code class="docutils literal notranslate"><span class="pre">mt7630e</span></code> module as being installed, but it is not loaded (nothing in <code class="docutils literal notranslate"><span class="pre">kern.log</span></code> or <code class="docutils literal notranslate"><span class="pre">lsmod</span></code> output).</p>
 <p>Uninstalling from DKMS and trying manual install however seems to once again work — <code class="docutils literal notranslate"><span class="pre">depmod</span></code> doesn’t hang. Final <code class="docutils literal notranslate"><span class="pre">modprobe</span></code> call to load module does however fail due to kernel signing, so must sign and reload as before.</p>
@@ -492,10 +517,10 @@ make clean
 rm $MOKPRIV
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id24" rules="none">
+<table class="docutils footnote" frame="void" id="id26" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id19">[9]</a></td><td><a class="reference external" href="http://github.com/neurobin/MT7630E">http://github.com/neurobin/MT7630E</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id21">[10]</a></td><td><a class="reference external" href="http://github.com/neurobin/MT7630E">http://github.com/neurobin/MT7630E</a></td></tr>
 </tbody>
 </table>
 </div>
