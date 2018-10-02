@@ -92,12 +92,11 @@
 <li class="toctree-l2"><a class="reference internal" href="c.html">C/C++</a></li>
 <li class="toctree-l2"><a class="reference internal" href="desktop.html">Desktop environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse.html">Eclipse</a></li>
-<li class="toctree-l2"><a class="reference internal" href="eclipse.html#pydev-configuration">PyDev configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git.html">Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">GPG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graphing.html">Graphing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lab_server.html">Lab Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lab_server.html">Lab server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="latex.html">LaTeX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lu.html">Lund University</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network.html">Network</a></li>
@@ -107,6 +106,13 @@
 <li class="toctree-l2"><a class="reference internal" href="reveal_js.html">reveal.js</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rtd.html">Read The Docs</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Signal processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#discrete-convolution">Discrete convolution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#linear-discrete-convolution">Linear discrete convolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#circular-discrete-convolution">Circular discrete convolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fast-discrete-convolution">Fast discrete convolution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#discrete-fourier-transforms">Discrete Fourier Transforms</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#window-functions">Window Functions</a></li>
 </ul>
 </li>
@@ -185,19 +191,129 @@
             
   <div class="section" id="signal-processing">
 <h1>Signal processing<a class="headerlink" href="#signal-processing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="discrete-convolution">
+<h2>Discrete convolution<a class="headerlink" href="#discrete-convolution" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="linear-discrete-convolution">
+<h3>Linear discrete convolution<a class="headerlink" href="#linear-discrete-convolution" title="Permalink to this headline">¶</a></h3>
+<p>Definition of discrete (linear) convolution,</p>
+<div class="math notranslate nohighlight">
+\[L_l = (M * N)_l = \sum_m M_m N_{l-m}\]</div>
+<p>Assuming zero-padding, the indices for valid convolution are therefore,</p>
+<div class="math notranslate nohighlight">
+\begin{gather*}
+
+l_{valid} = \text{min}(\| M \|, \| N \|) - 1, \dots, \text{max}(\| M \|, \| N \|) - 1 \\
+\| L_{valid} \| = \text{max}(\| M \|, \| N \|) - \text{min}(\| M \|, \| N \|) + 1 \\
+m_{valid} = \begin{Bmatrix}
+0, 1, \ldots, \text{min}(\| M \|, \| N \|) - 1 &amp; , &amp; l &lt; \|N\| \\
+l - \text{min}(\| M \|, \| N \|) + 1, \ldots, l &amp; , &amp; l \geq \|N\|
+\end{Bmatrix}
+
+\end{gather*}</div><p>where we have defined the length operator, <span class="math notranslate nohighlight">\(\|X\|\)</span>. Similarly, the indices for full convolution are therefore,</p>
+<div class="math notranslate nohighlight">
+\begin{gather*}
+
+l_{full} = 0, 1, \dots, \| M \| + \| N \| - 2 \\
+\| L_{full} \| = \| M \| + \| N \| - 1 \\
+m_{full} = \begin{Bmatrix}
+0, 1, \ldots, l &amp; , &amp; l &lt; \text{min}(\| M \|, \| N \|) \\
+m_{valid} &amp; , &amp; \text{min}(\| M \|, \| N \|) \leq l &lt; \text{max}(\| M \|, \| N \|) \\
+l - \|N\| + 1, \ldots, \|M\| - 1 &amp; , &amp; l \geq \text{max}(\| M \|, \| N \|)
+\end{Bmatrix}
+
+\end{gather*}</div><div class="section" id="fitting">
+<h4>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h4>
+<p>Fitting a discrete dataset, <span class="math notranslate nohighlight">\(E\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\Rightarrow \| L_{valid} \| = \| E \|\]</div>
+<p>Assuming <span class="math notranslate nohighlight">\(N\)</span> is zero at leading edge (e.g. exponential), for leading edge of <span class="math notranslate nohighlight">\(L\)</span> to also be zero, require first <span class="math notranslate nohighlight">\(\| M \|\)</span> points of <span class="math notranslate nohighlight">\(N\)</span> to be zero,</p>
+<div class="math notranslate nohighlight">
+\begin{gather*}
+
+\Rightarrow \| M \| &lt; \| N \| \\
+\Rightarrow \| L_{valid} \| =  \| N \| - \| M \| + 1 = \| E \| \\
+\Rightarrow \| N \| = \| E \| + \| M \| - 1 \\
+N_n = 0 \quad \text{for} \quad n \leq \| M \|
+
+\end{gather*}</div><p>It can be seen therefore that <span class="math notranslate nohighlight">\(\| M \|\)</span> is arbitrary, but determines <span class="math notranslate nohighlight">\(\| N \|\)</span>. Thus, <span class="math notranslate nohighlight">\(N\)</span> must be analytical whilst <span class="math notranslate nohighlight">\(M, E\)</span> may be numerical.</p>
+</div>
+</div>
+<div class="section" id="circular-discrete-convolution">
+<h3>Circular discrete convolution<a class="headerlink" href="#circular-discrete-convolution" title="Permalink to this headline">¶</a></h3>
+<p>Making one input a discrete periodic summation turns the convolution into a circular convolution. A discrete period summation with period <span class="math notranslate nohighlight">\(P\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[N_P = \sum_p N_{n-pP}\]</div>
+<p>The resulting convolution is clearly also periodic with a period <span class="math notranslate nohighlight">\(P\)</span>, and is given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}L_{P,l} = (M * N_P)_l &amp;= \sum_m M_m N_{P,l-m}\\
+&amp;= \sum_m M_m \sum_p N_{l-m-pP}\end{split}\]</div>
+<p>If the inputs are zero-padded such that the length of the period is longer than the non-padded full convolution output length,</p>
+<div class="math notranslate nohighlight">
+\[\| P \| \geq \| M \| + \| N \| -1\]</div>
+<p>then the full linear convolution will be contained within one period of the circular convolution and will thus exhibit no evidence of circularity <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://dsp-nbsphinx.readthedocs.io/en/nbsphinx-experiment/nonrecursive_filters/fast_convolution.html">https://dsp-nbsphinx.readthedocs.io/en/nbsphinx-experiment/nonrecursive_filters/fast_convolution.html</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fast-discrete-convolution">
+<h3>Fast discrete convolution<a class="headerlink" href="#fast-discrete-convolution" title="Permalink to this headline">¶</a></h3>
+<p>The circular discrete convolution theorem states that the inverse DFT of a frequency domain multiplication is equivalent to the circular discrete convolution in the time domain <a class="footnote-reference" href="#id4" id="id3">[2]</a>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathfrak{F}^{-1} \left[ \tilde{M} \cdot \tilde{N} \right]_l &amp;= L_{P,l} \\
+&amp;= \sum_m M_m \sum_p N_{l-m-pP}\end{split}\]</div>
+<p>As such, the linear discrete convolution can be efficiently computed in the following manner,</p>
+<ol class="arabic simple">
+<li>Zero-pad both inputs to lengths <span class="math notranslate nohighlight">\(\geq \|M\| + \|N\| -1\)</span></li>
+<li>DFT</li>
+<li>Multiply</li>
+<li>Inverse DFT</li>
+</ol>
+<p>Notes:</p>
+<ol class="arabic simple">
+<li>If both signals are padded at higher indices (right), the resulting convolution will have the same indices for region selection as detailed above. This can be used to select a valid region, e.g. full, valid, etc.</li>
+<li>Depending on the DFT algorithm, it may be more efficient to pad inputs beyond minimum length (e.g. power of 2 for FFT)</li>
+<li>Whilst in linear convolution, selection of the valid region only can be done with reduced computation, the same is not true for fast convolutions — reducing the input lengths results in circularity, so the full, padded convolution must be computed.</li>
+<li>On the other hand, exploitation of single-sided (e.g. real) FFT algorithms can significantly speed computation.</li>
+</ol>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform#Circular_convolution_theorem_and_cross-correlation_theorem">https://en.wikipedia.org/wiki/Discrete_Fourier_transform#Circular_convolution_theorem_and_cross-correlation_theorem</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="discrete-fourier-transforms">
+<h2>Discrete Fourier Transforms<a class="headerlink" href="#discrete-fourier-transforms" title="Permalink to this headline">¶</a></h2>
+<p>Going from continuous definition of FT to discrete FT (DFT) can most easily be understood in the following steps,</p>
+<div class="figure" id="id9">
+<img alt="https://upload.wikimedia.org/wikipedia/commons/e/ea/From_Continuous_To_Discrete_Fourier_Transform.gif" src="https://upload.wikimedia.org/wikipedia/commons/e/ea/From_Continuous_To_Discrete_Fourier_Transform.gif" />
+<p class="caption"><span class="caption-text">Discretization of the Fourier transform. <strong>Left:</strong> Continuous function (top) and its FT (bottom). <strong>Centre-left:</strong> Continuous periodic summation (i.e. convolution with Dirac comb), and its FT (i.e. Fourier series). <strong>Centre-right:</strong> Discretized function (i.e. Multiplication by Dirac comb) and its FT. <strong>Right:</strong> Discretized period summation, and its FT <a class="footnote-reference" href="#id6" id="id5">[3]</a>.</span></p>
+</div>
+<p>The final step is the DFT, whilst the penultimate is often termed the discrete-time FT (DTFT). Note also the reciprocity between the middle two steps.</p>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td><a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/e/ea/From_Continuous_To_Discrete_Fourier_Transform.gif">https://upload.wikimedia.org/wikipedia/commons/e/ea/From_Continuous_To_Discrete_Fourier_Transform.gif</a></td></tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="window-functions">
 <h2>Window Functions<a class="headerlink" href="#window-functions" title="Permalink to this headline">¶</a></h2>
 <p>Recall that multiplying by window in time domain is convolution by FT of window in frequency domain. As such, most windows will smear frequencies out in FT spectrum, and so very similar frequency components may not be resolvable. Equally, the convolution will also result in the noise floor of the spectrum being increased as signal amplitude from sharp peaks is spread out over a wide range of frequencies. As such, different windows have different sensitivities to low amplitude frequency components (low dynamic range).</p>
 <p>The resolution of a window can be seen by the width of its main lobe in its FT spectrum.</p>
 <p>The dynamic range of a window can be seen by the relative amplitudes of its side lobes in its FT spectrum.</p>
-<div class="figure" id="id3">
+<div class="figure" id="id10">
 <img alt="https://upload.wikimedia.org/wikipedia/commons/f/f2/Window_functions_in_the_frequency_domain.png" src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Window_functions_in_the_frequency_domain.png" />
-<p class="caption"><span class="caption-text">Window functions in the frequency domain <a class="footnote-reference" href="#id2" id="id1">[1]</a></span></p>
+<p class="caption"><span class="caption-text">Window functions in the frequency domain <a class="footnote-reference" href="#id8" id="id7">[4]</a></span></p>
 </div>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
+<table class="docutils footnote" frame="void" id="id8" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/f/f2/Window_functions_in_the_frequency_domain.png">https://upload.wikimedia.org/wikipedia/commons/f/f2/Window_functions_in_the_frequency_domain.png</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/f/f2/Window_functions_in_the_frequency_domain.png">https://upload.wikimedia.org/wikipedia/commons/f/f2/Window_functions_in_the_frequency_domain.png</a></td></tr>
 </tbody>
 </table>
 </div>
