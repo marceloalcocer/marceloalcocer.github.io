@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>GPG &mdash; marceloalcocer.github.io v0.0 documentation</title>
+  <title>Cryptography &mdash; marceloalcocer.github.io v0.0 documentation</title>
   
 
   
@@ -93,9 +93,22 @@
 <li class="toctree-l2"><a class="reference internal" href="desktop.html">Desktop environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse.html">Eclipse</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git.html">Git</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">GPG</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#public-key-cryptography">Public key cryptography</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#signing">Signing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Cryptography</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#public-key-cryptography">Public key cryptography</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#diffie-hellman-key-exchange">Diffie-Hellman key exchange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#digital-signature-algorithm-dsa">Digital Signature Algorithm (DSA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#elgamal">ElGamal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rsa">RSA</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#gpg">GPG</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gpg-1-x-vs-gpg-2-x">GPG 1.x vs GPG 2.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#keys">Keys</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#keyrings">Keyrings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encryption">Encryption</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#signing">Signing</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="graphing.html">Graphing</a></li>
@@ -166,7 +179,7 @@
         
           <li><a href="../notes.html">Online margin scribbles…</a> &raquo;</li>
         
-      <li>GPG</li>
+      <li>Cryptography</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -183,30 +196,274 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="gpg">
-<h1>GPG<a class="headerlink" href="#gpg" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="cryptography">
+<h1>Cryptography<a class="headerlink" href="#cryptography" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="public-key-cryptography">
 <h2>Public key cryptography<a class="headerlink" href="#public-key-cryptography" title="Permalink to this headline">¶</a></h2>
-<p>Asymmetric encryption using a public/private key pair; public shared and used to encrypt data, private kept secret and used to decrypt. Keys are just fixed length sequence of binary digits (e.g. 768, 1024, 2048 bits).</p>
-<p>As private key is only thing needed to decrypt, GPG protects it with passphrase (symmetric encryption) <a class="footnote-reference" href="#id3" id="id1">[1]</a>. <em>This is the only real protection you have if someone else gets hold of you private key!</em></p>
-<p>Generate key pair with <code class="docutils literal notranslate"><span class="pre">gpg</span> <span class="pre">--gen-key</span></code>. Associate user ID with each key to identify it as belonging to someone. User ID is composed of real name, comment and e-mail address <a class="footnote-reference" href="#id4" id="id2">[2]</a>.</p>
-<p>GPG stores keys in keyrings; one for private and one for public keys. Individual keys are identified by their hex hashes or owners.  Can list keys in keyring with <code class="docutils literal notranslate"><span class="pre">gpg</span> <span class="pre">--list-keys</span></code>.  Can show (i.e. decrypt) specific key using <code class="docutils literal notranslate"><span class="pre">gpg</span> <span class="pre">--output</span> <span class="pre">&lt;DEST&gt;</span> <span class="pre">--export</span> <span class="pre">&lt;KEY&gt;</span></code>. This results in raw binary output, which can be difficult to visualise. Can instead ask GPG to output ASCII encoded key with <code class="docutils literal notranslate"><span class="pre">--armor</span></code> option.</p>
+<p>Asymmetric encryption using a public/private key pair (fixed length sequence of binary digits). Provides advantage over symmetric schemes as do not have to find secure channel over which to distribute shared secret.</p>
+<p>For encryption, public key is shared and used by anyone to encrypt data. This can only be feasibly decrypted using private key which is kept secret.</p>
+<div class="figure" id="id35">
+<img alt="https://upload.wikimedia.org/wikipedia/commons/f/f9/Public_key_encryption.svg" src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Public_key_encryption.svg" /><p class="caption"><span class="caption-text">Encryption with PKC <a class="footnote-reference" href="#id4" id="id1">[1]</a></span></p>
 </div>
-<div class="section" id="signing">
-<h2>Signing<a class="headerlink" href="#signing" title="Permalink to this headline">¶</a></h2>
-<p>Whilst typically use PKC to allow Bob to encrypt data which can only be decrypted by Alice, key pair can also be used signing data as verification of its origin. For example, Alice can used her private key to sign a document, whilst Bob can check the document’s signature using Alice’s public key.</p>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://www.gnupg.org/gph/en/manual.html#AEN513">https://www.gnupg.org/gph/en/manual.html#AEN513</a></td></tr>
-</tbody>
-</table>
+<p>Can also use key pair in reverse for signing as verification of origin. In this case, encrypt known data using private key. This can be decrypted by anyone using the corresponding public key, but serves to show that it has originated from private key holder.</p>
+<div class="figure" id="id36">
+<img alt="https://upload.wikimedia.org/wikipedia/commons/a/a7/Private_key_signing.png" src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Private_key_signing.png" />
+<p class="caption"><span class="caption-text">Signing with PKC <a class="footnote-reference" href="#id5" id="id2">[2]</a></span></p>
+</div>
+<p>This clearly shows how there is nothing really to distinguish a ‘public’ key from a ‘private’ key — they are simply a complementary pair of keys which are distributed differently. This of course makes perfect sense when thinking about it mathematically — each key is just a number!</p>
+<p>In summary, the private key of a pair in PKC allows one to,</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Decrypt a message only intended for the recipient, which may be encrypted by anyone having the public key (asymmetric encrypted transport).</li>
+<li>Encrypt a message which may be decrypted by anyone [with the public key], but which can only be encrypted by one person (signature).</li>
+</ol>
+<p class="attribution">&mdash;RSA, Wikipedia <a class="footnote-reference" href="#id6" id="id3">[3]</a></p>
+</div></blockquote>
+<p>PKC schemes exist which provide encryption, signing, or both.</p>
 <table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://www.gnupg.org/gph/en/manual.html#AEN26">https://www.gnupg.org/gph/en/manual.html#AEN26</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://commons.wikimedia.org/wiki/File:Public_key_encryption.svg">https://commons.wikimedia.org/wiki/File:Public_key_encryption.svg</a></td></tr>
 </tbody>
 </table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://commons.wikimedia.org/wiki/File:Private_key_signing.png">https://commons.wikimedia.org/wiki/File:Private_key_signing.png</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/RSA_(cryptosystem">https://en.wikipedia.org/wiki/RSA_(cryptosystem</a>)#Signing_messages</td></tr>
+</tbody>
+</table>
+<div class="section" id="diffie-hellman-key-exchange">
+<h3>Diffie-Hellman key exchange<a class="headerlink" href="#diffie-hellman-key-exchange" title="Permalink to this headline">¶</a></h3>
+<p>Whilst not directly designed as a PKC scheme, PKC can be understood from the concepts formalised in DH key exchange — protocol for obtaining common secret between parties across public channel <a class="footnote-reference" href="#id12" id="id7">[4]</a>. This is a requirement e.g. for communicating the secret for symmetric encryption.</p>
+<p>Basic concept can be described by color mixing analogy:</p>
+<div class="figure" id="id37">
+<img alt="https://upload.wikimedia.org/wikipedia/commons/4/46/Diffie-Hellman_Key_Exchange.svg" src="https://upload.wikimedia.org/wikipedia/commons/4/46/Diffie-Hellman_Key_Exchange.svg" /><p class="caption"><span class="caption-text">DH KE color mixing analogy <a class="footnote-reference" href="#id13" id="id8">[5]</a></span></p>
+</div>
+<p>DH KE relies on a one-way trapdoor function (mixing of colors). The exact nature of this function defines a specific implementation of DH KE, (e.g. multiplicative group of modulo integers <a class="footnote-reference" href="#id14" id="id9">[6]</a>, elliptic curves <a class="footnote-reference" href="#id15" id="id10">[7]</a>, etc.). Most (all?) implementation rely on hardness of discrete logarithm problem <a class="footnote-reference" href="#id16" id="id11">[8]</a>.</p>
+<p>Whilst not directly designed as a PKC scheme, DH protocol can also be used as a form of PKC. It lacks the capability to authenticate(sign) however, and thus is seldom used as such. Instead, schemes designed explicitly from PKC are far more commonly used, e.g. <a class="reference internal" href="#rsa">RSA</a>.</p>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange">https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[5]</a></td><td><a class="reference external" href="https://commons.wikimedia.org/wiki/File:Diffie-Hellman_Key_Exchange.svg">https://commons.wikimedia.org/wiki/File:Diffie-Hellman_Key_Exchange.svg</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[6]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange#Cryptographic_explanation">https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange#Cryptographic_explanation</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[7]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman">https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id16" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id11">[8]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Discrete_logarithm">https://en.wikipedia.org/wiki/Discrete_logarithm</a></td></tr>
+</tbody>
+</table>
+<div class="section" id="example-implementation-multiplicative-group-of-modulo-integers">
+<h4>Example implementation — Multiplicative group of modulo integers<a class="headerlink" href="#example-implementation-multiplicative-group-of-modulo-integers" title="Permalink to this headline">¶</a></h4>
+<p>Given agreed and public prime and generator, <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(g\)</span> respectively, and individual secrets <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> (<span class="math notranslate nohighlight">\(p, g, a, b \in \mathfrak{Z}\)</span>), Alice and Bob can compute and send values <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> over public channel,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = g^a mod p \\
+B = g^b mod p\end{split}\]</div>
+<p>then, using the property,</p>
+<div class="math notranslate nohighlight">
+\[(g^x mod z)^y mod z = (g^y mod z)^x mod z\]</div>
+<p>can each compute shared secret, <span class="math notranslate nohighlight">\(S\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[S = A^b mod p = =  B^a mod p = g^{ab} mod p\]</div>
+<p>Application of DH as PKC scheme can be seen by considering <span class="math notranslate nohighlight">\(A\)</span> as Alice’s public key. Bob sends the desired message encrypted using the shared secret, <span class="math notranslate nohighlight">\(S\)</span>, along with <span class="math notranslate nohighlight">\(B\)</span>. As with key exchange, now only Alice can compute the secret, <span class="math notranslate nohighlight">\(S\)</span> from <span class="math notranslate nohighlight">\(B\)</span>, and thus decrypt the message.</p>
+</div>
+</div>
+<div class="section" id="digital-signature-algorithm-dsa">
+<h3>Digital Signature Algorithm (DSA)<a class="headerlink" href="#digital-signature-algorithm-dsa" title="Permalink to this headline">¶</a></h3>
+<p>As described above, main issue with using DH as PKC scheme is lack of authentication — public key could easily be hijacked and replaced by spoof key.</p>
+<p>DSA was developed as a signing only protocol to enable authentication. It also relies on the discrete logarithm problem.</p>
+</div>
+<div class="section" id="elgamal">
+<h3>ElGamal<a class="headerlink" href="#elgamal" title="Permalink to this headline">¶</a></h3>
+<p>ElGamal is essentially an improved version of DH designed more specifically for PKC. It also relies on discrete logarithm problem.</p>
+<p>In its original form (ElGamal encryption), it only provides encryption and not authentication. It was subsequently extended however to provide signing functionality (ElGammal signature scheme). As such, it can be considered a full PKC scheme.</p>
+</div>
+<div class="section" id="rsa">
+<h3>RSA<a class="headerlink" href="#rsa" title="Permalink to this headline">¶</a></h3>
+<p>RSA is a full PKC protocol providing both encryption and authentication <a class="footnote-reference" href="#id19" id="id17">[9]</a>.  It relies on integer factorization problem <a class="footnote-reference" href="#id20" id="id18">[10]</a>.</p>
+<table class="docutils footnote" frame="void" id="id19" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id17">[9]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/RSA_(cryptosystem">https://en.wikipedia.org/wiki/RSA_(cryptosystem</a>)</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id20" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id18">[10]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Integer_factorization">https://en.wikipedia.org/wiki/Integer_factorization</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="gpg">
+<h2>GPG<a class="headerlink" href="#gpg" title="Permalink to this headline">¶</a></h2>
+<p>Open source cryptography suite. Provides following functionality:</p>
+<ul class="simple">
+<li>Asymmetric</li>
+<li>Symmetric</li>
+<li>Hashing</li>
+<li>Compression</li>
+</ul>
+<div class="section" id="gpg-1-x-vs-gpg-2-x">
+<h3>GPG 1.x vs GPG 2.x<a class="headerlink" href="#gpg-1-x-vs-gpg-2-x" title="Permalink to this headline">¶</a></h3>
+<p>Main differences between v1 and v2 of GPG was move from integrated to external cryptography library (<code class="docutils literal notranslate"><span class="pre">Libgcrypt</span></code>) <a class="footnote-reference" href="#id24" id="id21">[11]</a> <a class="footnote-reference" href="#id25" id="id22">[12]</a>. Also added more modern encryption schemes (e.g. elliptic curve cryptography) <a class="footnote-reference" href="#id26" id="id23">[13]</a></p>
+<table class="docutils footnote" frame="void" id="id24" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id21">[11]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/GNU_Privacy_Guard#Overview">https://en.wikipedia.org/wiki/GNU_Privacy_Guard#Overview</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id25" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id22">[12]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Libgcrypt">https://en.wikipedia.org/wiki/Libgcrypt</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id26" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id23">[13]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/GNU_Privacy_Guard#Branches">https://en.wikipedia.org/wiki/GNU_Privacy_Guard#Branches</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="keys">
+<h3>Keys<a class="headerlink" href="#keys" title="Permalink to this headline">¶</a></h3>
+<p>Generate key pair with <code class="docutils literal notranslate"><span class="pre">gpg</span> <span class="pre">--gen-key</span></code>. Associate user ID with each key to identify it as belonging to someone. User ID is composed of real name, comment and e-mail address <a class="footnote-reference" href="#id30" id="id27">[14]</a>. Multiple user IDs can be added to a single key pair.</p>
+<p>As private key will just be sitting on filesystem, GPG protects it with passphrase (symmetric encryption) <a class="footnote-reference" href="#id31" id="id28">[15]</a>. <em>This is the only real protection you have if someone else gets hold of private key!</em></p>
+<p>Want to avoid public key being tampered with before sharing it (MIM attack). Do this by signing public key (just like any other data) with private key. Public key itself can then be used to confirm its own origin. Such self-signed public keys are known as <em>certificates</em>. View self-signature (along with any other signatures) attached to a public key:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --list-sigs
+</pre></div>
+</div>
+<p>Key is actually composed of three distinct parts:</p>
+<ol class="arabic simple">
+<li>Master signing key</li>
+<li>User IDs associated with key</li>
+<li>Subordinate keys (signing and/or encryption)</li>
+</ol>
+<p>Dividing the key into master signing and subordinate keys is useful as allows encryption to be separated from signing and identity; Alice changing the encryption part of her public key doesn’t present a security concern for Bob as it’s her responsibility to ensure she has the corresponding private decryption key; Alice changing the signing part of her public key does present a security concern for Bob however as he has previously placed trust in Alice having the corresponding private key (see also importing keys in <a class="reference internal" href="#keyrings">Keyrings</a> section below). Separation therefore allows the encryption part of the key to be changed <a class="footnote-reference" href="#id32" id="id29">[16]</a> as desired without having to re-place trust in owner.</p>
+<table class="docutils footnote" frame="void" id="id30" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id27">[14]</a></td><td><a class="reference external" href="https://www.gnupg.org/gph/en/manual.html#AEN26">https://www.gnupg.org/gph/en/manual.html#AEN26</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id31" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id28">[15]</a></td><td><a class="reference external" href="https://www.gnupg.org/gph/en/manual.html#AEN513">https://www.gnupg.org/gph/en/manual.html#AEN513</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id32" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id29">[16]</a></td><td>This is good practice to mitigate against it having been broken at some point (like periodically changing a password)</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="keyrings">
+<h3>Keyrings<a class="headerlink" href="#keyrings" title="Permalink to this headline">¶</a></h3>
+<p>GPG stores keys in keyrings; one for private and one for public keys. Individual keys are identified by their hex hashes or user IDs.</p>
+<p>List keys on keyring:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --list-public-keys               # Public keyring
+$ gpg2 --list-secret-keys               # Private keyring
+</pre></div>
+</div>
+<p>Export keys:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --export &lt;KEY&gt; --output &lt;DEST&gt;
+$ gpg2 --export-secret-keys &lt;KEY&gt; --output &lt;DEST&gt;
+</pre></div>
+</div>
+<p>This results in raw binary key value. Can instead ask GPG to output base64 encoded with <code class="docutils literal notranslate"><span class="pre">--armor</span></code> option.</p>
+<p>Importing keys:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --import foo.gpg
+</pre></div>
+</div>
+<p>N.b. once public key imported, need to ensure that we trust its origin, i.e. trust that the person holding the private key does indeed correspond to the associated user ID. To perform this validation manually, check key’s fingerprint:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --edit-key &lt;KEY&gt;
+Command&gt; fpr
+</pre></div>
+</div>
+<p>and compare this fingerprint with the purported owner of the key over any channel (e.g. phone, email, etc.).</p>
+<p>If all ok, can then sign the key to show we trust its origin:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Command</span><span class="o">&gt;</span> <span class="n">sign</span>
+</pre></div>
+</div>
+<p>Can see newly added signature (along with all others on key):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Command</span><span class="o">&gt;</span> <span class="n">check</span>
+</pre></div>
+</div>
+<p>Signing public keys to show trust that they come from the specified user is useful as it helps subsequent users of the key evaluate their trust in it — a public key signing by a million people probably does come from the stated user. To share your newly added signature, must recirculate the newly signed key — most easily done by (re-)uploading to a keyserver (probably the one you got it from originally)</p>
+<p>In fact, by inspecting the number of signatures and who they come from, GPG will often make an automatic decision as to the authenticity of the key’s origin <a class="footnote-reference" href="#id34" id="id33">[17]</a>, thereby relaxing the requirement for every key to be manually checked.</p>
+<table class="docutils footnote" frame="void" id="id34" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id33">[17]</a></td><td><a class="reference external" href="https://www.gnupg.org/gph/en/manual.html#AEN335">https://www.gnupg.org/gph/en/manual.html#AEN335</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="encryption">
+<h3>Encryption<a class="headerlink" href="#encryption" title="Permalink to this headline">¶</a></h3>
+<p>Asymmetric encryption:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --encrypt &lt;FILE&gt; --recipient &lt;KEY&gt; --output &lt;FILE&gt;.gpg
+</pre></div>
+</div>
+<p>Asymmetric decryption:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --decrypt &lt;FILE&gt;.gpg --output &lt;FILE&gt;
+</pre></div>
+</div>
+<p>Symmetric en/decryption:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --symmetric &lt;FILE&gt; --output &lt;FILE&gt;.gpg
+</pre></div>
+</div>
+</div>
+<div class="section" id="signing">
+<h3>Signing<a class="headerlink" href="#signing" title="Permalink to this headline">¶</a></h3>
+<p>Sign file only, base64 output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --clearsign &lt;FILE&gt;
+</pre></div>
+</div>
+<p>Sign file only, separate signature file output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --detach-sig &lt;FILE&gt; ---output &lt;FILE&gt;.sig
+</pre></div>
+</div>
+<p>Sign file, and encrypt it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --sign &lt;FILE&gt; --output &lt;FILE&gt;.sig
+</pre></div>
+</div>
+<p>Verify signature only:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --verify &lt;FILE&gt;.sig              # Integrated signature
+$ gpg2 --verify &lt;FILE&gt;.sig &lt;FILE&gt;       # Detached signature
+</pre></div>
+</div>
+<p>Verify signature and decrypt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --decrypt &lt;FILE&gt;.sig --output &lt;FILE&gt;
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
