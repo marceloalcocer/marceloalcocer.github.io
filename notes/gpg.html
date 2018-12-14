@@ -428,15 +428,15 @@ Command&gt; fpr
 <div class="section" id="encryption">
 <h3>Encryption<a class="headerlink" href="#encryption" title="Permalink to this headline">¶</a></h3>
 <p>Asymmetric encryption:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --encrypt &lt;FILE&gt; --recipient &lt;KEY&gt; --output &lt;FILE&gt;.gpg
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --output &lt;FILE&gt;.gpg --recipient &lt;KEY&gt;  --encrypt &lt;FILE&gt;
 </pre></div>
 </div>
 <p>Asymmetric decryption:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --decrypt &lt;FILE&gt;.gpg --output &lt;FILE&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --output &lt;FILE&gt; --decrypt &lt;FILE&gt;.gpg
 </pre></div>
 </div>
 <p>Symmetric en/decryption:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --symmetric &lt;FILE&gt; --output &lt;FILE&gt;.gpg
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --output &lt;FILE&gt;.gpg --symmetric &lt;FILE&gt;
 </pre></div>
 </div>
 </div>
@@ -447,11 +447,11 @@ Command&gt; fpr
 </pre></div>
 </div>
 <p>Sign file only, separate signature file output:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --detach-sig &lt;FILE&gt; ---output &lt;FILE&gt;.sig
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --output &lt;FILE&gt;.sig --detach-sig &lt;FILE&gt;
 </pre></div>
 </div>
 <p>Sign file, and encrypt it:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --sign &lt;FILE&gt; --output &lt;FILE&gt;.sig
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --output &lt;FILE&gt;.sig --sign &lt;FILE&gt;
 </pre></div>
 </div>
 <p>Verify signature only:</p>
@@ -460,7 +460,7 @@ $ gpg2 --verify &lt;FILE&gt;.sig &lt;FILE&gt;       # Detached signature
 </pre></div>
 </div>
 <p>Verify signature and decrypt:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --decrypt &lt;FILE&gt;.sig --output &lt;FILE&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --output &lt;FILE&gt; --decrypt &lt;FILE&gt;.sig
 </pre></div>
 </div>
 </div>
