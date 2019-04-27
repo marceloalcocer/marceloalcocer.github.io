@@ -105,6 +105,8 @@
 <li class="toctree-l2"><a class="reference internal" href="signal.html">Signal processing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">SSH</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#public-key-location">Public key location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-keys">Multiple keys</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#key-encryption">Key Encryption</a></li>
 </ul>
 </li>
@@ -181,14 +183,58 @@
             
   <div class="section" id="ssh">
 <h1>SSH<a class="headerlink" href="#ssh" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="key-encryption">
-<h2>Key Encryption<a class="headerlink" href="#key-encryption" title="Permalink to this headline">¶</a></h2>
-<p>SSH uses MD5 and AES for key encryption/decryption — not very safe nowadays. Can upgrade to more recent algorithm for better protection (PKCS#8) with no compatibility issue <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
-<p>Did so.</p>
+<div class="section" id="public-key-location">
+<h2>Public key location<a class="headerlink" href="#public-key-location" title="Permalink to this headline">¶</a></h2>
+<p>For SSH with PKC authentication, public keys should be located in <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> user directory of SSH host (server) <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://martin.kleppmann.com/2013/05/24/improving-security-of-ssh-private-keys.html">https://martin.kleppmann.com/2013/05/24/improving-security-of-ssh-private-keys.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://www.linode.com/docs/security/authentication/use-public-key-authentication-with-ssh/">https://www.linode.com/docs/security/authentication/use-public-key-authentication-with-ssh/</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="multiple-keys">
+<h2>Multiple keys<a class="headerlink" href="#multiple-keys" title="Permalink to this headline">¶</a></h2>
+<p>Multiple SSH key-pairs are simply differntiated by filename, i.e.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ls</span> <span class="o">~/.</span><span class="n">ssh</span>
+<span class="go">id_&lt;ID1&gt;</span>
+<span class="go">id_&lt;ID1&gt;.pub</span>
+<span class="go">id_&lt;ID2&gt;</span>
+<span class="go">id_&lt;ID2&gt;.pub</span>
+</pre></div>
+</div>
+<p>As such, adding new keys is just a matter of generating a new keypair with a unique filename <a class="footnote-reference" href="#id4" id="id3">[2]</a>.</p>
+<p>First, remove all key-pairs registered with SSH agent:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ssh</span><span class="o">-</span><span class="n">add</span> <span class="o">-</span><span class="n">D</span>
+</pre></div>
+</div>
+<p>Then rename original key-pair (if required):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cd</span> <span class="o">~/.</span><span class="n">ssh</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mv</span> <span class="n">id_rsa</span> <span class="n">id_</span><span class="o">&lt;</span><span class="n">ID1</span><span class="o">&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mv</span> <span class="n">id_rsa</span><span class="o">.</span><span class="n">pub</span> <span class="n">id_</span><span class="o">&lt;</span><span class="n">ID1</span><span class="o">&gt;.</span><span class="n">pub</span>
+</pre></div>
+</div>
+<p>Create new key-pair:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">b</span> <span class="mi">4096</span>          <span class="c1"># 4096 bit RSA key</span>
+</pre></div>
+</div>
+<p>specifying a unique filename when prompted.</p>
+<p>New key-pairs should automatically be registered with SSH agent.</p>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="https://unix.stackexchange.com/questions/58969/how-to-list-keys-added-to-ssh-agent-with-ssh-add/58977">https://unix.stackexchange.com/questions/58969/how-to-list-keys-added-to-ssh-agent-with-ssh-add/58977</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="key-encryption">
+<h2>Key Encryption<a class="headerlink" href="#key-encryption" title="Permalink to this headline">¶</a></h2>
+<p>SSH uses MD5 and AES for key encryption/decryption — not very safe nowadays. Can upgrade to more recent algorithm for better protection (PKCS#8) with no compatibility issue <a class="footnote-reference" href="#id6" id="id5">[3]</a>.</p>
+<p>Did so.</p>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td><a class="reference external" href="https://martin.kleppmann.com/2013/05/24/improving-security-of-ssh-private-keys.html">https://martin.kleppmann.com/2013/05/24/improving-security-of-ssh-private-keys.html</a></td></tr>
 </tbody>
 </table>
 </div>
