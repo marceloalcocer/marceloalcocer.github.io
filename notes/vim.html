@@ -107,6 +107,7 @@
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ssh.html">SSH</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Vim</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-vim-plugins">Installing vim plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pretty-print-json">Pretty print JSON</a></li>
 </ul>
 </li>
@@ -183,6 +184,30 @@
             
   <div class="section" id="vim">
 <h1>Vim<a class="headerlink" href="#vim" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installing-vim-plugins">
+<h2>Installing vim plugins<a class="headerlink" href="#installing-vim-plugins" title="Permalink to this headline">¶</a></h2>
+<p>From help;</p>
+<blockquote>
+<div><p>USING A FILETYPE PLUGIN                                 <em>ftplugin-name</em></p>
+<p>You can add a filetype plugin by dropping it in the right directory.  The
+name of this directory is in the same directory mentioned above for global
+plugins, but the last part is “ftplugin”.  Suppose you have found a plugin for
+the “stuff” filetype, and you are on Unix.  Then you can move this file to the
+ftplugin directory: &gt;</p>
+<blockquote>
+<div>mv thefile ~/.vim/ftplugin/stuff.vim</div></blockquote>
+<p>If that file already exists you already have a plugin for “stuff”.  You might
+want to check if the existing plugin doesn’t conflict with the one you are
+adding.  If it’s OK, you can give the new one another name: &gt;</p>
+<blockquote>
+<div>mv thefile ~/.vim/ftplugin/stuff_too.vim</div></blockquote>
+<p>The underscore is used to separate the name of the filetype from the rest,
+which can be anything.  If you use “otherstuff.vim” it wouldn’t work, it would
+be loaded for the “otherstuff” filetype.</p>
+</div></blockquote>
+<p>N.b. underscore to avoid conflicts.</p>
+<p>May also have other directories to copy too (e.g. <code class="docutils literal notranslate"><span class="pre">ftdetect</span></code>, <code class="docutils literal notranslate"><span class="pre">syntax</span></code>, etc).</p>
+</div>
 <div class="section" id="pretty-print-json">
 <h2>Pretty print JSON<a class="headerlink" href="#pretty-print-json" title="Permalink to this headline">¶</a></h2>
 <p>Pretty print JSON by filtering through Python standrad library module <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
@@ -235,6 +260,7 @@
         <script type="text/javascript" src="../_static/underscore.js"></script>
         <script type="text/javascript" src="../_static/doctools.js"></script>
         <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
 
   
