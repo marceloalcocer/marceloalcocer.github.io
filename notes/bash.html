@@ -86,6 +86,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Bash</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#redirection">Redirection</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#multiple-background-commands">Multiple background commands</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#iso-image-from-cd">ISO image from CD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#imagemagik-thumbnailing">ImageMagik Thumbnailing</a></li>
@@ -192,6 +193,48 @@
             
   <div class="section" id="bash">
 <h1>Bash<a class="headerlink" href="#bash" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="redirection">
+<h2>Redirection<a class="headerlink" href="#redirection" title="Permalink to this headline">¶</a></h2>
+<p>Everything is a file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -la /dev/std*
+lrwxrwxrwx 1 root root 15 Dec 11 20:57 /dev/stderr -&gt; /proc/self/fd/2
+lrwxrwxrwx 1 root root 15 Dec 11 20:57 /dev/stdin -&gt; /proc/self/fd/0
+lrwxrwxrwx 1 root root 15 Dec 11 20:57 /dev/stdout -&gt; /proc/self/fd/1
+</pre></div>
+</div>
+<p>Redirection can be most generally thought of a file descriptor duplication. Assuming <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> are numerical file descriptors (FDs), FD duplication is achieved with the duplication operators, <code class="docutils literal notranslate"><span class="pre">&lt;&amp;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;&amp;</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ a&lt;&amp;b     # Make reading from FD a equal to reading from FD b
+$ a&gt;&amp;b     # Make writing to FD a equal to writing to FD b
+</pre></div>
+</div>
+<p>For <code class="docutils literal notranslate"><span class="pre">a&lt;&amp;b</span></code>, reading from <code class="docutils literal notranslate"><span class="pre">a</span></code> will now effectively read from <code class="docutils literal notranslate"><span class="pre">b</span></code>, <em>and vice-versa</em>. <code class="docutils literal notranslate"><span class="pre">a</span></code> defaults to the FD for stdin (<code class="docutils literal notranslate"><span class="pre">0</span></code>), so that reading from stdin will effectively read from <code class="docutils literal notranslate"><span class="pre">b</span></code>, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ 0&lt;&amp;2     # Make reading from stdin (0) equal to reading from stderr (2)
+$ &lt;&amp;2      # idem
+$ 1&gt;&amp;2     # Make writing to stdout (1) equal to writing to stderr (2)
+$ &lt;&amp;2      # idem
+</pre></div>
+</div>
+<p>For <code class="docutils literal notranslate"><span class="pre">a&gt;&amp;b</span></code>, writing to <code class="docutils literal notranslate"><span class="pre">a</span></code> will now effectively write to <code class="docutils literal notranslate"><span class="pre">b</span></code>, <em>and vice-versa</em>. <code class="docutils literal notranslate"><span class="pre">a</span></code> defaults to the FD for stdout (<code class="docutils literal notranslate"><span class="pre">1</span></code>), so that writing to stdout will effectively write to <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p>
+<p>In both cases, <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> must be (or evaluate to) numerical FDs. In order to open files for reading/writing and return corresponding numerical file descriptors, the redirection operators <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> can be used:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ a&lt;file  # Open file for reading and make reading from FD a equal to reading from file&#39;s FD
+$ a&gt;file  # Open file for writing and make writing to FD a equal to writing to file&#39;s FD
+</pre></div>
+</div>
+<p>For <code class="docutils literal notranslate"><span class="pre">a&lt;file</span></code>, reading from <code class="docutils literal notranslate"><span class="pre">a</span></code> will now effectively read contents of <code class="docutils literal notranslate"><span class="pre">file</span></code>, <em>and vice-versa</em>. <code class="docutils literal notranslate"><span class="pre">a</span></code> defaults to the FD for stdin (<code class="docutils literal notranslate"><span class="pre">0</span></code>), so that reading from stdin will effectively read contents of <code class="docutils literal notranslate"><span class="pre">file</span></code>, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ xclip -i &lt; file          # xclip reads from stdin, stdin shares FD with file
+</pre></div>
+</div>
+<p>For <code class="docutils literal notranslate"><span class="pre">a&gt;&amp;file</span></code>, writing to <code class="docutils literal notranslate"><span class="pre">a</span></code> will now effectively write content to <code class="docutils literal notranslate"><span class="pre">file</span></code>, <em>and vice-versa</em>. <code class="docutils literal notranslate"><span class="pre">a</span></code> defaults to the FD for stdout (<code class="docutils literal notranslate"><span class="pre">1</span></code>), so that writing to stdout will effectively write content to <code class="docutils literal notranslate"><span class="pre">file</span></code>, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls &gt; file                # ls writes to stdout, stdout shares FD with file
+</pre></div>
+</div>
+<p>N.b. all redirection is valid only for current command.</p>
+<p>Some examples now of both duplication and redirection operators in play. N.b. all assumes pointer-like assignment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cmd &gt; file 2&gt;&amp;1    # 1 = open(file,&quot;w&quot;); 2 = 1; cmd writing to 1 == open(file,&quot;w&quot;); cmd writing to 2 == open(file, &quot;w&quot;)
+$ cmd 2&gt;&amp;1 &gt; file    # 2 = 1; 1 = open(file,&quot;w&quot;); cmd writing to 1 == open(file,&quot;w&quot;); cmd writing to 2 == open(/dev/stdout, &quot;w&quot;)
+</pre></div>
+</div>
+</div>
 <div class="section" id="multiple-background-commands">
 <h2>Multiple background commands<a class="headerlink" href="#multiple-background-commands" title="Permalink to this headline">¶</a></h2>
 <p>Execute multiple commands in background <a class="footnote-reference" href="#id2" id="id1">[1]</a>:</p>
