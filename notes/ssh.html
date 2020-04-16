@@ -111,6 +111,7 @@
 <li class="toctree-l2"><a class="reference internal" href="signal.html">Signal processing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html">Sphinx</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">SSH</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#keep-process-alive">Keep process alive</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#public-key-location">Public key location</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#multiple-keys">Multiple keys</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#key-encryption">Key Encryption</a></li>
@@ -191,13 +192,26 @@
             
   <div class="section" id="ssh">
 <h1>SSH<a class="headerlink" href="#ssh" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="public-key-location">
-<h2>Public key location<a class="headerlink" href="#public-key-location" title="Permalink to this headline">¶</a></h2>
-<p>For SSH with PKC authentication, public keys should be located in <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> user directory of SSH host (server) <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
+<div class="section" id="keep-process-alive">
+<h2>Keep process alive<a class="headerlink" href="#keep-process-alive" title="Permalink to this headline">¶</a></h2>
+<p>Can keep process alive after closing SSH session by using nohup <a class="footnote-reference" href="#id2" id="id1">[1]</a>, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nohup python3 -m http.server 8000 &amp;
+</pre></div>
+</div>
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://www.linode.com/docs/security/authentication/use-public-key-authentication-with-ssh/">https://www.linode.com/docs/security/authentication/use-public-key-authentication-with-ssh/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://askubuntu.com/questions/8653/how-to-keep-processes-running-after-ending-ssh-session/222855#222855">https://askubuntu.com/questions/8653/how-to-keep-processes-running-after-ending-ssh-session/222855#222855</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="public-key-location">
+<h2>Public key location<a class="headerlink" href="#public-key-location" title="Permalink to this headline">¶</a></h2>
+<p>For SSH with PKC authentication, public keys should be located in <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> user directory of SSH host (server) <a class="footnote-reference" href="#id4" id="id3">[2]</a>.</p>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="https://www.linode.com/docs/security/authentication/use-public-key-authentication-with-ssh/">https://www.linode.com/docs/security/authentication/use-public-key-authentication-with-ssh/</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -211,7 +225,7 @@
 <span class="go">id_&lt;ID2&gt;.pub</span>
 </pre></div>
 </div>
-<p>As such, adding new keys is just a matter of generating a new keypair with a unique filename <a class="footnote-reference" href="#id4" id="id3">[2]</a>.</p>
+<p>As such, adding new keys is just a matter of generating a new keypair with a unique filename <a class="footnote-reference" href="#id6" id="id5">[3]</a>.</p>
 <p>First, remove all key-pairs registered with SSH agent:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ssh</span><span class="o">-</span><span class="n">add</span> <span class="o">-</span><span class="n">D</span>
 </pre></div>
@@ -228,21 +242,21 @@
 </div>
 <p>specifying a unique filename when prompted.</p>
 <p>New key-pairs should automatically be registered with SSH agent.</p>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
+<table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="https://unix.stackexchange.com/questions/58969/how-to-list-keys-added-to-ssh-agent-with-ssh-add/58977">https://unix.stackexchange.com/questions/58969/how-to-list-keys-added-to-ssh-agent-with-ssh-add/58977</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td><a class="reference external" href="https://unix.stackexchange.com/questions/58969/how-to-list-keys-added-to-ssh-agent-with-ssh-add/58977">https://unix.stackexchange.com/questions/58969/how-to-list-keys-added-to-ssh-agent-with-ssh-add/58977</a></td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="key-encryption">
 <h2>Key Encryption<a class="headerlink" href="#key-encryption" title="Permalink to this headline">¶</a></h2>
-<p>SSH uses MD5 and AES for key encryption/decryption — not very safe nowadays. Can upgrade to more recent algorithm for better protection (PKCS#8) with no compatibility issue <a class="footnote-reference" href="#id6" id="id5">[3]</a>.</p>
+<p>SSH uses MD5 and AES for key encryption/decryption — not very safe nowadays. Can upgrade to more recent algorithm for better protection (PKCS#8) with no compatibility issue <a class="footnote-reference" href="#id8" id="id7">[4]</a>.</p>
 <p>Did so.</p>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
+<table class="docutils footnote" frame="void" id="id8" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td><a class="reference external" href="https://martin.kleppmann.com/2013/05/24/improving-security-of-ssh-private-keys.html">https://martin.kleppmann.com/2013/05/24/improving-security-of-ssh-private-keys.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="https://martin.kleppmann.com/2013/05/24/improving-security-of-ssh-private-keys.html">https://martin.kleppmann.com/2013/05/24/improving-security-of-ssh-private-keys.html</a></td></tr>
 </tbody>
 </table>
 </div>
