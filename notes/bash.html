@@ -91,6 +91,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../notes.html">Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Bash</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#redirect-output-on-success">Redirect output on success</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#disable-aliases">Disable aliases</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pop-argument">Pop argument</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#redirection">Redirection</a></li>
@@ -201,32 +202,45 @@
             
   <div class="section" id="bash">
 <h1>Bash<a class="headerlink" href="#bash" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="disable-aliases">
-<h2>Disable aliases<a class="headerlink" href="#disable-aliases" title="Permalink to this headline">¶</a></h2>
-<p>Use backslah to disable aliases and avoid recusrsion <a class="footnote-reference" href="#id2" id="id1">[1]</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;clear;\ls&#39;</span>
+<div class="section" id="redirect-output-on-success">
+<h2>Redirect output on success<a class="headerlink" href="#redirect-output-on-success" title="Permalink to this headline">¶</a></h2>
+<p><a class="footnote-reference" href="#id2" id="id1">[1]</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>out=$(some_command) &amp;&amp; echo &quot;$out&quot; &gt; outfile
 </pre></div>
 </div>
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://stackoverflow.com/a/7716048/2798933">https://stackoverflow.com/a/7716048/2798933</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/31424456/how-to-redirect-output-of-a-program-only-if-it-succeeded/31424574#31424574">https://stackoverflow.com/questions/31424456/how-to-redirect-output-of-a-program-only-if-it-succeeded/31424574#31424574</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="disable-aliases">
+<h2>Disable aliases<a class="headerlink" href="#disable-aliases" title="Permalink to this headline">¶</a></h2>
+<p>Use backslah to disable aliases and avoid recusrsion <a class="footnote-reference" href="#id4" id="id3">[2]</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;clear;\ls&#39;</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="https://stackoverflow.com/a/7716048/2798933">https://stackoverflow.com/a/7716048/2798933</a></td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="pop-argument">
 <h2>Pop argument<a class="headerlink" href="#pop-argument" title="Permalink to this headline">¶</a></h2>
-<p>Can use bash <code class="docutils literal notranslate"><span class="pre">shift</span></code> builtin to pop argument to a script, e.g. <a class="footnote-reference" href="#id4" id="id3">[2]</a>:</p>
+<p>Can use bash <code class="docutils literal notranslate"><span class="pre">shift</span></code> builtin to pop argument to a script, e.g. <a class="footnote-reference" href="#id6" id="id5">[3]</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ function foo() { echo $@; shift; echo $@; }
 $ foo 1 2 3
 1 2 3
 2 3
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
+<table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/10569198/bash-take-the-first-command-line-argument-and-pass-the-rest">https://stackoverflow.com/questions/10569198/bash-take-the-first-command-line-argument-and-pass-the-rest</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/10569198/bash-take-the-first-command-line-argument-and-pass-the-rest">https://stackoverflow.com/questions/10569198/bash-take-the-first-command-line-argument-and-pass-the-rest</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -274,40 +288,40 @@ $ cmd 2&gt;&amp;1 &gt; file    # 2 = 1; 1 = open(file,&quot;w&quot;); cmd writin
 </div>
 <div class="section" id="multiple-background-commands">
 <h2>Multiple background commands<a class="headerlink" href="#multiple-background-commands" title="Permalink to this headline">¶</a></h2>
-<p>Execute multiple commands in background <a class="footnote-reference" href="#id6" id="id5">[3]</a>:</p>
+<p>Execute multiple commands in background <a class="footnote-reference" href="#id8" id="id7">[4]</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmd1</span> <span class="o">&amp;</span> <span class="n">cmd2</span> <span class="o">&amp;</span>
-</pre></div>
-</div>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/14612371/how-do-i-run-multiple-background-commands-in-bash-in-a-single-line">https://stackoverflow.com/questions/14612371/how-do-i-run-multiple-background-commands-in-bash-in-a-single-line</a></td></tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="iso-image-from-cd">
-<h2>ISO image from CD<a class="headerlink" href="#iso-image-from-cd" title="Permalink to this headline">¶</a></h2>
-<p>Create ISO image <a class="footnote-reference" href="#id8" id="id7">[4]</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">dev</span><span class="o">/</span><span class="n">srX</span> <span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">OUTPUT</span><span class="o">&gt;.</span><span class="n">iso</span>
 </pre></div>
 </div>
 <table class="docutils footnote" frame="void" id="id8" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="http://askubuntu.com/questions/307688/how-to-create-iso-image-from-dvd">http://askubuntu.com/questions/307688/how-to-create-iso-image-from-dvd</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/14612371/how-do-i-run-multiple-background-commands-in-bash-in-a-single-line">https://stackoverflow.com/questions/14612371/how-do-i-run-multiple-background-commands-in-bash-in-a-single-line</a></td></tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="imagemagik-thumbnailing">
-<h2>ImageMagik Thumbnailing<a class="headerlink" href="#imagemagik-thumbnailing" title="Permalink to this headline">¶</a></h2>
-<p>Create thumbnail by central cropping <a class="footnote-reference" href="#id10" id="id9">[5]</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">convert</span> <span class="o">-</span><span class="n">define</span> <span class="n">jpeg</span><span class="p">:</span><span class="n">size</span><span class="o">=</span><span class="mi">200</span><span class="n">x200</span> <span class="o">&lt;</span><span class="n">INPUT</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">thumbnail</span> <span class="mi">100</span><span class="n">x100</span><span class="o">^</span> <span class="o">-</span><span class="n">gravity</span> <span class="n">center</span> <span class="o">-</span><span class="n">extent</span> <span class="mi">100</span><span class="n">x100</span>  <span class="o">&lt;</span><span class="n">OUTPUT</span><span class="o">&gt;</span>
+<div class="section" id="iso-image-from-cd">
+<h2>ISO image from CD<a class="headerlink" href="#iso-image-from-cd" title="Permalink to this headline">¶</a></h2>
+<p>Create ISO image <a class="footnote-reference" href="#id10" id="id9">[5]</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">dev</span><span class="o">/</span><span class="n">srX</span> <span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">OUTPUT</span><span class="o">&gt;.</span><span class="n">iso</span>
 </pre></div>
 </div>
 <table class="docutils footnote" frame="void" id="id10" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td><a class="reference external" href="http://www.imagemagick.org/Usage/thumbnails/#height">http://www.imagemagick.org/Usage/thumbnails/#height</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td><a class="reference external" href="http://askubuntu.com/questions/307688/how-to-create-iso-image-from-dvd">http://askubuntu.com/questions/307688/how-to-create-iso-image-from-dvd</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="imagemagik-thumbnailing">
+<h2>ImageMagik Thumbnailing<a class="headerlink" href="#imagemagik-thumbnailing" title="Permalink to this headline">¶</a></h2>
+<p>Create thumbnail by central cropping <a class="footnote-reference" href="#id12" id="id11">[6]</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">convert</span> <span class="o">-</span><span class="n">define</span> <span class="n">jpeg</span><span class="p">:</span><span class="n">size</span><span class="o">=</span><span class="mi">200</span><span class="n">x200</span> <span class="o">&lt;</span><span class="n">INPUT</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">thumbnail</span> <span class="mi">100</span><span class="n">x100</span><span class="o">^</span> <span class="o">-</span><span class="n">gravity</span> <span class="n">center</span> <span class="o">-</span><span class="n">extent</span> <span class="mi">100</span><span class="n">x100</span>  <span class="o">&lt;</span><span class="n">OUTPUT</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id11">[6]</a></td><td><a class="reference external" href="http://www.imagemagick.org/Usage/thumbnails/#height">http://www.imagemagick.org/Usage/thumbnails/#height</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -357,7 +371,7 @@ $ cmd 2&gt;&amp;1 &gt; file    # 2 = 1; 1 = open(file,&quot;w&quot;); cmd writin
 </div>
 <div class="section" id="gpg-encryption">
 <h2>GPG Encryption<a class="headerlink" href="#gpg-encryption" title="Permalink to this headline">¶</a></h2>
-<p>Encryption <a class="footnote-reference" href="#id12" id="id11">[6]</a>:</p>
+<p>Encryption <a class="footnote-reference" href="#id14" id="id13">[7]</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gpg</span> <span class="o">--</span><span class="n">encrypt</span> <span class="o">--</span><span class="n">recipient</span> <span class="o">&lt;</span><span class="n">public_key_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">input_file</span><span class="o">&gt;</span>
 </pre></div>
 </div>
@@ -365,23 +379,23 @@ $ cmd 2&gt;&amp;1 &gt; file    # 2 = 1; 1 = open(file,&quot;w&quot;); cmd writin
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gpg</span> <span class="o">--</span><span class="n">output</span> <span class="o">&lt;</span><span class="n">output_file</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">decrypt</span> <span class="o">&lt;</span><span class="n">input_file</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id12" rules="none">
+<table class="docutils footnote" frame="void" id="id14" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id11">[6]</a></td><td><a class="reference external" href="https://www.madboa.com/geek/gpg-quickstart/">https://www.madboa.com/geek/gpg-quickstart/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id13">[7]</a></td><td><a class="reference external" href="https://www.madboa.com/geek/gpg-quickstart/">https://www.madboa.com/geek/gpg-quickstart/</a></td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="list-absolute-path">
 <h2>List Absolute Path<a class="headerlink" href="#list-absolute-path" title="Permalink to this headline">¶</a></h2>
-<p><a class="footnote-reference" href="#id14" id="id13">[7]</a>:</p>
+<p><a class="footnote-reference" href="#id16" id="id15">[8]</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">readlink</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">FILENAME</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id14" rules="none">
+<table class="docutils footnote" frame="void" id="id16" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id13">[7]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/246215/how-can-i-list-files-with-their-absolute-path-in-linux">http://stackoverflow.com/questions/246215/how-can-i-list-files-with-their-absolute-path-in-linux</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id15">[8]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/246215/how-can-i-list-files-with-their-absolute-path-in-linux">http://stackoverflow.com/questions/246215/how-can-i-list-files-with-their-absolute-path-in-linux</a></td></tr>
 </tbody>
 </table>
 </div>
