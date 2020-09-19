@@ -114,6 +114,11 @@
 <li class="toctree-l2"><a class="reference internal" href="vim.html">Vim</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vscode.html">Visual Studio Code</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Web</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#w3c-event-model">W3C event model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#phases">Phases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#custom-events">Custom events</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#cross-origin-resource-sharing">Cross origin resource sharing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#server-side-scripting">Server-Side Scripting</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#protocols">Protocols</a></li>
@@ -194,45 +199,82 @@
             
   <div class="section" id="web">
 <h1>Web<a class="headerlink" href="#web" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="cross-origin-resource-sharing">
-<h2>Cross origin resource sharing<a class="headerlink" href="#cross-origin-resource-sharing" title="Permalink to this headline">¶</a></h2>
-<p>HTTP response from one server results in further HTTP request to other server (e.g. via JS, HTML link tag, etc.) <a class="footnote-reference" href="#id5" id="id1">[1]</a>.  Used to be blocked, now more and more accepted <a class="footnote-reference" href="#id6" id="id2">[2]</a>.</p>
-<p>Secondary server decides what resources are accessible. Can see from <code class="docutils literal notranslate"><span class="pre">Access-Control-Allow-Origin</span></code> value in header HTTP response — wildcard like matching of origins allowed to request resource. Most general is <code class="docutils literal notranslate"><span class="pre">*</span></code> — allow any server to request this data.</p>
-<p>Easy check:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl -v URL 2&gt;&amp;1 1&gt;/dev/null | grep Access
-</pre></div>
-</div>
-<p>For more security, can also specify resource hash to ensure content has not been tampered with. Do this with <code class="docutils literal notranslate"><span class="pre">integrity</span></code> attribute <a class="footnote-reference" href="#id7" id="id3">[3]</a>.</p>
-<p>Returned content-type must also be considered — e.g. cannot use <code class="docutils literal notranslate"><span class="pre">text/plain</span></code> as CSS <a class="footnote-reference" href="#id8" id="id4">[4]</a>.</p>
+<div class="section" id="w3c-event-model">
+<h2>W3C event model<a class="headerlink" href="#w3c-event-model" title="Permalink to this headline">¶</a></h2>
+<p>W3C defines standard event model to be implemented by browsers <a class="footnote-reference" href="#id4" id="id1">[1]</a> — DOM elements can dispatch and listen for events. Interface for this is Event interface <a class="footnote-reference" href="#id5" id="id2">[2]</a>, defining e.g. <code class="docutils literal notranslate"><span class="pre">EventhTarget.dispatchEvent()</span></code> and <code class="docutils literal notranslate"><span class="pre">EventTarget.addEventListener()</span></code>. Events are probably handled by separate thread for asynchronicity.</p>
+<div class="section" id="phases">
+<h3>Phases<a class="headerlink" href="#phases" title="Permalink to this headline">¶</a></h3>
+<p>Dispatched events go through 3 phases: capture, target, bubbling <a class="footnote-reference" href="#id6" id="id3">[3]</a>. Phase under which event listener function is called is determined by third argument to <code class="docutils literal notranslate"><span class="pre">addEventListener</span></code> and usually defaults to bubbling.</p>
+<p>N.b. Event only propagated from top of DOM heirarchy to target (element dispatcging event) — sibilngs and children never see event.</p>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events">https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events</a></td></tr>
+</tbody>
+</table>
 <table class="docutils footnote" frame="void" id="id5" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://www.w3schools.com/tags/tag_link.asp">https://www.w3schools.com/tags/tag_link.asp</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Event">https://developer.mozilla.org/en-US/docs/Web/API/Event</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id6" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">https://en.wikipedia.org/wiki/Cross-origin_resource_sharing</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://www.w3.org/TR/DOM-Level-3-Events/#event-flow">https://www.w3.org/TR/DOM-Level-3-Events/#event-flow</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/32039568/what-are-the-integrity-and-crossorigin-attributes">https://stackoverflow.com/questions/32039568/what-are-the-integrity-and-crossorigin-attributes</a></td></tr>
-</tbody>
-</table>
+</div>
+<div class="section" id="custom-events">
+<h3>Custom events<a class="headerlink" href="#custom-events" title="Permalink to this headline">¶</a></h3>
+<p>Custom events (i.e. not generated by browser) can be dispatched with <code class="docutils literal notranslate"><span class="pre">EventTarget.dispatchEvent()</span></code>. This is however handled synchronously <a class="footnote-reference" href="#id8" id="id7">[4]</a>.</p>
 <table class="docutils footnote" frame="void" id="id8" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td><a class="reference external" href="https://webmasters.stackexchange.com/questions/50006/chrome-refused-to-execute-this-javascript-file/50017#50017">https://webmasters.stackexchange.com/questions/50006/chrome-refused-to-execute-this-javascript-file/50017#50017</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent">https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="cross-origin-resource-sharing">
+<h2>Cross origin resource sharing<a class="headerlink" href="#cross-origin-resource-sharing" title="Permalink to this headline">¶</a></h2>
+<p>HTTP response from one server results in further HTTP request to other server (e.g. via JS, HTML link tag, etc.) <a class="footnote-reference" href="#id13" id="id9">[5]</a>.  Used to be blocked, now more and more accepted <a class="footnote-reference" href="#id14" id="id10">[6]</a>.</p>
+<p>Secondary server decides what resources are accessible. Can see from <code class="docutils literal notranslate"><span class="pre">Access-Control-Allow-Origin</span></code> value in header HTTP response — wildcard like matching of origins allowed to request resource. Most general is <code class="docutils literal notranslate"><span class="pre">*</span></code> — allow any server to request this data.</p>
+<p>Easy check:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl -v URL 2&gt;&amp;1 1&gt;/dev/null | grep Access
+</pre></div>
+</div>
+<p>For more security, can also specify resource hash to ensure content has not been tampered with. Do this with <code class="docutils literal notranslate"><span class="pre">integrity</span></code> attribute <a class="footnote-reference" href="#id15" id="id11">[7]</a>.</p>
+<p>Returned content-type must also be considered — e.g. cannot use <code class="docutils literal notranslate"><span class="pre">text/plain</span></code> as CSS <a class="footnote-reference" href="#id16" id="id12">[8]</a>.</p>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td><a class="reference external" href="https://www.w3schools.com/tags/tag_link.asp">https://www.w3schools.com/tags/tag_link.asp</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[6]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">https://en.wikipedia.org/wiki/Cross-origin_resource_sharing</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id11">[7]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/32039568/what-are-the-integrity-and-crossorigin-attributes">https://stackoverflow.com/questions/32039568/what-are-the-integrity-and-crossorigin-attributes</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id16" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id12">[8]</a></td><td><a class="reference external" href="https://webmasters.stackexchange.com/questions/50006/chrome-refused-to-execute-this-javascript-file/50017#50017">https://webmasters.stackexchange.com/questions/50006/chrome-refused-to-execute-this-javascript-file/50017#50017</a></td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="server-side-scripting">
 <h2>Server-Side Scripting<a class="headerlink" href="#server-side-scripting" title="Permalink to this headline">¶</a></h2>
 <p>Server-side scripting — request server to execute code in a scripting language (e.g. Python, PHP, etc) and return result. Requires server process to be able to execute scripts, ideally in any arbitrary scripting language.</p>
-<p>As such, interface protocols developed to allow communication between server processes and scripting languages <a class="footnote-reference" href="#id12" id="id9">[5]</a>.</p>
+<p>As such, interface protocols developed to allow communication between server processes and scripting languages <a class="footnote-reference" href="#id20" id="id17">[9]</a>.</p>
 <div class="section" id="protocols">
 <h3>Protocols<a class="headerlink" href="#protocols" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="common-gateway-interface-cgi">
@@ -261,23 +303,23 @@
 <div class="section" id="practicalities">
 <h3>Practicalities<a class="headerlink" href="#practicalities" title="Permalink to this headline">¶</a></h3>
 <p>Cannot get WSGI working on XAMMP. Tried with <code class="docutils literal notranslate"><span class="pre">hgweb.wsgi</span></code> and just refuses to work. Apache does not have wsgi module and so cannot interpret <code class="docutils literal notranslate"><span class="pre">WSGIScriptAlias</span></code> option.</p>
-<p>Tried downloading wsgi module binary <a class="footnote-reference" href="#id13" id="id10">[6]</a>, but does not seem to work either. Looks like there may be fundamental compatibility issues <a class="footnote-reference" href="#id14" id="id11">[7]</a>…</p>
-<table class="docutils footnote" frame="void" id="id12" rules="none">
+<p>Tried downloading wsgi module binary <a class="footnote-reference" href="#id21" id="id18">[10]</a>, but does not seem to work either. Looks like there may be fundamental compatibility issues <a class="footnote-reference" href="#id22" id="id19">[11]</a>…</p>
+<table class="docutils footnote" frame="void" id="id20" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td><a class="reference external" href="https://docs.python.org/3.5/howto/webservers.html">https://docs.python.org/3.5/howto/webservers.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id17">[9]</a></td><td><a class="reference external" href="https://docs.python.org/3.5/howto/webservers.html">https://docs.python.org/3.5/howto/webservers.html</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id13" rules="none">
+<table class="docutils footnote" frame="void" id="id21" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id10">[6]</a></td><td><a class="reference external" href="https://www.devbattles.com/en/sand/post-304-using+Apache+and+Python+WSGI+on+Windows">https://www.devbattles.com/en/sand/post-304-using+Apache+and+Python+WSGI+on+Windows</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id18">[10]</a></td><td><a class="reference external" href="https://www.devbattles.com/en/sand/post-304-using+Apache+and+Python+WSGI+on+Windows">https://www.devbattles.com/en/sand/post-304-using+Apache+and+Python+WSGI+on+Windows</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id14" rules="none">
+<table class="docutils footnote" frame="void" id="id22" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id11">[7]</a></td><td><a class="reference external" href="https://github.com/GrahamDumpleton/mod_wsgi/blob/develop/win32/README.rst">https://github.com/GrahamDumpleton/mod_wsgi/blob/develop/win32/README.rst</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id19">[11]</a></td><td><a class="reference external" href="https://github.com/GrahamDumpleton/mod_wsgi/blob/develop/win32/README.rst">https://github.com/GrahamDumpleton/mod_wsgi/blob/develop/win32/README.rst</a></td></tr>
 </tbody>
 </table>
 </div>
