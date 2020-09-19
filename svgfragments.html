@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cat marcelo/{thought,code,hack}.rst | html &mdash; marceloalcocer.github.io v0.0 documentation</title>
+  <title>SVGFragments demo &mdash; marceloalcocer.github.io v0.0 documentation</title>
   
 
   
@@ -36,7 +36,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Online margin scribbles…" href="notes.html" /> 
+    <link rel="prev" title="Sunfleet pro-rata rental" href="sunfleet.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -50,7 +50,7 @@
           
 
           
-            <a href="#" class="icon icon-home" alt="Documentation Home"> marceloalcocer.github.io
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> marceloalcocer.github.io
           
 
           
@@ -85,11 +85,11 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="notes.html">Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ultrajs.html">ultrajs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sunfleet.html">Sunfleet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="svgfragments.html">SVGFragments</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SVGFragments</a></li>
 </ul>
 
             
@@ -105,7 +105,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">marceloalcocer.github.io</a>
+          <a href="index.html">marceloalcocer.github.io</a>
         
       </nav>
 
@@ -134,9 +134,9 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>cat marcelo/{thought,code,hack}.rst | html</li>
+      <li>SVGFragments demo</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -153,15 +153,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="cat-marcelo-thought-code-hack-rst-html">
-<h1>cat marcelo/{thought,code,hack}.rst | html<a class="headerlink" href="#cat-marcelo-thought-code-hack-rst-html" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
+  <div class="section" id="svgfragments-demo">
+<h1>SVGFragments demo<a class="headerlink" href="#svgfragments-demo" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/marceloalcocer/reveal-svgfragments">SVGFragments</a> is a plugin for the <a class="reference external" href="https://revealjs.com">reveal.js</a> presentation framework which allows SVG elements to be used as fragments.</p>
+<link rel="stylesheet" href="svgfragments/dist/reveal.css">
+<link rel="stylesheet" href="svgfragments/dist/theme/black.css" id="theme">
+<div class="reveal" style="width: 100%; height: 300px;">
+    <div class="slides">
+        <section>
+            <h1>SVGFragments demo</h1>
+        </section>
+        <section>
+            <h3>SVG fragments with effects and ordering</h3>
+            <object data="svgfragments/circles.svg" type="image/svg+xml">
+                <span class="svg-fragment fade-in" data-fragment-index="2" data-selector="#circle0"></span>
+                <span class="svg-fragment fade-up" data-fragment-index="1" data-selector="#circle1"></span>
+                <span class="svg-fragment fade-down" data-fragment-index="3" data-selector="#circle2"></span>
+            </object>
+        </section>
+    </div>
 </div>
-<div class="admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last">Likely to contain rambling musings, obscene code styles, and dirty hacks</p>
-</div>
-</div>
+<script src="svgfragments/dist/reveal.js"></script>
+<script src="svgfragments/plugin/svgfragments/svgfragments.js"></script>
+<script>
+    Reveal.initialize(
+        {
+            embedded: true,
+            keyboardCondition: "focused",
+            plugins: [SVGFragments]
+        }
+    );
+</script></div>
 
 
            </div>
