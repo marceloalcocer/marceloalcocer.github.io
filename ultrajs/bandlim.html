@@ -163,6 +163,7 @@
   <div class="section" id="bandlim-js-demo">
 <h1>bandlim.js demo<a class="headerlink" href="#bandlim-js-demo" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">bandlim.js</span></code> is an <a class="reference external" href="https://github.com/marceloalcocer/ultrajs">ultrajs</a> module for computing bandwidth limited pulse durations from power spectra.</p>
+<p>Pure client-side JS.</p>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js" integrity="sha256-t7CAuaRhODo/cv00lxyONppujwTFFwUWGkrhD/UB1qM=" crossorigin="anonymous"></script>
 <script src="https://code.highcharts.com/js/highcharts.js"></script>
 <link rel="stylesheet" href="https://code.highcharts.com/css/highcharts.css">
@@ -171,27 +172,6 @@
 <link rel="stylesheet" href="bandlim.css">
 
 <div id="bandlim">
-
-        <h2>Bandwidth Limited Pulse Calculator</h2>
-
-        <p>
-                Computes the bandwidth limited duration of an optical pulse from its spectrum
-                <sup class="info">
-                        &#x1F6C8;
-                        <span class="info_text" id="info_description">
-                                \begin{equation}
-                                        a(t) = \left | a(t) \right | e^{i \phi(t)} \xrightarrow{\mathfrak{F}}  A(\omega) = \left | A(\omega) \right | e^{i \psi(\omega)}
-                                \end{equation}
-                                Under bandwidth limited conditions;
-                                \begin{align}
-                                        \psi(\omega) &= 0 \\
-                                        \Rightarrow a(t) &= \mathfrak{F}^{-1} \left [ \sqrt{\left | A(\omega) \right |^2} \right ]
-                                \end{align}
-                        </span>
-                </sup>
-        </p>
-
-        <p>Pure client-side JavaScript</p>
 
         <div class="container_fwc">
                 <form id="controls">
