@@ -26,11 +26,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="desktop.html">Desktop environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse.html">Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gentoo.html">Gentoo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git.html">Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">Cryptography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graphing.html">Graphing</a></li>
@@ -214,135 +213,121 @@
 <p>Basic web server for hosting lab related files.</p>
 <p>Requirements:</p>
 <ul class="simple">
-<li>Wiki for multi-user lab documentation (MediaWiki)</li>
-<li>FTP server for file access (Filezilla)</li>
-<li>Repository hosting for lab software (Git/Mercurial)</li>
+<li><p>Wiki for multi-user lab documentation (MediaWiki)</p></li>
+<li><p>FTP server for file access (Filezilla)</p></li>
+<li><p>Repository hosting for lab software (Git/Mercurial)</p></li>
 </ul>
 <p>Setting up wiki tpyically requires</p>
 <ul class="simple">
-<li>Web server</li>
-<li>PHP installation</li>
-<li>Database installation</li>
+<li><p>Web server</p></li>
+<li><p>PHP installation</p></li>
+<li><p>Database installation</p></li>
 </ul>
 <p>Easiest way of getting all these is a WAMP/LAMP/WIMP/LIMP stack (Windows|Linux, Apache|ISS, MySQL, PHP). Nice bundle which facilities installation and configuration.</p>
-<p>Nice WAMP stack for Windows is XAMPP <a class="footnote-reference" href="#id2" id="id1">[1]</a>. Added benefit that it supports Bitnami installer for MediaWiki — installer to simplify installation and configuration of MediWiki alongside WAMP stack.</p>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://www.apachefriends.org/download.html">https://www.apachefriends.org/download.html</a></td></tr>
-</tbody>
-</table>
+<p>Nice WAMP stack for Windows is XAMPP <a class="footnote-reference brackets" href="#id2" id="id1">1</a>. Added benefit that it supports Bitnami installer for MediaWiki — installer to simplify installation and configuration of MediWiki alongside WAMP stack.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://www.apachefriends.org/download.html">https://www.apachefriends.org/download.html</a></p>
+</dd>
+</dl>
 <div class="section" id="wamp-stack">
 <h2>WAMP stack<a class="headerlink" href="#wamp-stack" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="installation">
 <h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
 <p>Download and install XAMPP 7.0.8. Installed components:</p>
 <ol class="arabic simple">
-<li>Apache (webserver)</li>
-<li>MariaDB (database)</li>
-<li>PHP</li>
-<li>phpMyAdmin (SQL management web interface)</li>
-<li>Webalizer (logging)</li>
+<li><p>Apache (webserver)</p></li>
+<li><p>MariaDB (database)</p></li>
+<li><p>PHP</p></li>
+<li><p>phpMyAdmin (SQL management web interface)</p></li>
+<li><p>Webalizer (logging)</p></li>
 </ol>
 <p>Start Apache and MariaDB. Can now see default XAMPP start page at <a class="reference external" href="http://localhost">http://localhost</a></p>
 </div>
 <div class="section" id="securing-sql">
 <h3>Securing SQL<a class="headerlink" href="#securing-sql" title="Permalink to this headline">¶</a></h3>
-<p>XAMPP stresses that it is not production ready and has lots of security holes <a class="footnote-reference" href="#id5" id="id3">[2]</a> — fine for dev, but not for public release. Latest version of XAMPP however seem to have patched the most glaring holes <a class="footnote-reference" href="#id6" id="id4">[3]</a>. Only real thing left to secure is MySQL root password.</p>
+<p>XAMPP stresses that it is not production ready and has lots of security holes <a class="footnote-reference brackets" href="#id5" id="id3">2</a> — fine for dev, but not for public release. Latest version of XAMPP however seem to have patched the most glaring holes <a class="footnote-reference brackets" href="#id6" id="id4">3</a>. Only real thing left to secure is MySQL root password.</p>
 <p>Set via XAMPP console using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mysqladmin</span> <span class="o">--</span><span class="n">user</span><span class="o">=</span><span class="n">root</span> <span class="n">password</span> <span class="o">&lt;</span><span class="n">PASSWORD</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p><strong>N.b. quote &lt;PASSWORD&gt;!</strong></p>
 <p>Changed <code class="docutils literal notranslate"><span class="pre">phpmyadmin.ini</span></code> to authenticate using http rather than config file values. phpMyAdmin now asks for password.</p>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="https://www.apachefriends.org/faq_windows.html">https://www.apachefriends.org/faq_windows.html</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/35391539/is-there-a-new-uri-for-opening-the-xampp-security-console-on-xampp-7-0-2-1">http://stackoverflow.com/questions/35391539/is-there-a-new-uri-for-opening-the-xampp-security-console-on-xampp-7-0-2-1</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p><a class="reference external" href="https://www.apachefriends.org/faq_windows.html">https://www.apachefriends.org/faq_windows.html</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
+<dd><p><a class="reference external" href="http://stackoverflow.com/questions/35391539/is-there-a-new-uri-for-opening-the-xampp-security-console-on-xampp-7-0-2-1">http://stackoverflow.com/questions/35391539/is-there-a-new-uri-for-opening-the-xampp-security-console-on-xampp-7-0-2-1</a></p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="mediawiki">
 <h2>MediaWiki<a class="headerlink" href="#mediawiki" title="Permalink to this headline">¶</a></h2>
-<p>Now installing MediaWiki using Bitnami installer <a class="footnote-reference" href="#id8" id="id7">[4]</a>.</p>
+<p>Now installing MediaWiki using Bitnami installer <a class="footnote-reference brackets" href="#id8" id="id7">4</a>.</p>
 <p>N.b. application password is password to be used by SQL user <code class="docutils literal notranslate"><span class="pre">bitnami_mediawiki</span></code> for all MediaWiki access to SQL DB. It’s stored in plaintext in <code class="docutils literal notranslate"><span class="pre">LocalSettings.php</span></code> so it should be disposable.</p>
 <p>Added new user with admin privileges during installation.</p>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="https://www.apachefriends.org/add-ons.html">https://www.apachefriends.org/add-ons.html</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id7">4</a></span></dt>
+<dd><p><a class="reference external" href="https://www.apachefriends.org/add-ons.html">https://www.apachefriends.org/add-ons.html</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="filezilla-ftp-server">
 <h2>Filezilla FTP Server<a class="headerlink" href="#filezilla-ftp-server" title="Permalink to this headline">¶</a></h2>
 <p>Setting up FTP server to allow upload to server without needing RDP. This should be useful for uploading files which are too large/prohibited by MediaWiki.</p>
-<p>Configuration <a class="footnote-reference" href="#id10" id="id9">[5]</a>:</p>
+<p>Configuration <a class="footnote-reference brackets" href="#id10" id="id9">5</a>:</p>
 <ol class="arabic simple">
-<li>Run FTP server</li>
-<li>Select to allow FTP server through firewall on private networks</li>
-<li>Open admin panel</li>
-<li>Connect as admin (requests new password on first time logon)</li>
-<li>Configure general server settings (all left as default FTM)</li>
-<li>Add new user(group) with associated directory/ies access and password</li>
+<li><p>Run FTP server</p></li>
+<li><p>Select to allow FTP server through firewall on private networks</p></li>
+<li><p>Open admin panel</p></li>
+<li><p>Connect as admin (requests new password on first time logon)</p></li>
+<li><p>Configure general server settings (all left as default FTM)</p></li>
+<li><p>Add new user(group) with associated directory/ies access and password</p></li>
 </ol>
 <p>Can now connect using FTP client (e.g. Filezilla Client, Nautilus, etc).</p>
-<table class="docutils footnote" frame="void" id="id10" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td><a class="reference external" href="https://wiki.filezilla-project.org/Network_Configuration">https://wiki.filezilla-project.org/Network_Configuration</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id9">5</a></span></dt>
+<dd><p><a class="reference external" href="https://wiki.filezilla-project.org/Network_Configuration">https://wiki.filezilla-project.org/Network_Configuration</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="repository-hosting">
 <h2>Repository hosting<a class="headerlink" href="#repository-hosting" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="mercurial">
 <h3>Mercurial<a class="headerlink" href="#mercurial" title="Permalink to this headline">¶</a></h3>
-<p>Now want to set up web interface to HG repos. Can do in many ways <a class="footnote-reference" href="#id14" id="id11">[6]</a>. Simplest probably hgweb though.</p>
+<p>Now want to set up web interface to HG repos. Can do in many ways <a class="footnote-reference brackets" href="#id14" id="id11">6</a>. Simplest probably hgweb though.</p>
 <p>hgweb requires mercurial python libraries however. As mercurial built on Python 2.x, on Windows these are only supplied for Python 2.x. As such did following:</p>
 <ol class="arabic simple">
-<li>Uninstalled existing Mercurial installation (3.5)</li>
-<li>Installed Python 2.7 alongside existing Python 3.4</li>
-<li>Made python2 and python3 symlinks to executables</li>
-<li>Added Python 2.7 to path (above Python 3.4)</li>
-<li>Reinstalled Mercurial (3.9) with Python 2 modules <a class="footnote-reference" href="#id15" id="id12">[7]</a></li>
+<li><p>Uninstalled existing Mercurial installation (3.5)</p></li>
+<li><p>Installed Python 2.7 alongside existing Python 3.4</p></li>
+<li><p>Made python2 and python3 symlinks to executables</p></li>
+<li><p>Added Python 2.7 to path (above Python 3.4)</p></li>
+<li><p>Reinstalled Mercurial (3.9) with Python 2 modules <a class="footnote-reference brackets" href="#id15" id="id12">7</a></p></li>
 </ol>
 <p>Now default Python interpreter is 2.7 and can import mercurial module in python.</p>
 <p>Proceeding with hgweb installation. Points to note:</p>
 <ol class="arabic simple">
-<li>Download latest version of <code class="docutils literal notranslate"><span class="pre">hgweb.cgi</span></code> as not included in mercurial installation(?!)</li>
-<li>Set shebang path correctly in <code class="docutils literal notranslate"><span class="pre">hgweb.cgi</span></code></li>
-<li>Place <code class="docutils literal notranslate"><span class="pre">hgweb.cgi</span></code> in <code class="docutils literal notranslate"><span class="pre">cgi-bin</span></code></li>
-<li>Set apache alias in <code class="docutils literal notranslate"><span class="pre">httpd.conf</span></code> (in included conf file actually)</li>
-<li>Denied push access for each repo individually in repo hgrc file</li>
+<li><p>Download latest version of <code class="docutils literal notranslate"><span class="pre">hgweb.cgi</span></code> as not included in mercurial installation(?!)</p></li>
+<li><p>Set shebang path correctly in <code class="docutils literal notranslate"><span class="pre">hgweb.cgi</span></code></p></li>
+<li><p>Place <code class="docutils literal notranslate"><span class="pre">hgweb.cgi</span></code> in <code class="docutils literal notranslate"><span class="pre">cgi-bin</span></code></p></li>
+<li><p>Set apache alias in <code class="docutils literal notranslate"><span class="pre">httpd.conf</span></code> (in included conf file actually)</p></li>
+<li><p>Denied push access for each repo individually in repo hgrc file</p></li>
 </ol>
 <p>Works beautifully now.</p>
-<p>Finally, themed with boundstate theme <a class="footnote-reference" href="#id16" id="id13">[8]</a>. Just had to modify <code class="docutils literal notranslate"><span class="pre">Repositories</span></code> link to point to <code class="docutils literal notranslate"><span class="pre">/hg</span></code> as per issue #13.</p>
-<table class="docutils footnote" frame="void" id="id14" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id11">[6]</a></td><td><a class="reference external" href="https://www.mercurial-scm.org/wiki/PublishingRepositories#hgweb">https://www.mercurial-scm.org/wiki/PublishingRepositories#hgweb</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id15" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id12">[7]</a></td><td><a class="reference external" href="https://www.mercurial-scm.org/wiki/Download">https://www.mercurial-scm.org/wiki/Download</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id16" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id13">[8]</a></td><td><a class="reference external" href="https://github.com/boundstate/hgweb-boundstate-theme">https://github.com/boundstate/hgweb-boundstate-theme</a></td></tr>
-</tbody>
-</table>
+<p>Finally, themed with boundstate theme <a class="footnote-reference brackets" href="#id16" id="id13">8</a>. Just had to modify <code class="docutils literal notranslate"><span class="pre">Repositories</span></code> link to point to <code class="docutils literal notranslate"><span class="pre">/hg</span></code> as per issue #13.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id11">6</a></span></dt>
+<dd><p><a class="reference external" href="https://www.mercurial-scm.org/wiki/PublishingRepositories#hgweb">https://www.mercurial-scm.org/wiki/PublishingRepositories#hgweb</a></p>
+</dd>
+<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id12">7</a></span></dt>
+<dd><p><a class="reference external" href="https://www.mercurial-scm.org/wiki/Download">https://www.mercurial-scm.org/wiki/Download</a></p>
+</dd>
+<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id13">8</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/boundstate/hgweb-boundstate-theme">https://github.com/boundstate/hgweb-boundstate-theme</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="git">
 <h3>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h3>
@@ -350,8 +335,8 @@
 <p>As have to install Git on server, might as well try more standard setup of Git over (smart) HTTP.</p>
 <div class="section" id="http">
 <h4>HTTP<a class="headerlink" href="#http" title="Permalink to this headline">¶</a></h4>
-<p>Downloaded Git for Windows official installation <a class="footnote-reference" href="#id21" id="id17">[9]</a>. This comes bundled with MinGW installation which provide basic GNU/Linux tools required for running Git.</p>
-<p>Followed steps in Git book on setting up Git over Smart HTTP <a class="footnote-reference" href="#id22" id="id18">[10]</a>.</p>
+<p>Downloaded Git for Windows official installation <a class="footnote-reference brackets" href="#id21" id="id17">9</a>. This comes bundled with MinGW installation which provide basic GNU/Linux tools required for running Git.</p>
+<p>Followed steps in Git book on setting up Git over Smart HTTP <a class="footnote-reference brackets" href="#id22" id="id18">10</a>.</p>
 <p>Created bare repository from git bash shell on server:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">C</span><span class="p">:</span>\<span class="n">xampp</span>\<span class="n">git</span>
 <span class="n">git</span> <span class="n">init</span> <span class="o">--</span><span class="n">bare</span> <span class="n">foo</span><span class="o">.</span><span class="n">git</span>
@@ -366,8 +351,8 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ScriptAlias</span> <span class="o">/</span><span class="n">git</span><span class="o">/</span> <span class="s2">&quot;C:/Program Files/Git/mingw64/libexec/git-core/git-http-backend.exe&quot;</span>
 </pre></div>
 </div>
-<p><em>N.b. location of main Git HTTP script</em> (<code class="docutils literal notranslate"><span class="pre">git-http-backend</span></code>) <em>on Windows differs from GNU/Linux</em> <a class="footnote-reference" href="#id23" id="id19">[11]</a></p>
-<p>For some reason this doesn’t seem to work. Instead had to use regexp version <a class="footnote-reference" href="#id24" id="id20">[12]</a>:</p>
+<p><em>N.b. location of main Git HTTP script</em> (<code class="docutils literal notranslate"><span class="pre">git-http-backend</span></code>) <em>on Windows differs from GNU/Linux</em> <a class="footnote-reference brackets" href="#id23" id="id19">11</a></p>
+<p>For some reason this doesn’t seem to work. Instead had to use regexp version <a class="footnote-reference brackets" href="#id24" id="id20">12</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ScriptAliasMatch</span> <span class="s2">&quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [0-9a-f]</span><span class="si">{2}</span><span class="s2">/[0-9a-f]</span><span class="si">{38}</span><span class="s2"> | pack/pack-[0-9a-f]</span><span class="si">{40}</span><span class="s2">\.(pack|idx)) | git-(upload|receive)-pack))$&quot;</span> <span class="s2">&quot;C:/Program Files/Git/mingw64/libexec/git-core/git-http-backend.exe/$1&quot;</span>
 </pre></div>
 </div>
@@ -429,49 +414,36 @@ ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [
 &lt;/Files&gt;
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id21" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id17">[9]</a></td><td><a class="reference external" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id22" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id18">[10]</a></td><td><a class="reference external" href="https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP">https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id23" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id19">[11]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/33829145/git-smarthttp-where-is-git-http-backend-exe/33829578">https://stackoverflow.com/questions/33829145/git-smarthttp-where-is-git-http-backend-exe/33829578</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id24" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id20">[12]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/3817478/setting-up-git-server-on-windows-with-git-http-backend-exe">https://stackoverflow.com/questions/3817478/setting-up-git-server-on-windows-with-git-http-backend-exe</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id25" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id26">[13]</a></td><td><a class="reference external" href="http://www.jeremyskinner.co.uk/2010/07/31/hosting-a-git-server-under-apache-on-windows/">http://www.jeremyskinner.co.uk/2010/07/31/hosting-a-git-server-under-apache-on-windows/</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id17">9</a></span></dt>
+<dd><p><a class="reference external" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></p>
+</dd>
+<dt class="label" id="id22"><span class="brackets"><a class="fn-backref" href="#id18">10</a></span></dt>
+<dd><p><a class="reference external" href="https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP">https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP</a></p>
+</dd>
+<dt class="label" id="id23"><span class="brackets"><a class="fn-backref" href="#id19">11</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/33829145/git-smarthttp-where-is-git-http-backend-exe/33829578">https://stackoverflow.com/questions/33829145/git-smarthttp-where-is-git-http-backend-exe/33829578</a></p>
+</dd>
+<dt class="label" id="id24"><span class="brackets"><a class="fn-backref" href="#id20">12</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/3817478/setting-up-git-server-on-windows-with-git-http-backend-exe">https://stackoverflow.com/questions/3817478/setting-up-git-server-on-windows-with-git-http-backend-exe</a></p>
+</dd>
+<dt class="label" id="id25"><span class="brackets"><a class="fn-backref" href="#id26">13</a></span></dt>
+<dd><p><a class="reference external" href="http://www.jeremyskinner.co.uk/2010/07/31/hosting-a-git-server-under-apache-on-windows/">http://www.jeremyskinner.co.uk/2010/07/31/hosting-a-git-server-under-apache-on-windows/</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="web-interface">
 <h4>Web interface<a class="headerlink" href="#web-interface" title="Permalink to this headline">¶</a></h4>
 <p>Tried a few web interfaces:</p>
-<dl class="docutils">
-<dt>gitweb</dt>
-<dd>Generated CGI script is not compatible with Windows Perl</dd>
-<dt>gitlist</dt>
-<dd>Could not configure properly</dd>
-<dt>gogs</dt>
-<dd>Nice, but includes server</dd>
+<dl class="simple">
+<dt>gitweb</dt><dd><p>Generated CGI script is not compatible with Windows Perl</p>
+</dd>
+<dt>gitlist</dt><dd><p>Could not configure properly</p>
+</dd>
+<dt>gogs</dt><dd><p>Nice, but includes server</p>
+</dd>
 </dl>
-<p>Finally got GitPHP <a class="footnote-reference" href="#id25" id="id26">[13]</a> to work nicely. Followed installation instructions with installation in <code class="docutils literal notranslate"><span class="pre">htdocs</span></code> and worked first time. Only issue was disabling cache as seemed to stick.</p>
+<p>Finally got GitPHP <a class="footnote-reference brackets" href="#id25" id="id26">13</a> to work nicely. Followed installation instructions with installation in <code class="docutils literal notranslate"><span class="pre">htdocs</span></code> and worked first time. Only issue was disabling cache as seemed to stick.</p>
 <p>Would be nice to have following usage though:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">lab</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">git</span><span class="o">/</span>              <span class="c1"># Web interface</span>
 <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">lab</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">project</span><span class="o">.</span><span class="n">git</span>   <span class="c1"># Clone/push over HTTP</span>
@@ -485,12 +457,11 @@ ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [
 </pre></div>
 </div>
 <p>Can now browse at <code class="docutils literal notranslate"><span class="pre">http://lab.server.com/git/</span></code>. Does not interfere with clone/push URL as git <code class="docutils literal notranslate"><span class="pre">ScriptAliasMatch</span></code> regexp filters out git HTTP requests to <code class="docutils literal notranslate"><span class="pre">git-http-backen.exe</span></code> and passes rest on.</p>
-<table class="docutils footnote" frame="void" id="id27" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id28">[14]</a></td><td><a class="reference external" href="https://gitphp.org/">https://gitphp.org/</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id27"><span class="brackets"><a class="fn-backref" href="#id28">14</a></span></dt>
+<dd><p><a class="reference external" href="https://gitphp.org/">https://gitphp.org/</a></p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -498,13 +469,12 @@ ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [
 <h2>Server Backup<a class="headerlink" href="#server-backup" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="sql-dump">
 <h3>SQL dump<a class="headerlink" href="#sql-dump" title="Permalink to this headline">¶</a></h3>
-<p>Do from phpMyAdmin <a class="footnote-reference" href="#id27" id="id28">[14]</a>. Copy to <code class="docutils literal notranslate"><span class="pre">D:\Wiki</span></code>. Add to HG.</p>
-<table class="docutils footnote" frame="void" id="id29" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[15]</td><td><a class="reference external" href="https://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki#phpMyAdmin">https://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki#phpMyAdmin</a></td></tr>
-</tbody>
-</table>
+<p>Do from phpMyAdmin <a class="footnote-reference brackets" href="#id27" id="id28">14</a>. Copy to <code class="docutils literal notranslate"><span class="pre">D:\Wiki</span></code>. Add to HG.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id29"><span class="brackets">15</span></dt>
+<dd><p><a class="reference external" href="https://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki#phpMyAdmin">https://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki#phpMyAdmin</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="xml-dump">
 <h3>XML dump<a class="headerlink" href="#xml-dump" title="Permalink to this headline">¶</a></h3>
@@ -534,10 +504,10 @@ ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [
 <h3>Conf Files<a class="headerlink" href="#conf-files" title="Permalink to this headline">¶</a></h3>
 <p>Yuk, loads… Should list these…</p>
 <ul class="simple">
-<li>Apache</li>
-<li>PHP</li>
-<li>MySQL</li>
-<li>HG</li>
+<li><p>Apache</p></li>
+<li><p>PHP</p></li>
+<li><p>MySQL</p></li>
+<li><p>HG</p></li>
 </ul>
 </div>
 </div>

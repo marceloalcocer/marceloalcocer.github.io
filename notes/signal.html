@@ -26,11 +26,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,6 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="desktop.html">Desktop environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse.html">Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gentoo.html">Gentoo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git.html">Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">Cryptography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graphing.html">Graphing</a></li>
@@ -256,72 +256,68 @@ N_n = 0 \quad \text{for} \quad n \leq \| M \|
 <p>If the inputs are zero-padded such that the length of the period is longer than the non-padded full convolution output length,</p>
 <div class="math notranslate nohighlight">
 \[\| P \| \geq \| M \| + \| N \| -1\]</div>
-<p>then the full linear convolution will be contained within one period of the circular convolution and will thus exhibit no evidence of circularity <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://dsp-nbsphinx.readthedocs.io/en/nbsphinx-experiment/nonrecursive_filters/fast_convolution.html">https://dsp-nbsphinx.readthedocs.io/en/nbsphinx-experiment/nonrecursive_filters/fast_convolution.html</a></td></tr>
-</tbody>
-</table>
+<p>then the full linear convolution will be contained within one period of the circular convolution and will thus exhibit no evidence of circularity <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://dsp-nbsphinx.readthedocs.io/en/nbsphinx-experiment/nonrecursive_filters/fast_convolution.html">https://dsp-nbsphinx.readthedocs.io/en/nbsphinx-experiment/nonrecursive_filters/fast_convolution.html</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="fast-discrete-convolution">
 <h3>Fast discrete convolution<a class="headerlink" href="#fast-discrete-convolution" title="Permalink to this headline">¶</a></h3>
-<p>The circular discrete convolution theorem states that the inverse DFT of a frequency domain multiplication is equivalent to the circular discrete convolution in the time domain <a class="footnote-reference" href="#id4" id="id3">[2]</a>,</p>
+<p>The circular discrete convolution theorem states that the inverse DFT of a frequency domain multiplication is equivalent to the circular discrete convolution in the time domain <a class="footnote-reference brackets" href="#id4" id="id3">2</a>,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathfrak{F}^{-1} \left[ \tilde{M} \cdot \tilde{N} \right]_l &amp;= L_{P,l} \\
 &amp;= \sum_m M_m \sum_p N_{l-m-pP}\end{split}\]</div>
 <p>As such, the linear discrete convolution can be efficiently computed in the following manner,</p>
 <ol class="arabic simple">
-<li>Zero-pad both inputs to lengths <span class="math notranslate nohighlight">\(\geq \|M\| + \|N\| -1\)</span></li>
-<li>DFT</li>
-<li>Multiply</li>
-<li>Inverse DFT</li>
+<li><p>Zero-pad both inputs to lengths <span class="math notranslate nohighlight">\(\geq \|M\| + \|N\| -1\)</span></p></li>
+<li><p>DFT</p></li>
+<li><p>Multiply</p></li>
+<li><p>Inverse DFT</p></li>
 </ol>
 <p>Notes:</p>
 <ol class="arabic simple">
-<li>If both signals are padded at higher indices (right), the resulting convolution will have the same indices for region selection as detailed above. This can be used to select a valid region, e.g. full, valid, etc.</li>
-<li>Depending on the DFT algorithm, it may be more efficient to pad inputs beyond minimum length (e.g. power of 2 for FFT)</li>
-<li>Whilst in linear convolution, selection of the valid region only can be done with reduced computation, the same is not true for fast convolutions — reducing the input lengths results in circularity, so the full, padded convolution must be computed.</li>
-<li>On the other hand, exploitation of single-sided (e.g. real) FFT algorithms can significantly speed computation.</li>
+<li><p>If both signals are padded at higher indices (right), the resulting convolution will have the same indices for region selection as detailed above. This can be used to select a valid region, e.g. full, valid, etc.</p></li>
+<li><p>Depending on the DFT algorithm, it may be more efficient to pad inputs beyond minimum length (e.g. power of 2 for FFT)</p></li>
+<li><p>Whilst in linear convolution, selection of the valid region only can be done with reduced computation, the same is not true for fast convolutions — reducing the input lengths results in circularity, so the full, padded convolution must be computed.</p></li>
+<li><p>On the other hand, exploitation of single-sided (e.g. real) FFT algorithms can significantly speed computation.</p></li>
 </ol>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform#Circular_convolution_theorem_and_cross-correlation_theorem">https://en.wikipedia.org/wiki/Discrete_Fourier_transform#Circular_convolution_theorem_and_cross-correlation_theorem</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform#Circular_convolution_theorem_and_cross-correlation_theorem">https://en.wikipedia.org/wiki/Discrete_Fourier_transform#Circular_convolution_theorem_and_cross-correlation_theorem</a></p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="discrete-fourier-transforms">
 <h2>Discrete Fourier Transforms<a class="headerlink" href="#discrete-fourier-transforms" title="Permalink to this headline">¶</a></h2>
 <p>Going from continuous definition of FT to discrete FT (DFT) can most easily be understood in the following steps,</p>
-<div class="figure" id="id9">
+<div class="figure align-default" id="id9">
 <img alt="https://upload.wikimedia.org/wikipedia/commons/e/ea/From_Continuous_To_Discrete_Fourier_Transform.gif" src="https://upload.wikimedia.org/wikipedia/commons/e/ea/From_Continuous_To_Discrete_Fourier_Transform.gif" />
-<p class="caption"><span class="caption-text">Discretization of the Fourier transform. <strong>Left:</strong> Continuous function (top) and its FT (bottom). <strong>Centre-left:</strong> Continuous periodic summation (i.e. convolution with Dirac comb), and its FT (i.e. Fourier series). <strong>Centre-right:</strong> Discretized function (i.e. Multiplication by Dirac comb) and its FT. <strong>Right:</strong> Discretized period summation, and its FT <a class="footnote-reference" href="#id6" id="id5">[3]</a>.</span></p>
+<p class="caption"><span class="caption-text">Discretization of the Fourier transform. <strong>Left:</strong> Continuous function (top) and its FT (bottom). <strong>Centre-left:</strong> Continuous periodic summation (i.e. convolution with Dirac comb), and its FT (i.e. Fourier series). <strong>Centre-right:</strong> Discretized function (i.e. Multiplication by Dirac comb) and its FT. <strong>Right:</strong> Discretized period summation, and its FT <a class="footnote-reference brackets" href="#id6" id="id5">3</a>.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 <p>The final step is the DFT, whilst the penultimate is often termed the discrete-time FT (DTFT). Note also the reciprocity between the middle two steps.</p>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td><a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/e/ea/From_Continuous_To_Discrete_Fourier_Transform.gif">https://upload.wikimedia.org/wikipedia/commons/e/ea/From_Continuous_To_Discrete_Fourier_Transform.gif</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id5">3</a></span></dt>
+<dd><p><a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/e/ea/From_Continuous_To_Discrete_Fourier_Transform.gif">https://upload.wikimedia.org/wikipedia/commons/e/ea/From_Continuous_To_Discrete_Fourier_Transform.gif</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="window-functions">
 <h2>Window Functions<a class="headerlink" href="#window-functions" title="Permalink to this headline">¶</a></h2>
 <p>Recall that multiplying by window in time domain is convolution by FT of window in frequency domain. As such, most windows will smear frequencies out in FT spectrum, and so very similar frequency components may not be resolvable. Equally, the convolution will also result in the noise floor of the spectrum being increased as signal amplitude from sharp peaks is spread out over a wide range of frequencies. As such, different windows have different sensitivities to low amplitude frequency components (low dynamic range).</p>
 <p>The resolution of a window can be seen by the width of its main lobe in its FT spectrum.</p>
 <p>The dynamic range of a window can be seen by the relative amplitudes of its side lobes in its FT spectrum.</p>
-<div class="figure" id="id10">
+<div class="figure align-default" id="id10">
 <img alt="https://upload.wikimedia.org/wikipedia/commons/f/f2/Window_functions_in_the_frequency_domain.png" src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Window_functions_in_the_frequency_domain.png" />
-<p class="caption"><span class="caption-text">Window functions in the frequency domain <a class="footnote-reference" href="#id8" id="id7">[4]</a></span></p>
+<p class="caption"><span class="caption-text">Window functions in the frequency domain <a class="footnote-reference brackets" href="#id8" id="id7">4</a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/f/f2/Window_functions_in_the_frequency_domain.png">https://upload.wikimedia.org/wikipedia/commons/f/f2/Window_functions_in_the_frequency_domain.png</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id7">4</a></span></dt>
+<dd><p><a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/f/f2/Window_functions_in_the_frequency_domain.png">https://upload.wikimedia.org/wikipedia/commons/f/f2/Window_functions_in_the_frequency_domain.png</a></p>
+</dd>
+</dl>
 </div>
 </div>
 

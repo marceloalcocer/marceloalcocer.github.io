@@ -26,11 +26,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="desktop.html">Desktop environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse.html">Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gentoo.html">Gentoo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git.html">Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">Cryptography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graphing.html">Graphing</a></li>
@@ -202,80 +201,62 @@
 <h1>Web<a class="headerlink" href="#web" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="w3c-event-model">
 <h2>W3C event model<a class="headerlink" href="#w3c-event-model" title="Permalink to this headline">¶</a></h2>
-<p>W3C defines standard event model to be implemented by browsers <a class="footnote-reference" href="#id4" id="id1">[1]</a> — DOM elements can dispatch and listen for events. Interface for this is Event interface <a class="footnote-reference" href="#id5" id="id2">[2]</a>, defining e.g. <code class="docutils literal notranslate"><span class="pre">EventhTarget.dispatchEvent()</span></code> and <code class="docutils literal notranslate"><span class="pre">EventTarget.addEventListener()</span></code>. Events are probably handled by separate thread for asynchronicity.</p>
+<p>W3C defines standard event model to be implemented by browsers <a class="footnote-reference brackets" href="#id4" id="id1">1</a> — DOM elements can dispatch and listen for events. Interface for this is Event interface <a class="footnote-reference brackets" href="#id5" id="id2">2</a>, defining e.g. <code class="docutils literal notranslate"><span class="pre">EventhTarget.dispatchEvent()</span></code> and <code class="docutils literal notranslate"><span class="pre">EventTarget.addEventListener()</span></code>. Events are probably handled by separate thread for asynchronicity.</p>
 <div class="section" id="phases">
 <h3>Phases<a class="headerlink" href="#phases" title="Permalink to this headline">¶</a></h3>
-<p>Dispatched events go through 3 phases: capture, target, bubbling <a class="footnote-reference" href="#id6" id="id3">[3]</a>. Phase under which event listener function is called is determined by third argument to <code class="docutils literal notranslate"><span class="pre">addEventListener</span></code> and usually defaults to bubbling.</p>
+<p>Dispatched events go through 3 phases: capture, target, bubbling <a class="footnote-reference brackets" href="#id6" id="id3">3</a>. Phase under which event listener function is called is determined by third argument to <code class="docutils literal notranslate"><span class="pre">addEventListener</span></code> and usually defaults to bubbling.</p>
 <p>N.b. Event only propagated from top of DOM heirarchy to target (element dispatcging event) — sibilngs and children never see event.</p>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events">https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Event">https://developer.mozilla.org/en-US/docs/Web/API/Event</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://www.w3.org/TR/DOM-Level-3-Events/#event-flow">https://www.w3.org/TR/DOM-Level-3-Events/#event-flow</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events">https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events</a></p>
+</dd>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Event">https://developer.mozilla.org/en-US/docs/Web/API/Event</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p><a class="reference external" href="https://www.w3.org/TR/DOM-Level-3-Events/#event-flow">https://www.w3.org/TR/DOM-Level-3-Events/#event-flow</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="custom-events">
 <h3>Custom events<a class="headerlink" href="#custom-events" title="Permalink to this headline">¶</a></h3>
-<p>Custom events (i.e. not generated by browser) can be dispatched with <code class="docutils literal notranslate"><span class="pre">EventTarget.dispatchEvent()</span></code>. This is however handled synchronously <a class="footnote-reference" href="#id8" id="id7">[4]</a>.</p>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent">https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent</a></td></tr>
-</tbody>
-</table>
+<p>Custom events (i.e. not generated by browser) can be dispatched with <code class="docutils literal notranslate"><span class="pre">EventTarget.dispatchEvent()</span></code>. This is however handled synchronously <a class="footnote-reference brackets" href="#id8" id="id7">4</a>.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id7">4</a></span></dt>
+<dd><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent">https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent</a></p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="cross-origin-resource-sharing">
 <h2>Cross origin resource sharing<a class="headerlink" href="#cross-origin-resource-sharing" title="Permalink to this headline">¶</a></h2>
-<p>HTTP response from one server results in further HTTP request to other server (e.g. via JS, HTML link tag, etc.) <a class="footnote-reference" href="#id13" id="id9">[5]</a>.  Used to be blocked, now more and more accepted <a class="footnote-reference" href="#id14" id="id10">[6]</a>.</p>
+<p>HTTP response from one server results in further HTTP request to other server (e.g. via JS, HTML link tag, etc.) <a class="footnote-reference brackets" href="#id13" id="id9">5</a>.  Used to be blocked, now more and more accepted <a class="footnote-reference brackets" href="#id14" id="id10">6</a>.</p>
 <p>Secondary server decides what resources are accessible. Can see from <code class="docutils literal notranslate"><span class="pre">Access-Control-Allow-Origin</span></code> value in header HTTP response — wildcard like matching of origins allowed to request resource. Most general is <code class="docutils literal notranslate"><span class="pre">*</span></code> — allow any server to request this data.</p>
 <p>Easy check:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl -v URL 2&gt;&amp;1 1&gt;/dev/null | grep Access
 </pre></div>
 </div>
-<p>For more security, can also specify resource hash to ensure content has not been tampered with. Do this with <code class="docutils literal notranslate"><span class="pre">integrity</span></code> attribute <a class="footnote-reference" href="#id15" id="id11">[7]</a>.</p>
-<p>Returned content-type must also be considered — e.g. cannot use <code class="docutils literal notranslate"><span class="pre">text/plain</span></code> as CSS <a class="footnote-reference" href="#id16" id="id12">[8]</a>.</p>
-<table class="docutils footnote" frame="void" id="id13" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td><a class="reference external" href="https://www.w3schools.com/tags/tag_link.asp">https://www.w3schools.com/tags/tag_link.asp</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id14" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id10">[6]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">https://en.wikipedia.org/wiki/Cross-origin_resource_sharing</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id15" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id11">[7]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/32039568/what-are-the-integrity-and-crossorigin-attributes">https://stackoverflow.com/questions/32039568/what-are-the-integrity-and-crossorigin-attributes</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id16" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id12">[8]</a></td><td><a class="reference external" href="https://webmasters.stackexchange.com/questions/50006/chrome-refused-to-execute-this-javascript-file/50017#50017">https://webmasters.stackexchange.com/questions/50006/chrome-refused-to-execute-this-javascript-file/50017#50017</a></td></tr>
-</tbody>
-</table>
+<p>For more security, can also specify resource hash to ensure content has not been tampered with. Do this with <code class="docutils literal notranslate"><span class="pre">integrity</span></code> attribute <a class="footnote-reference brackets" href="#id15" id="id11">7</a>.</p>
+<p>Returned content-type must also be considered — e.g. cannot use <code class="docutils literal notranslate"><span class="pre">text/plain</span></code> as CSS <a class="footnote-reference brackets" href="#id16" id="id12">8</a>.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id9">5</a></span></dt>
+<dd><p><a class="reference external" href="https://www.w3schools.com/tags/tag_link.asp">https://www.w3schools.com/tags/tag_link.asp</a></p>
+</dd>
+<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id10">6</a></span></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">https://en.wikipedia.org/wiki/Cross-origin_resource_sharing</a></p>
+</dd>
+<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id11">7</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/32039568/what-are-the-integrity-and-crossorigin-attributes">https://stackoverflow.com/questions/32039568/what-are-the-integrity-and-crossorigin-attributes</a></p>
+</dd>
+<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id12">8</a></span></dt>
+<dd><p><a class="reference external" href="https://webmasters.stackexchange.com/questions/50006/chrome-refused-to-execute-this-javascript-file/50017#50017">https://webmasters.stackexchange.com/questions/50006/chrome-refused-to-execute-this-javascript-file/50017#50017</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="server-side-scripting">
 <h2>Server-Side Scripting<a class="headerlink" href="#server-side-scripting" title="Permalink to this headline">¶</a></h2>
 <p>Server-side scripting — request server to execute code in a scripting language (e.g. Python, PHP, etc) and return result. Requires server process to be able to execute scripts, ideally in any arbitrary scripting language.</p>
-<p>As such, interface protocols developed to allow communication between server processes and scripting languages <a class="footnote-reference" href="#id20" id="id17">[9]</a>.</p>
+<p>As such, interface protocols developed to allow communication between server processes and scripting languages <a class="footnote-reference brackets" href="#id20" id="id17">9</a>.</p>
 <div class="section" id="protocols">
 <h3>Protocols<a class="headerlink" href="#protocols" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="common-gateway-interface-cgi">
@@ -293,36 +274,29 @@
 <p>Problem with all these legacy interfaces is that server-side (and web server) code must be tailored for the specific interface. As such, in order to develop server-side code which will work with all interfaces and all servers, would have to develop multiple versions of the server-side code. For example, python code for a wiki engine would need to be written so as to support CGI, FastCGI, SCGI, etc. in order to guarantee that it could be deployed on any web server.</p>
 <p>To solve this duplication, the WSGI protocol was developed to act as an intermediate between all existing interfaces and all server-side scripting languages. In this way, when developing server-side code, only need to make it compatible with WSGI to ensure universal operability.</p>
 <p>WSGI is defined as a client-server architecture:</p>
-<dl class="docutils">
-<dt>WSGI Server</dt>
-<dd>Connects to low-level gateway intefaces (i.e. CGI, FastCGI, etc)</dd>
-<dt>WSGI Client</dt>
-<dd>Connects to server-side code (e.g. Python, PHP, etc)</dd>
+<dl class="simple">
+<dt>WSGI Server</dt><dd><p>Connects to low-level gateway intefaces (i.e. CGI, FastCGI, etc)</p>
+</dd>
+<dt>WSGI Client</dt><dd><p>Connects to server-side code (e.g. Python, PHP, etc)</p>
+</dd>
 </dl>
 </div>
 </div>
 <div class="section" id="practicalities">
 <h3>Practicalities<a class="headerlink" href="#practicalities" title="Permalink to this headline">¶</a></h3>
 <p>Cannot get WSGI working on XAMMP. Tried with <code class="docutils literal notranslate"><span class="pre">hgweb.wsgi</span></code> and just refuses to work. Apache does not have wsgi module and so cannot interpret <code class="docutils literal notranslate"><span class="pre">WSGIScriptAlias</span></code> option.</p>
-<p>Tried downloading wsgi module binary <a class="footnote-reference" href="#id21" id="id18">[10]</a>, but does not seem to work either. Looks like there may be fundamental compatibility issues <a class="footnote-reference" href="#id22" id="id19">[11]</a>…</p>
-<table class="docutils footnote" frame="void" id="id20" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id17">[9]</a></td><td><a class="reference external" href="https://docs.python.org/3.5/howto/webservers.html">https://docs.python.org/3.5/howto/webservers.html</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id21" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id18">[10]</a></td><td><a class="reference external" href="https://www.devbattles.com/en/sand/post-304-using+Apache+and+Python+WSGI+on+Windows">https://www.devbattles.com/en/sand/post-304-using+Apache+and+Python+WSGI+on+Windows</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id22" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id19">[11]</a></td><td><a class="reference external" href="https://github.com/GrahamDumpleton/mod_wsgi/blob/develop/win32/README.rst">https://github.com/GrahamDumpleton/mod_wsgi/blob/develop/win32/README.rst</a></td></tr>
-</tbody>
-</table>
+<p>Tried downloading wsgi module binary <a class="footnote-reference brackets" href="#id21" id="id18">10</a>, but does not seem to work either. Looks like there may be fundamental compatibility issues <a class="footnote-reference brackets" href="#id22" id="id19">11</a>…</p>
+<dl class="footnote brackets">
+<dt class="label" id="id20"><span class="brackets"><a class="fn-backref" href="#id17">9</a></span></dt>
+<dd><p><a class="reference external" href="https://docs.python.org/3.5/howto/webservers.html">https://docs.python.org/3.5/howto/webservers.html</a></p>
+</dd>
+<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id18">10</a></span></dt>
+<dd><p><a class="reference external" href="https://www.devbattles.com/en/sand/post-304-using+Apache+and+Python+WSGI+on+Windows">https://www.devbattles.com/en/sand/post-304-using+Apache+and+Python+WSGI+on+Windows</a></p>
+</dd>
+<dt class="label" id="id22"><span class="brackets"><a class="fn-backref" href="#id19">11</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/GrahamDumpleton/mod_wsgi/blob/develop/win32/README.rst">https://github.com/GrahamDumpleton/mod_wsgi/blob/develop/win32/README.rst</a></p>
+</dd>
+</dl>
 </div>
 </div>
 </div>

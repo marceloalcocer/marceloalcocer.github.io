@@ -26,11 +26,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -99,6 +97,7 @@
 <li class="toctree-l2"><a class="reference internal" href="desktop.html">Desktop environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse.html">Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gentoo.html">Gentoo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git.html">Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">Cryptography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graphing.html">Graphing</a></li>
@@ -193,11 +192,11 @@
 <h1>Backup<a class="headerlink" href="#backup" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="duplicity">
 <h2>Duplicity<a class="headerlink" href="#duplicity" title="Permalink to this headline">¶</a></h2>
-<p>Duplicity compresses, encrypts and signs (optional) a set of files before copying to a backend <a class="footnote-reference" href="#id5" id="id1">[1]</a> <a class="footnote-reference" href="#id6" id="id2">[2]</a>. Multiple backend protocols are supported, e.g. local filesystems, FTP, SSH, Dropbox, etc.</p>
+<p>Duplicity compresses, encrypts and signs (optional) a set of files before copying to a backend <a class="footnote-reference brackets" href="#id5" id="id1">1</a> <a class="footnote-reference brackets" href="#id6" id="id2">2</a>. Multiple backend protocols are supported, e.g. local filesystems, FTP, SSH, Dropbox, etc.</p>
 <p>Compression is done by default using gzip.</p>
 <p>Encryption is also done by default, but is symmetric. Can instead pass <code class="docutils literal notranslate"><span class="pre">--encrypt-keys</span></code> option to use GPG public key for asymmetric encryption. In this case, must specify key.</p>
 <p>Finally, encrypted archive files can be optionally signed with GPG  key. In this case, must pass <code class="docutils literal notranslate"><span class="pre">--sign-key</span></code> option with public/private key hex ID (e.g. obtained from <code class="docutils literal notranslate"><span class="pre">gpg</span> <span class="pre">-k</span></code>). The private key passphrase will be requested and the archive will be signed using the private key. Password input can be deferred to GPG agent by passing <code class="docutils literal notranslate"><span class="pre">--use-agent</span></code> option. The convenience option <code class="docutils literal notranslate"><span class="pre">--encrypt-sign-key</span></code> can be used to specify the same GPG key for encryption and signing, although it must then be identified by its hex ID.</p>
-<p>Archive signing can be confirmed by decryption using GPG <a class="footnote-reference" href="#id7" id="id3">[3]</a>:</p>
+<p>Archive signing can be confirmed by decryption using GPG <a class="footnote-reference brackets" href="#id7" id="id3">3</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gpg</span> <span class="o">--</span><span class="n">output</span> <span class="n">tmpfile</span> <span class="o">--</span><span class="n">decrypt</span> <span class="o">&lt;</span><span class="n">A_DUPLICITY_ARCHIVE_FILE</span><span class="o">&gt;.</span><span class="n">gpg</span>
 </pre></div>
 </div>
@@ -207,7 +206,7 @@
 <span class="n">gpg</span><span class="p">:</span> <span class="n">Good</span> <span class="n">signature</span> <span class="kn">from</span> <span class="s2">&quot;Marcelo Alcocer (local) &lt;marsehole@gmail.com&gt;&quot;</span>
 </pre></div>
 </div>
-<p>Display progress with <code class="docutils literal notranslate"><span class="pre">--progress</span></code> option. Can be buggy however so best to rely on <code class="docutils literal notranslate"><span class="pre">--verbosity</span> <span class="pre">debug</span></code> instead <a class="footnote-reference" href="#id8" id="id4">[4]</a>.</p>
+<p>Display progress with <code class="docutils literal notranslate"><span class="pre">--progress</span></code> option. Can be buggy however so best to rely on <code class="docutils literal notranslate"><span class="pre">--verbosity</span> <span class="pre">debug</span></code> instead <a class="footnote-reference brackets" href="#id8" id="id4">4</a>.</p>
 <p>Force full backup (rather than incremental) by using <code class="docutils literal notranslate"><span class="pre">full</span></code> command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">duplicity</span> <span class="n">full</span> <span class="o">&lt;</span><span class="n">SRC</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">DEST</span><span class="o">&gt;</span>
 </pre></div>
@@ -216,30 +215,20 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">duplicity</span> <span class="o">--</span><span class="n">verbosity</span> <span class="n">debug</span> <span class="o">--</span><span class="n">encrypt</span><span class="o">-</span><span class="n">sign</span><span class="o">-</span><span class="n">key</span> <span class="o">&lt;</span><span class="n">KEY_ID</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">agent</span> <span class="o">&lt;</span><span class="n">SRC</span><span class="o">&gt;</span> <span class="n">file</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">DEST</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://duplicity.nongnu.org/index.html">http://duplicity.nongnu.org/index.html</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://help.ubuntu.com/community/DuplicityBackupHowto">https://help.ubuntu.com/community/DuplicityBackupHowto</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://answers.launchpad.net/duplicity/+question/170395">https://answers.launchpad.net/duplicity/+question/170395</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td><a class="reference external" href="https://superuser.com/questions/814321/how-to-go-through-this-duplicity-stalled-connection">https://superuser.com/questions/814321/how-to-go-through-this-duplicity-stalled-connection</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="http://duplicity.nongnu.org/index.html">http://duplicity.nongnu.org/index.html</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://help.ubuntu.com/community/DuplicityBackupHowto">https://help.ubuntu.com/community/DuplicityBackupHowto</a></p>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p><a class="reference external" href="https://answers.launchpad.net/duplicity/+question/170395">https://answers.launchpad.net/duplicity/+question/170395</a></p>
+</dd>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p><a class="reference external" href="https://superuser.com/questions/814321/how-to-go-through-this-duplicity-stalled-connection">https://superuser.com/questions/814321/how-to-go-through-this-duplicity-stalled-connection</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="recovery">
 <h2>Recovery<a class="headerlink" href="#recovery" title="Permalink to this headline">¶</a></h2>

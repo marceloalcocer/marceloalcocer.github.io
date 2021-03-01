@@ -26,11 +26,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="desktop.html">Desktop environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse.html">Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gentoo.html">Gentoo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git.html">Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">Cryptography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graphing.html">Graphing</a></li>
@@ -194,11 +193,11 @@
 <h1>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="misc-package-commands">
 <h2>Misc Package Commands<a class="headerlink" href="#misc-package-commands" title="Permalink to this headline">¶</a></h2>
-<p>List installed packages <a class="footnote-reference" href="#id4" id="id1">[1]</a>:</p>
+<p>List installed packages <a class="footnote-reference brackets" href="#id4" id="id1">1</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span> <span class="nb">list</span> <span class="o">--</span><span class="n">installed</span>
 </pre></div>
 </div>
-<p>Information on installed package <a class="footnote-reference" href="#id5" id="id2">[2]</a>:</p>
+<p>Information on installed package <a class="footnote-reference brackets" href="#id5" id="id2">2</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dpkg</span> <span class="o">-</span><span class="n">s</span> <span class="o">&lt;</span><span class="n">PACKAGE</span><span class="o">&gt;</span>
 </pre></div>
 </div>
@@ -206,28 +205,21 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dpkg</span> <span class="o">--</span><span class="nb">print</span><span class="o">-</span><span class="n">avail</span> <span class="o">&lt;</span><span class="n">PACKAGE</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>Find package which provides file <a class="footnote-reference" href="#id6" id="id3">[3]</a>:</p>
+<p>Find package which provides file <a class="footnote-reference brackets" href="#id6" id="id3">3</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">file</span> <span class="n">search</span> <span class="o">&lt;</span><span class="n">FILE</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://askubuntu.com/questions/17823/how-to-list-all-installed-packages">http://askubuntu.com/questions/17823/how-to-list-all-installed-packages</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://askubuntu.com/questions/341178/how-do-i-get-details-about-a-package-which-isnt-installed">http://askubuntu.com/questions/341178/how-do-i-get-details-about-a-package-which-isnt-installed</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://wiki.debian.org/apt-file">https://wiki.debian.org/apt-file</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="http://askubuntu.com/questions/17823/how-to-list-all-installed-packages">http://askubuntu.com/questions/17823/how-to-list-all-installed-packages</a></p>
+</dd>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="http://askubuntu.com/questions/341178/how-do-i-get-details-about-a-package-which-isnt-installed">http://askubuntu.com/questions/341178/how-do-i-get-details-about-a-package-which-isnt-installed</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p><a class="reference external" href="https://wiki.debian.org/apt-file">https://wiki.debian.org/apt-file</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="packages-held-back">
 <h2>Packages Held Back<a class="headerlink" href="#packages-held-back" title="Permalink to this headline">¶</a></h2>
@@ -239,9 +231,8 @@
 </div>
 <p>Kept back implies that newer versions of the listed packages cannot be installed without breaking current dependencies:</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>upgrade</dt>
-<dd>upgrade is used to install the newest versions of all packages
+<div><dl class="simple">
+<dt>upgrade</dt><dd><p>upgrade is used to install the newest versions of all packages
 currently installed on the system from the sources enumerated in
 /etc/apt/sources.list. Packages currently installed with new
 versions available are retrieved and upgraded; under no
@@ -250,9 +241,9 @@ not already installed retrieved and installed. New versions of
 currently installed packages that cannot be upgraded without
 changing the install status of another package will be left at
 their current version. An update must be performed first so that
-apt-get knows that new versions of packages are available.</dd>
-<dt>dist-upgrade</dt>
-<dd>dist-upgrade in addition to performing the function of upgrade,
+apt-get knows that new versions of packages are available.</p>
+</dd>
+<dt>dist-upgrade</dt><dd><p>dist-upgrade in addition to performing the function of upgrade,
 also intelligently handles changing dependencies with new versions
 of packages; apt-get has a “smart” conflict resolution system, and
 it will attempt to upgrade the most important packages at the
@@ -260,9 +251,10 @@ expense of less important ones if necessary. So, dist-upgrade
 command may remove some packages. The /etc/apt/sources.list file
 contains a list of locations from which to retrieve desired package
 files. See also apt_preferences(5) for a mechanism for overriding
-the general settings for individual packages.</dd>
+the general settings for individual packages.</p>
+</dd>
 </dl>
-<p class="attribution">&mdash;apt-get man page</p>
+<p class="attribution">—apt-get man page</p>
 </div></blockquote>
 <p>Would seem that <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">upgrade</span></code> is trying to upgrade the kernel packages (<code class="docutils literal notranslate"><span class="pre">linux-generic</span></code>, <code class="docutils literal notranslate"><span class="pre">linux-headers-generic</span></code>, etc) to 43, but has realised that doing so would screw 42 and as such aborts. Not sure why it’s trying to upgrade to 43, but probably due to Yakkety release. Think those kernel packages are virtual and should contain different things for Yakkety and Xenial. Maybe someone screwed up the release upstream?</p>
 <p>… indeed would seem to be the case. An <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">upgrade</span></code> at a later date seems to have fixed the problem.</p>
@@ -274,20 +266,16 @@ the general settings for individual packages.</dd>
 </pre></div>
 </div>
 <p>Reading around a little, found out that is due to conflicting APT configuration files.</p>
-<p>APT configuration is done via a series of distributed configuration files all held in <code class="docutils literal notranslate"><span class="pre">/etc/apt/apt.conf.d</span></code> directory <a class="footnote-reference" href="#id9" id="id7">[4]</a>. When a package updates an APT config file, the <code class="docutils literal notranslate"><span class="pre">ucf</span></code> (Update Configuration Files) utility is called to prompt the user whether to keep the old config file or switch to the new one. Regardless of the given answer, the original configuration file (before update) is copied to a <code class="docutils literal notranslate"><span class="pre">*.ucf-dist</span></code> suffixed file. The configurations contained within this file is ignored by <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">update</span></code> due to the added extension, generating the above notification <a class="footnote-reference" href="#id10" id="id8">[5]</a>.</p>
+<p>APT configuration is done via a series of distributed configuration files all held in <code class="docutils literal notranslate"><span class="pre">/etc/apt/apt.conf.d</span></code> directory <a class="footnote-reference brackets" href="#id9" id="id7">4</a>. When a package updates an APT config file, the <code class="docutils literal notranslate"><span class="pre">ucf</span></code> (Update Configuration Files) utility is called to prompt the user whether to keep the old config file or switch to the new one. Regardless of the given answer, the original configuration file (before update) is copied to a <code class="docutils literal notranslate"><span class="pre">*.ucf-dist</span></code> suffixed file. The configurations contained within this file is ignored by <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">update</span></code> due to the added extension, generating the above notification <a class="footnote-reference brackets" href="#id10" id="id8">5</a>.</p>
 <p>As such, the retained original config file can be compared to the active config file, and if not needed can be safely deleted.</p>
-<table class="docutils footnote" frame="void" id="id9" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="https://askubuntu.com/questions/254137/etc-apt-apt-conf-d-priority-overrule-configuration-file/254617">https://askubuntu.com/questions/254137/etc-apt-apt-conf-d-priority-overrule-configuration-file/254617</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id10" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id8">[5]</a></td><td><a class="reference external" href="https://askubuntu.com/questions/572976/what-to-do-now-update-just-after-install/573091#573091">https://askubuntu.com/questions/572976/what-to-do-now-update-just-after-install/573091#573091</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id7">4</a></span></dt>
+<dd><p><a class="reference external" href="https://askubuntu.com/questions/254137/etc-apt-apt-conf-d-priority-overrule-configuration-file/254617">https://askubuntu.com/questions/254137/etc-apt-apt-conf-d-priority-overrule-configuration-file/254617</a></p>
+</dd>
+<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id8">5</a></span></dt>
+<dd><p><a class="reference external" href="https://askubuntu.com/questions/572976/what-to-do-now-update-just-after-install/573091#573091">https://askubuntu.com/questions/572976/what-to-do-now-update-just-after-install/573091#573091</a></p>
+</dd>
+</dl>
 </div>
 </div>
 

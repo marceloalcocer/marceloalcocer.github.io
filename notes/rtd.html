@@ -26,11 +26,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="desktop.html">Desktop environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse.html">Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gentoo.html">Gentoo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git.html">Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">Cryptography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graphing.html">Graphing</a></li>
@@ -187,43 +186,34 @@
             
   <div class="section" id="read-the-docs">
 <h1>Read The Docs<a class="headerlink" href="#read-the-docs" title="Permalink to this headline">¶</a></h1>
-<p>To generate documentation, must be able to run autodoc on RTD build server. This involves importing the ultrafast module, which obviously fails as it depends on lots of Python packages which are not necessarily installed on the build server (e.g. SciPy). The way RTD gets round this is by allowing you to install your package on their build server using pip <a class="footnote-reference" href="#id3" id="id1">[1]</a> <a class="footnote-reference" href="#id4" id="id2">[2]</a>. In doing so, you can specify a pip requirements file which details any dependencies your package may have. These will then be installed first.</p>
+<p>To generate documentation, must be able to run autodoc on RTD build server. This involves importing the ultrafast module, which obviously fails as it depends on lots of Python packages which are not necessarily installed on the build server (e.g. SciPy). The way RTD gets round this is by allowing you to install your package on their build server using pip <a class="footnote-reference brackets" href="#id3" id="id1">1</a> <a class="footnote-reference brackets" href="#id4" id="id2">2</a>. In doing so, you can specify a pip requirements file which details any dependencies your package may have. These will then be installed first.</p>
 <p>As such, to properly serve autodoc generated documentation on RTD must:</p>
 <ol class="arabic simple">
-<li>Make package installable via pip, ensuring pip requirements file contains all dependencies</li>
-<li>Push package to GitHub</li>
-<li>Specify location of pip requirements file on RTD project settings</li>
+<li><p>Make package installable via pip, ensuring pip requirements file contains all dependencies</p></li>
+<li><p>Push package to GitHub</p></li>
+<li><p>Specify location of pip requirements file on RTD project settings</p></li>
 </ol>
 <p>Did all this and finally got RTD working. Issue was that had to push to GitHub to test. As such, all tests went live. Now begin clean up operation:</p>
 <ol class="arabic">
-<li><p class="first">Backup successful install files</p>
-</li>
-<li><p class="first">Delete local <code class="docutils literal notranslate"><span class="pre">feat/install</span></code> branch:</p>
+<li><p>Backup successful install files</p></li>
+<li><p>Delete local <code class="docutils literal notranslate"><span class="pre">feat/install</span></code> branch:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">D</span> <span class="n">feat</span><span class="o">/</span><span class="n">install</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Delete remote <code class="docutils literal notranslate"><span class="pre">feat/install</span></code> branch (via GitHub hopefully…)</p>
-</li>
-<li><p class="first">Paste successful install files (into new <code class="docutils literal notranslate"><span class="pre">feat/install</span></code> branch)</p>
-</li>
-<li><p class="first">Merge into dev, push and pretend nothing happened</p>
-</li>
-<li><p class="first">Reconfigure RTD to use dev branch once again</p>
-</li>
+<li><p>Delete remote <code class="docutils literal notranslate"><span class="pre">feat/install</span></code> branch (via GitHub hopefully…)</p></li>
+<li><p>Paste successful install files (into new <code class="docutils literal notranslate"><span class="pre">feat/install</span></code> branch)</p></li>
+<li><p>Merge into dev, push and pretend nothing happened</p></li>
+<li><p>Reconfigure RTD to use dev branch once again</p></li>
 </ol>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://docs.python.org/3/distutils/setupscript.html">https://docs.python.org/3/distutils/setupscript.html</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://pip.pypa.io/en/stable/user_guide/">https://pip.pypa.io/en/stable/user_guide/</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://docs.python.org/3/distutils/setupscript.html">https://docs.python.org/3/distutils/setupscript.html</a></p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://pip.pypa.io/en/stable/user_guide/">https://pip.pypa.io/en/stable/user_guide/</a></p>
+</dd>
+</dl>
 </div>
 
 

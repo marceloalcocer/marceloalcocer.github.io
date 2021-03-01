@@ -26,11 +26,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="desktop.html">Desktop environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse.html">Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gentoo.html">Gentoo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git.html">Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">Cryptography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graphing.html">Graphing</a></li>
@@ -217,15 +216,15 @@
 </div>
 <div class="section" id="structure">
 <h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:function::</span></code>, <em>etc</em>. Directives</dt>
-<dd>Basic directives defined by Sphinx to correctly format Python elements (functions, classes, etc). The argument (string) following the directive is subsequently formatted. As such, the string must be written in a valid ResT file.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">automodule::</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autoclass::</span></code>, <em>etc</em>. Directives</dt>
-<dd>Directives defined by the <code class="docutils literal notranslate"><span class="pre">autodoc</span></code> Sphinx extension which must be enabled in the config file. Parses Python modules, classes, functions and generates ResT nodes describing them. Essentially, the element protoype and/or docstring is parsed into a string and formatted with the appropriate directive (e.g. <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:function::</span></code>).  The <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autoXXX::</span></code> directives must still be ‘called’ in a valid ResT file however.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code> Command</dt>
-<dd>Parses python package to generate ResT file for all contained modules. The output ResT files will mainly contain things like <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">automodule::</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autoclass::</span></code>, etc.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> Command</dt>
-<dd>Generates output from ResT files (in doc directory) using given writer (e.g. HTML). Basically fancy version of docutils with extra directives, roles, etc. defined.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:function::</span></code>, <em>etc</em>. Directives</dt><dd><p>Basic directives defined by Sphinx to correctly format Python elements (functions, classes, etc). The argument (string) following the directive is subsequently formatted. As such, the string must be written in a valid ResT file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">automodule::</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autoclass::</span></code>, <em>etc</em>. Directives</dt><dd><p>Directives defined by the <code class="docutils literal notranslate"><span class="pre">autodoc</span></code> Sphinx extension which must be enabled in the config file. Parses Python modules, classes, functions and generates ResT nodes describing them. Essentially, the element protoype and/or docstring is parsed into a string and formatted with the appropriate directive (e.g. <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">py:function::</span></code>).  The <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autoXXX::</span></code> directives must still be ‘called’ in a valid ResT file however.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code> Command</dt><dd><p>Parses python package to generate ResT file for all contained modules. The output ResT files will mainly contain things like <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">automodule::</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autoclass::</span></code>, etc.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> Command</dt><dd><p>Generates output from ResT files (in doc directory) using given writer (e.g. HTML). Basically fancy version of docutils with extra directives, roles, etc. defined.</p>
+</dd>
 </dl>
 </div>
 </div>

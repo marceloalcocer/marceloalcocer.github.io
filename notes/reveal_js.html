@@ -26,11 +26,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="desktop.html">Desktop environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse.html">Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gentoo.html">Gentoo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git.html">Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">Cryptography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graphing.html">Graphing</a></li>
@@ -192,20 +191,16 @@
 <h1>reveal.js<a class="headerlink" href="#reveal-js" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="serving-locally-from-different-directories">
 <h2>Serving locally from different directories<a class="headerlink" href="#serving-locally-from-different-directories" title="Permalink to this headline">¶</a></h2>
-<p>Running <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">start</span></code> calls <code class="docutils literal notranslate"><span class="pre">start</span></code> script in <code class="docutils literal notranslate"><span class="pre">package.json</span></code>. This is <code class="docutils literal notranslate"><span class="pre">grunt</span> <span class="pre">serve</span></code> which tells Grunt to run a local HTTP server <a class="footnote-reference" href="#id3" id="id1">[1]</a>. The server configuration is defined in <code class="docutils literal notranslate"><span class="pre">Gruntfile.js</span></code> and contains a root and watch directories. The <code class="docutils literal notranslate"><span class="pre">root</span></code> directory is just like any server’s root, whilst the <code class="docutils literal notranslate"><span class="pre">watch</span></code> directory is monitored for changes (like htdocs?).</p>
-<p>Cannot modify server root directory as reveal.js requires this to be its base directory. Instead, create symlink in reveal.js base directory pointing to desired directory. This will now be accessible from server root. Then, add subdirectory html files to watch list. Finally, ensure that all ref and src attributes in html pointing to reveal.js assets use absolute paths. These will be interpreted from the server root directory and so will be correctly resolved <a class="footnote-reference" href="#id4" id="id2">[2]</a>.</p>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>This is typically used for running JS tasks for TDD</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://medium.com/&#64;KienanKB/serving-multiple-reveal-js-presentations-b1a5c086e959">https://medium.com/&#64;KienanKB/serving-multiple-reveal-js-presentations-b1a5c086e959</a></td></tr>
-</tbody>
-</table>
+<p>Running <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">start</span></code> calls <code class="docutils literal notranslate"><span class="pre">start</span></code> script in <code class="docutils literal notranslate"><span class="pre">package.json</span></code>. This is <code class="docutils literal notranslate"><span class="pre">grunt</span> <span class="pre">serve</span></code> which tells Grunt to run a local HTTP server <a class="footnote-reference brackets" href="#id3" id="id1">1</a>. The server configuration is defined in <code class="docutils literal notranslate"><span class="pre">Gruntfile.js</span></code> and contains a root and watch directories. The <code class="docutils literal notranslate"><span class="pre">root</span></code> directory is just like any server’s root, whilst the <code class="docutils literal notranslate"><span class="pre">watch</span></code> directory is monitored for changes (like htdocs?).</p>
+<p>Cannot modify server root directory as reveal.js requires this to be its base directory. Instead, create symlink in reveal.js base directory pointing to desired directory. This will now be accessible from server root. Then, add subdirectory html files to watch list. Finally, ensure that all ref and src attributes in html pointing to reveal.js assets use absolute paths. These will be interpreted from the server root directory and so will be correctly resolved <a class="footnote-reference brackets" href="#id4" id="id2">2</a>.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>This is typically used for running JS tasks for TDD</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://medium.com/&#64;KienanKB/serving-multiple-reveal-js-presentations-b1a5c086e959">https://medium.com/&#64;KienanKB/serving-multiple-reveal-js-presentations-b1a5c086e959</a></p>
+</dd>
+</dl>
 </div>
 </div>
 

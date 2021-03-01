@@ -26,11 +26,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -100,6 +98,7 @@
 <li class="toctree-l2"><a class="reference internal" href="desktop.html">Desktop environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse.html">Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gentoo.html">Gentoo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git.html">Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">Cryptography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graphing.html">Graphing</a></li>
@@ -194,81 +193,61 @@
 <h1>C/C++<a class="headerlink" href="#c-c" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="useful-gcc-flags">
 <h2>Useful GCC flags<a class="headerlink" href="#useful-gcc-flags" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">-L&lt;path&gt;</span></code></dt>
-<dd>Add <code class="docutils literal notranslate"><span class="pre">&lt;path&gt;</span></code> to linker search path. Should come before <code class="docutils literal notranslate"><span class="pre">-l</span></code>.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">-l&lt;lib&gt;</span></code></dt>
-<dd>Link against library <code class="docutils literal notranslate"><span class="pre">&lt;lib&gt;</span></code>. Prepends <code class="docutils literal notranslate"><span class="pre">lib</span></code> and <code class="docutils literal notranslate"><span class="pre">.so</span></code> or <code class="docutils literal notranslate"><span class="pre">.a</span></code> to library name. Must come after object file.</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">-fPIC</span></code></dt>
-<dd>Compile to Position Independent Code. Required for building dynamically linked libraries.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">-L&lt;path&gt;</span></code></dt><dd><p>Add <code class="docutils literal notranslate"><span class="pre">&lt;path&gt;</span></code> to linker search path. Should come before <code class="docutils literal notranslate"><span class="pre">-l</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-l&lt;lib&gt;</span></code></dt><dd><p>Link against library <code class="docutils literal notranslate"><span class="pre">&lt;lib&gt;</span></code>. Prepends <code class="docutils literal notranslate"><span class="pre">lib</span></code> and <code class="docutils literal notranslate"><span class="pre">.so</span></code> or <code class="docutils literal notranslate"><span class="pre">.a</span></code> to library name. Must come after object file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-fPIC</span></code></dt><dd><p>Compile to Position Independent Code. Required for building dynamically linked libraries.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="extern-keyword">
 <h2><code class="docutils literal notranslate"><span class="pre">extern</span></code> keyword<a class="headerlink" href="#extern-keyword" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">extern</span></code> keyword is used to explicitly declare rather than define functions and variables over a global scope <a class="footnote-reference" href="#id4" id="id1">[1]</a>.</p>
-<p>In C++, it can be used with <code class="docutils literal notranslate"><span class="pre">&quot;C&quot;</span></code> to declare pure-C functions/variables which are however defined in C++. This can be useful for example to expose C++ class methods to C <a class="footnote-reference" href="#id5" id="id2">[2]</a> <a class="footnote-reference" href="#id6" id="id3">[3]</a>.</p>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://www.geeksforgeeks.org/understanding-extern-keyword-in-c/">http://www.geeksforgeeks.org/understanding-extern-keyword-in-c/</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://www.auctoris.co.uk/2017/04/29/calling-c-classes-from-python-with-ctypes/">http://www.auctoris.co.uk/2017/04/29/calling-c-classes-from-python-with-ctypes/</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/1615813/how-to-use-c-classes-with-ctypes">https://stackoverflow.com/questions/1615813/how-to-use-c-classes-with-ctypes</a></td></tr>
-</tbody>
-</table>
+<p>The <code class="docutils literal notranslate"><span class="pre">extern</span></code> keyword is used to explicitly declare rather than define functions and variables over a global scope <a class="footnote-reference brackets" href="#id4" id="id1">1</a>.</p>
+<p>In C++, it can be used with <code class="docutils literal notranslate"><span class="pre">&quot;C&quot;</span></code> to declare pure-C functions/variables which are however defined in C++. This can be useful for example to expose C++ class methods to C <a class="footnote-reference brackets" href="#id5" id="id2">2</a> <a class="footnote-reference brackets" href="#id6" id="id3">3</a>.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="http://www.geeksforgeeks.org/understanding-extern-keyword-in-c/">http://www.geeksforgeeks.org/understanding-extern-keyword-in-c/</a></p>
+</dd>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="http://www.auctoris.co.uk/2017/04/29/calling-c-classes-from-python-with-ctypes/">http://www.auctoris.co.uk/2017/04/29/calling-c-classes-from-python-with-ctypes/</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/1615813/how-to-use-c-classes-with-ctypes">https://stackoverflow.com/questions/1615813/how-to-use-c-classes-with-ctypes</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="building-dynamically-linked-libaries">
 <h2>Building dynamically linked libaries<a class="headerlink" href="#building-dynamically-linked-libaries" title="Permalink to this headline">¶</a></h2>
-<p>Object files to be linked into shared library must be compiled with <code class="docutils literal notranslate"><span class="pre">-fPIC</span></code> option <a class="footnote-reference" href="#id12" id="id7">[4]</a> <a class="footnote-reference" href="#id13" id="id8">[5]</a>, e.g.:</p>
+<p>Object files to be linked into shared library must be compiled with <code class="docutils literal notranslate"><span class="pre">-fPIC</span></code> option <a class="footnote-reference brackets" href="#id12" id="id7">4</a> <a class="footnote-reference brackets" href="#id13" id="id8">5</a>, e.g.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">fPIC</span> <span class="n">file1</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">o</span> <span class="n">file1</span><span class="o">.</span><span class="n">o</span>
 </pre></div>
 </div>
-<p>Whilst should only affect some speciifc architecures, in pratice <code class="docutils literal notranslate"><span class="pre">-fPIC</span></code> option seems to be required for shared-library builds on most architectures. Does not seem to be detrimental to non-library builds however <a class="footnote-reference" href="#id14" id="id9">[6]</a>.</p>
+<p>Whilst should only affect some speciifc architecures, in pratice <code class="docutils literal notranslate"><span class="pre">-fPIC</span></code> option seems to be required for shared-library builds on most architectures. Does not seem to be detrimental to non-library builds however <a class="footnote-reference brackets" href="#id14" id="id9">6</a>.</p>
 <p>Link object files into shared library with <code class="docutils literal notranslate"><span class="pre">-shared</span></code> option:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">shared</span> <span class="n">file1</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">libfile1</span><span class="o">.</span><span class="n">so</span>
 </pre></div>
 </div>
-<p>Once the library has been built, the OS must be told where to find it at runtime — this may not be the same place as at link-time. Exact link-/run-time serach rules can vary across Linux distributions, but generally can be set temporarily by setting <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> environment variable, or permanently by copying to a default location (e.g. <code class="docutils literal notranslate"><span class="pre">/usr/local/lib</span></code>) <a class="footnote-reference" href="#id15" id="id10">[7]</a>.</p>
-<p>N.b. Simply copying library to e.g. <code class="docutils literal notranslate"><span class="pre">/usr/local/lib</span></code> after building may not be enough however as some distributions (e.g. Ubuntu) cache dynamic libraries, which therefore must be updated by calling <code class="docutils literal notranslate"><span class="pre">ldconfig</span></code> <a class="footnote-reference" href="#id16" id="id11">[8]</a>.</p>
-<table class="docutils footnote" frame="void" id="id12" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id7">[4]</a></td><td><a class="reference external" href="http://www.adp-gmbh.ch/cpp/gcc/create_lib.html">http://www.adp-gmbh.ch/cpp/gcc/create_lib.html</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id13" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id8">[5]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/31541451/create-shared-library-from-cpp-files-and-static-library-with-g">https://stackoverflow.com/questions/31541451/create-shared-library-from-cpp-files-and-static-library-with-g</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id14" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[6]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/5311515/gcc-fpic-option">https://stackoverflow.com/questions/5311515/gcc-fpic-option</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id15" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id10">[7]</a></td><td><a class="reference external" href="https://unix.stackexchange.com/questions/22926/where-do-executables-look-for-shared-objects-at-runtime">https://unix.stackexchange.com/questions/22926/where-do-executables-look-for-shared-objects-at-runtime</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id16" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id11">[8]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/8039562/cannot-open-shared-object-file">https://stackoverflow.com/questions/8039562/cannot-open-shared-object-file</a></td></tr>
-</tbody>
-</table>
+<p>Once the library has been built, the OS must be told where to find it at runtime — this may not be the same place as at link-time. Exact link-/run-time serach rules can vary across Linux distributions, but generally can be set temporarily by setting <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> environment variable, or permanently by copying to a default location (e.g. <code class="docutils literal notranslate"><span class="pre">/usr/local/lib</span></code>) <a class="footnote-reference brackets" href="#id15" id="id10">7</a>.</p>
+<p>N.b. Simply copying library to e.g. <code class="docutils literal notranslate"><span class="pre">/usr/local/lib</span></code> after building may not be enough however as some distributions (e.g. Ubuntu) cache dynamic libraries, which therefore must be updated by calling <code class="docutils literal notranslate"><span class="pre">ldconfig</span></code> <a class="footnote-reference brackets" href="#id16" id="id11">8</a>.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id7">4</a></span></dt>
+<dd><p><a class="reference external" href="http://www.adp-gmbh.ch/cpp/gcc/create_lib.html">http://www.adp-gmbh.ch/cpp/gcc/create_lib.html</a></p>
+</dd>
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id8">5</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/31541451/create-shared-library-from-cpp-files-and-static-library-with-g">https://stackoverflow.com/questions/31541451/create-shared-library-from-cpp-files-and-static-library-with-g</a></p>
+</dd>
+<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id9">6</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/5311515/gcc-fpic-option">https://stackoverflow.com/questions/5311515/gcc-fpic-option</a></p>
+</dd>
+<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id10">7</a></span></dt>
+<dd><p><a class="reference external" href="https://unix.stackexchange.com/questions/22926/where-do-executables-look-for-shared-objects-at-runtime">https://unix.stackexchange.com/questions/22926/where-do-executables-look-for-shared-objects-at-runtime</a></p>
+</dd>
+<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id11">8</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/8039562/cannot-open-shared-object-file">https://stackoverflow.com/questions/8039562/cannot-open-shared-object-file</a></p>
+</dd>
+</dl>
 </div>
 </div>
 

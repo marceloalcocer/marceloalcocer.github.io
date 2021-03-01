@@ -26,11 +26,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="desktop.html">Desktop environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse.html">Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gentoo.html">Gentoo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git.html">Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">Cryptography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graphing.html">Graphing</a></li>
@@ -193,20 +192,16 @@
 <h1>Lund University<a class="headerlink" href="#lund-university" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="eduroam">
 <h2>Eduroam<a class="headerlink" href="#eduroam" title="Permalink to this headline">¶</a></h2>
-<p>Having troubles setting up eduroam according to LU guidelines <a class="footnote-reference" href="#id3" id="id1">[1]</a>. Think it’s a CA related problem, but difficult to diagnose.</p>
-<p>Found configuration tool which seems to solve the problem however <a class="footnote-reference" href="#id4" id="id2">[2]</a>. Tested at ChemPhys and seems to work well.</p>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://luservicedesk.service-now.com/kb_view.do?sysparm_article=KB0010412">https://luservicedesk.service-now.com/kb_view.do?sysparm_article=KB0010412</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://cat.eduroam.org/?idp=433">https://cat.eduroam.org/?idp=433</a></td></tr>
-</tbody>
-</table>
+<p>Having troubles setting up eduroam according to LU guidelines <a class="footnote-reference brackets" href="#id3" id="id1">1</a>. Think it’s a CA related problem, but difficult to diagnose.</p>
+<p>Found configuration tool which seems to solve the problem however <a class="footnote-reference brackets" href="#id4" id="id2">2</a>. Tested at ChemPhys and seems to work well.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://luservicedesk.service-now.com/kb_view.do?sysparm_article=KB0010412">https://luservicedesk.service-now.com/kb_view.do?sysparm_article=KB0010412</a></p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://cat.eduroam.org/?idp=433">https://cat.eduroam.org/?idp=433</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="vpn">
 <h2>VPN<a class="headerlink" href="#vpn" title="Permalink to this headline">¶</a></h2>
@@ -216,13 +211,12 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">connect</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">sslvpn</span><span class="o">/</span><span class="n">portal</span><span class="o">.</span><span class="n">html</span><span class="p">:</span><span class="mi">443</span>
 </pre></div>
 </div>
-<p><strong>Update (2017.03):</strong> LDC changed FortiGate config meaning that home network can no longer be readched using above version of FortiClient. Must use ShrewSoft instead with custom config file <a class="footnote-reference" href="#id6" id="id5">[3]</a></p>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td><a class="reference external" href="http://www.chemphys.lu.se/internal">http://www.chemphys.lu.se/internal</a></td></tr>
-</tbody>
-</table>
+<p><strong>Update (2017.03):</strong> LDC changed FortiGate config meaning that home network can no longer be readched using above version of FortiClient. Must use ShrewSoft instead with custom config file <a class="footnote-reference brackets" href="#id6" id="id5">3</a></p>
+<dl class="footnote brackets">
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id5">3</a></span></dt>
+<dd><p><a class="reference external" href="http://www.chemphys.lu.se/internal">http://www.chemphys.lu.se/internal</a></p>
+</dd>
+</dl>
 </div>
 </div>
 

@@ -26,11 +26,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="desktop.html">Desktop environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eclipse.html">Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gentoo.html">Gentoo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git.html">Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpg.html">Cryptography</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graphing.html">Graphing</a></li>
@@ -213,7 +212,7 @@
 <h1>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="windows-shares">
 <h2>Windows Shares<a class="headerlink" href="#windows-shares" title="Permalink to this headline">¶</a></h2>
-<p>Windows shares can be mounted using <a class="reference external" href="https://en.wikipedia.org/wiki/Server_Message_Block">CIFS</a> protocol (now called SMB) — file sharing protocol compatible with Windows shares <a class="footnote-reference" href="#id5" id="id1">[1]</a>. Provided by kernel module and accessed via <code class="docutils literal notranslate"><span class="pre">cifs-utils</span></code> package:</p>
+<p>Windows shares can be mounted using <a class="reference external" href="https://en.wikipedia.org/wiki/Server_Message_Block">CIFS</a> protocol (now called SMB) — file sharing protocol compatible with Windows shares <a class="footnote-reference brackets" href="#id5" id="id1">1</a>. Provided by kernel module and accessed via <code class="docutils literal notranslate"><span class="pre">cifs-utils</span></code> package:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">cifs</span><span class="o">-</span><span class="n">utils</span>
 </pre></div>
 </div>
@@ -227,71 +226,56 @@
 </div>
 <div class="section" id="mount-on-boot">
 <h3>Mount on boot<a class="headerlink" href="#mount-on-boot" title="Permalink to this headline">¶</a></h3>
-<p>Can mount on boot by adding <code class="docutils literal notranslate"><span class="pre">fstab</span></code> entry. Ensure that <code class="docutils literal notranslate"><span class="pre">_netdev</span></code> standard option present so that only mounts when network present <a class="footnote-reference" href="#id6" id="id2">[2]</a> <a class="footnote-reference" href="#id7" id="id3">[3]</a>.</p>
+<p>Can mount on boot by adding <code class="docutils literal notranslate"><span class="pre">fstab</span></code> entry. Ensure that <code class="docutils literal notranslate"><span class="pre">_netdev</span></code> standard option present so that only mounts when network present <a class="footnote-reference brackets" href="#id6" id="id2">2</a> <a class="footnote-reference brackets" href="#id7" id="id3">3</a>.</p>
 </div>
 <div class="section" id="mount-on-login">
 <h3>Mount on login<a class="headerlink" href="#mount-on-login" title="Permalink to this headline">¶</a></h3>
 <p>If network only present when logged on (e.g. WiFi), better to mount on login instead. Relevant options:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name"><code class="docutils literal notranslate"><span class="pre">_netdev</span></code>:</th><td class="field-body">Mount only when network present</td>
-</tr>
-<tr class="field-even field"><th class="field-name"><code class="docutils literal notranslate"><span class="pre">noauto</span></code>:</th><td class="field-body">Prevent automatic (i.e. boot time) mounting</td>
-</tr>
-<tr class="field-odd field"><th class="field-name"><code class="docutils literal notranslate"><span class="pre">users</span></code>:</th><td class="field-body">Allow normal users to mount/unmount</td>
-</tr>
-</tbody>
-</table>
-<p>Tried using <code class="docutils literal notranslate"><span class="pre">user</span></code>, <code class="docutils literal notranslate"><span class="pre">owner</span></code> and <code class="docutils literal notranslate"><span class="pre">group</span></code> options instead of <code class="docutils literal notranslate"><span class="pre">users</span></code> to limit mount access. This allows mounting, but not unmounting on Ubuntu 16.04. This is because on Ubuntu, <code class="docutils literal notranslate"><span class="pre">/etc/mtab</span></code> is a symlink to readonly <code class="docutils literal notranslate"><span class="pre">/proc/self/mounts</span></code>, and so information on user who mounted cannot be written <a class="footnote-reference" href="#id8" id="id4">[4]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">_netdev</span></code></dt>
+<dd class="field-odd"><p>Mount only when network present</p>
+</dd>
+<dt class="field-even"><code class="docutils literal notranslate"><span class="pre">noauto</span></code></dt>
+<dd class="field-even"><p>Prevent automatic (i.e. boot time) mounting</p>
+</dd>
+<dt class="field-odd"><code class="docutils literal notranslate"><span class="pre">users</span></code></dt>
+<dd class="field-odd"><p>Allow normal users to mount/unmount</p>
+</dd>
+</dl>
+<p>Tried using <code class="docutils literal notranslate"><span class="pre">user</span></code>, <code class="docutils literal notranslate"><span class="pre">owner</span></code> and <code class="docutils literal notranslate"><span class="pre">group</span></code> options instead of <code class="docutils literal notranslate"><span class="pre">users</span></code> to limit mount access. This allows mounting, but not unmounting on Ubuntu 16.04. This is because on Ubuntu, <code class="docutils literal notranslate"><span class="pre">/etc/mtab</span></code> is a symlink to readonly <code class="docutils literal notranslate"><span class="pre">/proc/self/mounts</span></code>, and so information on user who mounted cannot be written <a class="footnote-reference brackets" href="#id8" id="id4">4</a>.</p>
 <p>Instead, allow all users to mount and unmount — credentials for protected network share are protected anyway, and so limit users which can successfully mount.</p>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://wiki.ubuntu.com/MountWindowsSharesPermanently">https://wiki.ubuntu.com/MountWindowsSharesPermanently</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://askubuntu.com/questions/157128/proper-fstab-entry-to-mount-a-samba-share-on-boot">https://askubuntu.com/questions/157128/proper-fstab-entry-to-mount-a-samba-share-on-boot</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="https://askubuntu.com/questions/194727/mounting-samba-share-whenever-its-available-unmounting-when-its-not">https://askubuntu.com/questions/194727/mounting-samba-share-whenever-its-available-unmounting-when-its-not</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td><a class="reference external" href="https://unix.stackexchange.com/questions/76326/option-user-work-for-mount-not-for-umount">https://unix.stackexchange.com/questions/76326/option-user-work-for-mount-not-for-umount</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://wiki.ubuntu.com/MountWindowsSharesPermanently">https://wiki.ubuntu.com/MountWindowsSharesPermanently</a></p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://askubuntu.com/questions/157128/proper-fstab-entry-to-mount-a-samba-share-on-boot">https://askubuntu.com/questions/157128/proper-fstab-entry-to-mount-a-samba-share-on-boot</a></p>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p><a class="reference external" href="https://askubuntu.com/questions/194727/mounting-samba-share-whenever-its-available-unmounting-when-its-not">https://askubuntu.com/questions/194727/mounting-samba-share-whenever-its-available-unmounting-when-its-not</a></p>
+</dd>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p><a class="reference external" href="https://unix.stackexchange.com/questions/76326/option-user-work-for-mount-not-for-umount">https://unix.stackexchange.com/questions/76326/option-user-work-for-mount-not-for-umount</a></p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="windows-subsystem-for-linux">
 <h2>Windows Subsystem for Linux<a class="headerlink" href="#windows-subsystem-for-linux" title="Permalink to this headline">¶</a></h2>
-<p>Installation of WSL is only fully supported for Windows 10 builds ≥ 16215 <a class="footnote-reference" href="#id11" id="id9">[5]</a>. Such an installation allows multiple different distributions (Ubuntu, Debian, Fedora, etc).</p>
-<p>Prior to 16215, WSL considered a beta feature and only supported Ubuntu distribution as “Bash on Ubuntu on Windows” <a class="footnote-reference" href="#id12" id="id10">[6]</a>. If for whatever reason, cannot update to latest builds, can still install this.</p>
-<table class="docutils footnote" frame="void" id="id11" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td><a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">https://docs.microsoft.com/en-us/windows/wsl/install-win10</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id12" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id10">[6]</a></td><td><a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-legacy">https://docs.microsoft.com/en-us/windows/wsl/install-legacy</a></td></tr>
-</tbody>
-</table>
+<p>Installation of WSL is only fully supported for Windows 10 builds ≥ 16215 <a class="footnote-reference brackets" href="#id11" id="id9">5</a>. Such an installation allows multiple different distributions (Ubuntu, Debian, Fedora, etc).</p>
+<p>Prior to 16215, WSL considered a beta feature and only supported Ubuntu distribution as “Bash on Ubuntu on Windows” <a class="footnote-reference brackets" href="#id12" id="id10">6</a>. If for whatever reason, cannot update to latest builds, can still install this.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id9">5</a></span></dt>
+<dd><p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">https://docs.microsoft.com/en-us/windows/wsl/install-win10</a></p>
+</dd>
+<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id10">6</a></span></dt>
+<dd><p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-legacy">https://docs.microsoft.com/en-us/windows/wsl/install-legacy</a></p>
+</dd>
+</dl>
 <div class="section" id="x11-on-wsl">
 <h3>X11 on WSL<a class="headerlink" href="#x11-on-wsl" title="Permalink to this headline">¶</a></h3>
 <p>WSL provides only limited Linux functionality. Amongst missing features is X11 server — server used by X11 clients (viz. applications) to render graphics. As such, graphical display on WSL not directly possible.</p>
-<p>Workaround is to install X11 server (e.g. xming) on Windows and forward all X11 client requests from WSL to windows <a class="footnote-reference" href="#id16" id="id13">[7]</a>. Forward requests by setting <code class="docutils literal notranslate"><span class="pre">DISPLAY</span></code> environment variable in WSL to point to X11 server <a class="footnote-reference" href="#id17" id="id14">[8]</a>:</p>
+<p>Workaround is to install X11 server (e.g. xming) on Windows and forward all X11 client requests from WSL to windows <a class="footnote-reference brackets" href="#id16" id="id13">7</a>. Forward requests by setting <code class="docutils literal notranslate"><span class="pre">DISPLAY</span></code> environment variable in WSL to point to X11 server <a class="footnote-reference brackets" href="#id17" id="id14">8</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">DISPLAY</span><span class="o">=</span><span class="n">localhost</span><span class="p">:</span><span class="mf">0.0</span>
 </pre></div>
 </div>
@@ -299,39 +283,31 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">X</span> <span class="o">&lt;</span><span class="n">SSH_SERVER</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>In this case, only need to set local WSL <code class="docutils literal notranslate"><span class="pre">DISPLAY</span></code> variable. Remote variable should be left as is for SSH to listen to and forward <a class="footnote-reference" href="#id18" id="id15">[9]</a></p>
-<table class="docutils footnote" frame="void" id="id16" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id13">[7]</a></td><td><a class="reference external" href="https://virtualizationreview.com/articles/2017/02/08/graphical-programs-on-windows-subsystem-on-linux.aspx">https://virtualizationreview.com/articles/2017/02/08/graphical-programs-on-windows-subsystem-on-linux.aspx</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id17" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id14">[8]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/784404/how-can-i-specify-a-display">https://stackoverflow.com/questions/784404/how-can-i-specify-a-display</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id18" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id15">[9]</a></td><td><a class="reference external" href="https://unix.stackexchange.com/questions/207365/x-flag-x11-forwarding-does-not-appear-to-work-in-windows#answer-209083">https://unix.stackexchange.com/questions/207365/x-flag-x11-forwarding-does-not-appear-to-work-in-windows#answer-209083</a></td></tr>
-</tbody>
-</table>
+<p>In this case, only need to set local WSL <code class="docutils literal notranslate"><span class="pre">DISPLAY</span></code> variable. Remote variable should be left as is for SSH to listen to and forward <a class="footnote-reference brackets" href="#id18" id="id15">9</a></p>
+<dl class="footnote brackets">
+<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id13">7</a></span></dt>
+<dd><p><a class="reference external" href="https://virtualizationreview.com/articles/2017/02/08/graphical-programs-on-windows-subsystem-on-linux.aspx">https://virtualizationreview.com/articles/2017/02/08/graphical-programs-on-windows-subsystem-on-linux.aspx</a></p>
+</dd>
+<dt class="label" id="id17"><span class="brackets"><a class="fn-backref" href="#id14">8</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/784404/how-can-i-specify-a-display">https://stackoverflow.com/questions/784404/how-can-i-specify-a-display</a></p>
+</dd>
+<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="#id15">9</a></span></dt>
+<dd><p><a class="reference external" href="https://unix.stackexchange.com/questions/207365/x-flag-x11-forwarding-does-not-appear-to-work-in-windows#answer-209083">https://unix.stackexchange.com/questions/207365/x-flag-x11-forwarding-does-not-appear-to-work-in-windows#answer-209083</a></p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="windows-c-development">
 <h2>Windows C++ development<a class="headerlink" href="#windows-c-development" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="msvc-build-tools">
 <h3>MSVC build tools<a class="headerlink" href="#msvc-build-tools" title="Permalink to this headline">¶</a></h3>
-<p>Whilst Microsoft Visual C (MSVC) build tools (compiler, linker, make implementation, etc.) used to be baked into Visual Studio’s C/C++ workload (extension), can now obtain build tools separately, allowing building from the command line <a class="footnote-reference" href="#id20" id="id19">[10]</a>.</p>
+<p>Whilst Microsoft Visual C (MSVC) build tools (compiler, linker, make implementation, etc.) used to be baked into Visual Studio’s C/C++ workload (extension), can now obtain build tools separately, allowing building from the command line <a class="footnote-reference brackets" href="#id20" id="id19">10</a>.</p>
 <p>N.b. Must always use tools from correctly set up environment to ensure correct variables are set (e.g. PATH, LIB, LIBPATH, INCLUDE, etc)</p>
-<table class="docutils footnote" frame="void" id="id20" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id19">[10]</a></td><td><a class="reference external" href="https://docs.microsoft.com/en-gb/cpp/build/building-on-the-command-line">https://docs.microsoft.com/en-gb/cpp/build/building-on-the-command-line</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id20"><span class="brackets"><a class="fn-backref" href="#id19">10</a></span></dt>
+<dd><p><a class="reference external" href="https://docs.microsoft.com/en-gb/cpp/build/building-on-the-command-line">https://docs.microsoft.com/en-gb/cpp/build/building-on-the-command-line</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="msvc-search-paths">
 <h3>MSVC search paths<a class="headerlink" href="#msvc-search-paths" title="Permalink to this headline">¶</a></h3>
@@ -344,46 +320,38 @@
 </div>
 <div class="section" id="linker">
 <h4>Linker<a class="headerlink" href="#linker" title="Permalink to this headline">¶</a></h4>
-<p>Set <code class="docutils literal notranslate"><span class="pre">LIB</span></code> environment variable <a class="footnote-reference" href="#id23" id="id21">[11]</a>, e.g.:</p>
+<p>Set <code class="docutils literal notranslate"><span class="pre">LIB</span></code> environment variable <a class="footnote-reference brackets" href="#id23" id="id21">11</a>, e.g.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setx</span> <span class="n">LIB</span> <span class="s2">&quot;path</span><span class="se">\t</span><span class="s2">o\dependency\lib\;%LIB%&quot;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="runtime">
 <h4>Runtime<a class="headerlink" href="#runtime" title="Permalink to this headline">¶</a></h4>
-<p>Windows uses different search path rules for link- and run-time. Could set <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable, but better to set application specific path in registry instead <a class="footnote-reference" href="#id24" id="id22">[12]</a>.</p>
-<table class="docutils footnote" frame="void" id="id23" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id21">[11]</a></td><td><a class="reference external" href="https://stackoverflow.com/questions/20483619/what-is-the-difference-between-the-lib-and-libpath-environment-variables-for-ms">https://stackoverflow.com/questions/20483619/what-is-the-difference-between-the-lib-and-libpath-environment-variables-for-ms</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id24" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id22">[12]</a></td><td><a class="reference external" href="https://www.codeguru.com/cpp/w-p/dll/article.php/c99/Application-Specific-Paths-for-DLL-Loading.htm">https://www.codeguru.com/cpp/w-p/dll/article.php/c99/Application-Specific-Paths-for-DLL-Loading.htm</a></td></tr>
-</tbody>
-</table>
+<p>Windows uses different search path rules for link- and run-time. Could set <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable, but better to set application specific path in registry instead <a class="footnote-reference brackets" href="#id24" id="id22">12</a>.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id23"><span class="brackets"><a class="fn-backref" href="#id21">11</a></span></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/20483619/what-is-the-difference-between-the-lib-and-libpath-environment-variables-for-ms">https://stackoverflow.com/questions/20483619/what-is-the-difference-between-the-lib-and-libpath-environment-variables-for-ms</a></p>
+</dd>
+<dt class="label" id="id24"><span class="brackets"><a class="fn-backref" href="#id22">12</a></span></dt>
+<dd><p><a class="reference external" href="https://www.codeguru.com/cpp/w-p/dll/article.php/c99/Application-Specific-Paths-for-DLL-Loading.htm">https://www.codeguru.com/cpp/w-p/dll/article.php/c99/Application-Specific-Paths-for-DLL-Loading.htm</a></p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="msvc-runtime">
 <h3>MSVC runtime<a class="headerlink" href="#msvc-runtime" title="Permalink to this headline">¶</a></h3>
 <p>MSVC runtime (<code class="docutils literal notranslate"><span class="pre">MSVCRT.dll</span></code>) is a library which provides typical functions required by C and C++ programs (e.g. string manipulation, malloc, etc). It ships by default with the Windows OS, but is considered part of the OS and therefore can be patched (i.e. modified) at any time. As such, linking against MSVCRT.dll is strongly discouraged as there is no guarantee it will be the same on the target machine.</p>
-<p>To remedy this, each version of VS ships with its own Visual C RunTime library; e.g. VS 2008 ships with <code class="docutils literal notranslate"><span class="pre">MSVCRT90.dll</span></code>, VS 2010 shipped with <code class="docutils literal notranslate"><span class="pre">MSVCRT100.dll</span></code>, etc. Devs are recommended to link against the DLL shipped with their version of VS. This means however that when depolying the software, either the program must be statically linked (contains the library functions, larger file size), the specific <code class="docutils literal notranslate"><span class="pre">MSVCRTxxx.dll</span></code> must be distributed with the program (“app-local distribution”), or the target machine must be assumed to have to have it in a known location (“central distribution”) <a class="footnote-reference" href="#id27" id="id25">[13]</a>.</p>
-<p>With the advent of Windows 10 and continous rolling updates, MS realised that it could revert back to having once central runtime DLL without any negative consequences - all Win10 machines are forcefully updated and so everyone (devs and end-users) will always have the latest version of the VCRT DLL. This eternal VCRT DLL is known as the Universal CRT and is spread out across two files; <code class="docutils literal notranslate"><span class="pre">vcruntime.dll</span></code> and <code class="docutils literal notranslate"><span class="pre">ucrtbase.dll</span></code>. As these are integral parts of the OS, Win10 end-users can always be assumed to have them installed. End-users running Win &lt; 10 do not however, and so DLL redistribution must be done as before <a class="footnote-reference" href="#id28" id="id26">[14]</a>.</p>
+<p>To remedy this, each version of VS ships with its own Visual C RunTime library; e.g. VS 2008 ships with <code class="docutils literal notranslate"><span class="pre">MSVCRT90.dll</span></code>, VS 2010 shipped with <code class="docutils literal notranslate"><span class="pre">MSVCRT100.dll</span></code>, etc. Devs are recommended to link against the DLL shipped with their version of VS. This means however that when depolying the software, either the program must be statically linked (contains the library functions, larger file size), the specific <code class="docutils literal notranslate"><span class="pre">MSVCRTxxx.dll</span></code> must be distributed with the program (“app-local distribution”), or the target machine must be assumed to have to have it in a known location (“central distribution”) <a class="footnote-reference brackets" href="#id27" id="id25">13</a>.</p>
+<p>With the advent of Windows 10 and continous rolling updates, MS realised that it could revert back to having once central runtime DLL without any negative consequences - all Win10 machines are forcefully updated and so everyone (devs and end-users) will always have the latest version of the VCRT DLL. This eternal VCRT DLL is known as the Universal CRT and is spread out across two files; <code class="docutils literal notranslate"><span class="pre">vcruntime.dll</span></code> and <code class="docutils literal notranslate"><span class="pre">ucrtbase.dll</span></code>. As these are integral parts of the OS, Win10 end-users can always be assumed to have them installed. End-users running Win &lt; 10 do not however, and so DLL redistribution must be done as before <a class="footnote-reference brackets" href="#id28" id="id26">14</a>.</p>
 <p>Visual Studio ≥ 2015 should already link against <code class="docutils literal notranslate"><span class="pre">ucrtbase.dll</span></code> by default.</p>
-<table class="docutils footnote" frame="void" id="id27" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id25">[13]</a></td><td><a class="reference external" href="http://stackoverflow.com/questions/1073509/should-i-redistribute-msvcrt-dll-with-my-application">http://stackoverflow.com/questions/1073509/should-i-redistribute-msvcrt-dll-with-my-application</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id28" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id26">[14]</a></td><td><a class="reference external" href="https://blogs.msdn.microsoft.com/vcblog/2015/03/03/introducing-the-universal-crt/">https://blogs.msdn.microsoft.com/vcblog/2015/03/03/introducing-the-universal-crt/</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id27"><span class="brackets"><a class="fn-backref" href="#id25">13</a></span></dt>
+<dd><p><a class="reference external" href="http://stackoverflow.com/questions/1073509/should-i-redistribute-msvcrt-dll-with-my-application">http://stackoverflow.com/questions/1073509/should-i-redistribute-msvcrt-dll-with-my-application</a></p>
+</dd>
+<dt class="label" id="id28"><span class="brackets"><a class="fn-backref" href="#id26">14</a></span></dt>
+<dd><p><a class="reference external" href="https://blogs.msdn.microsoft.com/vcblog/2015/03/03/introducing-the-universal-crt/">https://blogs.msdn.microsoft.com/vcblog/2015/03/03/introducing-the-universal-crt/</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="microscoft-visual-studio">
 <h3>Microscoft Visual Studio<a class="headerlink" href="#microscoft-visual-studio" title="Permalink to this headline">¶</a></h3>
@@ -391,8 +359,8 @@
 </div>
 <div class="section" id="declaring-exported-symbols-in-dlls">
 <h3>Declaring exported symbols in DLLs<a class="headerlink" href="#declaring-exported-symbols-in-dlls" title="Permalink to this headline">¶</a></h3>
-<p>Build Windows dynamic link libraries (DLL) by linking with <code class="docutils literal notranslate"><span class="pre">/DLL</span></code> option. Unlike Linux dynamics libraries, DLLs require explicit declaration of which functions/classes are to be exported <a class="footnote-reference" href="#id31" id="id29">[15]</a>.</p>
-<p>Easiest way to do this is to prepend <code class="docutils literal notranslate"><span class="pre">__declspec(dllexport)</span></code> to function/class declaration, as well as any superclasses <a class="footnote-reference" href="#id32" id="id30">[16]</a>.</p>
+<p>Build Windows dynamic link libraries (DLL) by linking with <code class="docutils literal notranslate"><span class="pre">/DLL</span></code> option. Unlike Linux dynamics libraries, DLLs require explicit declaration of which functions/classes are to be exported <a class="footnote-reference brackets" href="#id31" id="id29">15</a>.</p>
+<p>Easiest way to do this is to prepend <code class="docutils literal notranslate"><span class="pre">__declspec(dllexport)</span></code> to function/class declaration, as well as any superclasses <a class="footnote-reference brackets" href="#id32" id="id30">16</a>.</p>
 <p>If writing portable code, probably wise to use preprocessor commands to limit prepending to Windows builds, e.g.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#ifndef DLLExport</span>
 <span class="c1">#ifdef _WIN32</span>
@@ -403,32 +371,27 @@
 <span class="c1">#endif // DLLExport</span>
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id31" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id29">[15]</a></td><td><a class="reference external" href="https://docs.microsoft.com/en-gb/cpp/build/reference/dll-build-a-dll">https://docs.microsoft.com/en-gb/cpp/build/reference/dll-build-a-dll</a></td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id32" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id30">[16]</a></td><td><a class="reference external" href="https://docs.microsoft.com/en-gb/cpp/cpp/dllexport-dllimport">https://docs.microsoft.com/en-gb/cpp/cpp/dllexport-dllimport</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id31"><span class="brackets"><a class="fn-backref" href="#id29">15</a></span></dt>
+<dd><p><a class="reference external" href="https://docs.microsoft.com/en-gb/cpp/build/reference/dll-build-a-dll">https://docs.microsoft.com/en-gb/cpp/build/reference/dll-build-a-dll</a></p>
+</dd>
+<dt class="label" id="id32"><span class="brackets"><a class="fn-backref" href="#id30">16</a></span></dt>
+<dd><p><a class="reference external" href="https://docs.microsoft.com/en-gb/cpp/cpp/dllexport-dllimport">https://docs.microsoft.com/en-gb/cpp/cpp/dllexport-dllimport</a></p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="hashing">
 <h2>Hashing<a class="headerlink" href="#hashing" title="Permalink to this headline">¶</a></h2>
-<p>Builtin MD5 hashing <a class="footnote-reference" href="#id34" id="id33">[17]</a>:</p>
+<p>Builtin MD5 hashing <a class="footnote-reference brackets" href="#id34" id="id33">17</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CertUtil</span> <span class="o">-</span><span class="n">hashfile</span> <span class="o">&lt;</span><span class="n">FILE</span><span class="o">&gt;</span> <span class="n">MD5</span>
 </pre></div>
 </div>
-<table class="docutils footnote" frame="void" id="id34" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id33">[17]</a></td><td><a class="reference external" href="https://superuser.com/questions/245775/is-there-a-built-in-checksum-utility-on-windows-7/898377#898377">https://superuser.com/questions/245775/is-there-a-built-in-checksum-utility-on-windows-7/898377#898377</a></td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id34"><span class="brackets"><a class="fn-backref" href="#id33">17</a></span></dt>
+<dd><p><a class="reference external" href="https://superuser.com/questions/245775/is-there-a-built-in-checksum-utility-on-windows-7/898377#898377">https://superuser.com/questions/245775/is-there-a-built-in-checksum-utility-on-windows-7/898377#898377</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="symlinks">
 <h2>Symlinks<a class="headerlink" href="#symlinks" title="Permalink to this headline">¶</a></h2>
