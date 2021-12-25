@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Python &mdash; marceloalcocer.github.io v0.0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,6 +29,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -217,9 +221,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="python">
+  <section id="python">
 <h1>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="async">
+<section id="async">
 <h2>async<a class="headerlink" href="#async" title="Permalink to this headline">¶</a></h2>
 <dl class="field-list simple">
 <dt class="field-odd">Concept</dt>
@@ -294,10 +298,10 @@
 <dd><p><a class="reference external" href="https://docs.python.org/3.7/library/asyncio-task.html">https://docs.python.org/3.7/library/asyncio-task.html</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="pip">
+</section>
+<section id="pip">
 <h2>pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="installation-from-source">
+<section id="installation-from-source">
 <h3>Installation from source<a class="headerlink" href="#installation-from-source" title="Permalink to this headline">¶</a></h3>
 <p>Recommended way of installing python package from source is via pip <a class="footnote-reference brackets" href="#id4" id="id3">2</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">&lt;</span><span class="n">PATH</span><span class="o">&gt;</span>
@@ -308,8 +312,8 @@
 <dd><p><a class="reference external" href="https://packaging.python.org/tutorials/installing-packages/">https://packaging.python.org/tutorials/installing-packages/</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="privileged-installation">
+</section>
+<section id="privileged-installation">
 <h3>Privileged installation<a class="headerlink" href="#privileged-installation" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">pip</span></code> is Python package manager used for installing packages from Python Package Index (PyPI) <a class="footnote-reference brackets" href="#id8" id="id5">3</a>. Typically bootstrap <code class="docutils literal notranslate"><span class="pre">pip</span></code> by installing it from external sources (e.g. Debian package using <code class="docutils literal notranslate"><span class="pre">apt</span></code>), and from then it can update itself.</p>
 <p>Python packages are installed by running their <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> scripts. As such, very dangerous to call <code class="docutils literal notranslate"><span class="pre">pip</span></code> with superuser privileges — pulls code from PyPI (or elsewhere) and executes as superuser <a class="footnote-reference brackets" href="#id9" id="id6">4</a>! Should instead install as user using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code> <a class="footnote-reference brackets" href="#id10" id="id7">5</a>.</p>
@@ -324,8 +328,8 @@
 <dd><p>Should be default pip behaviour on Ubuntu</p>
 </dd>
 </dl>
-</div>
-<div class="section" id="package-locations">
+</section>
+<section id="package-locations">
 <h3>Package locations<a class="headerlink" href="#package-locations" title="Permalink to this headline">¶</a></h3>
 <p>On Debian based distributions, Python packages are by default installed to 3 different locations (approx) <a class="footnote-reference brackets" href="#id12" id="id11">6</a>:</p>
 <ol class="arabic simple">
@@ -359,11 +363,11 @@ done
 <dd><p><a class="reference external" href="https://stackoverflow.com/questions/9387928/whats-the-difference-between-dist-packages-and-site-packages">https://stackoverflow.com/questions/9387928/whats-the-difference-between-dist-packages-and-site-packages</a></p>
 </dd>
 </dl>
-</div>
-</div>
-<div class="section" id="numpy">
+</section>
+</section>
+<section id="numpy">
 <h2>NumPy<a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="subclassing-ndarray">
+<section id="subclassing-ndarray">
 <h3>Subclassing ndarray<a class="headerlink" href="#subclassing-ndarray" title="Permalink to this headline">¶</a></h3>
 <p>Often desirable to subclass ndarray for numeric-based classes. Doing this correctly is slightly more complicated than regular subclassing as ndarray instances can be created in three different ways <a class="footnote-reference brackets" href="#id15" id="id13">7</a>:</p>
 <ol class="arabic simple">
@@ -386,8 +390,8 @@ done
 <dd><p><a class="reference external" href="https://docs.scipy.org/doc/numpy-1.12.0/user/basics.subclassing.html#slightly-more-realistic-example-attribute-added-to-existing-array">https://docs.scipy.org/doc/numpy-1.12.0/user/basics.subclassing.html#slightly-more-realistic-example-attribute-added-to-existing-array</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="pickling-ndarray-subclasses">
+</section>
+<section id="pickling-ndarray-subclasses">
 <h3>Pickling ndarray subclasses<a class="headerlink" href="#pickling-ndarray-subclasses" title="Permalink to this headline">¶</a></h3>
 <p>When unpickling class instance, pickle protocol does not call <code class="docutils literal notranslate"><span class="pre">__init__</span></code> but rather creates uninitialized instance and then populated attributes from <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> <a class="footnote-reference brackets" href="#id19" id="id17">9</a>. As such, complex creation procedure required for ndarray subclasses fails to store additional class attributes.</p>
 <p>Solution is to override ndarray <code class="docutils literal notranslate"><span class="pre">__reduce__</span></code> and <code class="docutils literal notranslate"><span class="pre">__setstate__</span></code> methods to explicitly store and retrieve (respectively) the added attributes <a class="footnote-reference brackets" href="#id20" id="id18">10</a>. N.b. Use <code class="docutils literal notranslate"><span class="pre">__reduce__</span></code> rather than <code class="docutils literal notranslate"><span class="pre">__getstate__</span></code> as is what is used by ndarray.</p>
@@ -399,9 +403,9 @@ done
 <dd><p><a class="reference external" href="https://stackoverflow.com/questions/26598109/preserve-custom-attributes-when-pickling-subclass-of-numpy-array">https://stackoverflow.com/questions/26598109/preserve-custom-attributes-when-pickling-subclass-of-numpy-array</a></p>
 </dd>
 </dl>
-</div>
-</div>
-<div class="section" id="subclassing-builtin-types">
+</section>
+</section>
+<section id="subclassing-builtin-types">
 <h2>Subclassing builtin types<a class="headerlink" href="#subclassing-builtin-types" title="Permalink to this headline">¶</a></h2>
 <p>Reasons why you shouldn’t immediately subclass Python built-in types <a class="footnote-reference brackets" href="#id22" id="id21">11</a></p>
 <dl class="footnote brackets">
@@ -409,10 +413,10 @@ done
 <dd><p><a class="reference external" href="https://stackoverflow.com/questions/25328448/should-i-subclass-python-list-or-create-class-with-list-as-attribute#answer-25328940">https://stackoverflow.com/questions/25328448/should-i-subclass-python-list-or-create-class-with-list-as-attribute#answer-25328940</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="bokeh-plotting-library">
+</section>
+<section id="bokeh-plotting-library">
 <h2>Bokeh Plotting Library<a class="headerlink" href="#bokeh-plotting-library" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="architecture">
+<section id="architecture">
 <h3>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><p>“The architecture of Bokeh is such that high-level “model objects” (representing things like plots, ranges, axes, glyphs, etc.) are created in Python, and then converted to a JSON format that is consumed by the client library, BokehJS”</p>
@@ -429,15 +433,15 @@ done
 <p>This capability to synchronize between python and the browser is the main purpose of the Bokeh Server.”</p>
 <p class="attribution">—<a class="reference external" href="http://bokeh.pydata.org/en/latest/docs/user_guide/server.html">Bokeh Website</a></p>
 </div></blockquote>
-</div>
-<div class="section" id="current-status">
+</section>
+<section id="current-status">
 <h3>Current Status<a class="headerlink" href="#current-status" title="Permalink to this headline">¶</a></h3>
 <p>Bokeh is a nice way of generating explorable plots for embedding into log files, etc. Would provide mush richer experience than current MPL to SVG approach.</p>
 <p>Furthermore, looks like a great way of building GUI for data analysis/exploration — leverage Python for data processing/analysis and leave display/UI to HTML/JS. Seems more forward-looking and interoperable than relying on native canvases such as GTK.</p>
 <p>Unfortunately, would say that Bokeh needs to mature slightly before it can replace MPL as default plotting library. Simple 2D plots (lines, bars, etc) look great, but more complex 2D plots (e.g. heatmaps, contours, etc) are still in early stages. These are the ones we will need the most for plotting 2DES datasets. Heatmap is probably closest contender, but does not interpolate. Also, 3D plots are currently completely missing and can currently only be handled by <a class="reference external" href="https://demo.bokehplots.com/apps/surface3d">interfacing 3rd party libs with Bokeh servers</a>.</p>
-</div>
-</div>
-<div class="section" id="ctypes-pointers">
+</section>
+</section>
+<section id="ctypes-pointers">
 <h2>ctypes Pointers<a class="headerlink" href="#ctypes-pointers" title="Permalink to this headline">¶</a></h2>
 <p>Pointer summary:</p>
 <dl class="simple">
@@ -451,10 +455,10 @@ done
 </dd>
 </dl>
 <p>Full details: <a class="reference external" href="http://stackoverflow.com/questions/9126031/python-ctypes-sending-pointer-to-structure-as-parameter-to-native-library">http://stackoverflow.com/questions/9126031/python-ctypes-sending-pointer-to-structure-as-parameter-to-native-library</a></p>
-</div>
-<div class="section" id="matplotlib">
+</section>
+<section id="matplotlib">
 <h2>matplotlib<a class="headerlink" href="#matplotlib" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="updating">
+<section id="updating">
 <h3>Updating<a class="headerlink" href="#updating" title="Permalink to this headline">¶</a></h3>
 <p>Ubuntu package is old (MPL 1.3.x). Update instead with pip3:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">matplotlib</span>
@@ -467,7 +471,7 @@ done
 </div>
 <p>Now pip works fine</p>
 <p>Finally, when using GTK3 canvas, must also install <code class="docutils literal notranslate"><span class="pre">cairocffi</span></code> in order to provide GTK with necessary Cairo wrappers. This in turn had it’s own dependencies, viz; <code class="docutils literal notranslate"><span class="pre">python3.4-dev</span></code>, <code class="docutils literal notranslate"><span class="pre">libffi-dev</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span><span class="o">.</span><span class="mi">4</span><span class="o">-</span><span class="n">dev</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span><span class="mf">.4</span><span class="o">-</span><span class="n">dev</span>
 <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libffi</span><span class="o">-</span><span class="n">dev</span>
 </pre></div>
 </div>
@@ -478,16 +482,16 @@ done
 <p>N.b. <code class="docutils literal notranslate"><span class="pre">cairocffi</span></code> is required for all GTK3 backends (i.e. GTK3Cairo and GTK3Agg). It just doesn’t work without it!</p>
 <p>More backend installation details: <a class="reference external" href="http://matplotlib.org/users/installing.html">http://matplotlib.org/users/installing.html</a>
 cairocffi installation details: <a class="reference external" href="https://pythonhosted.org/cairocffi/overview.html#installing-cffi">https://pythonhosted.org/cairocffi/overview.html#installing-cffi</a></p>
-</div>
-<div class="section" id="backends">
+</section>
+<section id="backends">
 <h3>Backends<a class="headerlink" href="#backends" title="Permalink to this headline">¶</a></h3>
 <p>Recall: backend is renderer/canvas combination - renderers are static (produce files); renderers + canvas are interactive (windows).</p>
 <p>Previously using AGG renderer with Tk canvas. AGG write PNG only and is quite old (last repo update in 2006!). Probably better to move to Cairo - more output formats and newer.</p>
 <p>Whilst we’re at it, let’s also try out GTK canvas - probably a bit newer (and already installed)</p>
 <p>Change backend in <a class="reference external" href="~/.config/matplotlib/matplotlibrc">~/.config/matplotlib/matplotlibrc</a></p>
 <p>Full details: <a class="reference external" href="http://matplotlib.org/faq/usage_faq.html#what-is-a-backend">http://matplotlib.org/faq/usage_faq.html#what-is-a-backend</a></p>
-</div>
-<div class="section" id="animation-output">
+</section>
+<section id="animation-output">
 <h3>Animation Output<a class="headerlink" href="#animation-output" title="Permalink to this headline">¶</a></h3>
 <p>Using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ani</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">animation</span><span class="o">.</span><span class="n">Animation</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
@@ -506,8 +510,8 @@ cairocffi installation details: <a class="reference external" href="https://pyth
         <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ani</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">())</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="svg-output">
+</section>
+<section id="svg-output">
 <h3>SVG Output<a class="headerlink" href="#svg-output" title="Permalink to this headline">¶</a></h3>
 <p>When generating SVGs from MPL, miter limit SVG property is set to a stupidly high value, causing Inkscape to crash hard <a class="footnote-reference brackets" href="#id26" id="id24">12</a> <a class="footnote-reference brackets" href="#id27" id="id25">13</a>.</p>
 <p>Solution is to manually edit generated SVG and change miter limit down to something more manageable (e.g. 4)</p>
@@ -519,11 +523,11 @@ cairocffi installation details: <a class="reference external" href="https://pyth
 <dd><p><a class="reference external" href="https://bugs.launchpad.net/inkscape/+bug/1534376">https://bugs.launchpad.net/inkscape/+bug/1534376</a></p>
 </dd>
 </dl>
-</div>
-</div>
-<div class="section" id="scipy">
+</section>
+</section>
+<section id="scipy">
 <h2>SciPy<a class="headerlink" href="#scipy" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="upgrading-scipy-components-on-linux">
+<section id="upgrading-scipy-components-on-linux">
 <h3>Upgrading SciPy Components on Linux<a class="headerlink" href="#upgrading-scipy-components-on-linux" title="Permalink to this headline">¶</a></h3>
 <p>Do from pip. For user:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">&lt;</span><span class="n">PACKAGE</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">upgrade</span>
@@ -534,8 +538,8 @@ cairocffi installation details: <a class="reference external" href="https://pyth
 </pre></div>
 </div>
 <p>In both cases, if using PyDev must remove and readd interpreter for changes to take effect.</p>
-</div>
-<div class="section" id="installing-scipy-on-windows">
+</section>
+<section id="installing-scipy-on-windows">
 <h3>Installing SciPy on Windows<a class="headerlink" href="#installing-scipy-on-windows" title="Permalink to this headline">¶</a></h3>
 <p>Whilst can install numpy using pip and PyPI packages, same does not work for rest of SciPy stack:</p>
 <blockquote>
@@ -564,9 +568,9 @@ cairocffi installation details: <a class="reference external" href="https://pyth
 <dd><p><a class="reference external" href="https://pip.pypa.io/en/latest/user_guide/#installing-from-wheels">https://pip.pypa.io/en/latest/user_guide/#installing-from-wheels</a></p>
 </dd>
 </dl>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

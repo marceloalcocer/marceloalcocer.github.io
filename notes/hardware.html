@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Hardware &mdash; marceloalcocer.github.io v0.0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,6 +29,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -210,9 +214,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="hardware">
+  <section id="hardware">
 <h1>Hardware<a class="headerlink" href="#hardware" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="authentication-for-samba-print-server">
+<section id="authentication-for-samba-print-server">
 <h2>Authentication for Samba print server<a class="headerlink" href="#authentication-for-samba-print-server" title="Permalink to this headline">¶</a></h2>
 <p>Having problems getting Ubuntu to authenticate with sambsa print server — authenticates successfully during setup if credentials input manually, fails otherwise.</p>
 <p>Turns out to be a Active Directory domain issue. Easily solved by prefixing username with <code class="docutils literal notranslate"><span class="pre">/</span></code> rather than usual <code class="docutils literal notranslate"><span class="pre">DOMAIN\USERNAME</span></code> <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
@@ -221,10 +225,10 @@
 <dd><p><a class="reference external" href="https://askubuntu.com/a/154081/326761">https://askubuntu.com/a/154081/326761</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="drivers">
+</section>
+<section id="drivers">
 <h2>Drivers<a class="headerlink" href="#drivers" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="concept">
+<section id="concept">
 <h3>Concept<a class="headerlink" href="#concept" title="Permalink to this headline">¶</a></h3>
 <p>Hardware drivers are just kernel modules — C code conforming to kernel module API <a class="footnote-reference brackets" href="#id4" id="id3">2</a>. Most driver modules subsequently interact with HW via firmware code provided by manufacturer.</p>
 <dl class="footnote brackets">
@@ -232,20 +236,20 @@
 <dd><p><a class="reference external" href="http://www.tldp.org/LDP/lkmpg/2.6/html/">http://www.tldp.org/LDP/lkmpg/2.6/html/</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="building-and-installing">
+</section>
+<section id="building-and-installing">
 <h3>Building and installing<a class="headerlink" href="#building-and-installing" title="Permalink to this headline">¶</a></h3>
 <p>Modules typically built using kernel makefile (<code class="docutils literal notranslate"><span class="pre">/lib/modules/${uname-r}/build</span></code>). Resulting kernel object binaries copied to kernel modules directory (e.g. <code class="docutils literal notranslate"><span class="pre">/lib/modules/$(uname-r)/kernel/driver</span></code>). Any firmware is copied to kernel firmware directory (<code class="docutils literal notranslate"><span class="pre">/lib/firmware/</span></code>).</p>
 <p>Modules dependencies are computed and module is placed into module dependency tree (<code class="docutils literal notranslate"><span class="pre">lib/modules/$(uname-r)/modules.dep</span></code>, loading order for new kernel boot) using <code class="docutils literal notranslate"><span class="pre">depmod</span></code>.</p>
 <p>Finally, modules dynamically can inserted/removed into/from currently running kernel using <code class="docutils literal notranslate"><span class="pre">modprobe</span></code>.</p>
-</div>
-<div class="section" id="dkms">
+</section>
+<section id="dkms">
 <h3>DKMS<a class="headerlink" href="#dkms" title="Permalink to this headline">¶</a></h3>
 <p>DKMS is framework which automates module build/installation procedure. This avoids user having to recompile modules manually every time the kernel updates.</p>
 <p>Instead of building and inserting modules manually, install (copy) just firmware and give DKMS source code for module. It will then handle compilation, installation and insertion.</p>
-</div>
-</div>
-<div class="section" id="secure-boot">
+</section>
+</section>
+<section id="secure-boot">
 <h2>Secure Boot<a class="headerlink" href="#secure-boot" title="Permalink to this headline">¶</a></h2>
 <p>Secure Boot is a chain of trust which starts at firmware <a class="footnote-reference brackets" href="#id6" id="id5">3</a>; firmware certificate authority validates bootloader which validates kernel, which validates kernel modules, etc.</p>
 <p>In Ubuntu:</p>
@@ -260,8 +264,8 @@
 <dd><p><a class="reference external" href="https://wiki.ubuntu.com/SecurityTeam/SecureBoot">https://wiki.ubuntu.com/SecurityTeam/SecureBoot</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="reverting-to-nouveau-graphics-driver">
+</section>
+<section id="reverting-to-nouveau-graphics-driver">
 <h2>Reverting to Nouveau Graphics Driver<a class="headerlink" href="#reverting-to-nouveau-graphics-driver" title="Permalink to this headline">¶</a></h2>
 <p>Remove all nvidia drivers:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">purge</span> <span class="n">nvidia</span><span class="o">*</span>
@@ -288,18 +292,18 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chown</span> <span class="n">malcocer</span> <span class="o">~/.</span><span class="n">Xauthority</span> <span class="n">sudo</span> <span class="n">chgrp</span> <span class="n">malcocer</span> <span class="o">~/.</span><span class="n">Xauthority</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="low-mic-level">
+</section>
+<section id="low-mic-level">
 <h2>Low Mic Level<a class="headerlink" href="#low-mic-level" title="Permalink to this headline">¶</a></h2>
 <p>alsamixer settings: No mic boost (playback and record), Full capture. Do <strong>NOT</strong> increase mic level from PulseAudio!</p>
-</div>
-<div class="section" id="backlight-brightness">
+</section>
+<section id="backlight-brightness">
 <h2>Backlight Brightness<a class="headerlink" href="#backlight-brightness" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">sh</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;echo 70 &gt; /sys/class/backlight/acpi_video0/brightness&#39;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="wacom-tablet-scrolling">
+</section>
+<section id="wacom-tablet-scrolling">
 <h2>Wacom Tablet Scrolling<a class="headerlink" href="#wacom-tablet-scrolling" title="Permalink to this headline">¶</a></h2>
 <p>Wacom Bamboo tablet pad ring and buttons not being recognized on Xenial. Can map to commands using <a class="footnote-reference brackets" href="#id9" id="id7">4</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xsetwacom</span> <span class="nb">set</span> <span class="s2">&quot;Wacom Bamboo Pad pad&quot;</span> <span class="s2">&quot;AbsWheelUp&quot;</span> <span class="s2">&quot;key up&quot;</span>
@@ -322,8 +326,8 @@
 <dd><p><a class="reference external" href="https://debian-administration.org/article/50/Running_applications_automatically_when_X_starts">https://debian-administration.org/article/50/Running_applications_automatically_when_X_starts</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="encrypted-dvd-playback">
+</section>
+<section id="encrypted-dvd-playback">
 <h2>Encrypted DVD playback<a class="headerlink" href="#encrypted-dvd-playback" title="Permalink to this headline">¶</a></h2>
 <p>Protected DVDs must have protection cracked to allow open-source playback. This is provided by <code class="docutils literal notranslate"><span class="pre">css</span></code> part of <code class="docutils literal notranslate"><span class="pre">libdvdread</span></code>. Cannot be bundled for copyright reasons though — must download using script provided <a class="footnote-reference brackets" href="#id12" id="id11">6</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">doc</span><span class="o">/</span><span class="n">libdvdread4</span><span class="o">/</span><span class="n">install</span><span class="o">-</span><span class="n">css</span><span class="o">.</span><span class="n">sh</span>
@@ -334,24 +338,24 @@
 <dd><p><a class="reference external" href="https://help.ubuntu.com/community/RestrictedFormats/PlayingDVDs">https://help.ubuntu.com/community/RestrictedFormats/PlayingDVDs</a></p>
 </dd>
 </dl>
-<div class="section" id="set-dvd-region">
+<section id="set-dvd-region">
 <h3>Set DVD region<a class="headerlink" href="#set-dvd-region" title="Permalink to this headline">¶</a></h3>
 <p>VLC ignores DVD drive region when playing. For CSS though, DVD drive region must be set to something. Set using regionset tool (Europe: 2).</p>
-</div>
-<div class="section" id="clear-css-cache">
+</section>
+<section id="clear-css-cache">
 <h3>Clear CSS cache<a class="headerlink" href="#clear-css-cache" title="Permalink to this headline">¶</a></h3>
 <p>Every time CSS cracking occurs, resulting keys are cached in <code class="docutils literal notranslate"><span class="pre">~/.dvdcss</span></code>. May not be totally transferable though from one protected DVD to another. This causes jerky playback. Clear cache to force <code class="docutils literal notranslate"><span class="pre">libdvdread</span></code> to crack again.</p>
-</div>
-</div>
-<div class="section" id="cnst-printing">
+</section>
+</section>
+<section id="cnst-printing">
 <h2>CNST printing<a class="headerlink" href="#cnst-printing" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lp</span> <span class="o">-</span><span class="n">U</span> <span class="n">Alcocer</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="mediatek-mt7630e-wireless-card">
+</section>
+<section id="mediatek-mt7630e-wireless-card">
 <h2>Mediatek MT7630e Wireless Card<a class="headerlink" href="#mediatek-mt7630e-wireless-card" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="model">
+<section id="model">
 <h3>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h3>
 <p>Wireless card:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">lspci</span>
@@ -376,15 +380,15 @@
    <span class="o">...</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="ubuntu-14-04">
+</section>
+<section id="ubuntu-14-04">
 <h3>Ubuntu 14.04<a class="headerlink" href="#ubuntu-14-04" title="Permalink to this headline">¶</a></h3>
 <p>With 14.04 and kernel from summer 2014, card not working with default Ubuntu drivers. Had to build and install drivers myself <a class="footnote-reference brackets" href="#id18" id="id13">7</a>. Source still present in <code class="docutils literal notranslate"><span class="pre">/usr/src/rt2x00-3.13</span></code>, and kernel module added in <code class="docutils literal notranslate"><span class="pre">/etc/modules</span></code>.</p>
-<div class="section" id="id14">
+<section id="id14">
 <h4>&lt; 3.13.0-92<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
 <p>Worked fine.</p>
-</div>
-<div class="section" id="id15">
+</section>
+<section id="id15">
 <h4>&gt;= 3.13.0-92<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
 <p>After kernel upgrade (&gt;= 3.13.0-92-generic), wireless drivers no longer being used. Probably because using kernel built with kernel module signing enforced? This would result in a problem as own kernel module build cannot be signed with the Canonical key <a class="footnote-reference brackets" href="#id19" id="id16">8</a> and so fails validation in Secure Boot chain</p>
 <p>Indeed see that were always failing validation:</p>
@@ -425,12 +429,12 @@
 <dd><p><a class="reference external" href="http://askubuntu.com/questions/760671/could-not-load-vboxdrv-after-upgrade-to-ubuntu-16-04-and-i-want-to-keep-secur">http://askubuntu.com/questions/760671/could-not-load-vboxdrv-after-upgrade-to-ubuntu-16-04-and-i-want-to-keep-secur</a></p>
 </dd>
 </dl>
-</div>
-</div>
-<div class="section" id="ubuntu-16-04">
+</section>
+</section>
+<section id="ubuntu-16-04">
 <h3>Ubuntu 16.04<a class="headerlink" href="#ubuntu-16-04" title="Permalink to this headline">¶</a></h3>
 <p>With 16.04 and 4.4.0-34 kernel, wireless card still not working with default Ubuntu drivers. Had to build and install drivers myself <a class="footnote-reference brackets" href="#id26" id="id21">10</a>. Source still present in <code class="docutils literal notranslate"><span class="pre">/usr/local/src/MT7360E-2.0.4</span></code>.</p>
-<div class="section" id="id22">
+<section id="id22">
 <h4>4.4.0<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
 <p>As before, tried signing the module to allow secure booting. As originally generated key still enrolled in MOK (<code class="docutils literal notranslate"><span class="pre">mokutil</span> <span class="pre">-l</span></code>), tries signing with this first.</p>
 <p>With new driver from neurobin, can install kernel module with DKMS or manually — advantage of DKMS approach is that do not need to rebuild for every kernel update, however manual building gives more control of installation process and allows us to sign module.</p>
@@ -453,8 +457,8 @@
 </div>
 <p>Reboot and working first time now ;-)</p>
 <p>Will have to repeat at each kernel upgrade however. <strong>Don’t uninstall module yet! Boot into previous kernel version first to decrypt</strong> <code class="docutils literal notranslate"><span class="pre">MOK.priv</span></code> .</p>
-</div>
-<div class="section" id="id23">
+</section>
+<section id="id23">
 <h4>4.10.0<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
 <p>Noticing that module is tainting the kernel despite being signed:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">dmesg</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">mt7630e</span>
@@ -463,19 +467,19 @@
 </pre></div>
 </div>
 <p>Everything seems to be working though. Is kernel module signing not enforced for 4.10?</p>
-</div>
-<div class="section" id="id24">
+</section>
+<section id="id24">
 <h4>4.10.0-30<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
 <p>Now module installation failing — seems to hang on <code class="docutils literal notranslate"><span class="pre">depmod</span></code> just after build completion.</p>
 <p>Tested build + manual insertion using <code class="docutils literal notranslate"><span class="pre">test</span></code> script — all working. Implies that module works fine and problem is indeed related to <code class="docutils literal notranslate"><span class="pre">depmod</span></code> only.</p>
 <p>Interestingly, installation with DKMS does not hang on <code class="docutils literal notranslate"><span class="pre">depmod</span></code>. Given that do not need to sign, can use this as a workaround for the time being.</p>
 <p>DKMS for some reason not building or installing module on kernel upgrades — must do this manually:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dkms</span> <span class="n">build</span> <span class="n">mt7630e</span><span class="o">/</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">0</span>
-<span class="n">sudo</span> <span class="n">dkms</span> <span class="n">install</span> <span class="n">mt7630e</span><span class="o">/</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">0</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dkms</span> <span class="n">build</span> <span class="n">mt7630e</span><span class="o">/</span><span class="mf">2.1.0</span>
+<span class="n">sudo</span> <span class="n">dkms</span> <span class="n">install</span> <span class="n">mt7630e</span><span class="o">/</span><span class="mf">2.1.0</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="id25">
+</section>
+<section id="id25">
 <h4>4.15.0-29<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h4>
 <p>Up until now, previous DKMS-based install to circumvent <code class="docutils literal notranslate"><span class="pre">depmod</span></code> bug had been working fine. Module could not be signed, but did not seem to be strictly enforced by kernel.</p>
 <p>As of 4.15.0-29, noticed that DKMS shows <code class="docutils literal notranslate"><span class="pre">mt7630e</span></code> module as being installed, but it is not loaded (nothing in <code class="docutils literal notranslate"><span class="pre">kern.log</span></code> or <code class="docutils literal notranslate"><span class="pre">lsmod</span></code> output).</p>
@@ -511,10 +515,10 @@ rm $MOKPRIV
 <dd><p><a class="reference external" href="http://github.com/neurobin/MT7630E">http://github.com/neurobin/MT7630E</a></p>
 </dd>
 </dl>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
+</section>
 
 
            </div>

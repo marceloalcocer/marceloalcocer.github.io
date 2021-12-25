@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Graphing &mdash; marceloalcocer.github.io v0.0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,6 +29,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -192,22 +196,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="graphing">
+  <section id="graphing">
 <h1>Graphing<a class="headerlink" href="#graphing" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="html-graphing-libraries">
+<section id="html-graphing-libraries">
 <h2>HTML graphing libraries<a class="headerlink" href="#html-graphing-libraries" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="d3">
+<section id="d3">
 <h3>D3<a class="headerlink" href="#d3" title="Permalink to this headline">¶</a></h3>
 <p>Renders data (i.e. arrays of numbers) using W3 DOM standards (SVG, CSS, HTML). Pure JS.</p>
-</div>
-<div class="section" id="mpld3">
+</section>
+<section id="mpld3">
 <h3>mpld3<a class="headerlink" href="#mpld3" title="Permalink to this headline">¶</a></h3>
 <p>Backend for MPL. Converts MPL objects into numerical arrays which can then be rendered using D3.</p>
 <p>As uses D3, outputs in SVG rather than interactive HTML5 canvas (c.f. Bokeh below). Uses plugins (JS + python) to provide interactivity however (zooming, panning, labels, etc.). Builtin plugins should be sufficient for basic data exploration.</p>
 <p>Not designed for large datasets, so can be slow with many points.</p>
 <p>Uses MPL plotting commands.</p>
-</div>
-<div class="section" id="bokeh">
+</section>
+<section id="bokeh">
 <h3>Bokeh<a class="headerlink" href="#bokeh" title="Permalink to this headline">¶</a></h3>
 <p>Python library for plotting to HTML canvas — native HTML interactivity and dynamic-ness <a class="footnote-reference brackets" href="#id3" id="id1">1</a> .</p>
 <p>Specifically designed for rendering large datasets (downsampling, etc.)</p>
@@ -225,9 +229,9 @@
 <dd><p><a class="reference external" href="http://bokeh.pydata.org/en/latest/docs/user_guide/compat.html#matplotlib-seaborn-ggplot-and-pandas">http://bokeh.pydata.org/en/latest/docs/user_guide/compat.html#matplotlib-seaborn-ggplot-and-pandas</a></p>
 </dd>
 </dl>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

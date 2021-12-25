@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Cryptography &mdash; marceloalcocer.github.io v0.0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,10 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -203,9 +207,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="cryptography">
+  <section id="cryptography">
 <h1>Cryptography<a class="headerlink" href="#cryptography" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="gpg-agent">
+<section id="gpg-agent">
 <h2>GPG agent<a class="headerlink" href="#gpg-agent" title="Permalink to this headline">¶</a></h2>
 <p>Daemon automatically started by GPG to handle (amongst other things) private key decryption <a class="footnote-reference brackets" href="#id2" id="id1">1</a>. Enables passphrases to be cached, allowing password-free access to private key for limited time.</p>
 <p>On Gnome desktop, uses <code class="docutils literal notranslate"><span class="pre">pinentry</span></code> program for interactive password entry. As such, Gnome keyring service also available to user.</p>
@@ -214,19 +218,23 @@
 <dd><p><a class="reference external" href="https://www.gnupg.org/faq/whats-new-in-2.1.html#autostart">https://www.gnupg.org/faq/whats-new-in-2.1.html#autostart</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="public-key-cryptography">
+</section>
+<section id="public-key-cryptography">
 <h2>Public key cryptography<a class="headerlink" href="#public-key-cryptography" title="Permalink to this headline">¶</a></h2>
 <p>Asymmetric encryption using a public/private key pair (fixed length sequence of binary digits). Provides advantage over symmetric schemes as do not have to find secure channel over which to distribute shared secret.</p>
 <p>For encryption, public key is shared and used by anyone to encrypt data. This can only be feasibly decrypted using private key which is kept secret.</p>
-<div class="figure align-default" id="id37">
-<img alt="https://upload.wikimedia.org/wikipedia/commons/f/f9/Public_key_encryption.svg" src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Public_key_encryption.svg" /><p class="caption"><span class="caption-text">Encryption with PKC <a class="footnote-reference brackets" href="#id6" id="id3">2</a></span><a class="headerlink" href="#id37" title="Permalink to this image">¶</a></p>
-</div>
+<figure class="align-default" id="id37">
+<img alt="https://upload.wikimedia.org/wikipedia/commons/f/f9/Public_key_encryption.svg" src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Public_key_encryption.svg" /><figcaption>
+<p><span class="caption-text">Encryption with PKC <a class="footnote-reference brackets" href="#id6" id="id3">2</a></span><a class="headerlink" href="#id37" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>Can also use key pair in reverse for signing as verification of origin. In this case, encrypt known data using private key. This can be decrypted by anyone using the corresponding public key, but serves to show that it has originated from private key holder.</p>
-<div class="figure align-default" id="id38">
+<figure class="align-default" id="id38">
 <img alt="https://upload.wikimedia.org/wikipedia/commons/a/a7/Private_key_signing.png" src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Private_key_signing.png" />
-<p class="caption"><span class="caption-text">Signing with PKC <a class="footnote-reference brackets" href="#id7" id="id4">3</a></span><a class="headerlink" href="#id38" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Signing with PKC <a class="footnote-reference brackets" href="#id7" id="id4">3</a></span><a class="headerlink" href="#id38" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>This clearly shows how there is nothing really to distinguish a ‘public’ key from a ‘private’ key — they are simply a complementary pair of keys which are distributed differently. This of course makes perfect sense when thinking about it mathematically — each key is just a number!</p>
 <p>In summary, the private key of a pair in PKC allows one to,</p>
 <blockquote>
@@ -248,13 +256,15 @@
 <dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/RSA_(cryptosystem">https://en.wikipedia.org/wiki/RSA_(cryptosystem</a>)#Signing_messages</p>
 </dd>
 </dl>
-<div class="section" id="diffie-hellman-key-exchange">
+<section id="diffie-hellman-key-exchange">
 <h3>Diffie-Hellman key exchange<a class="headerlink" href="#diffie-hellman-key-exchange" title="Permalink to this headline">¶</a></h3>
 <p>Whilst not directly designed as a PKC scheme, PKC can be understood from the concepts formalised in DH key exchange — protocol for obtaining common secret between parties across public channel <a class="footnote-reference brackets" href="#id14" id="id9">5</a>. This is a requirement e.g. for communicating the secret for symmetric encryption.</p>
 <p>Basic concept can be described by color mixing analogy:</p>
-<div class="figure align-default" id="id39">
-<img alt="https://upload.wikimedia.org/wikipedia/commons/4/46/Diffie-Hellman_Key_Exchange.svg" src="https://upload.wikimedia.org/wikipedia/commons/4/46/Diffie-Hellman_Key_Exchange.svg" /><p class="caption"><span class="caption-text">DH KE color mixing analogy <a class="footnote-reference brackets" href="#id15" id="id10">6</a></span><a class="headerlink" href="#id39" title="Permalink to this image">¶</a></p>
-</div>
+<figure class="align-default" id="id39">
+<img alt="https://upload.wikimedia.org/wikipedia/commons/4/46/Diffie-Hellman_Key_Exchange.svg" src="https://upload.wikimedia.org/wikipedia/commons/4/46/Diffie-Hellman_Key_Exchange.svg" /><figcaption>
+<p><span class="caption-text">DH KE color mixing analogy <a class="footnote-reference brackets" href="#id15" id="id10">6</a></span><a class="headerlink" href="#id39" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>DH KE relies on a one-way trapdoor function (mixing of colors). The exact nature of this function defines a specific implementation of DH KE, (e.g. multiplicative group of modulo integers <a class="footnote-reference brackets" href="#id16" id="id11">7</a>, elliptic curves <a class="footnote-reference brackets" href="#id17" id="id12">8</a>, etc.). Most (all?) implementation rely on hardness of discrete logarithm problem <a class="footnote-reference brackets" href="#id18" id="id13">9</a>.</p>
 <p>Whilst not directly designed as a PKC scheme, DH protocol can also be used as a form of PKC. It lacks the capability to authenticate(sign) however, and thus is seldom used as such. Instead, schemes designed explicitly from PKC are far more commonly used, e.g. <a class="reference internal" href="#rsa">RSA</a>.</p>
 <dl class="footnote brackets">
@@ -274,7 +284,7 @@
 <dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Discrete_logarithm">https://en.wikipedia.org/wiki/Discrete_logarithm</a></p>
 </dd>
 </dl>
-<div class="section" id="example-implementation-multiplicative-group-of-modulo-integers">
+<section id="example-implementation-multiplicative-group-of-modulo-integers">
 <h4>Example implementation — Multiplicative group of modulo integers<a class="headerlink" href="#example-implementation-multiplicative-group-of-modulo-integers" title="Permalink to this headline">¶</a></h4>
 <p>Given agreed and public prime and generator, <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(g\)</span> respectively, and individual secrets <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> (<span class="math notranslate nohighlight">\(p, g, a, b \in \mathfrak{Z}\)</span>), Alice and Bob can compute and send values <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> over public channel,</p>
 <div class="math notranslate nohighlight">
@@ -287,19 +297,19 @@ B = g^b mod p\end{split}\]</div>
 <div class="math notranslate nohighlight">
 \[S = A^b mod p = =  B^a mod p = g^{ab} mod p\]</div>
 <p>Application of DH as PKC scheme can be seen by considering <span class="math notranslate nohighlight">\(A\)</span> as Alice’s public key. Bob sends the desired message encrypted using the shared secret, <span class="math notranslate nohighlight">\(S\)</span>, along with <span class="math notranslate nohighlight">\(B\)</span>. As with key exchange, now only Alice can compute the secret, <span class="math notranslate nohighlight">\(S\)</span> from <span class="math notranslate nohighlight">\(B\)</span>, and thus decrypt the message.</p>
-</div>
-</div>
-<div class="section" id="digital-signature-algorithm-dsa">
+</section>
+</section>
+<section id="digital-signature-algorithm-dsa">
 <h3>Digital Signature Algorithm (DSA)<a class="headerlink" href="#digital-signature-algorithm-dsa" title="Permalink to this headline">¶</a></h3>
 <p>As described above, main issue with using DH as PKC scheme is lack of authentication — public key could easily be hijacked and replaced by spoof key.</p>
 <p>DSA was developed as a signing only protocol to enable authentication. It also relies on the discrete logarithm problem.</p>
-</div>
-<div class="section" id="elgamal">
+</section>
+<section id="elgamal">
 <h3>ElGamal<a class="headerlink" href="#elgamal" title="Permalink to this headline">¶</a></h3>
 <p>ElGamal is essentially an improved version of DH designed more specifically for PKC. It also relies on discrete logarithm problem.</p>
 <p>In its original form (ElGamal encryption), it only provides encryption and not authentication. It was subsequently extended however to provide signing functionality (ElGammal signature scheme). As such, it can be considered a full PKC scheme.</p>
-</div>
-<div class="section" id="rsa">
+</section>
+<section id="rsa">
 <h3>RSA<a class="headerlink" href="#rsa" title="Permalink to this headline">¶</a></h3>
 <p>RSA is a full PKC protocol providing both encryption and authentication <a class="footnote-reference brackets" href="#id21" id="id19">10</a>.  It relies on integer factorization problem <a class="footnote-reference brackets" href="#id22" id="id20">11</a>.</p>
 <dl class="footnote brackets">
@@ -310,9 +320,9 @@ B = g^b mod p\end{split}\]</div>
 <dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Integer_factorization">https://en.wikipedia.org/wiki/Integer_factorization</a></p>
 </dd>
 </dl>
-</div>
-</div>
-<div class="section" id="gpg">
+</section>
+</section>
+<section id="gpg">
 <h2>GPG<a class="headerlink" href="#gpg" title="Permalink to this headline">¶</a></h2>
 <p>Open source cryptography suite. Provides following functionality:</p>
 <ul class="simple">
@@ -321,7 +331,7 @@ B = g^b mod p\end{split}\]</div>
 <li><p>Hashing</p></li>
 <li><p>Compression</p></li>
 </ul>
-<div class="section" id="gpg-1-x-vs-gpg-2-x">
+<section id="gpg-1-x-vs-gpg-2-x">
 <h3>GPG 1.x vs GPG 2.x<a class="headerlink" href="#gpg-1-x-vs-gpg-2-x" title="Permalink to this headline">¶</a></h3>
 <p>Main differences between v1 and v2 of GPG was move from integrated to external cryptography library (<code class="docutils literal notranslate"><span class="pre">Libgcrypt</span></code>) <a class="footnote-reference brackets" href="#id26" id="id23">12</a> <a class="footnote-reference brackets" href="#id27" id="id24">13</a>. Also added more modern encryption schemes (e.g. elliptic curve cryptography) <a class="footnote-reference brackets" href="#id28" id="id25">14</a></p>
 <dl class="footnote brackets">
@@ -335,8 +345,8 @@ B = g^b mod p\end{split}\]</div>
 <dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/GNU_Privacy_Guard#Branches">https://en.wikipedia.org/wiki/GNU_Privacy_Guard#Branches</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="keys">
+</section>
+<section id="keys">
 <h3>Keys<a class="headerlink" href="#keys" title="Permalink to this headline">¶</a></h3>
 <p>Generate key pair with <code class="docutils literal notranslate"><span class="pre">gpg</span> <span class="pre">--gen-key</span></code>. Associate user ID with each key to identify it as belonging to someone. User ID is composed of real name, comment and e-mail address <a class="footnote-reference brackets" href="#id32" id="id29">15</a>. Multiple user IDs can be added to a single key pair.</p>
 <p>As private key will just be sitting on filesystem, GPG protects it with passphrase (symmetric encryption) <a class="footnote-reference brackets" href="#id33" id="id30">16</a>. <em>This is the only real protection you have if someone else gets hold of private key!</em></p>
@@ -362,8 +372,8 @@ B = g^b mod p\end{split}\]</div>
 <dd><p>This is good practice to mitigate against it having been broken at some point (like periodically changing a password)</p>
 </dd>
 </dl>
-</div>
-<div class="section" id="keyrings">
+</section>
+<section id="keyrings">
 <h3>Keyrings<a class="headerlink" href="#keyrings" title="Permalink to this headline">¶</a></h3>
 <p>GPG stores keys in keyrings; one for private and one for public keys. Individual keys are identified by their hex hashes or user IDs.</p>
 <p>List keys on keyring:</p>
@@ -402,8 +412,8 @@ Command&gt; fpr
 <dd><p><a class="reference external" href="https://www.gnupg.org/gph/en/manual.html#AEN335">https://www.gnupg.org/gph/en/manual.html#AEN335</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="encryption">
+</section>
+<section id="encryption">
 <h3>Encryption<a class="headerlink" href="#encryption" title="Permalink to this headline">¶</a></h3>
 <p>Asymmetric encryption:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --output &lt;FILE&gt;.gpg --recipient &lt;KEY&gt;  --encrypt &lt;FILE&gt;
@@ -417,8 +427,8 @@ Command&gt; fpr
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --output &lt;FILE&gt;.gpg --symmetric &lt;FILE&gt;
 </pre></div>
 </div>
-</div>
-<div class="section" id="signing">
+</section>
+<section id="signing">
 <h3>Signing<a class="headerlink" href="#signing" title="Permalink to this headline">¶</a></h3>
 <p>Sign file only, base64 output:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --clearsign &lt;FILE&gt;
@@ -441,9 +451,9 @@ $ gpg2 --verify &lt;FILE&gt;.sig &lt;FILE&gt;       # Detached signature
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gpg2 --output &lt;FILE&gt; --decrypt &lt;FILE&gt;.sig
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

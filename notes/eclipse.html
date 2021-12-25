@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Eclipse &mdash; marceloalcocer.github.io v0.0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,6 +29,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -192,11 +196,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="eclipse">
+  <section id="eclipse">
 <h1>Eclipse<a class="headerlink" href="#eclipse" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="pydev-configuration">
+<section id="pydev-configuration">
 <h2>PyDev configuration<a class="headerlink" href="#pydev-configuration" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="general">
+<section id="general">
 <h3>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h3>
 <p>Switching workspaces causes PyDev settings to be lost for some reason. Clearing workspace and re-importing Eclipse project does nothing - have to reconfigure. PyDev settings probably stored in workspace settings though (<code class="docutils literal notranslate"><span class="pre">.metadata</span></code>).</p>
 <ul class="simple">
@@ -204,8 +208,8 @@
 <li><p><a class="reference external" href="http://pep8.readthedocs.org/en/latest/intro.html#error-codes">pep8.py errors and warnings</a></p></li>
 <li><p><a class="reference external" href="http://stackoverflow.com/questions/3627463/what-is-remotesystemstempfiles-in-eclipse">Remove RemoteSystemsTempFiles</a> (startup-shutdown -&gt; RSE UI and delete from project explorer)</p></li>
 </ul>
-</div>
-<div class="section" id="project">
+</section>
+<section id="project">
 <h3>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h3>
 <p>PyDev requires source files to be in a source folder. Presumably this is so that build tools (lint, etc) know where to look.</p>
 <p>Source folders are typically added to the PYTHONPATH so as to allow contained modules to be found.</p>
@@ -242,9 +246,9 @@
 </li>
 </ul>
 <p>N.b Setting the project directory as a source directory adds it to the PYTHONPATH. Despite not being explicily added, it seems that sub-directories (e.g. package directories) are also searched. Is this a PyDev thing or a Python thing?</p>
-</div>
-</div>
-<div class="section" id="manual-upgrade">
+</section>
+</section>
+<section id="manual-upgrade">
 <h2>Manual upgrade<a class="headerlink" href="#manual-upgrade" title="Permalink to this headline">¶</a></h2>
 <p>Cannot upgrade directly from Eclipse Mars (4.5) to Neon (4.6), instead must do manual install <a class="footnote-reference brackets" href="#id3" id="id1">1</a>.</p>
 <p>First, back up workspace and project files <a class="footnote-reference brackets" href="#id4" id="id2">2</a>:</p>
@@ -269,8 +273,8 @@
 <dd><p><a class="reference external" href="https://www.eclipse.org/eclipse/development/readme_eclipse_4.6.php#mozTocId324309">https://www.eclipse.org/eclipse/development/readme_eclipse_4.6.php#mozTocId324309</a></p>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

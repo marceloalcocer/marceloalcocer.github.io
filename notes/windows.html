@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Windows &mdash; marceloalcocer.github.io v0.0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,6 +29,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -208,9 +212,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="windows">
+  <section id="windows">
 <h1>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="windows-shares">
+<section id="windows-shares">
 <h2>Windows Shares<a class="headerlink" href="#windows-shares" title="Permalink to this headline">¶</a></h2>
 <p>Windows shares can be mounted using <a class="reference external" href="https://en.wikipedia.org/wiki/Server_Message_Block">CIFS</a> protocol (now called SMB) — file sharing protocol compatible with Windows shares <a class="footnote-reference brackets" href="#id5" id="id1">1</a>. Provided by kernel module and accessed via <code class="docutils literal notranslate"><span class="pre">cifs-utils</span></code> package:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">cifs</span><span class="o">-</span><span class="n">utils</span>
@@ -220,15 +224,15 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mount</span> <span class="o">//</span><span class="n">servername</span><span class="o">/</span><span class="n">sharename</span> <span class="o">&lt;</span><span class="n">MOUNT_POINT</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<div class="section" id="authentication">
+<section id="authentication">
 <h3>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h3>
 <p>If server requires authentication, have to pass CIFS specific <code class="docutils literal notranslate"><span class="pre">user</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code> options. Easiest to define these in protected (600) local file and pass <code class="docutils literal notranslate"><span class="pre">credentials</span></code> option instead.</p>
-</div>
-<div class="section" id="mount-on-boot">
+</section>
+<section id="mount-on-boot">
 <h3>Mount on boot<a class="headerlink" href="#mount-on-boot" title="Permalink to this headline">¶</a></h3>
 <p>Can mount on boot by adding <code class="docutils literal notranslate"><span class="pre">fstab</span></code> entry. Ensure that <code class="docutils literal notranslate"><span class="pre">_netdev</span></code> standard option present so that only mounts when network present <a class="footnote-reference brackets" href="#id6" id="id2">2</a> <a class="footnote-reference brackets" href="#id7" id="id3">3</a>.</p>
-</div>
-<div class="section" id="mount-on-login">
+</section>
+<section id="mount-on-login">
 <h3>Mount on login<a class="headerlink" href="#mount-on-login" title="Permalink to this headline">¶</a></h3>
 <p>If network only present when logged on (e.g. WiFi), better to mount on login instead. Relevant options:</p>
 <dl class="field-list simple">
@@ -258,9 +262,9 @@
 <dd><p><a class="reference external" href="https://unix.stackexchange.com/questions/76326/option-user-work-for-mount-not-for-umount">https://unix.stackexchange.com/questions/76326/option-user-work-for-mount-not-for-umount</a></p>
 </dd>
 </dl>
-</div>
-</div>
-<div class="section" id="windows-subsystem-for-linux">
+</section>
+</section>
+<section id="windows-subsystem-for-linux">
 <h2>Windows Subsystem for Linux<a class="headerlink" href="#windows-subsystem-for-linux" title="Permalink to this headline">¶</a></h2>
 <p>Installation of WSL is only fully supported for Windows 10 builds ≥ 16215 <a class="footnote-reference brackets" href="#id11" id="id9">5</a>. Such an installation allows multiple different distributions (Ubuntu, Debian, Fedora, etc).</p>
 <p>Prior to 16215, WSL considered a beta feature and only supported Ubuntu distribution as “Bash on Ubuntu on Windows” <a class="footnote-reference brackets" href="#id12" id="id10">6</a>. If for whatever reason, cannot update to latest builds, can still install this.</p>
@@ -272,7 +276,7 @@
 <dd><p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-legacy">https://docs.microsoft.com/en-us/windows/wsl/install-legacy</a></p>
 </dd>
 </dl>
-<div class="section" id="x11-on-wsl">
+<section id="x11-on-wsl">
 <h3>X11 on WSL<a class="headerlink" href="#x11-on-wsl" title="Permalink to this headline">¶</a></h3>
 <p>WSL provides only limited Linux functionality. Amongst missing features is X11 server — server used by X11 clients (viz. applications) to render graphics. As such, graphical display on WSL not directly possible.</p>
 <p>Workaround is to install X11 server (e.g. xming) on Windows and forward all X11 client requests from WSL to windows <a class="footnote-reference brackets" href="#id16" id="id13">7</a>. Forward requests by setting <code class="docutils literal notranslate"><span class="pre">DISPLAY</span></code> environment variable in WSL to point to X11 server <a class="footnote-reference brackets" href="#id17" id="id14">8</a>:</p>
@@ -295,11 +299,11 @@
 <dd><p><a class="reference external" href="https://unix.stackexchange.com/questions/207365/x-flag-x11-forwarding-does-not-appear-to-work-in-windows#answer-209083">https://unix.stackexchange.com/questions/207365/x-flag-x11-forwarding-does-not-appear-to-work-in-windows#answer-209083</a></p>
 </dd>
 </dl>
-</div>
-</div>
-<div class="section" id="windows-c-development">
+</section>
+</section>
+<section id="windows-c-development">
 <h2>Windows C++ development<a class="headerlink" href="#windows-c-development" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="msvc-build-tools">
+<section id="msvc-build-tools">
 <h3>MSVC build tools<a class="headerlink" href="#msvc-build-tools" title="Permalink to this headline">¶</a></h3>
 <p>Whilst Microsoft Visual C (MSVC) build tools (compiler, linker, make implementation, etc.) used to be baked into Visual Studio’s C/C++ workload (extension), can now obtain build tools separately, allowing building from the command line <a class="footnote-reference brackets" href="#id20" id="id19">10</a>.</p>
 <p>N.b. Must always use tools from correctly set up environment to ensure correct variables are set (e.g. PATH, LIB, LIBPATH, INCLUDE, etc)</p>
@@ -308,24 +312,24 @@
 <dd><p><a class="reference external" href="https://docs.microsoft.com/en-gb/cpp/build/building-on-the-command-line">https://docs.microsoft.com/en-gb/cpp/build/building-on-the-command-line</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="msvc-search-paths">
+</section>
+<section id="msvc-search-paths">
 <h3>MSVC search paths<a class="headerlink" href="#msvc-search-paths" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="pre-processor">
+<section id="pre-processor">
 <h4>Pre-processor<a class="headerlink" href="#pre-processor" title="Permalink to this headline">¶</a></h4>
 <p>Set <code class="docutils literal notranslate"><span class="pre">INCLUDE</span></code> environment variable, e.g.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setx</span> <span class="n">INCLUDE</span> <span class="s2">&quot;path</span><span class="se">\t</span><span class="s2">o\dependency\include\;%INCLUDE%&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="linker">
+</section>
+<section id="linker">
 <h4>Linker<a class="headerlink" href="#linker" title="Permalink to this headline">¶</a></h4>
 <p>Set <code class="docutils literal notranslate"><span class="pre">LIB</span></code> environment variable <a class="footnote-reference brackets" href="#id23" id="id21">11</a>, e.g.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setx</span> <span class="n">LIB</span> <span class="s2">&quot;path</span><span class="se">\t</span><span class="s2">o\dependency\lib\;%LIB%&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="runtime">
+</section>
+<section id="runtime">
 <h4>Runtime<a class="headerlink" href="#runtime" title="Permalink to this headline">¶</a></h4>
 <p>Windows uses different search path rules for link- and run-time. Could set <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable, but better to set application specific path in registry instead <a class="footnote-reference brackets" href="#id24" id="id22">12</a>.</p>
 <dl class="footnote brackets">
@@ -336,9 +340,9 @@
 <dd><p><a class="reference external" href="https://www.codeguru.com/cpp/w-p/dll/article.php/c99/Application-Specific-Paths-for-DLL-Loading.htm">https://www.codeguru.com/cpp/w-p/dll/article.php/c99/Application-Specific-Paths-for-DLL-Loading.htm</a></p>
 </dd>
 </dl>
-</div>
-</div>
-<div class="section" id="msvc-runtime">
+</section>
+</section>
+<section id="msvc-runtime">
 <h3>MSVC runtime<a class="headerlink" href="#msvc-runtime" title="Permalink to this headline">¶</a></h3>
 <p>MSVC runtime (<code class="docutils literal notranslate"><span class="pre">MSVCRT.dll</span></code>) is a library which provides typical functions required by C and C++ programs (e.g. string manipulation, malloc, etc). It ships by default with the Windows OS, but is considered part of the OS and therefore can be patched (i.e. modified) at any time. As such, linking against MSVCRT.dll is strongly discouraged as there is no guarantee it will be the same on the target machine.</p>
 <p>To remedy this, each version of VS ships with its own Visual C RunTime library; e.g. VS 2008 ships with <code class="docutils literal notranslate"><span class="pre">MSVCRT90.dll</span></code>, VS 2010 shipped with <code class="docutils literal notranslate"><span class="pre">MSVCRT100.dll</span></code>, etc. Devs are recommended to link against the DLL shipped with their version of VS. This means however that when depolying the software, either the program must be statically linked (contains the library functions, larger file size), the specific <code class="docutils literal notranslate"><span class="pre">MSVCRTxxx.dll</span></code> must be distributed with the program (“app-local distribution”), or the target machine must be assumed to have to have it in a known location (“central distribution”) <a class="footnote-reference brackets" href="#id27" id="id25">13</a>.</p>
@@ -352,12 +356,12 @@
 <dd><p><a class="reference external" href="https://blogs.msdn.microsoft.com/vcblog/2015/03/03/introducing-the-universal-crt/">https://blogs.msdn.microsoft.com/vcblog/2015/03/03/introducing-the-universal-crt/</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="microscoft-visual-studio">
+</section>
+<section id="microscoft-visual-studio">
 <h3>Microscoft Visual Studio<a class="headerlink" href="#microscoft-visual-studio" title="Permalink to this headline">¶</a></h3>
 <p>MSVS is only available as 32-bit application. It can however happily target 64-bit systems.</p>
-</div>
-<div class="section" id="declaring-exported-symbols-in-dlls">
+</section>
+<section id="declaring-exported-symbols-in-dlls">
 <h3>Declaring exported symbols in DLLs<a class="headerlink" href="#declaring-exported-symbols-in-dlls" title="Permalink to this headline">¶</a></h3>
 <p>Build Windows dynamic link libraries (DLL) by linking with <code class="docutils literal notranslate"><span class="pre">/DLL</span></code> option. Unlike Linux dynamics libraries, DLLs require explicit declaration of which functions/classes are to be exported <a class="footnote-reference brackets" href="#id31" id="id29">15</a>.</p>
 <p>Easiest way to do this is to prepend <code class="docutils literal notranslate"><span class="pre">__declspec(dllexport)</span></code> to function/class declaration, as well as any superclasses <a class="footnote-reference brackets" href="#id32" id="id30">16</a>.</p>
@@ -379,9 +383,9 @@
 <dd><p><a class="reference external" href="https://docs.microsoft.com/en-gb/cpp/cpp/dllexport-dllimport">https://docs.microsoft.com/en-gb/cpp/cpp/dllexport-dllimport</a></p>
 </dd>
 </dl>
-</div>
-</div>
-<div class="section" id="hashing">
+</section>
+</section>
+<section id="hashing">
 <h2>Hashing<a class="headerlink" href="#hashing" title="Permalink to this headline">¶</a></h2>
 <p>Builtin MD5 hashing <a class="footnote-reference brackets" href="#id34" id="id33">17</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CertUtil</span> <span class="o">-</span><span class="n">hashfile</span> <span class="o">&lt;</span><span class="n">FILE</span><span class="o">&gt;</span> <span class="n">MD5</span>
@@ -392,27 +396,27 @@
 <dd><p><a class="reference external" href="https://superuser.com/questions/245775/is-there-a-built-in-checksum-utility-on-windows-7/898377#898377">https://superuser.com/questions/245775/is-there-a-built-in-checksum-utility-on-windows-7/898377#898377</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="symlinks">
+</section>
+<section id="symlinks">
 <h2>Symlinks<a class="headerlink" href="#symlinks" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mklink</span> <span class="o">&lt;</span><span class="n">NAME</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">TARGET</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>N.b. for links to executables, must make sure <code class="docutils literal notranslate"><span class="pre">&lt;NAME&gt;</span></code> has .exe suffix.</p>
-</div>
-<div class="section" id="windows-10-usb-serial-drivers">
+</section>
+<section id="windows-10-usb-serial-drivers">
 <h2>Windows &lt;10 USB serial drivers<a class="headerlink" href="#windows-10-usb-serial-drivers" title="Permalink to this headline">¶</a></h2>
 <p>Windows only included dedicated USB-serial drivers in Windows 10 (<code class="docutils literal notranslate"><span class="pre">usbser.sys</span></code>).</p>
 <p>Previous versions <a class="reference external" href="https://support.microsoft.com/en-us/kb/837637">should instead use usb modem drivers (mdmcpq.sys)</a> which offers almost identical functionality. To do so, need to <a class="reference external" href="https://social.technet.microsoft.com/Forums/windows/en-US/01e8e7db-0461-48d6-bc3d-aa8ee2620b67/usb-modem-driver-usbsersys-does-not-install-on-windows-7-64bit-enterprise?forum=w7itprohardware">reference modem driver in .inf file</a>. Then Just “Have Disk” inf file, and voila - instant USB COM port</p>
-</div>
-<div class="section" id="logged-in-users">
+</section>
+<section id="logged-in-users">
 <h2>Logged in users<a class="headerlink" href="#logged-in-users" title="Permalink to this headline">¶</a></h2>
 <p>Use sysinternals live from command prompt:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\\<span class="n">live</span><span class="o">.</span><span class="n">sysinternals</span><span class="o">.</span><span class="n">com</span>\<span class="n">Tools</span>\<span class="n">psloggedon</span><span class="o">.</span><span class="n">exe</span> \\<span class="o">&lt;</span><span class="n">workstation_name</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Network &mdash; marceloalcocer.github.io v0.0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,6 +29,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -191,9 +195,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="network">
+  <section id="network">
 <h1>Network<a class="headerlink" href="#network" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="switches-vs-routers">
+<section id="switches-vs-routers">
 <h2>Switches vs Routers<a class="headerlink" href="#switches-vs-routers" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
 <dt>Switch</dt><dd><p>Connects nodes within a network (i.e. creates a LAN)</p>
@@ -201,18 +205,18 @@
 <dt>Router</dt><dd><p>Allows communication between two networks</p>
 </dd>
 </dl>
-<div class="section" id="switch">
+<section id="switch">
 <h3>Switch<a class="headerlink" href="#switch" title="Permalink to this headline">¶</a></h3>
 <p>Think about UDyni switch which simply connected all computers within lab to each other and forwarded packets from one to the other. It did not in any way assign IP addresses or allow communication with the wider fisica network. Switches simply take incoming packet, checks MAC address again LUT, and forwards packet to correct interface (switch port).</p>
 <p>In the case of UDyni network, udyni-vmi ran DHCP server which assined IP addresses to be used within the lab network. udyni-vmi also ran bridge which allowed communication between lab and fisi networks</p>
-</div>
-<div class="section" id="router">
+</section>
+<section id="router">
 <h3>Router<a class="headerlink" href="#router" title="Permalink to this headline">¶</a></h3>
 <p>Also does not handle IP address assignment (although most routers now have built-in DHCP servers). Does however try to route packets via best possible route to target. As such, communicates with other routers (e.g. via ICM protocol) to work out best route</p>
 <p>Integrated routers typically have own IP address… NAT forwarding allows sharing of ‘single’ IP address…</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

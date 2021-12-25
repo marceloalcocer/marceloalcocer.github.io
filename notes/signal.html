@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Signal processing &mdash; marceloalcocer.github.io v0.0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,10 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -195,11 +199,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="signal-processing">
+  <section id="signal-processing">
 <h1>Signal processing<a class="headerlink" href="#signal-processing" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="discrete-convolution">
+<section id="discrete-convolution">
 <h2>Discrete convolution<a class="headerlink" href="#discrete-convolution" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="linear-discrete-convolution">
+<section id="linear-discrete-convolution">
 <h3>Linear discrete convolution<a class="headerlink" href="#linear-discrete-convolution" title="Permalink to this headline">¶</a></h3>
 <p>Definition of discrete (linear) convolution,</p>
 <div class="math notranslate nohighlight">
@@ -227,7 +231,7 @@ m_{valid} &amp; , &amp; \text{min}(\| M \|, \| N \|) \leq l &lt; \text{max}(\| M
 l - \|N\| + 1, \ldots, \|M\| - 1 &amp; , &amp; l \geq \text{max}(\| M \|, \| N \|)
 \end{Bmatrix}
 
-\end{gather*}</div><div class="section" id="fitting">
+\end{gather*}</div><section id="fitting">
 <h4>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h4>
 <p>Fitting a discrete dataset, <span class="math notranslate nohighlight">\(E\)</span>,</p>
 <div class="math notranslate nohighlight">
@@ -242,9 +246,9 @@ l - \|N\| + 1, \ldots, \|M\| - 1 &amp; , &amp; l \geq \text{max}(\| M \|, \| N \
 N_n = 0 \quad \text{for} \quad n \leq \| M \|
 
 \end{gather*}</div><p>It can be seen therefore that <span class="math notranslate nohighlight">\(\| M \|\)</span> is arbitrary, but determines <span class="math notranslate nohighlight">\(\| N \|\)</span>. Thus, <span class="math notranslate nohighlight">\(N\)</span> must be analytical whilst <span class="math notranslate nohighlight">\(M, E\)</span> may be numerical.</p>
-</div>
-</div>
-<div class="section" id="circular-discrete-convolution">
+</section>
+</section>
+<section id="circular-discrete-convolution">
 <h3>Circular discrete convolution<a class="headerlink" href="#circular-discrete-convolution" title="Permalink to this headline">¶</a></h3>
 <p>Making one input a discrete periodic summation turns the convolution into a circular convolution. A discrete period summation with period <span class="math notranslate nohighlight">\(P\)</span> is defined as:</p>
 <div class="math notranslate nohighlight">
@@ -262,8 +266,8 @@ N_n = 0 \quad \text{for} \quad n \leq \| M \|
 <dd><p><a class="reference external" href="https://dsp-nbsphinx.readthedocs.io/en/nbsphinx-experiment/nonrecursive_filters/fast_convolution.html">https://dsp-nbsphinx.readthedocs.io/en/nbsphinx-experiment/nonrecursive_filters/fast_convolution.html</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="fast-discrete-convolution">
+</section>
+<section id="fast-discrete-convolution">
 <h3>Fast discrete convolution<a class="headerlink" href="#fast-discrete-convolution" title="Permalink to this headline">¶</a></h3>
 <p>The circular discrete convolution theorem states that the inverse DFT of a frequency domain multiplication is equivalent to the circular discrete convolution in the time domain <a class="footnote-reference brackets" href="#id4" id="id3">2</a>,</p>
 <div class="math notranslate nohighlight">
@@ -288,38 +292,42 @@ N_n = 0 \quad \text{for} \quad n \leq \| M \|
 <dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform#Circular_convolution_theorem_and_cross-correlation_theorem">https://en.wikipedia.org/wiki/Discrete_Fourier_transform#Circular_convolution_theorem_and_cross-correlation_theorem</a></p>
 </dd>
 </dl>
-</div>
-</div>
-<div class="section" id="discrete-fourier-transforms">
+</section>
+</section>
+<section id="discrete-fourier-transforms">
 <h2>Discrete Fourier Transforms<a class="headerlink" href="#discrete-fourier-transforms" title="Permalink to this headline">¶</a></h2>
 <p>Going from continuous definition of FT to discrete FT (DFT) can most easily be understood in the following steps,</p>
-<div class="figure align-default" id="id9">
+<figure class="align-default" id="id9">
 <img alt="https://upload.wikimedia.org/wikipedia/commons/e/ea/From_Continuous_To_Discrete_Fourier_Transform.gif" src="https://upload.wikimedia.org/wikipedia/commons/e/ea/From_Continuous_To_Discrete_Fourier_Transform.gif" />
-<p class="caption"><span class="caption-text">Discretization of the Fourier transform. <strong>Left:</strong> Continuous function (top) and its FT (bottom). <strong>Centre-left:</strong> Continuous periodic summation (i.e. convolution with Dirac comb), and its FT (i.e. Fourier series). <strong>Centre-right:</strong> Discretized function (i.e. Multiplication by Dirac comb) and its FT. <strong>Right:</strong> Discretized period summation, and its FT <a class="footnote-reference brackets" href="#id6" id="id5">3</a>.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Discretization of the Fourier transform. <strong>Left:</strong> Continuous function (top) and its FT (bottom). <strong>Centre-left:</strong> Continuous periodic summation (i.e. convolution with Dirac comb), and its FT (i.e. Fourier series). <strong>Centre-right:</strong> Discretized function (i.e. Multiplication by Dirac comb) and its FT. <strong>Right:</strong> Discretized period summation, and its FT <a class="footnote-reference brackets" href="#id6" id="id5">3</a>.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>The final step is the DFT, whilst the penultimate is often termed the discrete-time FT (DTFT). Note also the reciprocity between the middle two steps.</p>
 <dl class="footnote brackets">
 <dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id5">3</a></span></dt>
 <dd><p><a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/e/ea/From_Continuous_To_Discrete_Fourier_Transform.gif">https://upload.wikimedia.org/wikipedia/commons/e/ea/From_Continuous_To_Discrete_Fourier_Transform.gif</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="window-functions">
+</section>
+<section id="window-functions">
 <h2>Window Functions<a class="headerlink" href="#window-functions" title="Permalink to this headline">¶</a></h2>
 <p>Recall that multiplying by window in time domain is convolution by FT of window in frequency domain. As such, most windows will smear frequencies out in FT spectrum, and so very similar frequency components may not be resolvable. Equally, the convolution will also result in the noise floor of the spectrum being increased as signal amplitude from sharp peaks is spread out over a wide range of frequencies. As such, different windows have different sensitivities to low amplitude frequency components (low dynamic range).</p>
 <p>The resolution of a window can be seen by the width of its main lobe in its FT spectrum.</p>
 <p>The dynamic range of a window can be seen by the relative amplitudes of its side lobes in its FT spectrum.</p>
-<div class="figure align-default" id="id10">
+<figure class="align-default" id="id10">
 <img alt="https://upload.wikimedia.org/wikipedia/commons/f/f2/Window_functions_in_the_frequency_domain.png" src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Window_functions_in_the_frequency_domain.png" />
-<p class="caption"><span class="caption-text">Window functions in the frequency domain <a class="footnote-reference brackets" href="#id8" id="id7">4</a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Window functions in the frequency domain <a class="footnote-reference brackets" href="#id8" id="id7">4</a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <dl class="footnote brackets">
 <dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id7">4</a></span></dt>
 <dd><p><a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/f/f2/Window_functions_in_the_frequency_domain.png">https://upload.wikimedia.org/wikipedia/commons/f/f2/Window_functions_in_the_frequency_domain.png</a></p>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

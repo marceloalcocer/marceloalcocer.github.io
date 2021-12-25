@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Gentoo &mdash; marceloalcocer.github.io v0.0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,6 +29,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -192,13 +196,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="gentoo">
+  <section id="gentoo">
 <h1>Gentoo<a class="headerlink" href="#gentoo" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="portage">
+<section id="portage">
 <h2>Portage<a class="headerlink" href="#portage" title="Permalink to this headline">¶</a></h2>
 <p>Portage is the Gentoo package manager.</p>
 <p><code class="docutils literal notranslate"><span class="pre">emerge</span></code> is main front-end to Portage. Other tools also exist (see wiki page <a class="footnote-reference brackets" href="#id6" id="id1">1</a> for list).</p>
-<div class="section" id="repositories">
+<section id="repositories">
 <h3>Repositories<a class="headerlink" href="#repositories" title="Permalink to this headline">¶</a></h3>
 <p>Portage fetches packages from repositories. Repos contains packages, known as <em>ebuilds</em> — plain text files containing all info to fetch and build software from source, e.g.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>root@肩車:~$ head /var/db/repos/gentoo/app-editors/vim/vim-8.2.0638.ebuild
@@ -225,8 +229,8 @@ inherit vim-doc flag-o-matic bash-completion-r1 python-single-r1 ruby-single des
 <p>You probably want <code class="docutils literal notranslate"><span class="pre">emaint</span> <span class="pre">sync</span> <span class="pre">--auto</span></code> to sync all repos which are set to auto-sync (e.g. main gentoo repo).</p>
 </div>
 <p>Alternatively can also fetch snapshot over http and sync with <code class="docutils literal notranslate"><span class="pre">emerge-webrsync</span></code>. This is faster for first time as fetches whole repo contents as tarball. Also used to be only way to allow signature checking of repo contents. Nowadays though, <code class="docutils literal notranslate"><span class="pre">emerge</span> <span class="pre">--sync</span></code>-based commands also do signature checking — prefer this.</p>
-</div>
-<div class="section" id="packages">
+</section>
+<section id="packages">
 <h3>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h3>
 <p>Once local copy of repos contains newest ebuilds, can use info in ebuild to fetch source (and metadata) from source mirror <a class="footnote-reference brackets" href="#id9" id="id4">4</a> and build software. Source files are fetched and placed in <code class="docutils literal notranslate"><span class="pre">/var/db/pkg/</span></code>, e.g.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>root@肩車:~$ ls /var/db/pkg/app-editors/vim-8.2.0814-r100/
@@ -294,9 +298,9 @@ sys-process/dcron
 <dd><p><a class="reference external" href="https://wiki.gentoo.org/wiki/Handbook:AMD64/Working/Portage#Updating_the_system">https://wiki.gentoo.org/wiki/Handbook:AMD64/Working/Portage#Updating_the_system</a></p>
 </dd>
 </dl>
-</div>
-</div>
-<div class="section" id="kernel">
+</section>
+</section>
+<section id="kernel">
 <h2>Kernel<a class="headerlink" href="#kernel" title="Permalink to this headline">¶</a></h2>
 <p>Kernel sources in <code class="docutils literal notranslate"><span class="pre">/usr/src</span></code>. Symlink <code class="docutils literal notranslate"><span class="pre">linux</span></code> to current kernel version. Kernel configuration file is <code class="docutils literal notranslate"><span class="pre">/usr/src/linux/.config</span></code>.</p>
 <p>Build kernel (main and modules) with <code class="docutils literal notranslate"><span class="pre">make</span></code>.  Once built, copy kernel modules to <code class="docutils literal notranslate"><span class="pre">/lib/modules/$(uname</span> <span class="pre">-r)/kernel</span></code>:</p>
@@ -312,8 +316,8 @@ sys-process/dcron
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">grub</span><span class="o">-</span><span class="n">mkconfig</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">grub</span><span class="o">/</span><span class="n">grub</span><span class="o">.</span><span class="n">cfg</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

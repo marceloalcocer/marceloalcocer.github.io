@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Visual Studio Code &mdash; marceloalcocer.github.io v0.0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,6 +29,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -195,9 +199,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="visual-studio-code">
+  <section id="visual-studio-code">
 <h1>Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="licensing">
+<section id="licensing">
 <h2>Licensing<a class="headerlink" href="#licensing" title="Permalink to this headline">¶</a></h2>
 <p>Version of VS code available from the <a class="reference external" href="https://code.visualstudio.com/">MS website</a> (‘VS Code’) is a MS internal build of the <a class="reference external" href="https://github.com/Microsoft/vscode">open source hosted on GitHub</a> (‘Code’) <a class="footnote-reference brackets" href="#id3" id="id1">1</a>. The VS Code-specific additions are <a class="footnote-reference brackets" href="#id4" id="id2">2</a>:</p>
 <ul class="simple">
@@ -215,10 +219,10 @@
 <dd><p><a class="reference external" href="https://github.com/Microsoft/vscode/pull/28736/files">https://github.com/Microsoft/vscode/pull/28736/files</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="building">
+</section>
+<section id="building">
 <h2>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="releases">
+<section id="releases">
 <h3>Releases<a class="headerlink" href="#releases" title="Permalink to this headline">¶</a></h3>
 <p>Master branch is latest daily snapshot. To install a release version, must first check out a tagged release.</p>
 <p>New releases come out every month and are labelled by a minor version number <a class="footnote-reference brackets" href="#id7" id="id5">3</a>. There is also a patch release number which appears to vary between releases. As such, best to check MS website for latest full version number <a class="footnote-reference brackets" href="#id8" id="id6">4</a>.</p>
@@ -231,8 +235,8 @@
 <dd><p><a class="reference external" href="https://code.visualstudio.com/updates/v1_22">https://code.visualstudio.com/updates/v1_22</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="build-process">
+</section>
+<section id="build-process">
 <h3>Build process<a class="headerlink" href="#build-process" title="Permalink to this headline">¶</a></h3>
 <p>Following <a class="reference external" href="https://github.com/Microsoft/vscode/wiki/How-to-Contribute#build-and-run-from-source">build instructions</a>.</p>
 <p>Obtained all build prerequisites;</p>
@@ -264,8 +268,8 @@
 </pre></div>
 </div>
 <p>This results in build output being created in <code class="docutils literal notranslate"><span class="pre">../VSCode-linux-x64</span></code>. Run with app script (<code class="docutils literal notranslate"><span class="pre">bin/code-oss</span></code>).</p>
-</div>
-<div class="section" id="node-gyp-error">
+</section>
+<section id="node-gyp-error">
 <h3>node-gyp error<a class="headerlink" href="#node-gyp-error" title="Permalink to this headline">¶</a></h3>
 <p>Ran into following error when getting node dependencies with yarn:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cd</span> <span class="n">vscode</span>
@@ -305,9 +309,9 @@
 <dd><p><a class="reference external" href="https://stackoverflow.com/questions/5926672/where-does-npm-install-packages">https://stackoverflow.com/questions/5926672/where-does-npm-install-packages</a></p>
 </dd>
 </dl>
-</div>
-</div>
-<div class="section" id="extensions">
+</section>
+</section>
+<section id="extensions">
 <h2>Extensions<a class="headerlink" href="#extensions" title="Permalink to this headline">¶</a></h2>
 <p>The extensions marketplace is an MS service and thus is not enabled by default in Code. Must be enabled by modifying <code class="docutils literal notranslate"><span class="pre">resources/app/product.json</span></code> <a class="footnote-reference brackets" href="#id14" id="id13">7</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;extensionsGallery&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -322,8 +326,8 @@
 <dd><p><a class="reference external" href="https://stackoverflow.com/questions/37143536/no-extensions-found-when-running-visual-studio-code-from-source">https://stackoverflow.com/questions/37143536/no-extensions-found-when-running-visual-studio-code-from-source</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="updating">
+</section>
+<section id="updating">
 <h2>Updating<a class="headerlink" href="#updating" title="Permalink to this headline">¶</a></h2>
 <p>To update, just need to checkout release version of source and follow build instructions.</p>
 <p>An example update script:</p>
@@ -365,8 +369,8 @@ echo -e &#39;\t},\n\t&quot;extensionsGallery&quot;: {\n\t\t&quot;serviceUrl&quot
 </pre></div>
 </div>
 <p>All preferences and settings are stored in <code class="docutils literal notranslate"><span class="pre">~/.vscode-oss</span></code> and <code class="docutils literal notranslate"><span class="pre">~/.config/Code</span> <span class="pre">-</span> <span class="pre">OSS</span></code>, and so are not overwritten.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

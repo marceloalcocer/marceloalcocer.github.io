@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Backup &mdash; marceloalcocer.github.io v0.0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,6 +29,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -188,9 +192,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="backup">
+  <section id="backup">
 <h1>Backup<a class="headerlink" href="#backup" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="duplicity">
+<section id="duplicity">
 <h2>Duplicity<a class="headerlink" href="#duplicity" title="Permalink to this headline">¶</a></h2>
 <p>Duplicity compresses, encrypts and signs (optional) a set of files before copying to a backend <a class="footnote-reference brackets" href="#id5" id="id1">1</a> <a class="footnote-reference brackets" href="#id6" id="id2">2</a>. Multiple backend protocols are supported, e.g. local filesystems, FTP, SSH, Dropbox, etc.</p>
 <p>Compression is done by default using gzip.</p>
@@ -229,8 +233,8 @@
 <dd><p><a class="reference external" href="https://superuser.com/questions/814321/how-to-go-through-this-duplicity-stalled-connection">https://superuser.com/questions/814321/how-to-go-through-this-duplicity-stalled-connection</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="recovery">
+</section>
+<section id="recovery">
 <h2>Recovery<a class="headerlink" href="#recovery" title="Permalink to this headline">¶</a></h2>
 <p>Create new user:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">adduser</span> <span class="n">foobar</span>
@@ -255,8 +259,8 @@
 </div>
 <p>First time, will download signatures — takes a long time.</p>
 <p>Will of course be prompted for passphrase for symmetric decryption of private key in order to decrypt archive.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

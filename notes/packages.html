@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Packages &mdash; marceloalcocer.github.io v0.0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,6 +29,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -189,9 +193,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="packages">
+  <section id="packages">
 <h1>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="misc-package-commands">
+<section id="misc-package-commands">
 <h2>Misc Package Commands<a class="headerlink" href="#misc-package-commands" title="Permalink to this headline">¶</a></h2>
 <p>List installed packages <a class="footnote-reference brackets" href="#id4" id="id1">1</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span> <span class="nb">list</span> <span class="o">--</span><span class="n">installed</span>
@@ -220,8 +224,8 @@
 <dd><p><a class="reference external" href="https://wiki.debian.org/apt-file">https://wiki.debian.org/apt-file</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="packages-held-back">
+</section>
+<section id="packages-held-back">
 <h2>Packages Held Back<a class="headerlink" href="#packages-held-back" title="Permalink to this headline">¶</a></h2>
 <p>On day of 16.10 (Yakkety) release, doing <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">upgrade</span></code> seemed to update kernel from 4.4.0-42 to 4.4.0-43. GRUB now defaults to 43, but all hardware support is gone (usb, wifi, ethernet, etc).</p>
 <p>When booting back into 42 and doing <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">upgrade</span></code>, now seeing:</p>
@@ -258,8 +262,8 @@ the general settings for individual packages.</p>
 </div></blockquote>
 <p>Would seem that <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">upgrade</span></code> is trying to upgrade the kernel packages (<code class="docutils literal notranslate"><span class="pre">linux-generic</span></code>, <code class="docutils literal notranslate"><span class="pre">linux-headers-generic</span></code>, etc) to 43, but has realised that doing so would screw 42 and as such aborts. Not sure why it’s trying to upgrade to 43, but probably due to Yakkety release. Think those kernel packages are virtual and should contain different things for Yakkety and Xenial. Maybe someone screwed up the release upstream?</p>
 <p>… indeed would seem to be the case. An <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">upgrade</span></code> at a later date seems to have fixed the problem.</p>
-</div>
-<div class="section" id="ignoring-ucf-dist-file">
+</section>
+<section id="ignoring-ucf-dist-file">
 <h2>Ignoring ucf-dist File<a class="headerlink" href="#ignoring-ucf-dist-file" title="Permalink to this headline">¶</a></h2>
 <p>For a while now, have been getting following notification during <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">update</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="p">:</span> <span class="n">Ignoring</span> <span class="n">file</span> <span class="s1">&#39;20auto-upgrades.ucf-dist&#39;</span> <span class="ow">in</span> <span class="n">directory</span> <span class="s1">&#39;/etc/apt/apt.conf.d/&#39;</span> <span class="k">as</span> <span class="n">it</span> <span class="n">has</span> <span class="n">an</span> <span class="n">invalid</span> <span class="n">filename</span> <span class="n">extension</span>
@@ -276,8 +280,8 @@ the general settings for individual packages.</p>
 <dd><p><a class="reference external" href="https://askubuntu.com/questions/572976/what-to-do-now-update-just-after-install/573091#573091">https://askubuntu.com/questions/572976/what-to-do-now-update-just-after-install/573091#573091</a></p>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

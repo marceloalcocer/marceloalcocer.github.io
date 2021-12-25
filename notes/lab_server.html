@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Lab server &mdash; marceloalcocer.github.io v0.0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,6 +29,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -208,7 +212,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="lab-server">
+  <section id="lab-server">
 <h1>Lab server<a class="headerlink" href="#lab-server" title="Permalink to this headline">¶</a></h1>
 <p>Basic web server for hosting lab related files.</p>
 <p>Requirements:</p>
@@ -230,9 +234,9 @@
 <dd><p><a class="reference external" href="https://www.apachefriends.org/download.html">https://www.apachefriends.org/download.html</a></p>
 </dd>
 </dl>
-<div class="section" id="wamp-stack">
+<section id="wamp-stack">
 <h2>WAMP stack<a class="headerlink" href="#wamp-stack" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="installation">
+<section id="installation">
 <h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
 <p>Download and install XAMPP 7.0.8. Installed components:</p>
 <ol class="arabic simple">
@@ -243,8 +247,8 @@
 <li><p>Webalizer (logging)</p></li>
 </ol>
 <p>Start Apache and MariaDB. Can now see default XAMPP start page at <a class="reference external" href="http://localhost">http://localhost</a></p>
-</div>
-<div class="section" id="securing-sql">
+</section>
+<section id="securing-sql">
 <h3>Securing SQL<a class="headerlink" href="#securing-sql" title="Permalink to this headline">¶</a></h3>
 <p>XAMPP stresses that it is not production ready and has lots of security holes <a class="footnote-reference brackets" href="#id5" id="id3">2</a> — fine for dev, but not for public release. Latest version of XAMPP however seem to have patched the most glaring holes <a class="footnote-reference brackets" href="#id6" id="id4">3</a>. Only real thing left to secure is MySQL root password.</p>
 <p>Set via XAMPP console using:</p>
@@ -261,9 +265,9 @@
 <dd><p><a class="reference external" href="http://stackoverflow.com/questions/35391539/is-there-a-new-uri-for-opening-the-xampp-security-console-on-xampp-7-0-2-1">http://stackoverflow.com/questions/35391539/is-there-a-new-uri-for-opening-the-xampp-security-console-on-xampp-7-0-2-1</a></p>
 </dd>
 </dl>
-</div>
-</div>
-<div class="section" id="mediawiki">
+</section>
+</section>
+<section id="mediawiki">
 <h2>MediaWiki<a class="headerlink" href="#mediawiki" title="Permalink to this headline">¶</a></h2>
 <p>Now installing MediaWiki using Bitnami installer <a class="footnote-reference brackets" href="#id8" id="id7">4</a>.</p>
 <p>N.b. application password is password to be used by SQL user <code class="docutils literal notranslate"><span class="pre">bitnami_mediawiki</span></code> for all MediaWiki access to SQL DB. It’s stored in plaintext in <code class="docutils literal notranslate"><span class="pre">LocalSettings.php</span></code> so it should be disposable.</p>
@@ -273,8 +277,8 @@
 <dd><p><a class="reference external" href="https://www.apachefriends.org/add-ons.html">https://www.apachefriends.org/add-ons.html</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="filezilla-ftp-server">
+</section>
+<section id="filezilla-ftp-server">
 <h2>Filezilla FTP Server<a class="headerlink" href="#filezilla-ftp-server" title="Permalink to this headline">¶</a></h2>
 <p>Setting up FTP server to allow upload to server without needing RDP. This should be useful for uploading files which are too large/prohibited by MediaWiki.</p>
 <p>Configuration <a class="footnote-reference brackets" href="#id10" id="id9">5</a>:</p>
@@ -292,10 +296,10 @@
 <dd><p><a class="reference external" href="https://wiki.filezilla-project.org/Network_Configuration">https://wiki.filezilla-project.org/Network_Configuration</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="repository-hosting">
+</section>
+<section id="repository-hosting">
 <h2>Repository hosting<a class="headerlink" href="#repository-hosting" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="mercurial">
+<section id="mercurial">
 <h3>Mercurial<a class="headerlink" href="#mercurial" title="Permalink to this headline">¶</a></h3>
 <p>Now want to set up web interface to HG repos. Can do in many ways <a class="footnote-reference brackets" href="#id14" id="id11">6</a>. Simplest probably hgweb though.</p>
 <p>hgweb requires mercurial python libraries however. As mercurial built on Python 2.x, on Windows these are only supplied for Python 2.x. As such did following:</p>
@@ -328,12 +332,12 @@
 <dd><p><a class="reference external" href="https://github.com/boundstate/hgweb-boundstate-theme">https://github.com/boundstate/hgweb-boundstate-theme</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="git">
+</section>
+<section id="git">
 <h3>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h3>
 <p>Initially tried to handle user authentication via FTP access. Could happily push using git ftp, but had no luck pulling as no git server scripts were present on server.</p>
 <p>As have to install Git on server, might as well try more standard setup of Git over (smart) HTTP.</p>
-<div class="section" id="http">
+<section id="http">
 <h4>HTTP<a class="headerlink" href="#http" title="Permalink to this headline">¶</a></h4>
 <p>Downloaded Git for Windows official installation <a class="footnote-reference brackets" href="#id21" id="id17">9</a>. This comes bundled with MinGW installation which provide basic GNU/Linux tools required for running Git.</p>
 <p>Followed steps in Git book on setting up Git over Smart HTTP <a class="footnote-reference brackets" href="#id22" id="id18">10</a>.</p>
@@ -382,7 +386,7 @@
 </pre></div>
 </div>
 <p>Now both clone and push require authentication:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">http</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">USER</span><span class="o">&gt;</span><span class="nd">@acq</span><span class="o">.</span><span class="mi">2</span><span class="n">d</span><span class="o">.</span><span class="n">chemphys</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">http</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">USER</span><span class="o">&gt;</span><span class="nd">@acq</span><span class="mf">.2</span><span class="n">d</span><span class="o">.</span><span class="n">chemphys</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">se</span><span class="o">/</span><span class="n">foo</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
 <p>Finally, require authentication only for push by adding regexp to <code class="docutils literal notranslate"><span class="pre">Require</span></code> directive (as detailed in Git book):</p>
@@ -431,8 +435,8 @@ ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [
 <dd><p><a class="reference external" href="http://www.jeremyskinner.co.uk/2010/07/31/hosting-a-git-server-under-apache-on-windows/">http://www.jeremyskinner.co.uk/2010/07/31/hosting-a-git-server-under-apache-on-windows/</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="web-interface">
+</section>
+<section id="web-interface">
 <h4>Web interface<a class="headerlink" href="#web-interface" title="Permalink to this headline">¶</a></h4>
 <p>Tried a few web interfaces:</p>
 <dl class="simple">
@@ -462,12 +466,12 @@ ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [
 <dd><p><a class="reference external" href="https://gitphp.org/">https://gitphp.org/</a></p>
 </dd>
 </dl>
-</div>
-</div>
-</div>
-<div class="section" id="server-backup">
+</section>
+</section>
+</section>
+<section id="server-backup">
 <h2>Server Backup<a class="headerlink" href="#server-backup" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="sql-dump">
+<section id="sql-dump">
 <h3>SQL dump<a class="headerlink" href="#sql-dump" title="Permalink to this headline">¶</a></h3>
 <p>Do from phpMyAdmin <a class="footnote-reference brackets" href="#id27" id="id28">14</a>. Copy to <code class="docutils literal notranslate"><span class="pre">D:\Wiki</span></code>. Add to HG.</p>
 <dl class="footnote brackets">
@@ -475,32 +479,32 @@ ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [
 <dd><p><a class="reference external" href="https://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki#phpMyAdmin">https://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki#phpMyAdmin</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="xml-dump">
+</section>
+<section id="xml-dump">
 <h3>XML dump<a class="headerlink" href="#xml-dump" title="Permalink to this headline">¶</a></h3>
 <p>Just for safety:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">php</span> <span class="n">dumpBackup</span><span class="o">.</span><span class="n">php</span> <span class="o">--</span><span class="n">full</span> <span class="o">&gt;</span> <span class="n">bitnami_mediawiki</span><span class="o">.</span><span class="n">xml</span>
 </pre></div>
 </div>
 <p>Copy and add to HG</p>
-</div>
-<div class="section" id="localsettings">
+</section>
+<section id="localsettings">
 <h3>LocalSettings<a class="headerlink" href="#localsettings" title="Permalink to this headline">¶</a></h3>
 <p>Copy and add to HG.</p>
-</div>
-<div class="section" id="mediawiki-files">
+</section>
+<section id="mediawiki-files">
 <h3>MediaWiki files<a class="headerlink" href="#mediawiki-files" title="Permalink to this headline">¶</a></h3>
 <p>Zip whole <code class="docutils literal notranslate"><span class="pre">mediawiki</span></code> directory. Move to <code class="docutils literal notranslate"><span class="pre">D:\Wiki</span></code>. Do not add to HG (too large and binary)</p>
-</div>
-<div class="section" id="lab-files">
+</section>
+<section id="lab-files">
 <h3>Lab Files<a class="headerlink" href="#lab-files" title="Permalink to this headline">¶</a></h3>
 <p>Zip <code class="docutils literal notranslate"><span class="pre">lab</span></code> directory. Move. Do not add to HG.</p>
-</div>
-<div class="section" id="software-repos">
+</section>
+<section id="software-repos">
 <h3>Software Repos<a class="headerlink" href="#software-repos" title="Permalink to this headline">¶</a></h3>
 <p>These will almost certainly be mirrored in many other locations, but probably still best to clone out a fresh copy of each as a backup. All repos in <code class="docutils literal notranslate"><span class="pre">C:\xampp\git</span></code>.</p>
-</div>
-<div class="section" id="conf-files">
+</section>
+<section id="conf-files">
 <h3>Conf Files<a class="headerlink" href="#conf-files" title="Permalink to this headline">¶</a></h3>
 <p>Yuk, loads… Should list these…</p>
 <ul class="simple">
@@ -509,9 +513,9 @@ ScriptAliasMatch &quot;(?x)^/git/(.*/(HEAD | info/refs | objects/(info/[^/]+ | [
 <li><p>MySQL</p></li>
 <li><p>HG</p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

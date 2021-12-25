@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Git &mdash; marceloalcocer.github.io v0.0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -26,6 +29,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -190,9 +194,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="git">
+  <section id="git">
 <h1>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="discard-unstaged-changes">
+<section id="discard-unstaged-changes">
 <h2>Discard unstaged changes<a class="headerlink" href="#discard-unstaged-changes" title="Permalink to this headline">¶</a></h2>
 <p>Discard unstaged changes <a class="footnote-reference brackets" href="#id2" id="id1">1</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">--</span> <span class="o">.</span>
@@ -203,8 +207,8 @@
 <dd><p><a class="reference external" href="https://stackoverflow.com/questions/52704/how-do-i-discard-unstaged-changes-in-git#answer-52713">https://stackoverflow.com/questions/52704/how-do-i-discard-unstaged-changes-in-git#answer-52713</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="committing">
+</section>
+<section id="committing">
 <h2>Committing<a class="headerlink" href="#committing" title="Permalink to this headline">¶</a></h2>
 <p>Override configured user for single commit <a class="footnote-reference brackets" href="#id4" id="id3">2</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;user.name=Your Name&quot;</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;user.email=Your email&quot;</span> <span class="n">commit</span>
@@ -215,8 +219,8 @@
 <dd><p><a class="reference external" href="https://stackoverflow.com/questions/19840921/override-configured-user-for-a-single-git-commit">https://stackoverflow.com/questions/19840921/override-configured-user-for-a-single-git-commit</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="branching">
+</section>
+<section id="branching">
 <h2>Branching<a class="headerlink" href="#branching" title="Permalink to this headline">¶</a></h2>
 <p>Merge changes in <code class="docutils literal notranslate"><span class="pre">SOURCE</span></code> into <code class="docutils literal notranslate"><span class="pre">DEST</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">co</span> <span class="o">&lt;</span><span class="n">DEST</span><span class="o">&gt;</span>
@@ -228,8 +232,8 @@
 <span class="n">git</span> <span class="n">rebase</span> <span class="o">&lt;</span><span class="n">DEST</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="displaying">
+</section>
+<section id="displaying">
 <h2>Displaying<a class="headerlink" href="#displaying" title="Permalink to this headline">¶</a></h2>
 <p>Show previous file revision <a class="footnote-reference brackets" href="#id7" id="id5">3</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">show</span> <span class="o">&lt;</span><span class="n">REVISION</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">PATH</span><span class="o">&gt;</span>
@@ -247,8 +251,8 @@
 <dd><p><a class="reference external" href="https://stackoverflow.com/questions/15606955/how-can-i-make-git-show-a-list-of-the-files-that-are-being-tracked">https://stackoverflow.com/questions/15606955/how-can-i-make-git-show-a-list-of-the-files-that-are-being-tracked</a></p>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
