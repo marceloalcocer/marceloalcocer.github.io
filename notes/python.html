@@ -268,7 +268,8 @@
 </pre></div>
 </div>
 <p>N.b. As mentioned above, the <code class="docutils literal notranslate"><span class="pre">await</span></code> in <code class="docutils literal notranslate"><span class="pre">main</span></code> is blocking, so execution order within <code class="docutils literal notranslate"><span class="pre">main</span></code> is well defined (first <code class="docutils literal notranslate"><span class="pre">await</span></code>, second <code class="docutils literal notranslate"><span class="pre">await</span></code>). As such, in this example only one coroutine is being handled by the event loop at a time, and so there is no real concurrency.</p>
-<p>To achieve concurrency, must have multiple coroutines in event loop, i.e. single <code class="docutils literal notranslate"><span class="pre">await</span></code> on multiple coroutines. Do this in <code class="docutils literal notranslate"><span class="pre">asyncio</span></code> by converting coroutines into <code class="docutils literal notranslate"><span class="pre">Task</span></code> instances (using <code class="docutils literal notranslate"><span class="pre">asyncio.create_task</span></code>), which do <em>not</em> block under <code class="docutils literal notranslate"><span class="pre">await</span></code>:</p>
+<p>To achieve concurrency, must have multiple coroutines in event loop, i.e. single <code class="docutils literal notranslate"><span class="pre">await</span></code> on multiple coroutines. Do this in <code class="docutils literal notranslate"><span class="pre">asyncio</span></code> by converting coroutines into <code class="docutils literal notranslate"><span class="pre">Task</span></code> instances (using <code class="docutils literal notranslate"><span class="pre">asyncio.create_task</span></code>). These will be scheduled for imminent execution in the event loop.</p>
+<p>N.b. Execution will occur soon after the <code class="docutils literal notranslate"><span class="pre">Task</span></code> is instantiated. <code class="docutils literal notranslate"><span class="pre">Tasks</span></code> are however awaitables, and so <code class="docutils literal notranslate"><span class="pre">await</span></code> can be used if necessary to suspend control flow until the <code class="docutils literal notranslate"><span class="pre">Task</span></code> has completed. This can be used for example, to ensure the <code class="docutils literal notranslate"><span class="pre">Tasks</span></code> stay in scope:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
@@ -277,22 +278,42 @@
         <span class="nb">print</span><span class="p">(</span><span class="n">what</span><span class="p">)</span>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-        <span class="n">task1</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">say_after</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">))</span>
-        <span class="n">task2</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">say_after</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">))</span>
+        <span class="n">task1</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">say_after</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">))</span>      <span class="c1"># Will start executing imminently</span>
+        <span class="n">task2</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">say_after</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">))</span>      <span class="c1"># Will start executing imminently</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;started at </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%X</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="c1"># Wait until both tasks are completed (should take</span>
-        <span class="c1"># around 2 seconds.)</span>
-        <span class="k">await</span> <span class="n">task1</span>
-        <span class="k">await</span> <span class="n">task2</span>
+        <span class="k">await</span> <span class="n">task1</span>     <span class="c1"># Wait until task 1 is done…</span>
+        <span class="k">await</span> <span class="n">task2</span>     <span class="c1"># …and then wait until task 2 is done</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;finished at </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%X</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>Can also use <code class="docutils literal notranslate"><span class="pre">asyncio.gather</span></code> as convenient way to convert multiple coroutines into tasks — this is probably what you’ll be using most.</p>
+<p>Can also use <code class="docutils literal notranslate"><span class="pre">asyncio.gather</span></code> as convenient way to convert multiple coroutines into tasks — this is probably what you’ll be using most:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">say_after</span><span class="p">(</span><span class="n">delay</span><span class="p">,</span> <span class="n">what</span><span class="p">):</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">what</span><span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+
+        <span class="c1"># Convert both coroutines into tasks, thereby scheduling</span>
+        <span class="c1"># their concurrent execution.</span>
+        <span class="c1">#</span>
+        <span class="c1"># Wait until both tasks have completed before proceeding</span>
+        <span class="c1">#</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
+                <span class="n">say_after</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">),</span>
+                <span class="n">say_after</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
 <dl class="footnote brackets">
 <dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p><a class="reference external" href="https://docs.python.org/3.7/library/asyncio-task.html">https://docs.python.org/3.7/library/asyncio-task.html</a></p>
