@@ -6,6 +6,5 @@ cat marcelo/{thought,code,hack}.rst | html
    :hidden:
 
    Notes <notes>
-   SVGFragments <svgfragments>
 
 .. caution:: Likely to contain rambling musings, obscene code styles, and dirty hacks
