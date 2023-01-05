@@ -21,11 +21,11 @@ jobs:
     steps:
       - name: "Checkout source"
         uses: actions/checkout@v3
-        with:
-          submodules: true
       - name: "Install Sphinx"
-        run: sudo apt install python3-sphinx
-      - name: "Build with Sphinx"
+        run: pip install sphinx
+      - name: "Install Furo"
+        run: pip install furo
+      - name: "Build"
         run: make html
       - name: "Upload build"
         uses: actions/upload-pages-artifact@v1
