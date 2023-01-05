@@ -1,10 +1,24 @@
-cat marcelo/{thought,code,hack}.rst | html
-=================================================
+`marceloalcocer.github.io <https://github.com/marceloalcocer/marceloalcocer.github.io>`_
+========================================================================================
 
 .. toctree::
-   :maxdepth: 4
-   :hidden:
+	:maxdepth: 2
+	:hidden:
 
-   Notes <notes>
+	Notes <notes>
 
-.. caution:: Likely to contain rambling musings, obscene code styles, and dirty hacks
+|
+
+Essentially;
+
+.. code-block:: shell
+
+	~$ cat marcelo/*.{thought,code,hack} | html >> marceloalcocer.github.io
+
+|
+
+.. caution::
+
+	Likely to contain rambling musings, obscene code styles, and dirty hacks…
+
+

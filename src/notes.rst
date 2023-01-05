@@ -1,11 +1,11 @@
-Online margin scribbles...
-============================
+Notes
+=====
 
-**Index**
+Margin scribbles
 
 .. toctree::
-   :maxdepth: 4
-   :glob:
+	:maxdepth: 4
+	:glob:
 
-   notes/*
+	notes/*
 
