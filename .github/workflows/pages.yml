@@ -3,7 +3,7 @@ name: "Build and deploy to GitHub Pages"
 on:
   push:
     branches:
-      - source_deployment       # TODO: Replace with 'main'
+      - main
   workflow_dispatch:            # Allows manual triggering
 
 concurrency:
