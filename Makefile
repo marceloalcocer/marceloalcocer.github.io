@@ -12,7 +12,6 @@ BUILDDIR      = build
 html: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 	cd build/html \
-		&& ln -s _static/sunfleet sunfleet \
 		&& ln -s _static/svgfragments svgfragments
 
 help:
