@@ -1,0 +1,12 @@
+[submodule "submodules/reveal.js"]
+	path = submodules/reveal.js
+	url = git@github.com:hakimel/reveal.js.git
+[submodule "submodules/reveal-svgfragments"]
+	path = submodules/reveal-svgfragments
+	url = git@github.com:marceloalcocer/reveal-svgfragments.git
+[submodule "submodules/ultrajs"]
+	path = submodules/ultrajs
+	url = git@github.com:marceloalcocer/ultrajs.git
+[submodule "submodules/sphinx_rtd_theme"]
+	path = submodules/sphinx_rtd_theme
+	url = git@github.com:readthedocs/sphinx_rtd_theme.git
