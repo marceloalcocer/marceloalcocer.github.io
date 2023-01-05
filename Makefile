@@ -14,10 +14,6 @@ html: Makefile
 	cd build/html \
 		&& ln -s _static/sunfleet sunfleet \
 		&& ln -s _static/svgfragments svgfragments
-	cd build/html/ultrajs \
-		&& ln -s ../_static/ultrajs/bandlim.css bandlim.css \
-		&& ln -s ../_static/ultrajs/bandlim.js bandlim.js
-
 
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)

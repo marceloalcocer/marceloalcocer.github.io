@@ -6,7 +6,6 @@ cat marcelo/{thought,code,hack}.rst | html
    :hidden:
 
    Notes <notes>
-   ultrajs <ultrajs>
    Sunfleet <sunfleet>
    SVGFragments <svgfragments>
 
